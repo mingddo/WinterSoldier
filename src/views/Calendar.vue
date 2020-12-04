@@ -2,13 +2,14 @@
   <div>
     <h2>
       <button @click="calendarData(-1)">⬅</button>
-      {{ year}}년 {{ month }}월 {{ today }}일
+      {{ year}}년 {{ month }}월
       <button @click="calendarData(1)">➡</button>
     </h2>
     <table>
       <thead>
         <th v-for="(weekday, idx) in weekName" :key="idx">
-          {{ weekday }}
+          <span v-if="idx===0" class="sunday-color">{{ weekday }}</span>
+          <span v-else>{{ weekday }}</span>
         </th>
       </thead>
       <tbody>
@@ -17,7 +18,10 @@
             v-for="(day, idx2) in date"
             :key="idx2"
             >
-            {{ day }}
+            <button v-if="day===today && month === currentMonth && year === currentYear" class="today-point day-button">{{ day }}</button>
+            <button v-else-if="idx2===0" class="sunday-color day-button">{{ day }}</button>
+            <button v-else-if="idx2===6" class="saturday-color day-button">{{ day }}</button>
+            <button v-else class="day-button">{{ day }}</button>
           </td>
         </tr>
       </tbody>
@@ -101,7 +105,9 @@ export default {
           if (day === 1) {
             // 1일이 어느 요일인지에 따라 테이블에 그리기 위한 지난 셀의 날짜들을 구해야함
             for (let j = 0; j < monthFirstDay; j += 1) {
-              weekOfDays.push(prevDay);
+              console.log('prevDay', prevDay)
+              weekOfDays.push('');
+              // weekOfDays.push(prevDay); , 달력상에 지난 날짜 표현 x
               prevDay += 1;
             }
           }
@@ -116,11 +122,14 @@ export default {
         }
         const len = weekOfDays.length;
         console.log('길이?', len)
-        if (len > 0 && len < 7) {
-          for (let k = 1; k <= 7 - len; k += 1) {
-            weekOfDays.push(k);
-          }
-        }
+        // if (len > 0 && len < 7) {
+        //   for (let k = 1; k <= 7 - len; k += 1) {
+        //     console.log('k', k)
+        //   }
+        // } // 달력상 다음달 날짜 미리 표기 x 
+        console.log('오늘!', this.today)
+        console.log('이번달!', this.currentMonth)
+        console.log('이달은!', this.month)
         if (weekOfDays.length > 0) dates.push(weekOfDays); // 남은 날짜 추가
         this.nextMonthStart = weekOfDays[0]; // 이번 달 마지막 주에서 제일 작은 날짜
         return dates;
@@ -131,5 +140,19 @@ export default {
 </script>
 
 <style>
-
+.day-button{
+  width: 100%;
+  background-color: white;
+  border: none;
+  cursor: pointer;
+}
+.today-point {
+  background-color: pink;
+}
+.sunday-color {
+  color: red;
+}
+.saturday-color {
+  color: blue;
+}
 </style>
