@@ -1,0 +1,19 @@
+:root{
+  /* color */
+  --white-color: #f8f8f8;
+  --green-color: #107516;
+  --yellow-color: #ffd600;
+  /* Size */
+
+  /* Font Size */
+
+  /* Font */
+  --Nanum-Ghothic:'Nanum Gothic', sans-serif;
+  --Noto-Sans-KR : 'Noto Sans KR', sans-serif;
+  --Roboto: 'Roboto', sans-serif;
+}
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
