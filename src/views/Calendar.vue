@@ -82,12 +82,24 @@
         </tbody>
       </table>
     </div>
+  <div>
+    <TodoList />
+    <TodoForm />
   </div>
+  </div>
+
+
 </template>
 
 <script>
+import TodoList from "@/views/Todo/TodoList"
+import TodoForm from "@/views/Todo/TodoForm"
 export default {
   name: 'Calendar',
+   components: {
+    TodoList,
+    TodoForm
+  },
   data () {
     return {
       weekName: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
