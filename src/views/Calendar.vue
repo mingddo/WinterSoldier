@@ -144,6 +144,7 @@ export default {
       if (arg<0) {
         this.weekIdx -= 1;
       } else if (arg === 1) {
+        this.weekIdx = Number(this.weekIdx)
         this.weekIdx += 1;
       }
 
