@@ -17,7 +17,10 @@ export default new Vuex.Store({
       // console.log(state)
       // console.log(todoItem)
       state.todos.push(todoItem)
-
+    },
+    DELETE_TODO : function(state,todoItem) {
+      const Index = state.todos.indexOf(todoItem)
+      state.todos.splice(Index,1)
     }
   },
   actions: {
@@ -25,6 +28,9 @@ export default new Vuex.Store({
       // console.log(context)
       // console.log(todoItem)
     context.commit('CREATE_TODO',todoItem)
+    },
+    deleteTodo : function({commit},todoItem) {
+      commit('DELETE_TODO',todoItem)
     }
   },
 })

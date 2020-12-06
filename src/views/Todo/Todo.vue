@@ -1,6 +1,9 @@
 <template>
   <div>
-      {{todo.title}}
+    <div>
+      <span>{{todo.title}}</span>
+      <button @click="deleteTodo"> Delete!</button>
+    </div>
   </div>
 </template>
 
@@ -10,6 +13,11 @@ export default {
     props:{
         todo : Object,
     },
+    methods: {
+        deleteTodo : function() {
+            this.$store.dispatch('deleteTodo',this.todo)
+        }
+    }
 }
 </script>
 
