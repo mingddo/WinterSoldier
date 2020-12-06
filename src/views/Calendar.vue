@@ -3,17 +3,18 @@
     <div>
       <!--월간달력 구간-->
       <!-- 월간 달력 년 월 구간 / 양쪽 버튼 클릭시 월을 하나씩 이동 가능 + 날짜 더블클릭시 input 입력창이 나오며 해당 년월로 이동-->
+
       <h2>
         <button @click="calendarData(-1)">⬅</button>
         <span @dblclick="changeYearForm" :class="{inputYearMonth: !yearForm}">
           {{ year}}
         </span>
-        <input type="number" :class="{inputYearMonth: yearForm}" v-model.number="changedYear" @keypress.enter="changeYearForm">
+        <input type="number" :class="{inputYearMonth: yearForm}" min="1" v-model.number="changedYear" @keypress.enter="changeYearForm">
         년
         <span @dblclick="changeMonthForm" :class="{inputYearMonth: !monthForm}">
           {{ month }}
         </span>
-        <input type="number" value="currentMonth" :class="{inputYearMonth: monthForm}" v-model.number="changedMonth" @keypress.enter="changeMonthForm">
+        <input type="number" value="currentMonth" min="1" max="12" :class="{inputYearMonth: monthForm}" v-model.number="changedMonth" @keypress.enter="changeMonthForm">
         월
         <button @click="calendarData(1)">➡</button>
       </h2>
@@ -115,8 +116,8 @@ export default {
       thisDay: 1,
       yearForm: true,
       monthForm: true,
-      changedYear: this.currentYear,
-      changedMonth: this.currentMonth,
+      changedYear: this.year,
+      changedMonth: this.month,
       weekCalendar: [],
       weekIdx: 0,
       MaximumWeek: 0,
@@ -132,16 +133,23 @@ export default {
     this.today = date.getDate();
     this.calendarData();
     this.pickWeek();
+    this.defaultYearMonth();
   },
   methods: {
+    defaultYearMonth () {
+      this.changedYear = this.year
+      this.changedMonth = this.month
+    },
     changeWeekly(arg) {
       if (arg<0) {
         this.weekIdx -= 1;
       } else if (arg === 1) {
         this.weekIdx += 1;
       }
+
       if (this.weekIdx<0) {
         this.month -= 1
+        this.goToBack = true
         if (this.month ===0) {
           this.year -= 1;
           this.month = 12;
@@ -149,13 +157,14 @@ export default {
         }
       } else if (this.weekIdx == this.MaximumWeek) {
         this.month += 1
+        this.weekIdx = 0
       } if (this.month > 12) {
         this.year += 1;
         this.month = 1;
         this.weekIdx = 0
       }
 
-
+      console.log(this.goToBack)
       const [
         monthFirstDay,
         monthLastDate,
@@ -166,9 +175,15 @@ export default {
         monthLastDate,
         lastMonthLastDate,
       )
+      this.MaximumWeek = this.dates.length
+      console.log(this.dates)
       if (this.goToBack) {
-        this.weekIdx = this.dates.length
+        this.weekIdx = this.MaximumWeek - 1
+        console.log("🚀 ~ file: Calendar.vue ~ line 176 ~ changeWeekly ~ this.MaximumWeek", this.MaximumWeek)
       }
+      console.log('현재 주', this.weekIdx)
+      console.log('현재 년도', this.year)
+      console.log('현재 월', this.month)
       this.weekCalendar = this.dates[this.weekIdx]
       this.goToBack = false
     },
@@ -186,6 +201,7 @@ export default {
     },
     changeYearForm () {
       this.year = this.changedYear
+      console.log('몇년도', this.changedYear)
       const [
         monthFirstDay,
         monthLastDate,
