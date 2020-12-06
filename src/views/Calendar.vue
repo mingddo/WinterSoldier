@@ -143,9 +143,11 @@ export default {
     changeWeekly(arg) {
       if (arg<0) {
         this.weekIdx -= 1;
+        alert(typeof this.weekIdx)
       } else if (arg === 1) {
         this.weekIdx = Number(this.weekIdx)
         this.weekIdx += 1;
+        alert(typeof this.weekIdx)
       }
 
       if (this.weekIdx<0) {
@@ -176,6 +178,7 @@ export default {
         monthLastDate,
         lastMonthLastDate,
       )
+
       this.MaximumWeek = this.dates.length
       console.log(this.dates)
       if (this.goToBack) {
@@ -194,6 +197,7 @@ export default {
           if (this.today === daily) {
             this.weekCalendar = this.dates[weekIdx]
             this.weekIdx = weekIdx
+            console.log('지금주', this.weekIdx)
           }
         }
       }
@@ -216,6 +220,7 @@ export default {
       this.yearForm = !this.yearForm
     },
     changeMonthForm () {
+      this.monthForm = !this.monthForm
       this.month = this.changedMonth
       const [
         monthFirstDay,
@@ -227,7 +232,7 @@ export default {
         monthLastDate,
         lastMonthLastDate,
       )
-      this.monthForm = !this.monthForm
+      
     },
     modalDisappear () {
       this.modal = false
