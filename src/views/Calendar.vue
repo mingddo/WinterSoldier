@@ -45,13 +45,17 @@
     <!--월간 달력에서 날짜 클릭시 뜨는 모달창 구역-->
     <div :class="{dayModal:!modal}">
       {{ month }} 월 {{ thisDay }} 일 입니다!
+        <div>
+          <TodoList :year="year" :month="month" :thisDay="thisDay"/>
+          <TodoForm :year="year" :month="month" :thisDay="thisDay"/>
+        </div>
       <button @click="modalDisappear">
         ok
       </button>
     </div>
 
     <!-- 주간 달력 구간 -->
-    <!-- 주간 달력 페이지 이동 -->
+    <!-- 주간 달력 페이지 이동 / 양쪽 버튼 이동시 주를 한 주씩 이동 가능, 디폴트는 오늘날짜에 해당 하는 주 -->
     <h2>
       <button @click="changeWeekly(-1)">
         ⬅
@@ -83,10 +87,6 @@
         </tbody>
       </table>
     </div>
-  <div>
-    <TodoList />
-    <TodoForm />
-  </div>
   </div>
 
 
