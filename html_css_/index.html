@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- FontAwesome -->
+  <script src="https://kit.fontawesome.com/877c802343.js" crossorigin="anonymous"></script>
+  
+  <!-- GoogleFont: 나눔고딕(400, 700, 800), Roboto(300, 400, 500) -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <!-- CSS 파일 -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- JS 파일 -->
+  <script src="main.js"></script>
+
+  <title>Index Page</title>
+</head>
+<body>
+  <!-- 1. Navbar -->
+  <header class="navbar">
+    <div class="navbarLogo">
+      <i class="fab fa-microblog"></i>
+    </div>
+    <ul class="navbarCategory">
+      <li>주식</li>
+      <li>영화예매</li>
+      <li>버스</li>
+    </ul>
+    <div class="navbarIcons">
+      <input type="search" class="search" placeholder="검색">
+      <i class="fas fa-search"></i>
+      <i class="fas fa-user"></i>
+    </div>
+  </header>
+
+  <!-- MainFrame -->
+  <main class="frame">
+    <!-- 2. MonthFrame -->
+    <section class="monthFrame">
+      <span class="monthInfo">2020년 12월</span>
+      <div class="calendar">
+        <!-- 달력 대체 이미지, 나중에 지우세요. -->
+        <img src="images/calender.png" alt="" style="width: 100px; height: auto;">
+      </div>
+    </section>
+  
+    <!-- 3. WeekFrame -->
+    <section class="weekFrame">
+      <!-- WeekInfo -->
+      <div class="weekInfo">
+        <span class="yearMonth"></span>
+        <span class="week"></span>
+      </div>
+
+      <!-- TodoList -->
+      <!-- Todo 1 -->
+      <div class="dailyTodo">
+        <div class="dailyInfo">
+          <span class="dailyStr">화요일</span>
+          <span class="dailyNum">12일</span>
+        </div>
+        <div class="dailyList">
+          <ul>
+            <li>오늘 할 일1</li>
+            <li>오늘 할 일2</li>
+            <li>오늘 할 일3</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Todo 2 -->
+      <div class="dailyTodo">
+        <div class="dailyInfo">
+          <span class="dailyStr">수요일</span>
+          <span class="dailyNum">13일</span>
+        </div>
+        <div class="dailyList">
+          <ul>
+            <li>오늘 할 일1</li>
+            <li>오늘 할 일2</li>
+            <li>오늘 할 일3</li>
+          </ul>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- 4. Footer -->
+    <footer style="">
+      <section class="icons">
+        <i class="fas fa-home"></i>
+        <i class="fas fa-search"></i>
+        <i class="fas fa-th"></i>
+        <i class="fas fa-cog"></i>
+      </section>
+    </footer>
+
+  </main>
+</body>
+</html>
+
+
+<!-- 사용한 아이콘 리스트 -->
+<!-- 
+  <i class="fab fa-microblog"></i>
+  <i class="fas fa-search"></i>
+  <i class="fas fa-user"></i>
+
+  <i class="fas fa-home"></i>
+  <i class="fas fa-th"></i>
+  <i class="fas fa-cog"></i>
+ -->
