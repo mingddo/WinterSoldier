@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <span>{{todo.title}}</span>
+      <span :class="{completed:todo.completed}" @click='updateTodoStatus'>{{todo.title}}</span>
       <button @click="deleteTodo"> Delete!</button>
     </div>
   </div>
@@ -16,11 +16,16 @@ export default {
     methods: {
         deleteTodo : function() {
             this.$store.dispatch('deleteTodo',this.todo)
+        },
+        updateTodoStatus : function() {
+          this.$store.dispatch('updateTodoStatus',this.todo)
         }
     }
 }
 </script>
 
-<style>
-
+<style scoped>
+.completed {
+  text-decoration: line-through;
+}
 </style>
