@@ -17,7 +17,21 @@ export default new Vuex.Store({
       // console.log(state)
       // console.log(todoItem)
       state.todos.push(todoItem)
-
+    },
+    DELETE_TODO : function(state,todoItem) {
+      const Index = state.todos.indexOf(todoItem)
+      state.todos.splice(Index,1)
+    },
+    UPDATE_TODO_STATUS : function(state,todoItem) {
+      state.todos = state.todos.map((todo) => {
+        if (todo === todoItem) {
+          return {
+            ...todoItem,
+            completed : !todo.completed
+          }
+        }
+        return todo
+      })
     }
   },
   actions: {
@@ -25,6 +39,12 @@ export default new Vuex.Store({
       // console.log(context)
       // console.log(todoItem)
     context.commit('CREATE_TODO',todoItem)
+    },
+    deleteTodo : function({commit},todoItem) {
+      commit('DELETE_TODO',todoItem)
+    },
+    updateTodoStatus : function({commit},todoItem) {
+      commit('UPDATE_TODO_STATUS',todoItem)
     }
   },
 })
