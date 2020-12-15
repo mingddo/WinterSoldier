@@ -10,6 +10,8 @@
   --grey-dark: #313130;
   /* Size */
   --padding: 12px;
+  --padding-side: 40px;
+  --padding-updown: 12px;
   --margin: 12px;
   /* Font Size */
   --font-micro: 0.7rem;
@@ -38,6 +40,18 @@ html {
 
 i {
   color: var(--grey-dark);
+}
+
+input[type='text'] {
+  width: 100%;
+  padding: var(--padding-updown) var(--padding-side);
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+}
+
+li {
+  font-family: var(--Roboto);
 }
 
 /* Header.navbar */
@@ -69,8 +83,19 @@ i {
 
 .navbarIcons {
   display: flex;
-  justify-content: space-around;
   align-items: center;
+}
+
+.navbarIcons .search-bar {
+  /* 자식 요소인 i 태그의 absolute 속성의 부모 요소 조건을 갖춤.(relative 속성) */
+  position: relative;
+}
+
+.navbarIcons .search-bar i {
+  position: absolute;
+  left: 0px;
+  top: calc(var(--padding-updown) + 6px);
+  color: gray;
 }
 
 .navbarIcons i {
