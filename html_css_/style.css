@@ -18,9 +18,9 @@
   --font-large: 1.3rem;
 
   /* Font */
-  --Nanum-Ghothic: "Nanum Gothic", sans-serif;
-  --Noto-Sans-KR: "Noto Sans KR", sans-serif;
-  --Roboto: "Roboto", sans-serif;
+  --Nanum-Ghothic: 'Nanum Gothic', sans-serif;
+  --Noto-Sans-KR: 'Noto Sans KR', sans-serif;
+  --Roboto: 'Roboto', sans-serif;
 }
 
 /* 전역변수 설정 */
