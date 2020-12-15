@@ -4,6 +4,8 @@ import Home from '../views/Home.vue'
 import Signup from '../views/Accounts/Signup.vue'
 import Login from '../views/Accounts/Login.vue'
 
+import Whether from '../views/Whether.vue'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -29,6 +31,11 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: Login
+  },
+  {
+    path: '/weather',
+    name: 'Weather',
+    component: Whether
   },
 ]
 
