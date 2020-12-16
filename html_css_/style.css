@@ -7,7 +7,7 @@
   --yellow-light: #ffffcf;
   --yellow-dark: #faf756;
   align-items: center;
-  --grey-dark: #313130;
+  --gray-dark: #0e0e0a;
   /* Size */
   --padding: 12px;
   --padding-side: 40px;
@@ -39,10 +39,19 @@ html {
 }
 
 i {
-  color: var(--grey-dark);
+  color: var(--gray-dark);
 }
 
-input[type='text'] {
+/* input 태그: 브라우저가 기본으로 지정하는 스타일링 제거 */
+input,
+input:focus {
+  appearance: none;
+  border: none;
+  outline: none;
+  background: none;
+}
+
+input {
   width: 100%;
   padding: var(--padding-updown) var(--padding-side);
   margin: 8px 0;
@@ -89,6 +98,12 @@ li {
 .navbarIcons .search-bar {
   /* 자식 요소인 i 태그의 absolute 속성의 부모 요소 조건을 갖춤.(relative 속성) */
   position: relative;
+}
+
+.navbarIcons .search-bar input:focus {
+  border: none;
+  outline: 1px solid gray;
+  transition: outline 1s;
 }
 
 .navbarIcons .search-bar i {
@@ -162,7 +177,7 @@ li {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  border-bottom: lightgrey 1px solid;
+  border-bottom: lightgray 1px solid;
   width: 100%;
 }
 
