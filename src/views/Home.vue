@@ -6,7 +6,7 @@
 
 <script>
 // @ is an alias to /src
-import Calendar from './Calendar.vue'
+import Calendar from '@/components/Calendar/Calendar.vue'
 
 export default {
   name: 'Home',
