@@ -95,8 +95,8 @@
 </template>
 
 <script>
-import TodoList from "@/views/Todo/TodoList"
-import TodoForm from "@/views/Todo/TodoForm"
+import TodoList from "../Todo/TodoList"
+import TodoForm from "../Todo/TodoForm"
 export default {
   name: 'Calendar',
    components: {
