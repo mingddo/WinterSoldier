@@ -3,26 +3,27 @@
     <div>
       <!--월간달력 구간-->
       <!-- 월간 달력 년 월 구간 / 양쪽 버튼 클릭시 월을 하나씩 이동 가능 + 날짜 더블클릭시 input 입력창이 나오며 해당 년월로 이동-->
-
-      <h2>
-        <button @click="calendarData(-1)">⬅</button>
-        <span @dblclick="changeYearForm" :class="{inputYearMonth: !yearForm}">
-          {{ year}}
-        </span>
-        <input type="number" :class="{inputYearMonth: yearForm}" min="1" v-model.number="changedYear" @keypress.enter="changeYearForm">
-        년
-        <span @dblclick="changeMonthForm" :class="{inputYearMonth: !monthForm}">
-          {{ month }}
-        </span>
-        <input type="number" value="currentMonth" min="1" max="12" :class="{inputYearMonth: monthForm}" v-model.number="changedMonth" @keypress.enter="changeMonthForm">
-        월
-        <button @click="calendarData(1)">➡</button>
-      </h2>
+      <div>
+        <h2>
+          <button @click="calendarData(-1)">⬅</button>
+          <span @dblclick="changeYearForm">
+            {{ year}}
+          </span>
+          <input type="number" min="1" v-model.number="changedYear" @change="changeYearForm">
+          년
+          <span @dblclick="changeMonthForm">
+            {{ month }}
+          </span>
+          <input type="number" value="currentMonth" min="1" max="12" v-model.number="changedMonth" @change="changeMonthForm">
+          월
+          <button @click="calendarData(1)">➡</button>
+        </h2>
+      </div>
       <!-- 월간 달력 테이블 -->
-      <table class="calendar">
+      <table>
         <thead>
           <th v-for="(weekday, idx) in weekName" :key="idx">
-            <span v-if="idx===0" class="sunday-color">{{ weekday }}</span>
+            <span v-if="idx===0">{{ weekday }}</span>
             <span v-else>{{ weekday }}</span>
           </th>
         </thead>
@@ -32,10 +33,10 @@
               v-for="(day, idx2) in date"
               :key="idx2"
               >
-              <button v-if="day===today && month === currentMonth && year === currentYear" class="today-point day-button" @click="todaySchedule(day)">{{ day }}</button>
-              <button v-else-if="idx2===0" @click="todaySchedule(day)" class="sunday-color day-button">{{ day }}</button>
-              <button v-else-if="idx2===6" @click="todaySchedule(day)" class="saturday-color day-button">{{ day }}</button>
-              <button v-else @click="todaySchedule(day)" class="day-button">{{ day }}</button>
+              <button v-if="day===today && month === currentMonth && year === currentYear" @click="todaySchedule(day)">{{ day }}</button> <!--오늘-->
+              <button v-else-if="idx2===0" @click="todaySchedule(day)">{{ day }}</button> <!--일요일-->
+              <button v-else-if="idx2===6" @click="todaySchedule(day)">{{ day }}</button> <!--토요일-->
+              <button v-else @click="todaySchedule(day)">{{ day }}</button> <!-- 그외 -->
             </td>
           </tr>
         </tbody>
@@ -43,7 +44,7 @@
     </div>
 
     <!--월간 달력에서 날짜 클릭시 뜨는 모달창 구역-->
-    <div :class="{dayModal:!modal}">
+    <div>
       {{ month }} 월 {{ thisDay }} 일 입니다!
         <div>
           <TodoList :year="year" :month="month" :thisDay="thisDay"/>
@@ -56,15 +57,16 @@
 
     <!-- 주간 달력 구간 -->
     <!-- 주간 달력 페이지 이동 / 양쪽 버튼 이동시 주를 한 주씩 이동 가능, 디폴트는 오늘날짜에 해당 하는 주 -->
-    <h2>
-      <button @click="changeWeekly(-1)">
-        ⬅
-      </button>
-      <button @click="changeWeekly(1)">
-        ➡
-      </button>
-    </h2>
-
+    <div>
+      <h2>
+        <button @click="changeWeekly(-1)">
+          ⬅
+        </button>
+        <button @click="changeWeekly(1)">
+          ➡
+        </button>
+      </h2>
+    </div>
     <!-- 주간 달력 테이블 -->
     <div>
       <table>
@@ -93,8 +95,8 @@
 </template>
 
 <script>
-import TodoList from "@/views/Todo/TodoList"
-import TodoForm from "@/views/Todo/TodoForm"
+import TodoList from "../Todo/TodoList"
+import TodoForm from "../Todo/TodoForm"
 export default {
   name: 'Calendar',
    components: {
@@ -143,11 +145,9 @@ export default {
     changeWeekly(arg) {
       if (arg<0) {
         this.weekIdx -= 1;
-        alert(typeof this.weekIdx)
       } else if (arg === 1) {
         this.weekIdx = Number(this.weekIdx)
         this.weekIdx += 1;
-        alert(typeof this.weekIdx)
       }
 
       if (this.weekIdx<0) {
@@ -185,9 +185,6 @@ export default {
         this.weekIdx = this.MaximumWeek - 1
         console.log("🚀 ~ file: Calendar.vue ~ line 176 ~ changeWeekly ~ this.MaximumWeek", this.MaximumWeek)
       }
-      console.log('현재 주', this.weekIdx)
-      console.log('현재 년도', this.year)
-      console.log('현재 월', this.month)
       this.weekCalendar = this.dates[this.weekIdx]
       this.goToBack = false
     },
@@ -285,7 +282,6 @@ export default {
       ) {
         let day = 1;
         let prevDay = (prevMonthLastDate - monthFirstDay) + 1;
-        console.log(monthFirstDay)
         const dates = [];
         let weekOfDays = [];
         while (day <= monthLastDate) {
@@ -298,7 +294,6 @@ export default {
               prevDay += 1;
             }
           }
-          
           weekOfDays.push(day);
           if (weekOfDays.length === 7) {
             // 일주일이 채워지면
@@ -309,15 +304,6 @@ export default {
         }
         const len = weekOfDays.length;
         console.log('길이?', len)
-        // if (len > 0 && len < 7) {
-        //   for (let k = 1; k <= 7 - len; k += 1) {
-        //     console.log('k', k)
-        //   }
-        // } // 달력상 다음달 날짜 미리 표기 x 
-        
-        console.log('오늘!', this.today)
-        console.log('이번달!', this.currentMonth)
-        console.log('이달은!', this.month)
         if (weekOfDays.length > 0) dates.push(weekOfDays); // 남은 날짜 추가
         this.nextMonthStart = weekOfDays[0]; // 이번 달 마지막 주에서 제일 작은 날짜
         return dates;
@@ -328,37 +314,5 @@ export default {
 </script>
 
 <style>
-.inputYearMonth {
-  display: none;
-}
-.calendar{
-  justify-content: center;
-}
-.day-button{
-  width: 100%;
-  background-color: white;
-  border: none;
-  cursor: pointer;
-}
-.today-point {
-  background-color: pink;
-}
-.sunday-color {
-  color: red;
-}
-.saturday-color {
-  color: blue;
-}
-.dayModal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
+
 </style>

@@ -9,4 +9,11 @@ function usersignup (user, success, fail) {
     .catch(fail);
 }
 
-export { usersignup }
+function userlogin (user, success, fail) {
+  instance
+    .post(`accounts/api_token_auth/`, user)
+    .then(success)
+    .catch(fail);
+}
+
+export { usersignup, userlogin }
