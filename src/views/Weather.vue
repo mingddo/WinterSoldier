@@ -35,7 +35,7 @@
 
 <script>
 export default {
-  name: 'Whether',
+  name: 'Weather',
   data() {
     return {
       api_key: '75209de1375c39ada0b2837afbe972c4',
