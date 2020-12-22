@@ -1,99 +1,40 @@
 <template>
-  <div
-    id="weather"
-    :class="
-      typeof weather.main != 'undefined' && weather.main.temp > 16 ? 'warm' : ''
-    "
-  >
-    <main>
-      <div class="search-box">
-        <input
-          type="text"
-          class="search-bar"
-          placeholder="Search the city name"
-          v-model="query"
-          @keypress="fetchWeather"
-        />
-      </div>
-
-      <div class="weather-wrap" v-if="typeof weather.main != 'undefined'">
-        <div class="location-box">
-          <div class="location">
-            {{ weather.name }}, {{ weather.sys.country }}
-          </div>
-          <div class="date">{{ dateBuilder() }}</div>
-        </div>
-
-        <div class="weather-box">
-          <div class="temp">{{ Math.round(weather.main.temp) }}℃</div>
-          <div class="weather">{{ weather.weather[0].main }}</div>
-        </div>
-      </div>
-    </main>
+  <div class="weather">
+    <span class="weather__date"
+      >{{ today.year }}년 {{ today.month }}월 {{ today.date }}일</span
+    >
+    <div class="weather__select">
+      <label for="city-select">CITY</label>
+      <select name="" id="city-select">
+        <option v-for="(loc, idx) in locations" :key="idx" :value="idx">{{
+          idx
+        }}</option>
+      </select>
+    </div>
+    <div class="weather__info">
+      <h2>서울</h2>
+      <h3>{{ temp }}°C</h3>
+    </div>
+    <div class="weather__recommend">
+      <i class="fas fa-mitten"></i>
+      <span>추워요~!</span>
+    </div>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
   name: 'Weather',
-  data() {
-    return {
-      api_key: '75209de1375c39ada0b2837afbe972c4',
-      url_base: 'https://api.openweathermap.org/data/2.5/',
-      query: '',
-      weather: {},
-    };
+  computed: {
+    ...mapState({
+      locations: (state) => state.weather.locations,
+      today: (state) => state.weather.today,
+      temp: (state) => state.weather.temp,
+    }),
   },
-  methods: {
-    fetchWeather(e) {
-      if (e.key == 'Enter') {
-        fetch(
-          `${this.url_base}weather?q=${this.query}&units=metric&APPID=${this.api_key}`
-        )
-          .then((res) => {
-            return res.json();
-          })
-          .then(this.setResult);
-      }
-    },
-    setResult(results) {
-      console.log(results);
-      this.weather = results;
-    },
-    dateBuilder() {
-      let d = new Date();
-      let months = [
-        'January',
-        'February',
-        'March',
-        'April',
-        'May',
-        'June',
-        'July',
-        'August',
-        'September',
-        'October',
-        'November',
-        'December',
-      ];
-      let days = [
-        'Sunday',
-        'Monday',
-        'Tuesday',
-        'Wednesday',
-        'Thursday',
-        'Friday',
-        'Saturday',
-      ];
-
-      let day = days[d.getDay()];
-      let date = d.getDate();
-      let month = months[d.getMonth()];
-      let year = d.getFullYear();
-
-      return `${day} ${date} ${month} ${year}`;
-    },
-  },
+  methods: {},
 };
 </script>
 
@@ -105,7 +46,7 @@ export default {
 }
 
 body {
-  font-family: 'montserrat', sans-serif;
+  font-family: 'montserrat', sans-ser if;
 }
 
 #weather {
