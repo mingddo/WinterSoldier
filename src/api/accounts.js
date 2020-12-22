@@ -16,4 +16,19 @@ function userlogin (user, success, fail) {
     .catch(fail);
 }
 
-export { usersignup, userlogin }
+function userprofile (username, success, fail) {
+  instance
+    .get(`accounts/profile/${username}/`)
+    .then(success)
+    .catch(fail);
+}
+
+async function findById(username, success, fail) {
+  instance
+    .get(`accounts/profile/${username}/`)
+    .then(success)
+    .catch(fail);
+}
+
+
+export { usersignup, userlogin, userprofile, findById }
