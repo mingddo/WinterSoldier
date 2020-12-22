@@ -20,6 +20,7 @@
 <script>
 import { userlogin } from "@/api/accounts.js";
 
+
 export default {
   name: 'Login',
   data () {
@@ -35,9 +36,11 @@ export default {
       console.log(this.user)
       userlogin (this.user,
       (res) => {
-        this.$store.commit("setIsLogined", true);
+        this.$store.commit("userStore/setIsLogined", true);
         console.log(res)
         localStorage.setItem('jwt', res.data.token)
+        this.$store.dispatch("userStore/GET_MEMBER_INFO", res.data.token)
+  
         alert('로그인이 완료되었습니다!')
       },
       (err) => {
