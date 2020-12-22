@@ -4,16 +4,23 @@
       >{{ today.year }}년 {{ today.month }}월 {{ today.date }}일</span
     >
     <div class="weather__select">
-      <label for="city-select">CITY</label>
-      <select name="" id="city-select">
-        <option v-for="(loc, idx) in locations" :key="idx" :value="idx">{{
-          idx
+      <label for="city-select">도시를 선택하세요</label>
+      <select
+        name=""
+        id="city-select"
+        v-model="location"
+        @change="getWeatherData(location)"
+      >
+        <option v-for="(coor, loc) in locations" :key="loc" :value="loc">{{
+          loc
         }}</option>
       </select>
     </div>
     <div class="weather__info">
-      <h2>서울</h2>
+      <h2>{{ location }}</h2>
+      <h3>{{ sky }}</h3>
       <h3>{{ temp }}°C</h3>
+      <span>강수확률: {{ pop }}%</span>
     </div>
     <div class="weather__recommend">
       <i class="fas fa-mitten"></i>
@@ -27,14 +34,28 @@ import { mapState } from 'vuex';
 
 export default {
   name: 'Weather',
+  data() {
+    return {
+      location: '서울', // 기본값: 서울
+    };
+  },
   computed: {
     ...mapState({
       locations: (state) => state.weather.locations,
       today: (state) => state.weather.today,
       temp: (state) => state.weather.temp,
+      sky: (state) => state.weather.sky,
+      pop: (state) => state.weather.pop,
     }),
   },
-  methods: {},
+  methods: {
+    getWeatherData(loc) {
+      this.$store.dispatch('getWeatherData', loc);
+    },
+  },
+  created() {
+    this.getWeatherData(this.location);
+  },
 };
 </script>
 
