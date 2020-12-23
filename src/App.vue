@@ -7,7 +7,8 @@
       <router-link to="/about">About</router-link> |
       <router-link to="/signup">Signup</router-link> |
       <router-link to="/login">Login</router-link> |
-      <router-link to="/weather">whether api test</router-link>
+      <router-link to="/weather">whether api test</router-link> |
+      <router-link to="/stock">stock</router-link>
     </div>
     <router-view />
   </div>
@@ -21,7 +22,6 @@ export default {
   components: {
     Navi,
     ChatHome
-
   }
 }
 </script>
