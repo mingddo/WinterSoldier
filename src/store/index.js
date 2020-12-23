@@ -7,12 +7,12 @@ Vue.use(Vuex);
 Vue.use(AxiosPlugin);
 
 import userStore from './modules/userStore.js';
-import weather from './modules/weather.js';
+import weatherStore from './modules/weatherStore';
 
 const store = new Vuex.Store({
   modules: {
     userStore,
-    weather,
+    weatherStore,
   },
   state: {
     todos: [],
