@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <Navi/>
-    <ChatHome/>
+    <Navi />
+    <ChatHome />
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link> |
@@ -14,16 +14,15 @@
 </template>
 
 <script>
-import ChatHome from './components/ChatBot/ChatHome.vue'
-import Navi from './components/common/navi.vue'
+import ChatHome from './components/ChatBot/ChatHome.vue';
+import Navi from './components/common/navi.vue';
 export default {
   name: 'App',
   components: {
     Navi,
-    ChatHome
-
-  }
-}
+    ChatHome,
+  },
+};
 </script>
 
 <style>
