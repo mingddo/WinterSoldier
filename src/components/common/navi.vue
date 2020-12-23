@@ -1,15 +1,23 @@
 <template>
-  <div>
-    <div>
-      안녕하세요!
+    <header class="navbar">
+    <div class="navbarLogo">
+      <i class="fab fa-microblog"></i>
     </div>
-    <div>
-      누구세요;
+    <ul class="navbarCategory">
+      <li>안녕하세요 000님!</li>
+      <li>주식</li>
+      <li>영화예매</li>
+      <li>날씨</li>
+      <li>로그아웃</li>
+    </ul>
+    <div class="navbarIcons">
+      <div class="search-bar">
+        <input type="text" class="search" placeholder="검색">
+        <i class="fas fa-search"></i>
+      </div>
+      <i class="fas fa-user"></i>
     </div>
-    <button>
-      로그아웃
-    </button>
-  </div>
+  </header>
 </template>
 
 <script>
