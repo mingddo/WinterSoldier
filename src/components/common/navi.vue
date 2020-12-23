@@ -1,7 +1,6 @@
 <template>
-  
-    <header class="navbar">
-      <div>
+   <header class="navbar">
+    <div>
     <div v-if="isLogin">
       안녕하세요! {{username}}님
     </div>

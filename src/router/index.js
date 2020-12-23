@@ -5,6 +5,7 @@ import Home from '../views/Home.vue';
 import Signup from '../views/Accounts/Signup.vue';
 import Login from '../views/Accounts/Login.vue';
 import Weather from '../views/Weather.vue';
+import Stock from '../views/Stock.vue';
 
 Vue.use(VueRouter);
 
@@ -37,6 +38,11 @@ const routes = [
     path: '/weather',
     name: 'Weather',
     component: Weather,
+  },
+  {
+    path: '/stock',
+    name: 'Stock',
+    component: Stock,
   },
 ];
 
