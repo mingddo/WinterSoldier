@@ -21,15 +21,9 @@ export default {
   name: 'App',
   components: {
     Navi,
-<<<<<<< HEAD
     ChatHome
-  }
-}
-=======
-    ChatHome,
   },
-};
->>>>>>> fe687c4861066de6b7d5153bcdb07577a36a171a
+}
 </script>
 
 <style></style>
