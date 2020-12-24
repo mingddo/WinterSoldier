@@ -4,7 +4,7 @@ import router from './router';
 import store from './store/index.js';
 
 // 외부 css 파일 활용하기.
-import './assets/reset.css';
+// import './assets/reset.css';
 
 Vue.config.productionTip = false;
 
