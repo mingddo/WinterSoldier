@@ -90,7 +90,7 @@
     <!-- 주간 달력 구간 -->
 
     <!-- 주간 달력 테이블 -->
-    <div :class="{claendarchangecls: !calendarToggle}">
+    <div :class="{claendarchangecls: !calendarToggle}" class="weekFrame">
       <table>
         <thead>
           <th v-for="(weekday, idx) in weekName" :key="idx" :weekday="weekday">
@@ -103,12 +103,18 @@
             :key="idx2"
             :weekdaily="weekdaily"
           >
-            {{ weekdaily }}
+            <a href="">{{ weekdaily }}</a>
           </th>
         </thead>
         <tbody>
           <tr>
-            <td>해야할일!!</td>
+          <td>해야할일!!</td>
+          <td>해야할일!!</td>
+          <td>해야할일!!</td>
+          <td>해야할일!!</td>
+          <td>해야할일!!</td>
+          <td>해야할일!!</td>
+          <td>해야할일!!</td>
           </tr>
         </tbody>
       </table>
@@ -121,7 +127,7 @@
       </div>
     </div>
       <!-- 오늘 할 일 부분 -->
-    <div class="todayTodo">
+    <div :class="{claendarchangecls: calendarToggle}" class="todayTodo">
       <div class="todayInfo">12월 23일</div>
       <div class="todayTodoList">
         <div class="todauTodoItem">
@@ -181,7 +187,7 @@ export default {
       weekIdx: 0,
       MaximumWeek: 0,
       goToBack: false,
-      calendarToggle:false,
+      calendarToggle:true,
     };
   },
   created() {
