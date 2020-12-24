@@ -39,6 +39,7 @@ html {
   border-spacing: 0;
   box-sizing: border-box;
   list-style: none;
+  text-align: center;
 }
 
 i {
