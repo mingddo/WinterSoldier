@@ -143,7 +143,12 @@
               <a href="">{{ weekdaily }}</a>
 
             </div>
-            <div class="tf-dailytodoList">오늘 해야할 일</div>
+            <div class="tf-dailytodoList">
+              <div class="td-dailytodoItem">
+                오늘 할 일
+              </div>
+
+            </div>
 
 
           </td>
