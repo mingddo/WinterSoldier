@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <h1>회원가입!!</h1>
-    <div>
+  <div class="signupbox">
+    <h1>Signup</h1>
+    <div class="signup-form">
       <div>
         <label for="username">username </label>
         <input type="text" name="username" id="username" v-model="username">
@@ -14,13 +14,14 @@
         <label for="passwordConfirmation">passwordConfirmation</label>
         <input type="password" name="passwordConfirmation" id="passwordConfirmation" v-model="passwordConfirmation">
       </div>
-      <button @click="onSignup">가입</button>
+      <button @click="onSignup">Signup</button>
     </div>
   </div>
 </template>
 
 <script>
 import { usersignup } from "@/api/accounts.js";
+import '@/assets/accounts.css';
 
 export default {
   name: 'Signup',
