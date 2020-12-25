@@ -162,7 +162,7 @@ li {
   width: 100%;
   height: 500px;
   border-radius: 15px;
-  margin-bottom: var(--margin);
+  margin-bottom: calc(var(--margin) * 3);
 }
 
 .home .left_component .left_component_button {
@@ -350,10 +350,11 @@ li {
 }
 
 .frame .weekFrame > table {
-  width: 100%;
+  width: 95%;
   border-radius: 15px;
-  height: 90%;
+  height: 80%;
   border-collapse: collapse;
+  margin: auto;
 }
 
 .frame .weekFrame > table > thead {
