@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <div class="loginbox">
     <h1>
       로그인!
     </h1>
-    <div>
+    <div class="login-form">
       <div>
         <label for="username">username </label>
         <input type="text" name="username" id="username" v-model="user.username">
