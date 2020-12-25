@@ -88,6 +88,12 @@
   font-size: var(--font-medium);
   border: none;
   background-color: rgb(238, 238, 133);
+  cursor: pointer;
+}
+
+.loginbox .login-form > button:hover {
+  box-shadow: 0px 0px 10px 0.3px var(--light-gray);
+  cursor: pointer;
 }
 
 /* Signup */
@@ -146,4 +152,10 @@
   font-size: var(--font-medium);
   border: none;
   background-color: rgb(238, 238, 133);
+  cursor: pointer;
+}
+
+.signupbox .signup-form > button:hover {
+  box-shadow: 0px 0px 10px 0.3px var(--light-gray);
+  cursor: pointer;
 }
