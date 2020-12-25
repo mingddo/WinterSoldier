@@ -356,7 +356,7 @@ margin: auto;
 
 .frame .weekFrame > table {
   width: 100%;
-
+  border-radius: 15px;
   height: 90%; 
   border-collapse: collapse;
 
@@ -382,7 +382,7 @@ margin: auto;
 
 .frame .weekFrame > table > tbody > td {
   border-right: solid 1px var(--light-gray);
-  border-radius: 15px;
+
   /* border-left: solid 1px var(--light-gray); */
 
   height: 100%;
@@ -407,6 +407,15 @@ margin: auto;
   height: 90%;
   border-radius: 15px;
 }
+
+.frame .weekFrame > table > tbody > td .tf-dailytodoList .td-dailytodoItem {
+  height: auto;
+  text-align: left;
+  width: 100%;
+  background-color: rgb(14, 126, 255);
+  color: var(--white-color);
+}
+
 
 .frame .weekFrame .weekInfo {
   font-size: var(--font-medium);
