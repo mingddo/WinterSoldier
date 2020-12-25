@@ -11,6 +11,8 @@ export const getWeatherData = ({ state, commit }, loc) => {
   let time = dateObj.getHours();
   let base_date = `${year}${month}${date}`;
 
+  let yesterday = new Date(dateObj.getTime() - 24 * 3600 * 1000);
+
   state.today = {
     year,
     month,
@@ -26,6 +28,13 @@ export const getWeatherData = ({ state, commit }, loc) => {
   let base_time = '';
 
   for (let hour of base_time_list) {
+    if (Number(time) <= 2) {
+      base_time = '2300';
+      base_date = `${yesterday.getFullYear()}${yesterday.getMonth() +
+        1}${yesterday.getDate()}`;
+      break;
+    }
+
     if (Number(time) >= hour) {
       base_time =
         String(hour).length === 1 ? `0${String(hour)}00` : `${String(hour)}00`;
