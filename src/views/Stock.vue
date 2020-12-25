@@ -4,8 +4,8 @@
     <form @keypress.enter="getKrStockData">
       <input type="text" v-model="company" />
     </form>
-    <div>
-      {{ stockdata }}
+    <div v-for="st in stock" :key="st">
+      {{ st }}
     </div>
   </div>
 </template>
@@ -20,7 +20,10 @@ export default {
   data() {
     return {
       company: "",
-      stockdata: null,
+      stock: null,
+      stockdate: null,
+      stockprices: null,
+      stockvolume: null,
     };
   },
   methods: {
@@ -32,7 +35,10 @@ export default {
       })
         .then((res) => {
           console.log("🚀 ~ file: Stock.vue ~ line 126 ~ .then ~ res", res);
-          this.stockdata = res.data;
+          this.stock = res.data;
+          this.stockdate = res.data;
+          this.stockprices = res.data;
+          this.stockvolume = res.data;
         })
         .catch((err) => {
           console.error(
