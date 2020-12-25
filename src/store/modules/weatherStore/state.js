@@ -22,9 +22,9 @@ const state = {
   sky: '',
   pop: '',
   today: {
-    year: '2020',
-    month: '12',
-    date: '22',
+    year: '',
+    month: '',
+    date: '',
   },
 };
 

@@ -63,11 +63,11 @@ export default {
   },
   computed: {
     ...mapState({
-      locations: (state) => state.weather.locations,
-      today: (state) => state.weather.today,
-      temp: (state) => state.weather.temp,
-      sky: (state) => state.weather.sky,
-      pop: (state) => state.weather.pop,
+      locations: (state) => state.weatherStore.locations, // state 경로에 modules/<파일이름>, 모듈 변수의 이름이 아님..?!
+      today: (state) => state.weatherStore.today,
+      temp: (state) => state.weatherStore.temp,
+      sky: (state) => state.weatherStore.sky,
+      pop: (state) => state.weatherStore.pop,
     }),
   },
   methods: {
