@@ -2,7 +2,7 @@
   <div>
     <div>종목명을 입력하세요</div>
     <form @keypress.enter="getKrStockData">
-      <input type="text" v-model=company>
+      <input type="text" v-model="company" />
     </form>
     <div>
       {{ stockdata }}
@@ -25,10 +25,10 @@ export default {
   },
   methods: {
     getKrStockData() {
-      event.preventDefault()
+      event.preventDefault();
       axios({
         method: "GET",
-        url: SERVER_URL + "stock" + "/" + this.company + "/",
+        url: SERVER_URL + "stocks" + "/" + this.company + "/",
       })
         .then((res) => {
           console.log("🚀 ~ file: Stock.vue ~ line 126 ~ .then ~ res", res);
@@ -47,5 +47,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>
