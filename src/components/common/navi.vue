@@ -15,11 +15,17 @@
       <i class="fab fa-microblog"></i>
     </div>
     <ul class="navbarCategory">
-      <li>안녕하세요 000님!</li>
+      <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link> |
+      <router-link to="/signup">Signup</router-link> |
+      <router-link to="/login">Login</router-link> |
+      <router-link to="/weather">whether api test</router-link> |
+      <router-link to="/stock">stock</router-link>
+      <!-- <li>안녕하세요 000님!</li>
       <li>주식</li>
       <li>영화예매</li>
       <li>날씨</li>
-      <li>로그아웃</li>
+      <li>로그아웃</li> -->
     </ul>
     <div class="navbarIcons">
       <div class="search-bar">
