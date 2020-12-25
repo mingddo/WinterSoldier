@@ -328,27 +328,84 @@ margin: auto;
   justify-content: space-around;
   align-items: center;
   width: 100%;
-  height: auto;
+  height: 700px;
+  border: solid 2px var(--light-gray);
+  border-radius: 15px;
+  border-collapse: collapse;
+}
+
+.frame .weekFrame .monthInfo{
+  height: 10%;
+  width: 100%;
+  padding: var(--padding);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: larger;
+  font-weight: 700;
+}
+
+.frame .weekFrame .monthInfo >button{
+  background-color: transparent;
+  border: none;
+}
+
+.frame .weekFrame .monthInfo .inputstatus{
+  display: none;
+}
+
+.frame .weekFrame > table {
+  width: 100%;
+
+  height: 90%; 
+  border-collapse: collapse;
+
 }
 
 
-.frame .weekFrame > table {
-  /* display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center; */
-  width: 100%;
-  /* padding: var(--padding) calc(var(--padding) * 2); */
-  height: 100%;
+.frame .weekFrame > table > thead{
+  height: 20%;
 }
 
 .frame .weekFrame > table > thead > th {
-  padding: 0;
+  padding: var(--padding);
+  /* border-bottom: solid 1px var(--light-gray); */
+  font-size: large;
+  
+
 }
 
-.frame .weekFrame > table > tbody > tr > td {
+.frame .weekFrame > table > tbody{
+  height: 100%;
+  
+}
+
+.frame .weekFrame > table > tbody > td {
   border-right: solid 1px var(--light-gray);
+  border-radius: 15px;
   /* border-left: solid 1px var(--light-gray); */
+
+  height: 100%;
+
+  /* border-left: solid 1px var(--light-gray); */
+
+}
+
+.frame .weekFrame > table > tbody > td > .td-dayInfo{
+  height: 10%;
+  padding: var(--padding);
+  text-align: left;
+}
+
+.frame .weekFrame > table > tbody > td > .td-dayInfo > a{
+  text-decoration: none;
+  font-size: medium;
+
+}
+
+.frame .weekFrame > table > tbody > td .tf-dailytodoList {
+  height: 90%;
+  border-radius: 15px;
 }
 
 .frame .weekFrame .weekInfo {

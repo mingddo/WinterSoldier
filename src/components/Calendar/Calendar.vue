@@ -1,6 +1,6 @@
 <template>
   <main class="frame">
-    <section :class="{claendarchangecls: calendarToggle}" class="monthFrame" >
+    <section :class="{ claendarchangecls: calendarToggle }" class="monthFrame">
       <!--월간달력 구간-->
       <!-- 월간 달력 년 월 구간 / 양쪽 버튼 클릭시 월을 하나씩 이동 가능 + 날짜 더블클릭시 input 입력창이 나오며 해당 년월로 이동-->
       <div class="monthInfo">
@@ -90,44 +90,69 @@
     <!-- 주간 달력 구간 -->
 
     <!-- 주간 달력 테이블 -->
-    <div :class="{claendarchangecls: !calendarToggle}" class="weekFrame">
+    <div :class="{ claendarchangecls: !calendarToggle }" class="weekFrame">
+      <div class="monthInfo">
+        <button @click="changeWeekly(-1)">◀</button>
+        <span>
+          <span
+            :class="{ inputstatus: inputhTitle }"
+            @dblclick="changeYearForm"
+          >
+            {{ year }}년
+          </span>
+          <span
+            :class="{ inputstatus: inputhTitle }"
+            @dblclick="changeMonthForm"
+          >
+            {{ month }}월
+          </span>
+        </span>
+        <input
+          :class="{ inputstatus: !inputhTitle }"
+          type="number"
+          min="1"
+          v-model.number="changedYear"
+          @keyup.enter="changeYearForm"
+        />
+        <input
+          :class="{ inputstatus: !inputhTitle }"
+          type="number"
+          value="currentMonth"
+          min="1"
+          max="12"
+          v-model.number="changedMonth"
+          @keyup.enter="changeMonthForm"
+        />
+        <button @click="changeWeekly(1)">▶</button>
+        
+      </div>
+
       <table>
         <thead>
           <th v-for="(weekday, idx) in weekName" :key="idx" :weekday="weekday">
             {{ weekday }}
           </th>
         </thead>
-        <thead>
-          <th
+        <tbody>
+          <td
             v-for="(weekdaily, idx2) in weekCalendar"
             :key="idx2"
             :weekdaily="weekdaily"
           >
-            <a href="">{{ weekdaily }}</a>
-          </th>
-        </thead>
-        <tbody>
-          <tr>
-          <td>해야할일!!</td>
-          <td>해야할일!!</td>
-          <td>해야할일!!</td>
-          <td>해야할일!!</td>
-          <td>해야할일!!</td>
-          <td>해야할일!!</td>
-          <td>해야할일!!</td>
-          </tr>
+            <div class="td-dayInfo">
+              <a href="">{{ weekdaily }}</a>
+
+            </div>
+            <div class="tf-dailytodoList">오늘 해야할 일</div>
+
+
+          </td>
         </tbody>
       </table>
       <!-- 주간 달력 페이지 이동 / 양쪽 버튼 이동시 주를 한 주씩 이동 가능, 디폴트는 오늘날짜에 해당 하는 주 -->
-      <div>
-        <h2>
-          <button @click="changeWeekly(-1)">⬅</button>
-          <button @click="changeWeekly(1)">➡</button>
-        </h2>
-      </div>
     </div>
-      <!-- 오늘 할 일 부분 -->
-    <div :class="{claendarchangecls: calendarToggle}" class="todayTodo">
+    <!-- 오늘 할 일 부분 -->
+    <div :class="{ claendarchangecls: calendarToggle }" class="todayTodo">
       <div class="todayInfo">12월 23일</div>
       <div class="todayTodoList">
         <div class="todauTodoItem">
@@ -187,7 +212,7 @@ export default {
       weekIdx: 0,
       MaximumWeek: 0,
       goToBack: false,
-      calendarToggle:true,
+      calendarToggle: true,
     };
   },
   created() {
@@ -202,8 +227,8 @@ export default {
     this.defaultYearMonth();
   },
   methods: {
-    calendarChange(){
-      this.calendarToggle = !this.calendarToggle
+    calendarChange() {
+      this.calendarToggle = !this.calendarToggle;
     },
     defaultYearMonth() {
       this.changedYear = this.year;
