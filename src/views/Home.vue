@@ -1,12 +1,9 @@
 <template>
   <div class="home">
     <section class="left_component">
-      <div class="left_component_weather">
-        <div>날씨박스으으으으</div>
-        <div>날씨박스으으으으</div>
-        <div>날씨박스으으으으</div>
-        <div>날씨박스으으으으</div>
-      </div>
+      <!-- <div class="left_component_weather"> -->
+        <Weather class="left_componet_weather"/>
+      <!-- </div> -->
       <div class="left_component_button">
         <div>버튼 클릭클릭</div>
         <div>버튼 클릭클릭</div>
@@ -26,11 +23,13 @@
 <script>
 // @ is an alias to /src
 import Calendar from '@/components/Calendar/Calendar.vue'
+import Weather from './Weather.vue'
 
 export default {
   name: 'Home',
   components: {
     Calendar,
+    Weather,
   }
 }
 </script>

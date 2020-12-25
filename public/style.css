@@ -9,7 +9,7 @@
   --yellow-prime: #efd81d;
   align-items: center;
   --gray-dark: #0e0e0a;
-  --light-gray: #BEBEBE;
+  --light-gray: #bebebe;
   /* Size */
   --padding: 12px;
   --padding-side: 40px;
@@ -22,9 +22,9 @@
   --font-large: 1.3rem;
 
   /* Font */
-  --Nanum-Ghothic: 'Nanum Gothic', sans-serif;
-  --Noto-Sans-KR: 'Noto Sans KR', sans-serif;
-  --Roboto: 'Roboto', sans-serif;
+  --Nanum-Ghothic: "Nanum Gothic", sans-serif;
+  --Noto-Sans-KR: "Noto Sans KR", sans-serif;
+  --Roboto: "Roboto", sans-serif;
 }
 
 /* 전역변수 설정 */
@@ -136,20 +136,19 @@ li {
   margin-bottom: var(--margin);
   /* max-width: 90%; */
   /* margin: 0 auto; */
-
 }
 
 /* mainFrame > monthFrame*/
-.home{
-width: 90%;
-height: auto;
-/* height: 500px; */
-display: flex;
-justify-content: space-around;
-align-items: flex-start;
-margin: auto;
+.home {
+  width: 90%;
+  height: auto;
+  /* height: 500px; */
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  margin: auto;
 }
-.home .left_component{
+.home .left_component {
   /* width: 20%; */
   flex: 2 2 20%;
   height: 100%;
@@ -158,17 +157,15 @@ margin: auto;
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
-  
 }
-.home .left_component .left_component_weather{
+.home .left_component .left_componet_weather {
   width: 100%;
   height: 500px;
-  border: solid 1px var(--light-gray);
   border-radius: 15px;
   margin-bottom: var(--margin);
 }
 
-.home .left_component .left_component_button{
+.home .left_component .left_component_button {
   width: 100%;
   height: 500px;
   border: solid 1px var(--light-gray);
@@ -176,7 +173,7 @@ margin: auto;
   justify-self: end;
 }
 
-.home .right_component{
+.home .right_component {
   flex: 8 8 80%;
   display: flex;
   flex-direction: column;
@@ -185,7 +182,7 @@ margin: auto;
   padding: var(--padding) calc(var(--padding) * 2);
 }
 
-.home .right_component .frame .todayTodo{
+.home .right_component .frame .todayTodo {
   width: 25%;
   height: 645px;
   padding: var(--padding);
@@ -193,7 +190,7 @@ margin: auto;
   border-radius: 15px;
 }
 
-.home .right_component .frame .todayTodo .todayTodoList{
+.home .right_component .frame .todayTodo .todayTodoList {
   width: 90%;
   height: auto;
   display: flex;
@@ -201,24 +198,23 @@ margin: auto;
   justify-content: flex-start;
   align-items: center;
   margin: auto;
-
 }
 
-.home .right_component .frame .todayTodo .todayTodoList .todauTodoItem{
+.home .right_component .frame .todayTodo .todayTodoList .todauTodoItem {
   width: 100%;
   border: solid 1px var(--light-gray);
   border-radius: 15px;
 }
 
-.home .right_component .contentsFrame{
+.home .right_component .contentsFrame {
   width: 100%;
   height: 350px;
   border-radius: 15px;
   border: solid 1px var(--light-gray);
 }
 
-.claendarchangecls{
-  display: none !important; 
+.claendarchangecls {
+  display: none !important;
 }
 
 .frame .monthFrame {
@@ -252,11 +248,11 @@ margin: auto;
   justify-content: space-between;
   align-items: center;
 }
-.frame .monthFrame .monthInfo .monthInfoBtn{
+.frame .monthFrame .monthInfo .monthInfoBtn {
   background-color: transparent;
   border: none;
 }
-.frame .monthFrame .monthInfo .inputstatus{
+.frame .monthFrame .monthInfo .inputstatus {
   display: none;
 }
 
@@ -264,31 +260,30 @@ margin: auto;
   width: 100%;
 }
 
-.frame .monthFrame .calendar >thead{
+.frame .monthFrame .calendar > thead {
   width: 100%;
   background-color: var(--white-dark);
   padding: var(--padding) 0;
-  margin-bottom: calc(var(--margin)/2);
+  margin-bottom: calc(var(--margin) / 2);
 }
 
-.frame .monthFrame .calendar > thead > th{
+.frame .monthFrame .calendar > thead > th {
   padding: var(--padding) 0;
   padding-left: 15px;
   text-align: left;
 }
 
-.frame .monthFrame .calendar > tbody{
+.frame .monthFrame .calendar > tbody {
   margin-top: 4px;
   width: 100%;
 }
 
-.frame .monthFrame .calendar > tbody > tr{
+.frame .monthFrame .calendar > tbody > tr {
   width: 100%;
   margin-top: 4px;
-
 }
 
-.frame .monthFrame .calendar > tbody > tr > td{
+.frame .monthFrame .calendar > tbody > tr > td {
   width: 14%;
   height: 110px;
   padding: 0;
@@ -296,7 +291,7 @@ margin: auto;
   justify-content: center;
   align-items: flex-start; */
 }
-.frame .monthFrame .calendar > tbody > tr > td > div{
+.frame .monthFrame .calendar > tbody > tr > td > div {
   padding-top: 15px;
   padding-left: 15px;
   text-align: left;
@@ -305,12 +300,12 @@ margin: auto;
   /* align-self: baseline; */
 }
 
-.frame .monthFrame .calendar > tbody > tr > td > div:hover{
-  border: solid 0.8px #52B2BF;
+.frame .monthFrame .calendar > tbody > tr > td > div:hover {
+  border: solid 0.8px #52b2bf;
   border-radius: 5px;
 }
 
-.frame .monthFrame .calendar > tbody > tr > td > div:active{
+.frame .monthFrame .calendar > tbody > tr > td > div:active {
   border: solid 0.8px red;
   border-radius: 5px;
 }
@@ -318,7 +313,7 @@ margin: auto;
 .frame .monthFrame .calendar img {
   width: 100%;
 }
-.frame .calendar-modal{
+.frame .calendar-modal {
   display: none;
 }
 /* mainFrame > weekFrame*/
@@ -334,7 +329,7 @@ margin: auto;
   border-collapse: collapse;
 }
 
-.frame .weekFrame .monthInfo{
+.frame .weekFrame .monthInfo {
   height: 10%;
   width: 100%;
   padding: var(--padding);
@@ -345,25 +340,23 @@ margin: auto;
   font-weight: 700;
 }
 
-.frame .weekFrame .monthInfo >button{
+.frame .weekFrame .monthInfo > button {
   background-color: transparent;
   border: none;
 }
 
-.frame .weekFrame .monthInfo .inputstatus{
+.frame .weekFrame .monthInfo .inputstatus {
   display: none;
 }
 
 .frame .weekFrame > table {
   width: 100%;
   border-radius: 15px;
-  height: 90%; 
+  height: 90%;
   border-collapse: collapse;
-
 }
 
-
-.frame .weekFrame > table > thead{
+.frame .weekFrame > table > thead {
   height: 20%;
 }
 
@@ -371,13 +364,11 @@ margin: auto;
   padding: var(--padding);
   /* border-bottom: solid 1px var(--light-gray); */
   font-size: large;
-  
-
+  text-align: left;
 }
 
-.frame .weekFrame > table > tbody{
+.frame .weekFrame > table > tbody {
   height: 100%;
-  
 }
 
 .frame .weekFrame > table > tbody > td {
@@ -388,19 +379,17 @@ margin: auto;
   height: 100%;
 
   /* border-left: solid 1px var(--light-gray); */
-
 }
 
-.frame .weekFrame > table > tbody > td > .td-dayInfo{
+.frame .weekFrame > table > tbody > td > .td-dayInfo {
   height: 10%;
   padding: var(--padding);
   text-align: left;
 }
 
-.frame .weekFrame > table > tbody > td > .td-dayInfo > a{
+.frame .weekFrame > table > tbody > td > .td-dayInfo > a {
   text-decoration: none;
   font-size: medium;
-
 }
 
 .frame .weekFrame > table > tbody > td .tf-dailytodoList {
@@ -415,7 +404,6 @@ margin: auto;
   background-color: rgb(14, 126, 255);
   color: var(--white-color);
 }
-
 
 .frame .weekFrame .weekInfo {
   font-size: var(--font-medium);
