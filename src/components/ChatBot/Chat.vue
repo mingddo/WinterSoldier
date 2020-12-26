@@ -34,7 +34,7 @@
             <span class="eachchatbox" v-if="chat.tag == 'createaccount'">
               <router-link to="/signup">회원가입</router-link>하러가기
             </span>
-            <span class="eachchatbox" v-if="chat.tag == 'login'">
+            <span class="eachchatbox" v-else-if="chat.tag == 'login'">
               <router-link to="/login">로그인</router-link>하러가기
             </span>
             <span class="eachchatbox" v-else>
