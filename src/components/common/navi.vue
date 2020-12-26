@@ -2,7 +2,7 @@
    <header class="navbar">
     <div>
     <div v-if="isLogin">
-      안녕하세요! {{username}}님
+      안녕하세요! {{userinfo.username}}님
     </div>
     <div v-else>
       누구세요;
@@ -43,7 +43,7 @@ export default {
   name: 'Navi',
   computed: {
     ...mapState({
-      username: (state) => state.userStore.userInfo,
+      userinfo: (state) => state.userStore.userInfo,
       isLogin: (state) => state.userStore.isLogin,
     }),
   },
