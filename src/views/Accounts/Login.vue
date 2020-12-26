@@ -12,7 +12,7 @@
         <label for="password">password</label>
         <input @keyup.enter="onLogin" type="password" name="password" id="password" v-model="user.password">
       </div>
-      <button>Login</button>
+      <button @click="onLogin">Login</button>
     </div>
   </div>
 </template>
@@ -42,6 +42,7 @@ export default {
         this.$store.dispatch("userStore/GET_MEMBER_INFO", res.data.token)
   
         alert('로그인이 완료되었습니다!')
+        this.$router.push({ name : 'Home'})
       },
       (err) => {
         console.log(err)
