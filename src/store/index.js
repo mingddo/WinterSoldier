@@ -6,7 +6,7 @@ import createPersistedState from 'vuex-persistedstate';
 Vue.use(Vuex);
 Vue.use(AxiosPlugin);
 
-import userStore from './modules/userStore.js';
+import userStore from './modules/userStore';
 import weatherStore from './modules/weatherStore';
 
 const store = new Vuex.Store({
@@ -60,7 +60,7 @@ const store = new Vuex.Store({
   },
   plugins: [
     createPersistedState({
-      paths: ['weather'], // 모듈에서 사용할 경우, 해당 모듈을 path에 추가.
+      paths: ['weather', 'userStore'], // 모듈에서 사용할 경우, 해당 모듈을 path에 추가.
     }),
   ],
 });
