@@ -31,7 +31,13 @@
             </span>
           </div>
           <div class="eachBotbox-position">
-            <span class="eachchatbox">
+            <span class="eachchatbox" v-if="chat.tag == 'createaccount'">
+              <router-link to="/signup">회원가입</router-link>하러가기
+            </span>
+            <span class="eachchatbox" v-if="chat.tag == 'login'">
+              <router-link to="/login">로그인</router-link>하러가기
+            </span>
+            <span class="eachchatbox" v-else>
               {{ chat.botchat}}
             </span>
           </div>
@@ -70,6 +76,7 @@ export default {
       botBox: [],
       chatText: '',
       botText: '',
+      nowtag: '',
     }
   },
   props : {
@@ -97,7 +104,7 @@ export default {
       )
     },
     getResponse () {
-      const chatting = {'userchat': this.chatText, 'botchat': this.botText}
+      const chatting = {'userchat': this.chatText, 'botchat': this.botText, 'tag': this.nowtag}
       this.box.push(chatting)
       // console.log(chatting)
       this.chatText = ''  
@@ -110,6 +117,7 @@ export default {
           (res) => {
             console.log(res.data.anstext)
             this.botText = res.data.anstext
+            this.nowtag = res.data.tag
             this.getResponse()
           },
           (err) => {
