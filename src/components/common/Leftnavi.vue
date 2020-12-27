@@ -19,6 +19,10 @@
       <li>
         <router-link to="/stock">stock</router-link>
       </li>
+      <li>
+        <router-link :to="{name: 'Profile', query: {name: 'user1'}}">profile</router-link>
+
+      </li>
       <li>주식</li>
       <li>영화예매</li>
       <li>날씨</li>
@@ -28,7 +32,8 @@
 </template>
 
 <script>
-export default {};
+export default {
+};
 </script>
 
 <style>

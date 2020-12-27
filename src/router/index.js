@@ -4,6 +4,7 @@ import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
 import Signup from '../views/Accounts/Signup.vue';
 import Login from '../views/Accounts/Login.vue';
+import Profile from '../views/Accounts/Profile.vue';
 import Weather from '../views/Weather.vue';
 import Stock from '../views/Stock.vue';
 
@@ -33,6 +34,11 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: Login,
+  },
+  {
+    path: '/profile',
+    name: 'Profile',
+    component: Profile,
   },
   {
     path: '/weather',
