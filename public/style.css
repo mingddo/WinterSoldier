@@ -91,10 +91,30 @@ li {
   justify-content: space-around;
   align-items: center;
   width: 100%;
+  height: 100%;
+  justify-content: space-around;
 }
 
-.navbarCategory > li {
-  margin-right: var(--margin);
+.navbarCategory li {
+  text-align: left;
+  width: 100%;
+  /* padding: 5px 0px 5px 5px; */
+  border-bottom: 1px solid;
+  /* margin: 5px; */
+  padding: 10px;
+  /* margin-bottom: 5px; */
+  font-size: 20px;
+}
+
+.navbarCategory li:last-child {
+  border-bottom: 0px;
+}
+
+.navbarCategory li:before {
+  content: ">";
+  display: inline-block;
+  vertical-align: middle;
+  padding-right: 5px;
 }
 
 .navbarIcons {

@@ -2,7 +2,7 @@
   <div class="home">
     <section class="left_component">
       <!-- <div class="left_component_weather"> -->
-      <Weather class="left_componet_weather"/>
+        <Weather class="left_componet_weather"/>
       <!-- </div> -->
       <Leftnavi class="left_component_button"/>
     </section>
@@ -20,7 +20,7 @@
 // @ is an alias to /src
 import Calendar from '@/components/Calendar/Calendar.vue'
 import Weather from './Weather.vue'
-import Leftnavi from '../components/common/Leftnavi.vue'
+import Leftnavi from '@/components/common/Leftnavi.vue'
 
 export default {
   name: 'Home',
