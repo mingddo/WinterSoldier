@@ -2,11 +2,9 @@
   <div class="home">
     <section class="left_component">
       <!-- <div class="left_component_weather"> -->
-        <Weather class="left_componet_weather"/>
+      <Weather class="left_componet_weather"/>
       <!-- </div> -->
-      <div>
-        <Leftnavi class="left_component_button"/>
-      </div>
+      <Leftnavi class="left_component_button"/>
     </section>
     <section class="right_component">
       <Calendar/>
