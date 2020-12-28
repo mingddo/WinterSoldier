@@ -3,7 +3,7 @@
     <div>
       <div v-if="isLogin">
         <div>
-          안녕하세요! {{userinfo}}님
+          안녕하세요! {{userinfo.username}}님
         </div>
         <button @click="onLogout">
           로그아웃
@@ -14,7 +14,8 @@
       </div>
     </div>
     <div class="navbarLogo">
-      <i class="fab fa-microblog"></i>
+      <i class="fas fa-bell"></i>
+      <!-- <i class="fab fa-microblog"></i> -->
     </div>
 
     <div class="navbarIcons">
