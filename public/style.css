@@ -7,6 +7,7 @@
   --yellow-light: #ffffcf;
   --yellow-dark: #faf756;
   --yellow-prime: #efd81d;
+  --purple: #a014a0;
   align-items: center;
   --gray-dark: #0e0e0a;
   --light-gray: #bebebe;
@@ -22,9 +23,9 @@
   --font-large: 1.3rem;
 
   /* Font */
-  --Nanum-Ghothic: 'Nanum Gothic', sans-serif;
-  --Noto-Sans-KR: 'Noto Sans KR', sans-serif;
-  --Roboto: 'Roboto', sans-serif;
+  --Nanum-Ghothic: "Nanum Gothic", sans-serif;
+  --Noto-Sans-KR: "Noto Sans KR", sans-serif;
+  --Roboto: "Roboto", sans-serif;
 }
 
 /* 전역변수 설정 */
@@ -70,11 +71,18 @@ li {
 
 /* Header.navbar */
 .navbar {
+  font-family: var(--Nanum-Ghothic);
+  width: 90%;
+  margin: calc(var(--margin) * 2) auto;
   display: flex;
+  box-shadow: 0px 0px 10px 0.3px var(--light-gray);
+  border-radius: 15px;
+  border: none;
   justify-content: space-between;
   align-items: center;
   padding: var(--padding);
-  background-color: var(--yellow-prime);
+  background-color: var(--purple);
+  color: var(--white-color);
 }
 
 .navbarLogo {
@@ -82,7 +90,7 @@ li {
 }
 
 .navbarLogo i {
-  color: red;
+  color: var(--white-color);
 }
 
 .navbarCategory {
@@ -183,16 +191,20 @@ li {
 .home .left_component .left_componet_weather {
   width: 100%;
   height: 500px;
-  border-radius: 15px;
+  border-radius: 20px;
   margin-bottom: calc(var(--margin) * 3);
+  box-shadow: 0px 0px 10px 0.3px var(--light-gray);
+  border: none;
 }
 
 .home .left_component .left_component_button {
   width: 100%;
-  height: 500px;
+  height: auto;
   border: solid 1px var(--light-gray);
   border-radius: 15px;
   justify-self: end;
+  box-shadow: 0px 0px 10px 0.3px var(--light-gray);
+  border: none;
 }
 
 .home .right_component {
@@ -232,7 +244,8 @@ li {
   width: 100%;
   height: 350px;
   border-radius: 15px;
-  border: solid 1px var(--light-gray);
+  box-shadow: 0px 0px 10px 0.3px var(--light-gray);
+  border: none;
 }
 
 .claendarchangecls {
@@ -346,7 +359,9 @@ li {
   align-items: center;
   width: 100%;
   height: 700px;
-  border: solid 2px var(--light-gray);
+  box-shadow: 0px 0px 10px 0.3px var(--light-gray);
+  border: none;
+  /* border: solid 2px var(--light-gray); */
   border-radius: 15px;
   border-collapse: collapse;
 }
