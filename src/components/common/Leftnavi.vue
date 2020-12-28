@@ -19,20 +19,22 @@
       <li>
         <router-link to="/stock">stock</router-link>
       </li>
-      <li>
-        <router-link :to="{name: 'Profile', query: {name: 'user1'}}">profile</router-link>
-
+      <li v-if="userinfo">
+        <router-link :to="{name: 'Profile', query: {name: userinfo.username  }}">{{ userinfo.username }} 님의 profile 가기!</router-link>
       </li>
-      <li>주식</li>
-      <li>영화예매</li>
-      <li>날씨</li>
-      <li>로그아웃</li>
     </ul>
   </nav>
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
+  computed: {
+    ...mapState({
+      userinfo: (state) => state.userStore.userInfo,
+      isLogin: (state) => state.userStore.isLogin,
+    }),
+  },
 };
 </script>
 
