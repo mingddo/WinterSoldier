@@ -1,6 +1,8 @@
 import { createInstance } from "./index.js";
+import { AuthorizationInstance } from "./index.js";
 
 const instance = createInstance();
+const Authorinstance = AuthorizationInstance();
 
 function usersignup (user, success, fail) {
   instance
@@ -30,5 +32,18 @@ async function findById(username, success, fail) {
     .catch(fail);
 }
 
+function addfollow(username, success, fail) {
+  Authorinstance
+  .post(`accounts/follow/${username}/`)
+  .then(success)
+  .catch(fail);
+}
 
-export { usersignup, userlogin, userprofile, findById }
+function removefollow(username, success, fail) {
+  Authorinstance
+  .delete(`accounts/follow/${username}/`)
+  .then(success)
+  .catch(fail);
+}
+
+export { usersignup, userlogin, userprofile, findById, addfollow, removefollow }
