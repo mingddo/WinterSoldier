@@ -2,22 +2,30 @@
   <div>
       <!-- <input @keypress.enter="createTodo" v-model="todoTitle" type="text">
       <button @click="createTodo">Add</button> -->
-      <div>
+      <div class="modal">
+        <div class="overlay" @click="$emit('close-modal')">
+        </div> 
+        <div class="modal-card"> 
           <form @submit="OnSubmit">
-            <input type="text" v-model="form.Todo_title" placeholder="title">
-            <input type="text" v-model="form.Todo_schedule_year" placeholder="year">
-            <input type="text" v-model="form.Todo_schedule_month" placeholder="month">
-            <input type="text" v-model="form.Todo_schedule_date" placeholder="date">
-            <input type="text" v-model="form.Todo_schedule_hour" placeholder="hour">
-            <input type="text" v-model="form.Todo_schedule_min" placeholder="min">
+            <h4> 제목을 입력하세요 : <input type="text" v-model="form.title" placeholder="title"></h4>
+            <h4> 계획 시간
+            <input type="text" v-model="form.schedule_year" placeholder="year">
+            <input type="text" v-model="form.schedule_month" placeholder="month">
+            <input type="text" v-model="form.schedule_date" placeholder="date">
+            <input type="text" v-model="form.schedule_hour" placeholder="hour">
+            <input type="text" v-model="form.schedule_min" placeholder="min">
+            </h4>
             <br>
-            <input type="text" v-model="form.Todo_alarm_year" placeholder="alarm-year">
-            <input type="text" v-model="form.Todo_alarm_month" placeholder="alarm-month">
-            <input type="text" v-model="form.Todo_alarm_date" placeholder="alarm-date">
-            <input type="text" v-model="form.Todo_alarm_hour" placeholder="alarm-hour">
-            <input type="text" v-model="form.Todo_alarm_min" placeholder="alarm-min">
+            <h4> 알람 시간
+            <input type="text" v-model="form.alarm_year" placeholder="alarm-year">
+            <input type="text" v-model="form.alarm_month" placeholder="alarm-month">
+            <input type="text" v-model="form.alarm_date" placeholder="alarm-date">
+            <input type="text" v-model="form.alarm_hour" placeholder="alarm-hour">
+            <input type="text" v-model="form.alarm_min" placeholder="alarm-min">
+            </h4>
             <button type="submit">제출하기</button>
           </form>
+        </div>
       </div>
 
   </div>
@@ -30,17 +38,17 @@ export default {
     data : function() {
       return {
         form: {
-            Todo_title : '',
-            Todo_schedule_year : 0,
-            Todo_schedule_month : 0,
-            Todo_schedule_date : 0,
-            Todo_schedule_hour : 0,
-            Todo_schedule_min : 0,
-            Todo_alarm_year : 0,
-            Todo_alarm_month : 0,
-            Todo_alarm_date : 0,
-            Todo_alarm_hour : 0,
-            Todo_alarm_min : 0
+            title : '',
+            schedule_year : 0,
+            schedule_month : 0,
+            schedule_date : 0,
+            schedule_hour : 0,
+            schedule_min : 0,
+            alarm_year : 0,
+            alarm_month : 0,
+            alarm_date : 0,
+            alarm_hour : 0,
+            alarm_min : 0
           }
       };
     },
@@ -76,5 +84,8 @@ export default {
 </script>
 
 <style>
+.modal, .overlay { width: 75%; height: 75%; position: fixed; left: 0; top: 0; color: white; } 
+.overlay { opacity: 0.5; background-color: black; } 
+.modal-card { position: relative; max-width: 80%; margin: auto; margin-top: 30px; padding: 20px; background-color: rgb(240, 240, 175); min-height: 500px; z-index: 10; opacity: 1; }
 
 </style>
