@@ -9,4 +9,19 @@ function writeTodo(todo, success, fail) {
     .catch(fail);
 
 }
-export {writeTodo}
+
+function todoList(success, fail) {
+    instance
+    .get('todos/')
+    .then(success)
+    .catch(fail);
+}
+
+function todoCompleted(todo, success, fail) {
+    instance
+    .put(`todos/${todo.id}/`, todo)
+    .then(success)
+    .catch(fail);
+}
+
+export { writeTodo, todoList, todoCompleted }
