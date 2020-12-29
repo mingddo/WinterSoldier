@@ -143,13 +143,15 @@
               <a href="">{{ weekdaily }}</a>
 
             </div>
+            <template  />
             <div class="tf-dailytodoList">
               <div class="td-dailytodoItem">
-                오늘 할 일
+                <TodoList />
+                <TodoForm v-if="isModalViewed" @close-modal="isModalViewed = false"> </TodoForm> <button @click="isModalViewed = true">작성하기</button>
+
               </div>
 
             </div>
-
 
           </td>
         </tbody>
@@ -192,6 +194,7 @@ export default {
   data() {
     return {
       inputhTitle: false,
+      isModalViewed : false,
       weekName: [
         "일요일",
         "월요일",
