@@ -1,5 +1,13 @@
 <template>
+<span class="calendar_frame">
+    <div class="toggle_btn_space">
+    <label class="toggle" for="myToggle">
+      <input class="toggle__input" type="checkbox" name="" id="myToggle" v-model="calendarToggle">
+      <div class="toggle__fill"></div>
+    </label>
+  </div>
   <main class="frame">
+
     <section :class="{ claendarchangecls: calendarToggle }" class="monthFrame">
       <!--월간달력 구간-->
       <!-- 월간 달력 년 월 구간 / 양쪽 버튼 클릭시 월을 하나씩 이동 가능 + 날짜 더블클릭시 input 입력창이 나오며 해당 년월로 이동-->
@@ -180,6 +188,7 @@
       </div>
     </div>
   </main>
+  </span>
 </template>
 
 <script>
@@ -220,7 +229,7 @@ export default {
       weekIdx: 0,
       MaximumWeek: 0,
       goToBack: false,
-      calendarToggle: true,
+      calendarToggle: false,
     };
   },
   created() {
