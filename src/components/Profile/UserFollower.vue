@@ -1,17 +1,12 @@
 <template>
   <div>
-    
-    <div v-if="isEach">
-      <!-- <router-link :to="{name: 'Profile', query: {name: follower.username  }}" replace :key="$route.fullPath">{{ follower.username }}</router-link> -->
-      <!-- <router-link :to="{name: 'Home'}">{{ follower.username }}</router-link> -->
-      <div @click="changequery">{{ follower.username }}</div>
-      우리는 이제 칭구친구!!!!
-      <button @click="followcancel"> 취소!! </button>
+    <div class="profile-follow-modal-each" v-if="isEach">
+      <span title="프로필로 이동하기" class="pointer" @click="changequery"><img title="서로 팔로우 중이에요!" src="https://img.icons8.com/material-sharp/24/000000/checked-2--v1.png"/>{{ follower.username }}</span>
+      <span><img class="pointer" title="팔로우 취소" @click="followcancel" src="https://img.icons8.com/material-sharp/24/000000/cancel--v1.png"/></span>
     </div>
-    <div v-else>
-      {{ follower.username }}
-      우리 친구할래..?ㅎ
-      <button @click="eachfollow"> 팔로우하기</button>
+    <div class="profile-follow-modal-each" v-else>
+      <span title="프로필로 이동하기" class="pointer" @click="changequery"> <img title="아직 팔로우하지 않았어요!" src="https://img.icons8.com/material-rounded/24/000000/unchecked-checkbox.png"/>{{ follower.username }}</span>
+      <span><img class="pointer" title="팔로우" @click="eachfollow" src="https://img.icons8.com/metro/26/000000/plus.png"/></span>
     </div>
   </div>
 </template>
