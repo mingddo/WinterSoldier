@@ -1,8 +1,8 @@
 <template>
-  <div>
-    <div>종목명을 입력하세요</div>
-    <form @keypress.enter="getKrStockData">
-      <input type="text" v-model="company" placeholder="stock name" />
+  <div class="stockframe">
+    <div class="inputtitle">종목명을 입력하세요</div>
+    <form @keypress.enter="getKrStockData" class="inputform">
+      <input type="text" v-model="company" placeholder="stock name" class="stockinput"/>
     </form>
     <div class="error-message" v-if="showError">
       {{ errorMessage }}
@@ -52,6 +52,7 @@
 import axios from "axios";
 import LineChart from "@/components/Stock/LineChart";
 import BarChart from "@/components/Stock/BarChart";
+import '@/assets/stock.css';
 // import DownloadButton from "@/components/Stock/Download";
 const SERVER_URL = "http://127.0.0.1:8000/";
 
