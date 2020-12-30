@@ -25,6 +25,13 @@ function userprofile (username, success, fail) {
     .catch(fail);
 }
 
+function findUser (user, success, fail) {
+  instance
+    .get(`accounts/userlist/${user}/`)
+    .then(success)
+    .catch(fail);
+}
+
 async function findById(username, success, fail) {
   instance
     .get(`accounts/profile/${username}/`)
@@ -46,4 +53,4 @@ function removefollow(username, success, fail) {
   .catch(fail);
 }
 
-export { usersignup, userlogin, userprofile, findById, addfollow, removefollow }
+export { usersignup, userlogin, userprofile, findUser, findById, addfollow, removefollow }

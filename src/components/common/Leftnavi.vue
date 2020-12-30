@@ -28,6 +28,7 @@
 
 <script>
 import { mapState } from "vuex";
+
 export default {
   computed: {
     ...mapState({
@@ -39,5 +40,13 @@ export default {
 </script>
 
 <style>
-
+.search-user-autocompleted {
+  width: 20%;
+  /* margin:8px 0; */
+  border: 1px solid;
+  z-index: 2;
+  position: absolute;
+  /* top:19%; */
+  background-color: white;
+}
 </style>

@@ -1,13 +1,12 @@
 <template>
   <div>
-    <div v-if="isEach"  @click="changequery">
-      {{ following.username }}
-      우리는 이제 칭구친구!!!!
-      <button @click="followcancel"> 취소!! </button>
+    <div class="profile-follow-modal-each" v-if="isEach" >
+      <span class="pointer" title="프로필로 이동하기" @click="changequery"> <img title="서로 팔로우 중이에요!" src="https://img.icons8.com/material-sharp/24/000000/checked-2--v1.png"/> {{ following.username }} </span>
+      <span> <img class="pointer" title="팔로우 취소" @click="followcancel" src="https://img.icons8.com/material-sharp/24/000000/cancel--v1.png"/> </span>
     </div>
-    <div v-else>
-      {{ following.username }}
-      아직 기다리는중!!
+    <div class="profile-follow-modal-each" v-else>
+      <span class="pointer" title="프로필로 이동하기" @click="changequery"> <img title="상대의 팔로우를 기다리고 있어요!" src="https://img.icons8.com/material-rounded/24/000000/unchecked-checkbox.png"/> {{ following.username }} </span>
+      <span> <img class="pointer" title="팔로우 취소" @click="followcancel" src="https://img.icons8.com/material-sharp/24/000000/cancel--v1.png"/> </span>
     </div>
   </div>
 </template>
