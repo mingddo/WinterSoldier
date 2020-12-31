@@ -37,6 +37,29 @@
   margin: calc(var(--margin) * 3) auto;
 }
 
+.stockframe .stockinput {
+  width: 50%;
+  /* background-color: var(--white-color); */
+  margin: calc(var(--margin) * 1) auto;
+}
+
+.stockframe .stockinput .stockinput {
+  background-color: var(--white-color);
+  margin: calc(var(--margin) * 1) auto;
+}
+
+.stockframe .stockinput .loading {
+  width: 50%;
+  font-size: large;
+  margin: calc(var(--margin) * 1) auto;
+}
+
+.stockframe .loading .flower {
+  width: 300px;
+  height: 300px;
+  -webkit-animation: flower 3s linear infinite;
+}
+
 .stockframe .stockframe .Chart__container {
   border-radius: 15px;
   box-shadow: 0px 0px 10px 0.3px var(--light-gray);
