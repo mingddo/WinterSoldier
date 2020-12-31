@@ -1,26 +1,30 @@
 <template>
   <div class="chatbot-container" width="100%">
     <div>
-      <button @click="closeChat"><img src="https://img.icons8.com/ios/20/000000/down--v2.png"/></button>
+      <button @click="closeChat">V</button>
     </div>
+
+    <HowToUse
+    :help="help"
+    @closeHelp="closeHelp"
+    :class="{displayNone: !help}"/>
     <div>
       <div class="chatheader">
         <table width="100%">
           <tr>
-            <td width="20%" align="left">
-              <img src="https://img.icons8.com/windows/30/000000/chatbot.png"/>
-              Talk with Babot
+            <td width="10%" align="left" class="pointer" title="바봇은 무엇인가요?">
+              <img @click="gotohelp" src="https://img.icons8.com/clouds/50/000000/broken-robot.png"/>
             </td>
             <td width="64%"></td>
             <td width="1%" align="right">
-              <span @click="clearBot"  style="cursor:pointer;">
-                <img src="https://img.icons8.com/wired/30/000000/delete-forever.png"/>
+              <span @click="clearBot"  class="pointer" title="초기화">
+                <img src="https://img.icons8.com/bubbles/50/000000/trash.png"/>
               </span>
             </td>
             <td width="15%" align="right">
-              <span @click="chatTrain" style="cursor:pointer;">
-                <img src="https://img.icons8.com/wired/30/000000/saving-book.png"/>
-                {{train}}
+              <span @click="chatTrain" class="pointer">
+                <img title="수리 중" v-if="train" class="spinner" src="https://img.icons8.com/offices/30/000000/spinner-frame-1.png"/>
+                <img title="수리" v-else src="https://img.icons8.com/bubbles/50/000000/robot.png"/>
               </span>
             </td>
           </tr>
@@ -86,11 +90,14 @@
 <script>
 import { chatanswer, chattrain } from "@/api/chatbot.js"
 import { mapState } from "vuex";
+import HowToUse from './HowToUse.vue'
 
 export default {
   data () {
     return {
-      train: 'train',
+      help: false,
+      imgopacity: false,
+      train: false,
       trainform: {
         tag: '',
         patterns: '',
@@ -106,10 +113,20 @@ export default {
       disappear: false,
     }
   },
+  components: { 
+    HowToUse
+  },
   props : {
     chat: Boolean,
   },
   methods: {
+    closeHelp (help) {
+      this.help = help
+    },
+    gotohelp () {
+      this.help = true
+      this.imgopacity = false
+    },
     sayno () {
       this.disappear = !this.disappear;
     },
@@ -122,13 +139,12 @@ export default {
       this.box = []
     },
     chatTrain () {
-      this.train = 'ok wait'
+      this.train = true
       chattrain (
         this.trainform,
-        (res) => {
-          alert(res.data.result)
-          console.log('성공')
-          this.train = 'train'
+        () => {
+          alert("수리가 완료되었습니다.")
+          this.train = false
         },
         (err) => {
           console.log(err)
@@ -209,7 +225,6 @@ export default {
   justify-content: space-between;
 }
 .userchatbox {
-  
   border: 1px solid;
   border-radius: 10px;
   background-color:white;
@@ -226,7 +241,7 @@ export default {
   background-color:white;
   padding: 5px 8px;
   max-width: 100%;
-  width: 50%;
+  width: 40%;
   text-align: left;
 }
 .eachchatbox-position {
@@ -252,6 +267,11 @@ export default {
   background-color: #DDD;
   color: #008;
   text-align:center;
+}
+.chatheader td > span > span{
+  /* position: fixed; */
+  margin-top: 0;
+  color: red;
 }
 .chatbody {
   /* position: fixed; */
@@ -294,4 +314,9 @@ export default {
   display: flex;
   justify-content: space-evenly;
 }
+.spinner {
+  animation:spin 1000ms infinite linear;
+}
+@keyframes spin { 100%{ transform: rotate(360deg); } }
+
 </style>
