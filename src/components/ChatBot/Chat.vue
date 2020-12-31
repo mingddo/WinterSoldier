@@ -1,22 +1,25 @@
 <template>
-  <div class="chatbot-container">
+  <div class="chatbot-container" width="100%">
     <div>
-      <button width="10%" align="right" @click="closeChat">V</button>
+      <button @click="closeChat"><img src="https://img.icons8.com/ios/20/000000/down--v2.png"/></button>
     </div>
     <div>
       <div class="chatheader">
         <table width="100%">
           <tr>
-            <td width="50%" align="left">
-              my Chat
+            <td width="20%" align="left">
+              <img src="https://img.icons8.com/windows/30/000000/chatbot.png"/>
+              Talk with Babot
             </td>
-            <td width="70%" align="right">
+            <td width="64%"></td>
+            <td width="1%" align="right">
               <span @click="clearBot"  style="cursor:pointer;">
-                clear!
+                <img src="https://img.icons8.com/wired/30/000000/delete-forever.png"/>
               </span>
             </td>
-            <td width="20%" align="right">
+            <td width="15%" align="right">
               <span @click="chatTrain" style="cursor:pointer;">
+                <img src="https://img.icons8.com/wired/30/000000/saving-book.png"/>
                 {{train}}
               </span>
             </td>
@@ -26,20 +29,41 @@
       <div class="chatbody" id="chatbox">
         <div v-for="(chat, idx) in box" :key="idx">
           <div class="eachchatbox-position">
-            <span class="eachchatbox">
-              {{ chat.userchat}}
+            <span>
+              <img src="https://img.icons8.com/bubbles/50/000000/user-male.png"/>
             </span>
+            <span>
+              {{myinfo.username}}
+            </span>
+            <div class="userchatbox-position">
+              <span width="50%"></span>
+              <span>
+                <p class="userchatbox">
+                  {{ chat.userchat}}
+                </p>
+              </span>
+              
+            </div>
           </div>
           <div class="eachBotbox-position">
-            <span class="eachchatbox" v-if="chat.tag == 'createaccount'">
-              <router-link to="/signup">회원가입</router-link>하러가기
+            <span><img src="https://img.icons8.com/bubbles/50/000000/broken-robot.png"/></span><span>바봇(BOT)</span>
+            <span v-if="chat.tag == 'createaccount'">
+              <p class="botchatbox"><router-link to="/signup">회원가입</router-link>하러가기</p>
             </span>
-            <span class="eachchatbox" v-else-if="chat.tag == 'login'">
-              <router-link to="/login">로그인</router-link>하러가기
+            <span v-else-if="chat.tag == 'login'">
+              <p class="botchatbox"><router-link to="/login">로그인</router-link>하러가기</p>
             </span>
-            <span class="eachchatbox" v-else>
-              {{ chat.botchat}}
+            <span v-else>
+              <p class="botchatbox">{{ chat.botchat}}</p>
             </span>
+          </div>
+        </div>
+        <div>
+          <div v-if="box && box.length > 1"> <span  @click="scroll" class="pointer">채팅을 그만두고 싶다면 클릭!</span>
+            <div @click="closeChat" class="pointer chat-bye">
+              <img src="https://img.icons8.com/emoji/100/000000/waving-hand-medium-light-skin-tone.png"/>
+              <h1>안녕!!</h1>
+            </div>
           </div>
         </div>
       </div>
@@ -47,10 +71,10 @@
         <table width="100%">
           <tr>
             <td width="85%" align="left">
-              <input type="text" v-model.trim="chatText" class="chatInput" @keyup.enter="sendAsk">
+              <input type="text" v-model.trim="chatText" class="chatInput" @keypress.enter="sendAsk">
             </td>
             <td width="15%" align="right">
-              <button class="chatSend" @click="sendAsk">SEND</button>
+              <button class="chatSend" @click="sendAsk"><img src="https://img.icons8.com/dotty/30/000000/filled-sent.png"/></button>
             </td>
           </tr>
         </table>
@@ -61,6 +85,7 @@
 
 <script>
 import { chatanswer, chattrain } from "@/api/chatbot.js"
+import { mapState } from "vuex";
 
 export default {
   data () {
@@ -77,20 +102,27 @@ export default {
       chatText: '',
       botText: '',
       nowtag: '',
+      height: 0,
+      disappear: false,
     }
   },
   props : {
     chat: Boolean,
   },
   methods: {
+    sayno () {
+      this.disappear = !this.disappear;
+    },
     closeChat () {
       this.$emit('closeChat', !this.chat)
+      this.box = []
+      this.disappear = false
     },
     clearBot () {
       this.box = []
     },
     chatTrain () {
-      this.train = 'ok, training'
+      this.train = 'ok wait'
       chattrain (
         this.trainform,
         (res) => {
@@ -103,19 +135,26 @@ export default {
         }
       )
     },
+    scroll () {
+      const obj = document.getElementById("chatbox");
+      // console.log('길이1!', obj.scrollHeight, obj.scrollTop)
+      obj.scrollTop = obj.scrollHeight;
+      // console.log(obj.scrollTop)
+      console.log('qusgoTek,,')
+    },
     getResponse () {
       const chatting = {'userchat': this.chatText, 'botchat': this.botText, 'tag': this.nowtag}
+      console.log(chatting)
       this.box.push(chatting)
-      // console.log(chatting)
-      this.chatText = ''  
-      // console.log(this.box)
+      this.chatText = ''
+      console.log('뭐해..')
     },
     async sendAsk () {
       if (this.chatText !== '') {
           chatanswer (
           this.chatText,
           (res) => {
-            console.log(res.data.anstext)
+            console.log('대답은', res.data.anstext)
             this.botText = res.data.anstext
             this.nowtag = res.data.tag
             this.getResponse()
@@ -127,6 +166,21 @@ export default {
       }
     },
   },
+  watch: {
+    box: function () {
+      const obj = document.getElementById("chatbox");
+      console.log('길이1!', obj.scrollHeight, obj.scrollTop)
+      this.height = obj.scrollHeight;
+      obj.scrollTop = this.height + 116
+      // console.log(obj.scrollTop)
+      console.log('qusgoTek,,')
+    },
+  },
+  computed: {
+    ...mapState({
+      myinfo: (state) => state.userStore.userInfo,
+    }),
+  },
 }
 </script>
 
@@ -134,16 +188,46 @@ export default {
 .chatbot-container {
   width: 50%;
 }
+.chatbot-container > div:first-child {
+  background-color: #DDD;
+}
+.chatbot-container > div > button {
+  width: 100%;
+  border: 0px;
+  cursor: pointer;
+  background-color: #DDD;
+}
 .eachBotbox-position {
   text-align: left;
   padding: 5px 8px;
   margin-bottom: 5px;
 }
-.eachchatbox {
+.userchatbox-position {
+  display: flex;
+  position : relative; 
+  width: 100%;
+  justify-content: space-between;
+}
+.userchatbox {
+  
   border: 1px solid;
   border-radius: 10px;
   background-color:white;
   padding: 5px 8px;
+  word-break:break-all;
+  width: 100%;
+  right: 0;
+  text-align: left;
+}
+.botchatbox {
+  position : relative; 
+  border: 1px solid;
+  border-radius: 10px;
+  background-color:white;
+  padding: 5px 8px;
+  max-width: 100%;
+  width: 50%;
+  text-align: left;
 }
 .eachchatbox-position {
   text-align: right;
@@ -171,11 +255,28 @@ export default {
 }
 .chatbody {
   /* position: fixed; */
-  overflow:scroll;
+  overflow: auto;
   position : relative; 
   bottom:0;
   height: 450px;
   background-color: #BBCCDD;
+}
+.chatbody > div:first-child {
+  /* position: fixed; */
+  margin-top: 10px;
+}
+.chatbody > div:last-child {
+  /* position: fixed; */
+  position: relative;
+  bottom: 0;
+  height: 250px;
+}
+.chatbody > div:last-child div:first-child > div {
+  /* position: fixed; */
+  
+}
+.chatbodyDisappear {
+  display: none;
 }
 .chatfooter {
   /* position: fixed; */
@@ -186,5 +287,11 @@ export default {
   background-color: #FFF;
   color: #008;
   text-align:center;
+}
+.chat-bye {
+  position: relative;
+  margin: 70px 0px 70px 0px;
+  display: flex;
+  justify-content: space-evenly;
 }
 </style>
