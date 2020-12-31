@@ -1,23 +1,25 @@
 <template>
   <div class="stockframe">
-    <div class="inputtitle">종목명을 입력하세요</div>
-    <form @keypress.enter="getKrStockData" class="inputform">
-      <input type="text" v-model="company" placeholder="stock name" class="stockinput"/>
-    </form>
-    <div class="error-message" v-if="showError">
-      {{ errorMessage }}
-    </div>
-    <div v-if="loading" class="loading">
-      🔧 차트 불러오는 중입니다 ㅇㅅㅇ 🔧
-      <div class="flower">
-        <img
-          src="https://raw.githubusercontent.com/jaiyah77/Library77/gh-pages/flower.png"
-          width="100px"
-          height="100px"
+    <div class="stockinput">
+      <div class="inputtitle">종목명을 입력하세요</div>
+      <form @keypress.enter="getKrStockData" class="inputform">
+        <input
+          type="text"
+          v-model="company"
+          placeholder="stock name"
+          class="stockinput"
         />
+      </form>
+      <div class="error-message" v-if="showError">
+        {{ errorMessage }}
+      </div>
+      <div v-if="loading" class="loading">
+        🔧 차트 불러오는 중입니다 ㅇㅅㅇ 🔧
+        <div class="flower">
+          <img src="@/assets/aa.png" width="100px" height="100px" />
+        </div>
       </div>
     </div>
-
     <div class="Chart__container" v-if="loaded">
       <!-- <div class="Chart__title">
         <h2>
@@ -52,7 +54,7 @@
 import axios from "axios";
 import LineChart from "@/components/Stock/LineChart";
 import BarChart from "@/components/Stock/BarChart";
-import '@/assets/stock.css';
+import "@/assets/stock.css";
 // import DownloadButton from "@/components/Stock/Download";
 const SERVER_URL = "http://127.0.0.1:8000/";
 
@@ -123,54 +125,11 @@ export default {
     setDailyPng(payload) {
       this.dailyPng = payload;
     },
-    created() {},
-    mounted() {},
   },
 };
 </script>
 
 <style>
-.Chart__container {
-  border-radius: $base-border-radius;
-  background-color: #fff;
-  box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.11),
-    0 5px 15px 0 rgba(0, 0, 0, 0.08);
-  padding: rem(20) rem(40);
-  margin: rem(50) 0;
-}
-
-/* .Chart__title {
-  display: flex;
-  flex-direction: row;
-  margin-bottom: rem(20);
-  justify-content: space-between;
-
-  h2 {
-    display: flex;
-    align-items: center;
-    color: color(fjord);
-    margin: 0;
-    font-weight: 600;
-    font-size: rem(16);
-
-    > span {
-      font-weight: 400;
-      color: color(robin-egg-blue);
-      font-size: rem(16);
-      margin-left: rem(25);
-    }
-  }
-} */
-.loading {
-  text-align: center;
-  color: color(fjord);
-  font-size: rem(18);
-}
-.flower {
-  width: 200px;
-  height: 200px;
-  -webkit-animation: flower 3s linear infinite;
-}
 @-webkit-keyframes flower {
   0% {
     -webkit-transform: rotate(0deg);
