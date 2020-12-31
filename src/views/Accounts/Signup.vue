@@ -12,7 +12,7 @@
       </div>
       <div>
         <label for="passwordConfirmation">passwordConfirmation</label>
-        <input type="password" name="passwordConfirmation" id="passwordConfirmation" v-model="passwordConfirmation">
+        <input @keyup.enter="onSignup" type="password" name="passwordConfirmation" id="passwordConfirmation" v-model="passwordConfirmation">
       </div>
       <button @click="onSignup">Signup</button>
     </div>
@@ -44,11 +44,8 @@ export default {
           ,
           (res) => {
             console.log(res)
-            this.$store.commit("userStore/setIsLogined", true);
-            localStorage.setItem('jwt', res.data.token)
-            this.$store.dispatch("userStore/GET_MEMBER_INFO", res.data.token)
-            alert('회원가입이 완료되었습니다!')
-            this.$router.push({ name: 'Home' })
+            alert('환영합니다!')
+            this.$router.push({name: 'Login'})
           },
           (err) => {
             console.log(err)

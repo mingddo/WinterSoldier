@@ -131,6 +131,16 @@ li {
   align-items: center;
 }
 
+.navbarIcons > div {
+  align-items: center;
+  margin: 10px;
+}
+
+.navbarIcons button {
+  align-items: center;;
+  padding: 5px;
+}
+
 .navbarIcons .search-bar {
   /* 자식 요소인 i 태그의 absolute 속성의 부모 요소 조건을 갖춤.(relative 속성) */
   position: relative;
