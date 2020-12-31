@@ -44,6 +44,11 @@ export default {
           ,
           (res) => {
             console.log(res)
+            this.$store.commit("userStore/setIsLogined", true);
+            localStorage.setItem('jwt', res.data.token)
+            this.$store.dispatch("userStore/GET_MEMBER_INFO", res.data.token)
+            alert('회원가입이 완료되었습니다!')
+            this.$router.push({ name: 'Home' })
           },
           (err) => {
             console.log(err)
