@@ -28,14 +28,22 @@ export default {
   },
   methods: {
     checkAlarm() {
-      if (this.today_last_todos) {
+      if (this.today_last_todos.length > 0) {
         if (Notification.permission === "granted") {
               let img = 'https://i.annihil.us/u/prod/marvel/i/mg/6/00/5c802b62bc572/clean.jpg'
               var i;
               let today_last_todos_title = ''
               for (i=0; i < this.today_last_todos.length; i++) {
                 today_last_todos_title += this.today_last_todos[i].title + ', '
-                console.log('today_last_todos_title', this.today_last_todos[i].title)
+                this.today_todos[i].completed = "yes" // 알람띄운 todo는 completed 변경
+                // db의 todo completed여부도 변경
+                todoCompleted ({...this.today_last_todos[i], completed: "yes"},
+                () => {
+                  console.log('지나간 알림 completed 수정 성공')
+                },
+                (err) => {
+                  console.log(err)
+                });
               }
               let text = today_last_todos_title
               new Notification(this.today_last_todos.length + '개의 시간 지난 할 일', { body: text, icon: img }) 
@@ -125,7 +133,7 @@ export default {
   },
   mounted() {
     this.askNotificationPermission();
-    if (this.userInfo.id) { // 로그인 해야 todo가져오기
+    if (this.isLogin) { // 로그인 해야 todo가져오기
       this.getTodo();
     }
   },
