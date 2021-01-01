@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Roboto:wght@300;400;500;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Roboto:wght@300;400;500;700&display=swap");
 
 /* 속성 작성 순서 */
 /* 0. width, heigth 등 */
@@ -50,8 +50,8 @@
   --profile-img: 200px;
 
   /* Font Family */
-  --roboto: 'Roboto', sans-serif;
-  --openSans: 'Open Sans', sans-serif;
+  --roboto: "Roboto", sans-serif;
+  --openSans: "Open Sans", sans-serif;
 }
 
 * {

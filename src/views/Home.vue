@@ -3,8 +3,9 @@
     <section class="left_component">
       <!-- <div class="left_component_weather"> -->
         <Weather class="left_componet_weather"/>
+        <Corona/>
       <!-- </div> -->
-      <Leftnavi class="left_component_button"/>
+        <Leftnavi class="left_component_button"/>
     </section>
     <section class="right_component">
       <Calendar/>
@@ -21,13 +22,16 @@
 import Calendar from '@/components/Calendar/Calendar.vue'
 import Weather from './Weather.vue'
 import Leftnavi from '@/components/common/Leftnavi.vue'
+import Corona from './Corona.vue'
 
 export default {
   name: 'Home',
   components: {
     Calendar,
     Weather,
-    Leftnavi
+    Leftnavi,
+    Corona,
+
   }
 }
 </script>
