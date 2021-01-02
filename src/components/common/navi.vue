@@ -1,5 +1,5 @@
 <template>
-   <header class="navbar">
+  <header class="navbar">
     <div>
       <!-- 임시로고 클릭시 홈페이지로! -->
       <div>

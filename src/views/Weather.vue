@@ -1,5 +1,5 @@
 <template>
-  <div class="tmp_frame">
+  <div class="weather__frame">
     <div class="weather">
       <div class="weather__date">
         <span> {{ today.year }}년 {{ today.month }}월 {{ today.date }}일 </span>
@@ -36,7 +36,6 @@
       </div>
       <div class="weather__recommend">
         <i class="fas fa-mitten"></i>
-        <span>마땅한 아이콘이 없다.</span>
       </div>
     </div>
   </div>
@@ -52,7 +51,7 @@
 
 <script>
 import { mapState } from 'vuex';
-import '@/assets/weather.css';
+// import '@/assets/weather.css';
 
 export default {
   name: 'Weather',
@@ -82,4 +81,4 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped src="@/assets/weather.css"></style>

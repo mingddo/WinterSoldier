@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Roboto:wght@300;400;500;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Roboto:wght@300;400;500;700&display=swap');
 
 /* 속성 작성 순서 */
 /* 0. width, heigth 등 */
@@ -50,8 +50,8 @@
   --profile-img: 200px;
 
   /* Font Family */
-  --roboto: "Roboto", sans-serif;
-  --openSans: "Open Sans", sans-serif;
+  --roboto: 'Roboto', sans-serif;
+  --openSans: 'Open Sans', sans-serif;
 }
 
 * {
@@ -61,28 +61,22 @@
   font-family: var(--roboto);
 }
 
-.tmp_frame {
-  /* 임시로 컴포넌트를 감싸는 div 생성. */
-  width: 300px;
+.weather__frame {
   display: flex;
   justify-content: center;
+  margin-top: var(--padding-one);
 }
 
 .weather {
-  /* 임시로 width 설정. */
   width: 100%;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: var(--padding-h);
-  background-color: var(--js);
+  background-color: var(--yellow-prime);
   opacity: 0.75;
-  /* color: var(--black); */
   color: var(--black);
-  font-weight: 700;
-  font-family: var(--roboto);
 }
 
 .weather .weather__date {

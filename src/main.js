@@ -3,8 +3,16 @@ import App from './App.vue';
 import router from './router';
 import store from './store/index.js';
 
-// 외부 css 파일 활용하기.
-// import './assets/reset.css';
+// fontawesome 사용
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { dom } from '@fortawesome/fontawesome-svg-core';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+
+dom.watch();
+library.add(fas);
+Vue.component('font-awesome-icon', FontAwesomeIcon);
+// ----------------
 
 Vue.config.productionTip = false;
 
