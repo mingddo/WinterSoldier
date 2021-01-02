@@ -21,10 +21,11 @@
   --margin-one: 44px;
 
   /* Font Size */
-  --font-micro: 0.7rem;
-  --font-small: 0.9rem;
-  --font-medium: 1.1rem;
-  --font-large: 1.3rem;
+  --font-large: 100px;
+  --font-medium: 24px;
+  --font-regular: 18px;
+  --font-small: 16px;
+  --font-micro: 14px;
 
   /* Font */
   --Nanum-Ghothic: 'Nanum Gothic', sans-serif;
@@ -33,6 +34,7 @@
 
   /* Width */
   --max-width: 1200px;
+  --min-width: 768px;
 
   /* Height */
   --calendar-height: 560px;
@@ -57,6 +59,7 @@ a {
 
 #app {
   max-width: var(--max-width);
+  min-width: var(--min-width);
   margin: 0 auto;
   padding: 18px 0;
 }
@@ -84,12 +87,12 @@ input:focus {
 }
 
 input {
-  width: 100%;
+  /* width: 100%; */
   padding: var(--padding-updown) var(--padding-side);
   margin: 8px 0;
   display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  /* border: 1px solid #ccc; */
+  /* border-radius: 5px; */
 }
 
 li {
@@ -104,87 +107,46 @@ li {
   border: none;
   justify-content: space-between;
   align-items: center;
-  padding: var(--padding);
   background-color: var(--yellow-prime);
   color: var(--white-color);
+  padding: 8px 24px;
 }
 
-.navbarLogo {
-  font-size: var(--font-medium);
+.logo__img {
+  width: 50px;
+  height: 50px;
 }
 
-.navbarLogo i {
-  color: var(--white-color);
-}
-
-.navbarCategory {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  justify-content: space-around;
-}
-
-.navbarCategory li {
-  text-align: left;
-  width: 100%;
-  /* padding: 5px 0px 5px 5px; */
-  border-bottom: 1px solid;
-  /* margin: 5px; */
-  padding: 10px;
-  /* margin-bottom: 5px; */
-  font-size: 20px;
-}
-
-.navbarCategory li:last-child {
-  border-bottom: 0px;
-}
-
-.navbarCategory li:before {
-  content: '>';
-  display: inline-block;
-  vertical-align: middle;
-  padding-right: 5px;
-}
-
-.navbarIcons {
-  display: flex;
-  align-items: center;
-}
-
-.navbarIcons > div {
-  align-items: center;
-  margin: 10px;
-}
-
-.navbarIcons button {
-  align-items: center;
-  padding: 5px;
-}
-
-.navbarIcons .search-bar {
-  /* 자식 요소인 i 태그의 absolute 속성의 부모 요소 조건을 갖춤.(relative 속성) */
+/* Navbar - Search */
+.navbar__search {
   position: relative;
+  width: 500px;
 }
 
-.navbarIcons .search-bar input:focus {
-  border: none;
-  outline: 1px solid gray;
-  transition: outline 1s;
+.search {
+  width: 100%;
+  padding: 8px 12px;
+  margin: 0;
+  border: 1px solid var(--light-gray);
+  border-radius: 4px;
 }
 
-.navbarIcons .search-bar i {
+.search:focus {
+  border: 1px solid var(--green-color);
+}
+
+.search-icon {
+  color: var(--light-gray);
   position: absolute;
-  left: 0px;
-  top: calc(var(--padding-updown) + 6px);
-  color: gray;
+  font-size: var(--font-large);
+  top: 50%;
+  left: 3%;
+  margin-top: -10px;
 }
 
-.navbarIcons i {
-  font-size: var(--font-large);
-  margin-left: var(--margin);
+.navbar__icons {
+  display: flex;
+  align-items: center;
 }
 
 /* mainFrame */
