@@ -268,11 +268,6 @@ export default {
   color: #008;
   text-align:center;
 }
-.chatheader td > span > span{
-  /* position: fixed; */
-  margin-top: 0;
-  color: red;
-}
 .chatbody {
   /* position: fixed; */
   overflow: auto;
