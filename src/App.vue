@@ -35,7 +35,7 @@ export default {
               let today_notAlarm_todos_title = ''
               for (i=0; i < this.today_notAlarm_todos.length; i++) {
                 today_notAlarm_todos_title += this.today_notAlarm_todos[i].title + ', '
-                this.today_todos[i].completed = "yes" // 알람띄운 todo는 completed 변경
+                this.today_notAlarm_todos[i].completed = "yes" // 알람띄운 todo는 completed 변경
                 // db의 todo completed여부도 변경
                 todoCompleted ({...this.today_notAlarm_todos[i], completed: "yes"},
                 () => {
@@ -48,7 +48,7 @@ export default {
               let text = today_notAlarm_todos_title
               new Notification(this.today_notAlarm_todos.length + '개의 시간 지난 할 일', { body: text, icon: img }) 
         } else {
-          alert('알림시간이 지난 할 일이' + this.today_last_todos.length +'개 있어요!')
+          alert('알림시간이 지난 할 일이' + this.today_notAlarm_todos.length +'개 있어요!')
         }
       }
       setInterval(()=>{
