@@ -54,6 +54,7 @@
 
           <button class="monthInfoBtn" @click="calendarData(1)">▶</button>
         </div>
+
         <!-- 월간 달력 테이블 -->
         <table class="calendar">
           <thead>
@@ -65,43 +66,16 @@
           <tbody>
             <tr v-for="(date, idx) in dates" :key="idx">
               <td v-for="(day, idx2) in date" :key="idx2">
-                <div
-                  class="calendarDay"
-                  v-if="
-                    day === today &&
-                      month === currentMonth &&
-                      year === currentYear
-                  "
-                  @click="todaySchedule(day)"
-                >
+                <div class="calendarDay" @click="todaySchedule(day)">
                   {{ day }}
                 </div>
-                <!--오늘-->
-                <div v-else-if="idx2 === 0" @click="todaySchedule(day)">
-                  {{ day }}
-                </div>
-                <!--일요일-->
-                <div v-else-if="idx2 === 6" @click="todaySchedule(day)">
-                  {{ day }}
-                </div>
-                <!--토요일-->
-                <div v-else @click="todaySchedule(day)">{{ day }}</div>
+
                 <!-- 그외 -->
               </td>
             </tr>
           </tbody>
         </table>
       </section>
-
-      <!--월간 달력에서 날짜 클릭시 뜨는 모달창 구역-->
-      <div class="calendar-modal">
-        {{ month }} 월 {{ thisDay }} 일 입니다!
-        <div>
-          <TodoList :year="year" :month="month" :thisDay="thisDay" />
-          <TodoForm :year="year" :month="month" :thisDay="thisDay" />
-        </div>
-        <button @click="modalDisappear">ok</button>
-      </div>
 
       <!-- 주간 달력 구간 -->
 
@@ -166,13 +140,17 @@
               <template />
               <div class="tf-dailytodoList" @dblclick="isModalViewed = true">
                 <div class="td-dailytodoItem">
-                  <TodoList :weekdaily="weekdaily" :year="year" :month="month" :weekCalendar="weekCalendar"/>
+                  <TodoList
+                    :weekdaily="weekdaily"
+                    :year="year"
+                    :month="month"
+                    :weekCalendar="weekCalendar"
+                  />
                   <TodoForm
                     v-if="isModalViewed"
                     @close-modal="isModalViewed = false"
                   >
                   </TodoForm>
-
                 </div>
               </div>
             </td>
@@ -206,10 +184,10 @@
 </template>
 
 <script>
-import TodoList from '../Todo/TodoList';
-import TodoForm from '../Todo/TodoForm';
+import TodoList from "../Todo/TodoList";
+import TodoForm from "../Todo/TodoForm";
 export default {
-  name: 'Calendar',
+  name: "Calendar",
   components: {
     TodoList,
     TodoForm,
@@ -219,13 +197,13 @@ export default {
       inputhTitle: false,
       isModalViewed: false,
       weekName: [
-        '일요일',
-        '월요일',
-        '화요일',
-        '수요일',
-        '목요일',
-        '금요일',
-        '토요일',
+        "일요일",
+        "월요일",
+        "화요일",
+        "수요일",
+        "목요일",
+        "금요일",
+        "토요일",
       ],
       dates: [],
       currentYear: 0,
@@ -308,7 +286,7 @@ export default {
       if (this.goToBack) {
         this.weekIdx = this.MaximumWeek - 1;
         console.log(
-          '🚀 ~ file: Calendar.vue ~ line 176 ~ changeWeekly ~ this.MaximumWeek',
+          "🚀 ~ file: Calendar.vue ~ line 176 ~ changeWeekly ~ this.MaximumWeek",
           this.MaximumWeek
         );
       }
@@ -321,17 +299,17 @@ export default {
           if (this.today === daily) {
             this.weekCalendar = this.dates[weekIdx];
             this.weekIdx = weekIdx;
-            console.log('지금주', this.weekIdx);
+            console.log("지금주", this.weekIdx);
           }
         }
       }
       this.MaximumWeek = this.dates.length;
-      console.log('몇개까지임?', this.MaximumWeek);
+      console.log("몇개까지임?", this.MaximumWeek);
     },
     changeYearForm() {
       this.inputhTitle = !this.inputhTitle;
       this.year = this.changedYear;
-      console.log('몇년도', this.changedYear);
+      console.log("몇년도", this.changedYear);
       const [
         monthFirstDay,
         monthLastDate,
@@ -364,7 +342,7 @@ export default {
     todaySchedule(day) {
       this.modal = true;
       this.thisDay = day;
-      console.log('모달은', this.modal);
+      console.log("모달은", this.modal);
     },
     calendarData(arg) {
       if (arg < 0) {
@@ -412,8 +390,8 @@ export default {
         if (day === 1) {
           // 1일이 어느 요일인지에 따라 테이블에 그리기 위한 지난 셀의 날짜들을 구해야함
           for (let j = 0; j < monthFirstDay; j += 1) {
-            console.log('prevDay', prevDay);
-            weekOfDays.push('');
+            console.log("prevDay", prevDay);
+            weekOfDays.push("");
             // weekOfDays.push(prevDay); , 달력상에 지난 날짜 표현 x
             prevDay += 1;
           }
@@ -427,7 +405,7 @@ export default {
         day += 1;
       }
       const len = weekOfDays.length;
-      console.log('길이?', len);
+      console.log("길이?", len);
       if (weekOfDays.length > 0) dates.push(weekOfDays); // 남은 날짜 추가
       this.nextMonthStart = weekOfDays[0]; // 이번 달 마지막 주에서 제일 작은 날짜
       return dates;
