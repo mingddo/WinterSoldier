@@ -1,48 +1,44 @@
 <template>
   <div>
     <span v-show="temp">
-      <Todo v-for="(todo, idx) in todos" :key="idx" :todo="todo" />
+      <div class="monthcalendartodoItem">일정 있음</div>
     </span>
   </div>
 </template>
 
 <script>
-import Todo from "./Todo";
 import { todoList } from "../../api/todo.js";
 export default {
   name: "TodoList",
-  components: {
-    Todo,
-  },
   props: {
-    weekdaily: [Number, String],
+    day: [Number, String],
     year: [Number, String],
     month: [Number, String],
-    weekCalendar: Array,
+    dates: Array,
   },
   data: function () {
     return {
       todos: null,
       dateInfo: null,
       temp: true,
-      t_month: null,
-      t_weekdaily: null,
+      c_month: null,
+      c_day: null,
     };
   },
   methods: {
     createDateInfo() {
       if (0 < this.month < 10) {
-        this.t_month = "0" + String(this.month);
+        this.c_month = "0" + String(this.month);
       } else {
-        this.t_month = this.month;
+        this.c_month = String(this.month);
       }
-      if (0 < this.weekdaily < 10) {
-        this.t_weekdaily = "0" + String(this.weekdaily);
+      if (0 < this.day < 10) {
+        this.c_day = "0" + String(this.day);
       } else {
-        this.t_weekdaily = this.weekdaily;
+        this.c_day = String(this.day);
       }
       this.dateInfo =
-        String(this.year) + String(this.t_month) + String(this.t_weekdaily);
+        String(this.year) + String(this.c_month) + String(this.c_day);
     },
     getTodoList() {
       todoList(
@@ -63,19 +59,19 @@ export default {
   },
 
   watch: {
-    weekCalendar() {
+    dates() {
       if (0 < this.month < 10) {
-        this.t_month = "0" + String(this.month);
+        this.c_month = "0" + String(this.month);
       } else {
-        this.t_month = this.month;
+        this.c_month = String(this.month);
       }
-      if (0 < this.weekdaily < 10) {
-        this.t_weekdaily = "0" + String(this.weekdaily);
+      if (0 < this.day < 10) {
+        this.c_day = "0" + String(this.day);
       } else {
-        this.t_weekdaily = this.weekdaily;
+        this.c_day = String(this.day);
       }
       this.dateInfo =
-        String(this.year) + String(this.t_month) + String(this.t_weekdaily);
+        String(this.year) + String(this.c_month) + String(this.c_day);
       this.getTodoList();
     },
   },
@@ -87,4 +83,12 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.monthcalendartodoItem {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 0.3px var(--light-gray);
+  border: none;
+  background-color: rgb(189, 8, 150);
+}
+</style>
