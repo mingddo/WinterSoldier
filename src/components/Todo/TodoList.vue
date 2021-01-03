@@ -29,6 +29,12 @@ export default {
   },
   methods: {
     createDateInfo() {
+      if (0 < this.month < 10) {
+        this.month = "0" + String(this.month);
+      }
+      if (0 < this.weekdaily < 10) {
+        this.weekdaily = "0" + String(this.weekdaily);
+      }
       this.dateInfo =
         String(this.year) + String(this.month) + String(this.weekdaily);
     },
