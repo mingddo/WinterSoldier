@@ -453,7 +453,6 @@ export default {
     getcoronaInfo() {
       this.corona();
       this.citycorona();
-
       setInterval(() => {
         this.corona();
         this.citycorona();
@@ -497,6 +496,7 @@ export default {
   padding: 0.5rem 0.75rem;
   text-align: left;
 }
+
 
 /* .broadcast > .feather {
     margin-right: 0.5rem;
