@@ -1,16 +1,15 @@
 :root {
   /* color */
-  --white-color: #f8f8f8;
-  --white-dark: #f0f0f0;
-  --green-color: #107516;
-  --yellow-color: #fff59d;
-  --yellow-light: #ffffcf;
-  --yellow-dark: #faf756;
-  --yellow-prime: #efd81d;
-  --purple: #a014a0;
-  align-items: center;
-  --gray-dark: #0e0e0a;
-  --light-gray: #bebebe;
+  --color-white: #f8f8f8;
+  --color-white-dark: #f0f0f0;
+  --color-green: #107516;
+  --color-yellow: #fff59d;
+  --color-yellow-light: #ffffcf;
+  --color-yellow-dark: #faf756;
+  --color-yellow-prime: #efd81d;
+  --color-purple: #a014a0;
+  --color-gray-dark: #0e0e0a;
+  --color-gray-light: #bebebe;
 
   /* Size */
   --padding: 12px;
@@ -45,7 +44,7 @@
 
 html {
   font-size: 16px;
-  background-color: var(--white-dark);
+  background-color: var(--color-white-dark);
 }
 
 body {
@@ -74,7 +73,7 @@ a {
 }
 
 i {
-  color: var(--gray-dark);
+  color: var(--color-gray-darkcolor-);
 }
 
 /* input 태그: 브라우저가 기본으로 지정하는 스타일링 제거 */
@@ -107,8 +106,8 @@ li {
   border: none;
   justify-content: space-between;
   align-items: center;
-  background-color: var(--yellow-prime);
-  color: var(--white-color);
+  background-color: var(--color-yellow-prime);
+  color: var(--color-white);
   padding: 8px 24px;
 }
 
@@ -132,7 +131,7 @@ li {
 }
 
 .search:focus {
-  border: 1px solid var(--green-color);
+  border: 1px solid var(--color-green);
 }
 
 .search-icon {
@@ -182,7 +181,7 @@ li {
 }
 .home .left_component .left_componet_weather {
   width: 100%;
-  height: 500px;
+  height: auto;
   border-radius: 20px;
   box-shadow: 0px 0px 10px 0.3px var(--light-gray);
   border: none;
@@ -196,7 +195,7 @@ li {
   justify-self: end;
   box-shadow: 0px 0px 10px 0.3px var(--light-gray);
   border: none;
-  background-color: var(--white-color);
+  background-color: var(--color-white);
 }
 
 .home .right_component {
@@ -215,7 +214,7 @@ li {
   box-shadow: 0px 0px 10px 0.3px var(--light-gray);
   border: none;
   border-radius: 15px;
-  background-color: var(--white-color);
+  background-color: var(--color-white);
 }
 
 .home .right_component .frame .todayTodo .todayTodoList {
@@ -239,7 +238,7 @@ li {
   border-radius: 15px;
   box-shadow: 0px 0px 10px 0.3px var(--light-gray);
   border: none;
-  background-color: var(--white-color);
+  background-color: var(--color-white);
 }
 
 .claendarchangecls {
@@ -308,7 +307,7 @@ li {
   box-shadow: 0px 0px 10px 0.3px var(--light-gray);
   border: none;
   border-radius: 15px;
-  background-color: var(--white-color);
+  background-color: var(--color-white);
 }
 
 .frame .monthFrame .monthInfo {
@@ -347,7 +346,7 @@ li {
 .frame .monthFrame .calendar > thead {
   width: 100%;
   height: var(--info-height);
-  background-color: var(--white-dark);
+  background-color: var(--color-white-dark);
   padding: var(--padding) 0;
   /* margin-bottom: calc(var(--margin) / 2); */
 }
@@ -406,7 +405,7 @@ li {
   align-items: center;
   width: 100%;
   height: var(--calendar-height);
-  background-color: var(--white-color);
+  background-color: var(--color-white);
   box-shadow: 0px 0px 10px 0.3px var(--light-gray);
   border: none;
   /* border: solid 2px var(--light-gray); */
@@ -488,7 +487,7 @@ li {
   text-align: left;
   width: 100%;
   background-color: rgb(14, 126, 255);
-  color: var(--white-color);
+  color: var(--color-white);
 }
 
 .frame .weekFrame .weekInfo {
@@ -533,7 +532,7 @@ footer {
   display: none;
   position: sticky;
   bottom: 0;
-  background-color: var(--white-dark);
+  background-color: var(--color-white-dark);
   padding: var(--padding);
 }
 
