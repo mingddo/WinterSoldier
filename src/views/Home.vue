@@ -2,16 +2,15 @@
   <div class="home">
     <section class="left_component">
       <!-- <div class="left_component_weather"> -->
-        <Weather class="left_componet_weather"/>
-        <Corona/>
+      <Weather class="left_componet_weather" />
+      <Corona />
       <!-- </div> -->
-        <Leftnavi class="left_component_button"/>
+      <Leftnavi class="left_component_button" />
     </section>
     <section class="right_component">
-      <Calendar/>
+      <Calendar />
       <div class="contentsFrame">
-        <!-- 오늘의 뉴스 등 콘텐츠 들어가는 박스 -->
-        오늘의 뉘우스
+        <News />
       </div>
     </section>
   </div>
@@ -19,19 +18,20 @@
 
 <script>
 // @ is an alias to /src
-import Calendar from '@/components/Calendar/Calendar.vue'
-import Weather from './Weather.vue'
-import Leftnavi from '@/components/common/Leftnavi.vue'
-import Corona from './Corona.vue'
+import Calendar from "@/components/Calendar/Calendar.vue";
+import Weather from "./Weather.vue";
+import Leftnavi from "@/components/common/Leftnavi.vue";
+import Corona from "./Corona.vue";
+import News from "./News.vue";
 
 export default {
-  name: 'Home',
+  name: "Home",
   components: {
     Calendar,
     Weather,
     Leftnavi,
     Corona,
-
-  }
-}
+    News,
+  },
+};
 </script>
