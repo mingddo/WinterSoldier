@@ -109,10 +109,65 @@
             <div>
               <h2> GROUP </h2>
             </div>
-            <div>
-              <h2>0</h2>
-              <!-- {{ userinfo.followings }} -->
+
+            <div v-if="userinfo.username == myinfo.username" @click="groupDetail">
+              <h2 class="pointer" > {{group_length}} </h2>
             </div>
+            <div v-else>
+              <h2>{{group_length}}</h2>
+            </div>
+
+            <div :class="{disappear : !watchgroup}" class="profile-follow-modal">
+              <div>
+                <div class="profile-follow-modal-title">
+                  <div>
+                    <h2> Group </h2>
+                  </div>
+                  <div class="profile-follow-modal-close">
+                    <img class="pointer" @click="groupDetail" src="https://img.icons8.com/ios/50/000000/close-window.png"/>
+                  </div>
+                </div>
+
+                <div class="profile-follow-modal-content">
+                  <UserGroup 
+                  v-for="group in userinfo.group"
+                  :key="group.id"
+                  :group="group"/>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div v-if="userinfo.username == myinfo.username" class="profile-content-eachbox">
+            <div>
+              <h2> INVITE </h2>
+            </div>
+
+            <div @click="inviteDetail">
+              <h2 class="pointer" > {{invite_length}} </h2>
+            </div>
+
+            <div :class="{disappear : !watchinvite}" class="profile-follow-modal">
+              <div>
+                <div class="profile-follow-modal-title">
+                  <div>
+                    <h2> Invite </h2>
+                  </div>
+                  <div class="profile-follow-modal-close">
+                    <img class="pointer" @click="inviteDetail" src="https://img.icons8.com/ios/50/000000/close-window.png"/>
+                  </div>
+                </div>
+
+                <div class="profile-follow-modal-content">
+                  <UserInvite
+                  v-for="invite in userinfo.invited"
+                  :key="invite.id"
+                  :invite="invite"/>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
         
@@ -164,6 +219,8 @@ import '@/assets/accounts.css';
 import UserTodo from '@/components/Profile/UserTodo.vue'
 import UserFollower from '../../components/Profile/UserFollower.vue';
 import UserFollowing from '../../components/Profile/UserFollowing.vue';
+import UserGroup from '../../components/Profile/UserGroup.vue';
+import UserInvite from '../../components/Profile/UserInvite.vue';
 
 export default {
   name: 'Profile',
@@ -171,6 +228,8 @@ export default {
     UserTodo,
     UserFollower,
     UserFollowing,
+    UserGroup,
+    UserInvite,
   },
   data () {
     return {
@@ -185,6 +244,8 @@ export default {
       isFollowed: false,
       watchfollower: false,
       watchfollowing: false,
+      watchgroup: false,
+      watchinvite: false,
       findFriend: "",
       auto: [],
       disappear: true,
@@ -226,19 +287,28 @@ export default {
     followerDetail () {
       this.watchfollower = !this.watchfollower;
     },
+    groupDetail () {
+      this.watchgroup = !this.watchgroup
+    },
+    inviteDetail () {
+      this.watchinvite = !this.watchinvite
+    },
+    setuserprofile(res) {
+      const saveuserInfo = JSON.stringify(res.data);
+      sessionStorage.setItem('user', saveuserInfo)
+      const getuserInfo = sessionStorage.getItem('user')
+      this.userinfo = JSON.parse(getuserInfo)
+      this.userTodo = this.userinfo.my_todo
+      this.followers = this.userinfo.followers
+      this.followings = this.userinfo.followings
+      const token = localStorage.getItem('jwt')
+      this.$store.dispatch("userStore/GET_MEMBER_INFO", token)
+    },
     getuserprofile() {
       userprofile(
         this.$route.query.name,
         (res) => {
-        const saveuserInfo = JSON.stringify(res.data);
-        sessionStorage.setItem('user', saveuserInfo)
-        const getuserInfo = sessionStorage.getItem('user')
-        this.userinfo = JSON.parse(getuserInfo)
-        this.userTodo = this.userinfo.my_todo
-        this.followers = this.userinfo.followers
-        this.followings = this.userinfo.followings
-        const token = localStorage.getItem('jwt')
-        this.$store.dispatch("userStore/GET_MEMBER_INFO", token)
+        this.setuserprofile(res)
         for (let follow of this.myinfo.followings) {
           if (this.userinfo.username == follow.username) {
             this.isFollowing = true
@@ -261,21 +331,13 @@ export default {
         (res) => {
         console.log('추가 성공시', res)
         userprofile(
-        this.$route.query.name,
-        (res) => {
-        const saveuserInfo = JSON.stringify(res.data);
-        sessionStorage.setItem('user', saveuserInfo)
-        const getuserInfo = sessionStorage.getItem('user')
-        this.userinfo = JSON.parse(getuserInfo)
-        this.userTodo = this.userinfo.my_todo
-        this.followers = this.userinfo.followers
-        this.followings = this.userinfo.followings
-        const token = localStorage.getItem('jwt')
-        this.$store.dispatch("userStore/GET_MEMBER_INFO", token)
-        },
-        (err) => {
-          console.log(err)
-        })
+          this.$route.query.name,
+          (res) => {
+          this.setuserprofile(res)
+          },
+          (err) => {
+            console.log(err)
+          })
         this.isFollowing = true
         },
         (err) => {
@@ -293,21 +355,13 @@ export default {
         console.log('취소 성공시', res)
         this.isFollowing = false
         userprofile(
-        this.$route.query.name,
-        (res) => {
-        const saveuserInfo = JSON.stringify(res.data);
-        sessionStorage.setItem('user', saveuserInfo)
-        const getuserInfo = sessionStorage.getItem('user')
-        this.userinfo = JSON.parse(getuserInfo)
-        this.userTodo = this.userinfo.my_todo
-        this.followers = this.userinfo.followers
-        this.followings = this.userinfo.followings
-        const token = localStorage.getItem('jwt')
-        this.$store.dispatch("userStore/GET_MEMBER_INFO", token)
-        },
-        (err) => {
-          console.log(err)
-        })
+          this.$route.query.name,
+          (res) => {
+          this.setuserprofile(res)
+          },
+          (err) => {
+            console.log(err)
+          })
         },
         (err) => {
           console.log('실패시', err)
@@ -356,6 +410,20 @@ export default {
     follower_length () {
       if (this.userinfo.followers !== null && this.userinfo.followers !== undefined) {
         return this.userinfo.followers.length
+      } else {
+        return 0
+      }
+    },
+    group_length () {
+      if (this.userinfo.group !== null && this.userinfo.group !== undefined) {
+        return this.userinfo.group.length
+      } else {
+        return 0
+      }
+    },
+    invite_length () {
+      if (this.userinfo.invited !== null && this.userinfo.invited !== undefined) {
+        return this.userinfo.invited.length
       } else {
         return 0
       }
