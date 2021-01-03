@@ -170,7 +170,7 @@
       <div :class="{ claendarchangecls: calendarToggle }" class="todayTodo">
         <div class="todayInfo">{{ selectedMonth }}월 {{ selectedDay }}일</div>
         <div class="todayTodoList">
-          <div class="todauTodoItem">
+          <div class="todayTodoItem">
             <TodayTodoList
               :day="selectedDay"
               :year="year"
@@ -350,9 +350,7 @@ export default {
     todaySchedule(day) {
       this.selectedMonth = this.month;
       this.selectedDay = day;
-      this.modal = true;
       this.thisDay = day;
-      console.log("모달은", this.modal);
     },
     calendarData(arg) {
       if (arg < 0) {
