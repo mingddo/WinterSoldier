@@ -6,6 +6,8 @@
         <div class="overlay" @click="$emit('close-modal')">
         </div> 
         <div class="modal-card"> 
+            <h2>{{todo.id}}번 글입니다.</h2>
+            
           <form @submit="OnSubmit">
             <h4> 제목을 입력하세요 : <input type="text" v-model="form.title" placeholder="title"></h4>
             <h4> 계획 시간
@@ -23,7 +25,7 @@
             <input type="text" v-model="form.alarm_hour" placeholder="alarm-hour">
             <input type="text" v-model="form.alarm_min" placeholder="alarm-min">
             </h4>
-            <button type="submit">제출하기</button>
+            <button type="submit">수정하기</button>
           </form>
         </div>
       </div>
@@ -32,37 +34,41 @@
 </template>
 
 <script>
-import {writeTodo} from "../../api/todo.js"
+import { ModifyTodo } from "../../api/todo.js"
 export default {
-    name : "TodoForm",
-    data : function() {
-      return {
+name : "Modify",
+props: {
+    todo : Object
+},
+data() {
+    const todono = Number(this.todo.id)
+    console.log(todono + '번 글입니다.')
+    return {
+        todono : this.todo.id,
         form: {
-            title : '',
-            schedule_year : 0,
-            schedule_month : 0,
-            schedule_date : 0,
-            schedule_hour : 0,
-            schedule_min : 0,
-            alarm_year : 0,
-            alarm_month : 0,
-            alarm_date : 0,
-            alarm_hour : 0,
-            alarm_min : 0
+            title : this.todo.title,
+            schedule_year : this.todo.schedule_year,
+            schedule_month : this.todo.schedule_month,
+            schedule_date : this.todo.schedule_date,
+            schedule_hour : this.todo.schedule_hour,
+            schedule_min : this.todo.schedule_min,
+            alarm_year : this.todo.alarm_year,
+            alarm_month : this.todo.alarm_month,
+            alarm_date : this.todo.alarm_date,
+            alarm_hour : this.todo.alarm_hour,
+            alarm_min : this.todo.alarm_min
           }
-      };
-    },
-    methods: {
-      OnSubmit : function() {
+      };   
+},
+methods: {
+    OnSubmit(event) {
+        console.log(1)
         event.preventDefault();
-        writeTodo(
-          this.form,
-          console.log('확인'),
-          this.$emit('close-modal'),
+        ModifyTodo(
+          this.todono,this.todo,
           () => {
-            console.log(this.form),
-            console.log(`jwt ${localStorage.getItem('jwt')}`)
-            // this.$router.push({ name: ""});
+            console.log(this.form)
+            this.$emit('close-modal')
           },
           (error) => {
             console.log(error);
@@ -70,17 +76,9 @@ export default {
 
         )
       },
-      createTodo : function() {
-        // console.log('create')
-        const todoItem = {
-          title : this.todoTitle,
-          completed : false
-        }
-        // this.$store.commit('CREATE_TODO',todoItem)
-        this.$store.dispatch('create_todo',todoItem)
-        this.todoTitle = ''
-      }
-    }
+}
+
+
 }
 </script>
 

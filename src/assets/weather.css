@@ -61,28 +61,22 @@
   font-family: var(--roboto);
 }
 
-.tmp_frame {
-  /* 임시로 컴포넌트를 감싸는 div 생성. */
-  width: 300px;
+.weather__frame {
   display: flex;
   justify-content: center;
+  margin-top: var(--padding-one);
 }
 
 .weather {
-  /* 임시로 width 설정. */
   width: 100%;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: var(--padding-h);
-  background-color: var(--js);
+  background-color: var(--yellow-prime);
   opacity: 0.75;
-  /* color: var(--black); */
   color: var(--black);
-  font-weight: 700;
-  font-family: var(--roboto);
 }
 
 .weather .weather__date {

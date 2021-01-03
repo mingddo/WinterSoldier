@@ -1,201 +1,215 @@
 <template>
-<span class="calendar_frame">
+  <span class="calendar_frame">
     <div class="toggle_btn_space">
-    <label class="toggle" for="myToggle">
-      <input class="toggle__input" type="checkbox" name="" id="myToggle" v-model="calendarToggle">
-      <div class="toggle__fill"></div>
-    </label>
-  </div>
-  <main class="frame">
-
-    <section :class="{ claendarchangecls: calendarToggle }" class="monthFrame">
-      <!--월간달력 구간-->
-      <!-- 월간 달력 년 월 구간 / 양쪽 버튼 클릭시 월을 하나씩 이동 가능 + 날짜 더블클릭시 input 입력창이 나오며 해당 년월로 이동-->
-      <div class="monthInfo">
-        <button class="monthInfoBtn" @click="calendarData(-1)">◀</button>
-        <span>
-          <span
-            :class="{ inputstatus: inputhTitle }"
-            @dblclick="changeYearForm"
-          >
-            {{ year }}년
-          </span>
-          <span
-            :class="{ inputstatus: inputhTitle }"
-            @dblclick="changeMonthForm"
-          >
-            {{ month }}월
-          </span>
-        </span>
+      <label class="toggle" for="myToggle">
         <input
-          :class="{ inputstatus: !inputhTitle }"
-          type="number"
-          min="1"
-          v-model.number="changedYear"
-          @keyup.enter="changeYearForm"
+          class="toggle__input"
+          type="checkbox"
+          name=""
+          id="myToggle"
+          v-model="calendarToggle"
         />
-        <input
-          :class="{ inputstatus: !inputhTitle }"
-          type="number"
-          value="currentMonth"
-          min="1"
-          max="12"
-          v-model.number="changedMonth"
-          @keyup.enter="changeMonthForm"
-        />
+        <div class="toggle__fill"></div>
+      </label>
+    </div>
+    <main class="frame">
+      <section
+        :class="{ claendarchangecls: calendarToggle }"
+        class="monthFrame"
+      >
+        <!--월간달력 구간-->
+        <!-- 월간 달력 년 월 구간 / 양쪽 버튼 클릭시 월을 하나씩 이동 가능 + 날짜 더블클릭시 input 입력창이 나오며 해당 년월로 이동-->
+        <div class="monthInfo">
+          <button class="monthInfoBtn" @click="calendarData(-1)">◀</button>
+          <span>
+            <span
+              :class="{ inputstatus: inputhTitle }"
+              @dblclick="changeYearForm"
+            >
+              {{ year }}년
+            </span>
+            <span
+              :class="{ inputstatus: inputhTitle }"
+              @dblclick="changeMonthForm"
+            >
+              {{ month }}월
+            </span>
+          </span>
+          <input
+            :class="{ inputstatus: !inputhTitle }"
+            type="number"
+            min="1"
+            v-model.number="changedYear"
+            @keyup.enter="changeYearForm"
+          />
+          <input
+            :class="{ inputstatus: !inputhTitle }"
+            type="number"
+            value="currentMonth"
+            min="1"
+            max="12"
+            v-model.number="changedMonth"
+            @keyup.enter="changeMonthForm"
+          />
 
-        <button class="monthInfoBtn" @click="calendarData(1)">▶</button>
+          <button class="monthInfoBtn" @click="calendarData(1)">▶</button>
+        </div>
+        <!-- 월간 달력 테이블 -->
+        <table class="calendar">
+          <thead>
+            <th v-for="(weekday, idx) in weekName" :key="idx">
+              <span v-if="idx === 0">{{ weekday }}</span>
+              <span v-else>{{ weekday }}</span>
+            </th>
+          </thead>
+          <tbody>
+            <tr v-for="(date, idx) in dates" :key="idx">
+              <td v-for="(day, idx2) in date" :key="idx2">
+                <div
+                  class="calendarDay"
+                  v-if="
+                    day === today &&
+                      month === currentMonth &&
+                      year === currentYear
+                  "
+                  @click="todaySchedule(day)"
+                >
+                  {{ day }}
+                </div>
+                <!--오늘-->
+                <div v-else-if="idx2 === 0" @click="todaySchedule(day)">
+                  {{ day }}
+                </div>
+                <!--일요일-->
+                <div v-else-if="idx2 === 6" @click="todaySchedule(day)">
+                  {{ day }}
+                </div>
+                <!--토요일-->
+                <div v-else @click="todaySchedule(day)">{{ day }}</div>
+                <!-- 그외 -->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!--월간 달력에서 날짜 클릭시 뜨는 모달창 구역-->
+      <div class="calendar-modal">
+        {{ month }} 월 {{ thisDay }} 일 입니다!
+        <div>
+          <TodoList :year="year" :month="month" :thisDay="thisDay" />
+          <TodoForm :year="year" :month="month" :thisDay="thisDay" />
+        </div>
+        <button @click="modalDisappear">ok</button>
       </div>
-      <!-- 월간 달력 테이블 -->
-      <table class="calendar">
-        <thead>
-          <th v-for="(weekday, idx) in weekName" :key="idx">
-            <span v-if="idx === 0">{{ weekday }}</span>
-            <span v-else>{{ weekday }}</span>
-          </th>
-        </thead>
-        <tbody>
-          <tr v-for="(date, idx) in dates" :key="idx">
-            <td v-for="(day, idx2) in date" :key="idx2">
-              <div
-                class="calendarDay"
-                v-if="
-                  day === today &&
-                  month === currentMonth &&
-                  year === currentYear
-                "
-                @click="todaySchedule(day)"
-              >
-                {{ day }}
+
+      <!-- 주간 달력 구간 -->
+
+      <!-- 주간 달력 테이블 -->
+      <div :class="{ claendarchangecls: !calendarToggle }" class="weekFrame">
+        <div class="monthInfo">
+          <button @click="changeWeekly(-1)">◀</button>
+
+          <span>
+            <span
+              :class="{ inputstatus: inputhTitle }"
+              @dblclick="changeYearForm"
+            >
+              {{ year }}년
+            </span>
+            <span
+              :class="{ inputstatus: inputhTitle }"
+              @dblclick="changeMonthForm"
+            >
+              {{ month }}월
+            </span>
+          </span>
+
+          <input
+            :class="{ inputstatus: !inputhTitle }"
+            type="number"
+            min="1"
+            v-model.number="changedYear"
+            @keyup.enter="changeYearForm"
+          />
+          <input
+            :class="{ inputstatus: !inputhTitle }"
+            type="number"
+            value="currentMonth"
+            min="1"
+            max="12"
+            v-model.number="changedMonth"
+            @keyup.enter="changeMonthForm"
+          />
+          <button @click="changeWeekly(1)">▶</button>
+        </div>
+
+        <table>
+          <thead>
+            <th
+              v-for="(weekday, idx) in weekName"
+              :key="idx"
+              :weekday="weekday"
+            >
+              {{ weekday }}
+            </th>
+          </thead>
+          <tbody>
+            <td
+              v-for="(weekdaily, idx2) in weekCalendar"
+              :key="idx2"
+              :weekdaily="weekdaily"
+            >
+              <div class="td-dayInfo">
+                <a href="">{{ weekdaily }}</a>
               </div>
-              <!--오늘-->
-              <div v-else-if="idx2 === 0" @click="todaySchedule(day)">
-                {{ day }}
+              <template />
+              <div class="tf-dailytodoList">
+                <div class="td-dailytodoItem">
+                  <TodoList />
+                  <TodoForm
+                    v-if="isModalViewed"
+                    @close-modal="isModalViewed = false"
+                  >
+                  </TodoForm>
+                  <button @click="isModalViewed = true">작성하기</button>
+                </div>
               </div>
-              <!--일요일-->
-              <div v-else-if="idx2 === 6" @click="todaySchedule(day)">
-                {{ day }}
-              </div>
-              <!--토요일-->
-              <div v-else @click="todaySchedule(day)">{{ day }}</div>
-              <!-- 그외 -->
             </td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-
-    <!--월간 달력에서 날짜 클릭시 뜨는 모달창 구역-->
-    <div class="calendar-modal">
-      {{ month }} 월 {{ thisDay }} 일 입니다!
-      <div>
-        <TodoList :year="year" :month="month" :thisDay="thisDay" />
-        <TodoForm :year="year" :month="month" :thisDay="thisDay" />
+          </tbody>
+        </table>
+        <!-- 주간 달력 페이지 이동 / 양쪽 버튼 이동시 주를 한 주씩 이동 가능, 디폴트는 오늘날짜에 해당 하는 주 -->
       </div>
-      <button @click="modalDisappear">ok</button>
-    </div>
-
-    <!-- 주간 달력 구간 -->
-
-    <!-- 주간 달력 테이블 -->
-    <div :class="{ claendarchangecls: !calendarToggle }" class="weekFrame">
-      <div class="monthInfo">
-        <button @click="changeWeekly(-1)">◀</button>
-        <span>
-          <span
-            :class="{ inputstatus: inputhTitle }"
-            @dblclick="changeYearForm"
-          >
-            {{ year }}년
-          </span>
-          <span
-            :class="{ inputstatus: inputhTitle }"
-            @dblclick="changeMonthForm"
-          >
-            {{ month }}월
-          </span>
-        </span>
-        <input
-          :class="{ inputstatus: !inputhTitle }"
-          type="number"
-          min="1"
-          v-model.number="changedYear"
-          @keyup.enter="changeYearForm"
-        />
-        <input
-          :class="{ inputstatus: !inputhTitle }"
-          type="number"
-          value="currentMonth"
-          min="1"
-          max="12"
-          v-model.number="changedMonth"
-          @keyup.enter="changeMonthForm"
-        />
-        <button @click="changeWeekly(1)">▶</button>
-        
-      </div>
-
-      <table>
-        <thead>
-          <th v-for="(weekday, idx) in weekName" :key="idx" :weekday="weekday">
-            {{ weekday }}
-          </th>
-        </thead>
-        <tbody>
-          <td
-            v-for="(weekdaily, idx2) in weekCalendar"
-            :key="idx2"
-            :weekdaily="weekdaily"
-          >
-            <div class="td-dayInfo">
-              <a href="">{{ weekdaily }}</a>
-
-            </div>
-            <template  />
-            <div class="tf-dailytodoList">
-              <div class="td-dailytodoItem">
-                <TodoList />
-                <TodoForm v-if="isModalViewed" @close-modal="isModalViewed = false"> </TodoForm> <button @click="isModalViewed = true">작성하기</button>
-
-              </div>
-
-            </div>
-
-          </td>
-        </tbody>
-      </table>
-      <!-- 주간 달력 페이지 이동 / 양쪽 버튼 이동시 주를 한 주씩 이동 가능, 디폴트는 오늘날짜에 해당 하는 주 -->
-    </div>
-    <!-- 오늘 할 일 부분 -->
-    <div :class="{ claendarchangecls: calendarToggle }" class="todayTodo">
-      <div class="todayInfo">12월 23일</div>
-      <div class="todayTodoList">
-        <div class="todauTodoItem">
-          1 <br />
-          윈터솔져<br />
-          Home화면 다 꾸미기<br />
-        </div>
-        <div class="todauTodoItem">
-          2 <br />
-          윈터솔져<br />
-          Home화면 다 꾸미기<br />
-        </div>
-        <div class="todauTodoItem">
-          3<br />
-          윈터솔져<br />
-          Home화면 다 꾸미기<br />
+      <!-- 오늘 할 일 부분 -->
+      <div :class="{ claendarchangecls: calendarToggle }" class="todayTodo">
+        <div class="todayInfo">12월 23일</div>
+        <div class="todayTodoList">
+          <div class="todauTodoItem">
+            1 <br />
+            윈터솔져<br />
+            Home화면 다 꾸미기<br />
+          </div>
+          <div class="todauTodoItem">
+            2 <br />
+            윈터솔져<br />
+            Home화면 다 꾸미기<br />
+          </div>
+          <div class="todauTodoItem">
+            3<br />
+            윈터솔져<br />
+            Home화면 다 꾸미기<br />
+          </div>
         </div>
       </div>
-    </div>
-  </main>
+    </main>
   </span>
 </template>
 
 <script>
-import TodoList from "../Todo/TodoList";
-import TodoForm from "../Todo/TodoForm";
+import TodoList from '../Todo/TodoList';
+import TodoForm from '../Todo/TodoForm';
 export default {
-  name: "Calendar",
+  name: 'Calendar',
   components: {
     TodoList,
     TodoForm,
@@ -203,15 +217,15 @@ export default {
   data() {
     return {
       inputhTitle: false,
-      isModalViewed : false,
+      isModalViewed: false,
       weekName: [
-        "일요일",
-        "월요일",
-        "화요일",
-        "수요일",
-        "목요일",
-        "금요일",
-        "토요일",
+        '일요일',
+        '월요일',
+        '화요일',
+        '수요일',
+        '목요일',
+        '금요일',
+        '토요일',
       ],
       dates: [],
       currentYear: 0,
@@ -294,7 +308,7 @@ export default {
       if (this.goToBack) {
         this.weekIdx = this.MaximumWeek - 1;
         console.log(
-          "🚀 ~ file: Calendar.vue ~ line 176 ~ changeWeekly ~ this.MaximumWeek",
+          '🚀 ~ file: Calendar.vue ~ line 176 ~ changeWeekly ~ this.MaximumWeek',
           this.MaximumWeek
         );
       }
@@ -307,17 +321,17 @@ export default {
           if (this.today === daily) {
             this.weekCalendar = this.dates[weekIdx];
             this.weekIdx = weekIdx;
-            console.log("지금주", this.weekIdx);
+            console.log('지금주', this.weekIdx);
           }
         }
       }
       this.MaximumWeek = this.dates.length;
-      console.log("몇개까지임?", this.MaximumWeek);
+      console.log('몇개까지임?', this.MaximumWeek);
     },
     changeYearForm() {
       this.inputhTitle = !this.inputhTitle;
       this.year = this.changedYear;
-      console.log("몇년도", this.changedYear);
+      console.log('몇년도', this.changedYear);
       const [
         monthFirstDay,
         monthLastDate,
@@ -350,7 +364,7 @@ export default {
     todaySchedule(day) {
       this.modal = true;
       this.thisDay = day;
-      console.log("모달은", this.modal);
+      console.log('모달은', this.modal);
     },
     calendarData(arg) {
       if (arg < 0) {
@@ -398,8 +412,8 @@ export default {
         if (day === 1) {
           // 1일이 어느 요일인지에 따라 테이블에 그리기 위한 지난 셀의 날짜들을 구해야함
           for (let j = 0; j < monthFirstDay; j += 1) {
-            console.log("prevDay", prevDay);
-            weekOfDays.push("");
+            console.log('prevDay', prevDay);
+            weekOfDays.push('');
             // weekOfDays.push(prevDay); , 달력상에 지난 날짜 표현 x
             prevDay += 1;
           }
@@ -413,7 +427,7 @@ export default {
         day += 1;
       }
       const len = weekOfDays.length;
-      console.log("길이?", len);
+      console.log('길이?', len);
       if (weekOfDays.length > 0) dates.push(weekOfDays); // 남은 날짜 추가
       this.nextMonthStart = weekOfDays[0]; // 이번 달 마지막 주에서 제일 작은 날짜
       return dates;
@@ -428,5 +442,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

@@ -11,21 +11,34 @@
   align-items: center;
   --gray-dark: #0e0e0a;
   --light-gray: #bebebe;
+
   /* Size */
   --padding: 12px;
   --padding-side: 40px;
   --padding-updown: 12px;
+  --padding-one: 44px;
   --margin: 12px;
+  --margin-one: 44px;
+
   /* Font Size */
-  --font-micro: 0.7rem;
-  --font-small: 0.9rem;
-  --font-medium: 1.1rem;
-  --font-large: 1.3rem;
+  --font-large: 100px;
+  --font-medium: 24px;
+  --font-regular: 18px;
+  --font-small: 16px;
+  --font-micro: 14px;
 
   /* Font */
-  --Nanum-Ghothic: "Nanum Gothic", sans-serif;
-  --Noto-Sans-KR: "Noto Sans KR", sans-serif;
-  --Roboto: "Roboto", sans-serif;
+  --Nanum-Ghothic: 'Nanum Gothic', sans-serif;
+  --Noto-Sans-KR: 'Noto Sans KR', sans-serif;
+  --Roboto: 'Roboto', sans-serif;
+
+  /* Width */
+  --max-width: 1200px;
+  --min-width: 768px;
+
+  /* Height */
+  --calendar-height: 560px;
+  --info-height: 50px;
 }
 
 /* 전역변수 설정 */
@@ -33,6 +46,22 @@
 html {
   font-size: 16px;
   background-color: var(--white-dark);
+}
+
+body {
+  width: 100%;
+  height: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
+#app {
+  max-width: var(--max-width);
+  min-width: var(--min-width);
+  margin: 0 auto;
+  padding: 18px 0;
 }
 
 * {
@@ -58,12 +87,12 @@ input:focus {
 }
 
 input {
-  width: 100%;
+  /* width: 100%; */
   padding: var(--padding-updown) var(--padding-side);
   margin: 8px 0;
   display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  /* border: 1px solid #ccc; */
+  /* border-radius: 5px; */
 }
 
 li {
@@ -72,126 +101,71 @@ li {
 
 /* Header.navbar */
 .navbar {
-  font-family: var(--Nanum-Ghothic);
-  width: 90%;
-  margin: calc(var(--margin) * 2) auto;
   display: flex;
   box-shadow: 0px 0px 10px 0.3px var(--light-gray);
   border-radius: 15px;
   border: none;
   justify-content: space-between;
   align-items: center;
-  padding: var(--padding);
-  background-color: var(--purple);
+  background-color: var(--yellow-prime);
   color: var(--white-color);
+  padding: 8px 24px;
 }
 
-.navbarLogo {
-  font-size: var(--font-medium);
+.logo__img {
+  width: 50px;
+  height: 50px;
 }
 
-.navbarLogo i {
-  color: var(--white-color);
-}
-
-.navbarCategory {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  justify-content: space-around;
-}
-
-.navbarCategory li {
-  text-align: left;
-  width: 100%;
-  /* padding: 5px 0px 5px 5px; */
-  border-bottom: 1px solid;
-  /* margin: 5px; */
-  padding: 10px;
-  /* margin-bottom: 5px; */
-  font-size: 20px;
-}
-
-.navbarCategory li:last-child {
-  border-bottom: 0px;
-}
-
-.navbarCategory li:before {
-  content: ">";
-  display: inline-block;
-  vertical-align: middle;
-  padding-right: 5px;
-}
-
-.navbarIcons {
-  display: flex;
-  align-items: center;
-}
-
-.navbarIcons > div {
-  align-items: center;
-  margin: 10px;
-}
-
-.navbarIcons button {
-  align-items: center;;
-  padding: 5px;
-}
-
-.navbarIcons .search-bar {
-  /* 자식 요소인 i 태그의 absolute 속성의 부모 요소 조건을 갖춤.(relative 속성) */
+/* Navbar - Search */
+.navbar__search {
   position: relative;
+  width: 500px;
 }
 
-.navbarIcons .search-bar input:focus {
-  border: none;
-  outline: 1px solid gray;
-  transition: outline 1s;
+.search {
+  width: 100%;
+  padding: 8px 12px;
+  margin: 0;
+  border: 1px solid var(--light-gray);
+  border-radius: 4px;
 }
 
-.navbarIcons .search-bar i {
+.search:focus {
+  border: 1px solid var(--green-color);
+}
+
+.search-icon {
+  color: var(--light-gray);
   position: absolute;
-  left: 0px;
-  top: calc(var(--padding-updown) + 6px);
-  color: gray;
+  font-size: var(--font-large);
+  top: 50%;
+  left: 3%;
+  margin-top: -10px;
 }
 
-.navbarIcons i {
-  font-size: var(--font-large);
-  margin-left: var(--margin);
+.navbar__icons {
+  display: flex;
+  align-items: center;
 }
 
 /* mainFrame */
 .calendar_frame {
   width: 100%;
-
   height: 100%;
-  padding: 0;
-  margin-bottom: var(--margin);
+  margin-bottom: var(--margin-one);
 }
+
 .frame {
   width: 100%;
-  /* min-height: 1000px; */
-  /* height: auto; */
-  height: 100%;
+  height: var(--calendar-height);
   display: flex;
-  /* flex-directs */
   justify-content: space-between;
   align-items: flex-start;
-  padding: 0;
-  margin-bottom: var(--margin);
-  /* max-width: 90%; */
-  /* margin: 0 auto; */
 }
 
 /* mainFrame > monthFrame*/
 .home {
-  width: 90%;
-  height: auto;
-  /* height: 500px; */
   display: flex;
   justify-content: space-around;
   align-items: flex-start;
@@ -201,7 +175,6 @@ li {
   /* width: 20%; */
   flex: 2 2 20%;
   height: 100%;
-  padding: var(--padding) calc(var(--padding) * 2);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -211,7 +184,6 @@ li {
   width: 100%;
   height: 500px;
   border-radius: 20px;
-  margin-bottom: calc(var(--margin) * 3);
   box-shadow: 0px 0px 10px 0.3px var(--light-gray);
   border: none;
 }
@@ -233,22 +205,19 @@ li {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  padding: var(--padding) calc(var(--padding) * 2);
+  padding-left: var(--padding-one);
 }
 
 .home .right_component .frame .todayTodo {
   width: 25%;
-  height: 645px;
-  padding: var(--padding);
+  height: 100%;
   box-shadow: 0px 0px 10px 0.3px var(--light-gray);
   border: none;
-
   border-radius: 15px;
 }
 
 .home .right_component .frame .todayTodo .todayTodoList {
   width: 90%;
-  height: auto;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -311,7 +280,7 @@ li {
 }
 
 .toggle_btn_space .toggle__fill::after {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
@@ -330,11 +299,10 @@ li {
 .frame .monthFrame {
   display: flex;
   width: 70%;
-  height: auto;
+  height: 100%;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  padding: 0;
   box-shadow: 0px 0px 10px 0.3px var(--light-gray);
   border: none;
   border-radius: 15px;
@@ -343,6 +311,7 @@ li {
 
 .frame .monthFrame .monthInfo {
   width: 100%;
+  height: var(--info-height);
   font-size: var(--font-large);
   text-align: center;
   padding: var(--padding);
@@ -370,13 +339,15 @@ li {
 
 .frame .monthFrame .calendar {
   width: 100%;
+  height: calc(100% - var(--info-height));
 }
 
 .frame .monthFrame .calendar > thead {
   width: 100%;
+  height: var(--info-height);
   background-color: var(--white-dark);
   padding: var(--padding) 0;
-  margin-bottom: calc(var(--margin) / 2);
+  /* margin-bottom: calc(var(--margin) / 2); */
 }
 
 .frame .monthFrame .calendar > thead > th {
@@ -388,6 +359,7 @@ li {
 .frame .monthFrame .calendar > tbody {
   margin-top: 4px;
   width: 100%;
+  height: calc(100% - var(--info-height));
 }
 
 .frame .monthFrame .calendar > tbody > tr {
@@ -397,8 +369,7 @@ li {
 
 .frame .monthFrame .calendar > tbody > tr > td {
   width: 14%;
-  height: 110px;
-  padding: 0;
+  height: calc(100% / 6);
   /* display: flex;
   justify-content: center;
   align-items: flex-start; */
@@ -432,7 +403,7 @@ li {
   justify-content: space-around;
   align-items: center;
   width: 100%;
-  height: 700px;
+  height: var(--calendar-height);
   background-color: var(--white-color);
   box-shadow: 0px 0px 10px 0.3px var(--light-gray);
   border: none;
