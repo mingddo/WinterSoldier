@@ -4,7 +4,7 @@ const instance = createInstance();
 
 function writeTodo(todo, success, fail) {
     instance
-    .post('todos/', todo, {},{headers : {
+    .post('todos/', todo,{headers : {
     Authorization : `jwt ${localStorage.getItem('jwt')}`
   } })
     .then(success)
