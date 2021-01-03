@@ -64,8 +64,8 @@ export default {
       }
       setInterval(() => {
         const day = new Date();
-        let cur_hour = day.getHours();
-        let cur_minute = day.getMinutes();
+        let cur_hour = this.addZeros(day.getHours(), 2);
+        let cur_minute = this.addZeros(day.getMinutes(), 2);
         var i;
         for (i = 0; i < this.today_alarm_todos.length; i++) {
           console.log(
@@ -135,11 +135,11 @@ export default {
       let cur_minute = this.addZeros(day.getMinutes(), 2);
       let today =
         cur_year.toString() + cur_month.toString() + cur_day.toString();
-      console.log("2자리로 나오나", cur_month, cur_day, cur_hour, cur_minute);
       // let nowTime = cur_hour.toString() + cur_minute.toString()
       todoList(
         (res) => {
           this.today_todos = res.data.todolist[today];
+          console.log("today_todos 리스트아냐?", this.today_todos);
           var i;
           for (i = 0; i < this.today_todos.length; i++) {
             if (
