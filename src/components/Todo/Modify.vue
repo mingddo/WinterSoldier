@@ -10,30 +10,30 @@
         <form @submit="OnSubmit">
           <h4>
             제목을 입력하세요 :
-            <input type="text" v-model="form.title" placeholder="title" />
+            <input type="text" v-model="temp_todo.title" placeholder="title" />
           </h4>
           <h4>
             계획 시간
-            <select name="schedule_year" v-model="form.schedule_year">
+            <select name="schedule_year" v-model="temp_todo.schedule_year">
               <option v-for="(year, id) in schedule_year_list" :key="id">
                 {{ year }}
               </option>
             </select>
-            <select name="schedule_month" v-model="form.schedule_month">
+            <select name="schedule_month" v-model="temp_todo.schedule_month">
               <option v-for="(month, id) in schedule_month_list" :key="id">
                 {{ month }}
               </option>
             </select>
-            <select name="schedule_date" v-model="form.schedule_date">
+            <select name="schedule_date" v-model="temp_todo.schedule_date">
               <option v-for="(date, id) in schedule_date_list" :key="id">
                 {{ date }}
               </option>
             </select>
-            <select name="schedule_hour" v-model="form.schedule_hour">
+            <select name="schedule_hour" v-model="temp_todo.schedule_hour">
               <option v-for="(hour, id) in schedule_hour_list" :key="id">
                 {{ hour }}
               </option></select
-            ><select name="schedule_min" v-model="form.schedule_min">
+            ><select name="schedule_min" v-model="temp_todo.schedule_min">
               <option v-for="(min, id) in schedule_min_list" :key="id">
                 {{ min }}
               </option>
@@ -42,26 +42,26 @@
           <br />
           <h4>
             알람 시간
-            <select name="alarm_year" v-model="form.alarm_year">
+            <select name="alarm_year" v-model="temp_todo.alarm_year">
               <option v-for="(year, id) in alarm_year_list" :key="id">
                 {{ year }}
               </option>
             </select>
-            <select name="alarm_month" v-model="form.alarm_month">
+            <select name="alarm_month" v-model="temp_todo.alarm_month">
               <option v-for="(month, id) in alarm_month_list" :key="id">
                 {{ month }}
               </option>
             </select>
-            <select name="alarm_date" v-model="form.alarm_date">
+            <select name="alarm_date" v-model="temp_todo.alarm_date">
               <option v-for="(date, id) in alarm_date_list" :key="id">
                 {{ date }}
               </option>
             </select>
-            <select name="alarm_hour" v-model="form.alarm_hour">
+            <select name="alarm_hour" v-model="temp_todo.alarm_hour">
               <option v-for="(hour, id) in alarm_hour_list" :key="id">
                 {{ hour }}
               </option></select
-            ><select name="alarm_min" v-model="form.alarm_min">
+            ><select name="alarm_min" v-model="temp_todo.alarm_min">
               <option v-for="(min, id) in alarm_min_list" :key="id">
                 {{ min }}
               </option>
@@ -86,6 +86,7 @@ export default {
     console.log(todono + "번 글입니다.");
     return {
       todono: this.todo.id,
+      temp_todo: null,
       form: {
         title: this.todo.title,
         schedule_year: this.todo.schedule_year,
@@ -401,9 +402,9 @@ export default {
       event.preventDefault();
       ModifyTodo(
         this.todono,
-        this.todo,
+        this.temp_todo,
         () => {
-          console.log(this.form);
+          console.log(this.temp_todo);
           this.$emit("close-modal");
         },
         (error) => {
@@ -411,6 +412,9 @@ export default {
         }
       );
     },
+  },
+  created() {
+    this.temp_todo = this.todo;
   },
 };
 </script>

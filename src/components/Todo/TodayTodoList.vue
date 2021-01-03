@@ -1,7 +1,7 @@
 <template>
   <div>
     <span v-show="temp">
-      <div class="monthcalendartodoItem">일정 있음</div>
+      <div class="monthcalendartodoItem">{{ todos }}</div>
     </span>
   </div>
 </template>
@@ -9,12 +9,11 @@
 <script>
 import { todoList } from "../../api/todo.js";
 export default {
-  name: "TodoList",
+  name: "TodayTodoList",
   props: {
     day: [Number, String],
     year: [Number, String],
     month: [Number, String],
-    dates: Array,
   },
   data: function () {
     return {
@@ -57,7 +56,6 @@ export default {
       );
     },
   },
-
   watch: {
     dates() {
       if (0 < this.month < 10) {
@@ -75,10 +73,10 @@ export default {
       this.getTodoList();
     },
   },
-
   created() {
     this.createDateInfo();
     this.getTodoList();
+    console.log(this.day, this.month, this.year);
   },
 };
 </script>
@@ -89,6 +87,6 @@ export default {
   border-radius: 10px;
   box-shadow: 0px 0px 10px 0.3px var(--light-gray);
   border: none;
-  background-color: rgb(189, 8, 150);
+  background-color: rgb(104, 83, 99);
 }
 </style>

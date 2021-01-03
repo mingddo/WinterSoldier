@@ -38,9 +38,9 @@ function deleteTodo(todono, success, fail) {
     .catch(fail);
 }
 
-function ModifyTodo(todono, success, fail) {
+function ModifyTodo(todono, todoitem, success, fail) {
     instance
-    .put(`todos/${todono}/`, {}, {headers : {
+    .put(`todos/${todono}/`, todoitem, {headers : {
         Authorization : `jwt ${localStorage.getItem('jwt')}`
       } })
     .then(success)

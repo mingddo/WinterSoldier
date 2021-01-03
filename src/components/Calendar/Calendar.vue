@@ -168,22 +168,14 @@
       </div>
       <!-- 오늘 할 일 부분 -->
       <div :class="{ claendarchangecls: calendarToggle }" class="todayTodo">
-        <div class="todayInfo">12월 23일</div>
+        <div class="todayInfo">{{ selectedMonth }}월 {{ selectedDay }}일</div>
         <div class="todayTodoList">
           <div class="todauTodoItem">
-            1 <br />
-            윈터솔져<br />
-            Home화면 다 꾸미기<br />
-          </div>
-          <div class="todauTodoItem">
-            2 <br />
-            윈터솔져<br />
-            Home화면 다 꾸미기<br />
-          </div>
-          <div class="todauTodoItem">
-            3<br />
-            윈터솔져<br />
-            Home화면 다 꾸미기<br />
+            <TodayTodoList
+              :day="selectedDay"
+              :year="year"
+              :month="selectedMonth"
+            />
           </div>
         </div>
       </div>
@@ -194,6 +186,7 @@
 <script>
 import TodoList from "../Todo/TodoList";
 import TodoForm from "../Todo/TodoForm";
+import TodayTodoList from "../Todo/TodayTodoList";
 import TodoListMonth from "../Todo/TodoListMonth.vue";
 export default {
   name: "Calendar",
@@ -201,6 +194,7 @@ export default {
     TodoList,
     TodoForm,
     TodoListMonth,
+    TodayTodoList,
   },
   data() {
     return {
@@ -232,15 +226,19 @@ export default {
       MaximumWeek: 0,
       goToBack: false,
       calendarToggle: false,
+      selectedMonth: 0,
+      selectedDay: 0,
     };
   },
   created() {
     const date = new Date();
     this.currentYear = date.getFullYear();
     this.currentMonth = date.getMonth() + 1;
+    this.selectedMonth = date.getMonth() + 1;
     this.year = this.currentYear;
     this.month = this.currentMonth;
     this.today = date.getDate();
+    this.selectedDay = date.getDate();
     this.calendarData();
     this.pickWeek();
     this.defaultYearMonth();
@@ -350,6 +348,8 @@ export default {
       this.modal = false;
     },
     todaySchedule(day) {
+      this.selectedMonth = this.month;
+      this.selectedDay = day;
       this.modal = true;
       this.thisDay = day;
       console.log("모달은", this.modal);
