@@ -54,6 +54,7 @@
 
           <button class="monthInfoBtn" @click="calendarData(1)">▶</button>
         </div>
+
         <!-- 월간 달력 테이블 -->
         <table class="calendar">
           <thead>
@@ -166,13 +167,17 @@
               <template />
               <div class="tf-dailytodoList" @dblclick="isModalViewed = true">
                 <div class="td-dailytodoItem">
-                  <TodoList :weekdaily="weekdaily" :year="year" :month="month" :weekCalendar="weekCalendar"/>
+                  <TodoList
+                    :weekdaily="weekdaily"
+                    :year="year"
+                    :month="month"
+                    :weekCalendar="weekCalendar"
+                  />
                   <TodoForm
                     v-if="isModalViewed"
                     @close-modal="isModalViewed = false"
                   >
                   </TodoForm>
-
                 </div>
               </div>
             </td>
