@@ -208,12 +208,14 @@ li {
   padding-left: var(--padding-one);
 }
 
+/* todayTodo */
 .home .right_component .frame .todayTodo {
   width: 25%;
   height: 100%;
   box-shadow: 0px 0px 10px 0.3px var(--light-gray);
   border: none;
   border-radius: 15px;
+  background-color: var(--white-color);
 }
 
 .home .right_component .frame .todayTodo .todayTodoList {
