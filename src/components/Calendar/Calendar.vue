@@ -164,15 +164,15 @@
                 <a href="">{{ weekdaily }}</a>
               </div>
               <template />
-              <div class="tf-dailytodoList">
+              <div class="tf-dailytodoList" @dblclick="isModalViewed = true">
                 <div class="td-dailytodoItem">
-                  <TodoList />
+                  <TodoList :weekdaily="weekdaily" :year="year" :month="month" :weekCalendar="weekCalendar"/>
                   <TodoForm
                     v-if="isModalViewed"
                     @close-modal="isModalViewed = false"
                   >
                   </TodoForm>
-                  <button @click="isModalViewed = true">작성하기</button>
+
                 </div>
               </div>
             </td>

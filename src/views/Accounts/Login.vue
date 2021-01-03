@@ -19,7 +19,7 @@
 
 <script>
 import { userlogin } from "@/api/accounts.js";
-import '@/assets/accounts.css';
+
 
 export default {
   name: 'Login',
@@ -52,6 +52,6 @@ export default {
 }
 </script>
 
-<style>
+<style scoped src="@/assets/accounts.css">
 
 </style>
