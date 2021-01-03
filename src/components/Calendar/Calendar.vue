@@ -68,6 +68,14 @@
               <td v-for="(day, idx2) in date" :key="idx2">
                 <div class="calendarDay" @click="todaySchedule(day)">
                   {{ day }}
+                  <div>
+                    <TodoListMonth
+                      :year="year"
+                      :month="month"
+                      :day="day"
+                      :dates="dates"
+                    />
+                  </div>
                 </div>
 
                 <!-- 그외 -->
@@ -186,11 +194,13 @@
 <script>
 import TodoList from "../Todo/TodoList";
 import TodoForm from "../Todo/TodoForm";
+import TodoListMonth from "../Todo/TodoListMonth.vue";
 export default {
   name: "Calendar",
   components: {
     TodoList,
     TodoForm,
+    TodoListMonth,
   },
   data() {
     return {
