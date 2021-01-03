@@ -54,6 +54,7 @@
 
           <button class="monthInfoBtn" @click="calendarData(1)">▶</button>
         </div>
+
         <!-- 월간 달력 테이블 -->
         <table class="calendar">
           <thead>
