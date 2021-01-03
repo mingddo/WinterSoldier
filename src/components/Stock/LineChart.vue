@@ -19,13 +19,13 @@ export default {
         labels: [],
         datasets: [
           {
-            label: "Price",
+            label: "가격",
             borderColor: "#249EBF",
             pointBackgroundColor: "rgba(0,0,0,0)",
             pointBorderColor: "rgba(0,0,0,0)",
             pointHoverBorderColor: "#249EBF",
             pointHoverBackgroundColor: "#fff",
-            pointHoverRadius: 4,
+            pointHoverRadius: 10,
             pointHitRadius: 10,
             pointHoverBorderWidth: 1,
             borderWidth: 1,
@@ -93,7 +93,7 @@ export default {
   mounted() {
     this.gradient = this.$refs.canvas
       .getContext("2d")
-      .createLinearGradient(0, 0, 0, 450);
+      .createLinearGradient(0, 0, 0, 1000);
 
     this.gradient.addColorStop(0, "rgba(52, 217, 221, 0.6)");
     this.gradient.addColorStop(0.5, "rgba(52, 217, 221, 0.25)");

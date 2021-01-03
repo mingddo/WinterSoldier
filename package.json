@@ -18,6 +18,7 @@
     "sass": "^1.30.0",
     "sass-loader": "^10.1.0",
     "vue": "^2.6.11",
+    "vue-autosuggest": "^2.2.0",
     "vue-axios-cors": "^1.0.1",
     "vue-chartjs": "^3.5.1",
     "vue-router": "^3.2.0",

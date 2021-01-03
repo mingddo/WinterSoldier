@@ -19,7 +19,7 @@ export default {
         labels: [],
         datasets: [
           {
-            label: "Price",
+            label: "거래량",
             borderColor: "#249EBF",
             pointBackgroundColor: "rgba(0,0,0,0)",
             pointBorderColor: "rgba(0,0,0,0)",

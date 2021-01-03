@@ -33,6 +33,7 @@
 }
 
 .stockframe {
+  background-color: #f8f8f8;
   width: 90%;
   margin: calc(var(--margin) * 3) auto;
 }
@@ -49,14 +50,14 @@
 }
 
 .stockframe .stockinput .loading {
-  width: 50%;
+  width: 60%;
   font-size: large;
   margin: calc(var(--margin) * 1) auto;
 }
 
 .stockframe .loading .flower {
-  width: 300px;
-  height: 300px;
+  width: 100px;
+  height: 100px;
   -webkit-animation: flower 3s linear infinite;
 }
 
