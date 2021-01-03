@@ -9,4 +9,13 @@ function getInfo(success, fail) {
         .catch(fail);
 
 }
-export { getInfo }
+
+function getCityInfo(success, fail) {
+    instance
+        .get('corona/city/')
+        .then(success)
+        .catch(fail);
+
+}
+
+export { getInfo, getCityInfo }

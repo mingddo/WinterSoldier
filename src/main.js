@@ -8,6 +8,9 @@ import { fas } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { dom } from '@fortawesome/fontawesome-svg-core';
 import VueAutosuggest from "vue-autosuggest";
+import VueCarousel from '@chenfengyuan/vue-carousel';
+
+Vue.use(VueCarousel);
 
 Vue.use(VueAutosuggest)
 dom.watch();
