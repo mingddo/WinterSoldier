@@ -4,7 +4,9 @@ const instance = AuthorizationInstance();
 
 function writeTodo(todo, success, fail) {
     instance
-    .post('todos/', todo)
+    .post('todos/', todo,{headers : {
+    Authorization : `jwt ${localStorage.getItem('jwt')}`
+  } })
     .then(success)
     .catch(fail);
 
