@@ -38,6 +38,7 @@
 
 <script>
 import { getInfo, getCityInfo } from "@/api/corona.js";
+
 export default {
   data() {
     return {
@@ -339,6 +340,7 @@ export default {
             "(" +
             res.data.gyeongnam.newCase +
             ")";
+
           this.data[6].message =
             "[" +
             res.data.daegu.countryName +
@@ -357,6 +359,7 @@ export default {
             "(" +
             res.data.daejeon.newCase +
             ")";
+
           this.data[8].message =
             "[" +
             res.data.busan.countryName +
@@ -375,6 +378,7 @@ export default {
             "(" +
             res.data.sejong.newCase +
             ")";
+
           this.data[10].message =
             "[" +
             res.data.ulsan.countryName +
@@ -438,6 +442,7 @@ export default {
             "(" +
             res.data.chungnam.newCase +
             ")";
+
           this.coroan_detail_info = res.data;
         },
         (err) => {
@@ -491,12 +496,16 @@ export default {
   padding: 0.5rem 0.75rem;
   text-align: left;
 }
+
+
 /* .broadcast > .feather {
     margin-right: 0.5rem;
   } */
+
 .broadcast > .carousel {
   flex: 1;
 }
+
 .broadcast-content {
   align-items: center;
   display: flex;

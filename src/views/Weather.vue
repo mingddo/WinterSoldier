@@ -4,6 +4,7 @@
       <div class="weather__date">
         <span> {{ today.year }}년 {{ today.month }}월 {{ today.date }}일 </span>
       </div>
+
       <div class="weather__select">
         <label for="city-select">도시를 선택하세요: </label>
         <select
@@ -12,11 +13,12 @@
           v-model="location"
           @change="getWeatherData(location)"
         >
-          <option v-for="(coor, loc) in locations" :key="loc" :value="loc">{{
-            loc
-          }}</option>
+          <option v-for="(coor, loc) in locations" :key="loc" :value="loc">
+            {{ loc }}
+          </option>
         </select>
       </div>
+
       <div class="weather__info">
         <h3 class="info__location">{{ location }}</h3>
         <span>{{ sky }}</span>
@@ -35,7 +37,7 @@
         <span class="info__pop">강수확률: {{ pop }}%</span>
       </div>
       <div class="weather__recommend">
-        <i class="fas fa-mitten"></i>
+        <!-- <i class="fas fa-mitten"></i> -->
       </div>
     </div>
   </div>

@@ -7,50 +7,58 @@
 /* 3. Color에 관한 것 */
 
 :root {
-  /* color */
-  --color-white: #f8f8f8;
-  --color-white-dark: #f0f0f0;
-  --color-green: #107516;
-  --color-yellow: #fff59d;
-  --color-yellow-light: #ffffcf;
-  --color-yellow-dark: #faf756;
-  --color-yellow-prime: #efd81d;
-  --color-purple: #a014a0;
-  --color-gray-dark: #0e0e0a;
-  --color-gray-light: #bebebe;
-  --color-blue: #3d5afe;
-  --color-html: #fd7e14;
-  --color-vue: #41b883;
-  --color-react: #61dafb;
-  --color-css: #29a9df;
-  --color-js: #efd81d;
+  /* Color */
+  /* 테마 색깔은 무엇으로 할까 */
+  --brown-dark: #5f4339;
+  --brown-light: #be9c91;
+  --brown-lighter: #bcaaa4;
+  --brown: #8d6e63;
+  --white: #fafafa;
+  --black: #212121;
+  --black-dark: #000000;
+  --black-light: #484848;
+  --gray-light: #e0e0e0;
+  --gray-dark: #aeaeae;
+  --red: #f50057;
+  --blue: #3d5afe;
+  --html: #fd7e14;
+  --vue: #41b883;
+  --react: #61dafb;
+  --css: #29a9df;
+  --js: #efd81d;
 
-  /* Size */
-  --padding: 12px;
-  --padding-side: 40px;
-  --padding-updown: 12px;
-  --padding-one: 44px;
-  --margin: 12px;
-  --margin-one: 44px;
+  /* Padding, Margin */
+  --padding-l: 8px;
+  --padding-m: 12px;
+  --padding-h: 24px;
+  --margin-l: 8px;
+  --margin-m: 12px;
+  --margin-h: 24px;
 
-  /* Font Size */
-  --font-large: 40px;
-  --font-medium: 24px;
-  --font-regular: 18px;
-  --font-small: 16px;
-  --font-micro: 14px;
+  /* Text Size */
+  --font-macro: 24px;
+  --font-large: 20px;
+  --font-medium: 16px;
+  --font-small: 12px;
+  --font-micro: 8px;
+  --h1: 30px;
+  --h2: 24px;
+  --h3: 18px;
 
-  /* Font */
-  --Noto-Sans-KR: 'Noto Sans KR', sans-serif;
-  --Roboto: 'Roboto', sans-serif;
+  /* Image Size */
+  --project-img: 50px;
+  --profile-img: 200px;
 
-  /* Width */
-  --max-width: 1200px;
-  --min-width: 768px;
+  /* Font Family */
+  --roboto: 'Roboto', sans-serif;
+  --openSans: 'Open Sans', sans-serif;
+}
 
-  /* Height */
-  --calendar-height: 560px;
-  --info-height: 50px;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--roboto);
 }
 
 .weather__frame {
