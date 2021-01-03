@@ -4,7 +4,9 @@
     <form @keypress.enter.prevent="onSubmit">
       <input type="text" v-model="query" />
     </form>
-    <div v-for="(n, id) in news.title" :key="id">{{ id + 1 }} {{ n }}</div>
+    <div v-for="(n, id) in news" :key="id">
+      <a :href="n.link"> {{ n.title }}</a> {{ n.date }} {{ n.source }}
+    </div>
   </div>
 </template>
 
@@ -15,7 +17,7 @@ export default {
   name: "News",
   data() {
     return {
-      query: "코로나",
+      query: "ssafy",
       news: null,
     };
   },
