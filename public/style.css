@@ -309,11 +309,20 @@ li {
   align-items: center;
 }
 
+.toggle_btn_space .realtimelist{
+  /* margin-right: calc(var(--margin)); */
+}
+
+.toggle_btn_space .realtimetitle{
+
+}
+
 .toggle_btn_space .toggle {
   --width: 40px;
   --height: calc(var(--width) / 2);
   --border-radius: calc(var(--height) / 2);
 
+  margin-left: calc(var(--width) / 2);
   display: inline-block;
   cursor: pointer;
 }
