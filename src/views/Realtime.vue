@@ -6,7 +6,7 @@
         :controls="false"
         :indicators="false"
         :interval="1000"
-        direction="up"
+        direction="right"
       ></carousel>
     </div>
   </div>

@@ -2,10 +2,19 @@
   <div class="news__wrapper">
     <span class="news__section"> 오늘의 뉴스 </span>
     <form @keypress.enter.prevent="onSubmit">
-      <input class="news__search" type="text" v-model="query" placeholder="검색" onfocus="this.placeholder=''" onblur="this.placeholder='검색'"/>
+        class="news__search"
+        type="text"
+        v-model="query"
+        placeholder="검색"
+        onfocus="this.placeholder=''"
+        onblur="this.placeholder='검색'"
+      />
     </form>
     <div class="news__title" v-for="(n, id) in news" :key="id">
-      <a :href="n.link"> {{ n.title }}</a> {{ n.date }} {{ n.source }}
+      <a :href="n.link">
+        <span class="news__item__title">{{ n.title }}</span></a
+      >
+      {{ n.date }} {{ n.source }}
     </div>
   </div>
 </template>
@@ -30,7 +39,7 @@ export default {
         (res) => {
           console.log("뉴스 결과", res.data);
           this.news = res.data;
-          this.query = '';
+          this.query = "";
         },
         (err) => {
           console.error(err);
@@ -69,6 +78,10 @@ export default {
 
 .news__title {
   padding: 4px 0;
+}
+
+.news__item__title:hover {
+  font-weight: bold;
 }
 
 .news__section {

@@ -2,7 +2,7 @@
   <div>
     <div class="tf-dailytodoList">
       <div class="td-dailytodoItem">
-        <button @click="isModalViewed = true">+</button>
+        <div @click="isModalViewed = true">+</div>
         <TodoForm
           :propsyear="year"
           :propsmonth="p_month"
@@ -132,13 +132,15 @@ export default {
 
 .monthcalendartodoItem {
   width: 100%;
-
   padding: 10px;
   color: rgb(255, 255, 255);
   border-radius: 5px;
   box-shadow: 0px 0px 10px 0.3px #bebebe;
   border: none;
   background-color: rgb(165, 16, 130);
+}
+.monthcalendartodoItem:hover {
+  background-color: rgb(76, 132, 179);
 }
 
 .completed {
