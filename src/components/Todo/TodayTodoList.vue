@@ -1,5 +1,17 @@
 <template>
   <div>
+    <div class="tf-dailytodoList">
+      <div class="td-dailytodoItem">
+        <button @click="isModalViewed = true">일정 작성하기</button>
+        <TodoForm
+          :propsyear="year"
+          :propsmonth="p_month"
+          :propsday="p_day"
+          v-if="isModalViewed"
+          @close-modal="isModalViewed = false"
+        />
+      </div>
+    </div>
     <span v-show="temp">
       <div v-for="todo in todos" :key="todo.id" class="monthcalendartodoItem">
         <div @click="isTodoModalViewed = true">
@@ -20,24 +32,29 @@
 <script>
 import { todoList } from "../../api/todo.js";
 import Detail from "./Detail";
+import TodoForm from "../Todo/TodoForm";
 export default {
   name: "TodayTodoList",
   components: {
     Detail,
+    TodoForm,
   },
   props: {
-    day: [Number, String],
-    year: [Number, String],
-    month: [Number, String],
+    day: Number,
+    year: Number,
+    month: Number,
   },
   data: function () {
     return {
+      isModalViewed: false,
       isTodoModalViewed: false,
       todos: null,
       dateInfo: null,
       temp: false,
       c_month: null,
       c_day: null,
+      p_month: null,
+      p_day: null,
     };
   },
   methods: {
@@ -74,24 +91,26 @@ export default {
   },
   watch: {
     day() {
-      console.log("여기");
       if (0 < this.month < 10) {
-        this.c_month = "0" + String(this.month);
+        this.p_month = "0" + String(this.month);
       } else {
-        this.c_month = String(this.month);
+        this.p_month = String(this.month);
       }
       if (0 < this.day < 10) {
-        this.c_day = "0" + String(this.day);
+        if (String(this.day).length === 1) {
+          this.p_day = "0" + String(this.day);
+        } else {
+          this.p_day = String(this.day);
+        }
       } else {
-        this.c_day = String(this.day);
+        this.p_day = String(this.day);
       }
       this.dateInfo =
-        String(this.year) + String(this.c_month) + String(this.c_day);
+        String(this.year) + String(this.p_month) + String(this.p_day);
       this.getTodoList();
     },
   },
   created() {
-    console.log("TodayTodoList created hook", this.day, this.month, this.year);
     this.createDateInfo();
     this.getTodoList();
   },

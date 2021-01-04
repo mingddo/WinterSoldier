@@ -91,20 +91,25 @@ import { mapState } from "vuex";
 import { writeTodo } from "../../api/todo.js";
 export default {
   name: "TodoForm",
+  props: {
+    propsyear: [String, Number],
+    propsmonth: [String, Number],
+    propsday: [String, Number],
+  },
   data: function () {
     return {
       form: {
-        title: "",
-        schedule_year: "",
-        schedule_month: "",
-        schedule_date: "",
-        schedule_hour: "",
-        schedule_min: "",
-        alarm_year: "",
-        alarm_month: "",
-        alarm_date: "",
-        alarm_hour: "",
-        alarm_min: "",
+        title: "일정을 넣으세요",
+        schedule_year: "2021",
+        schedule_month: "01",
+        schedule_date: "01",
+        schedule_hour: "00",
+        schedule_min: "00",
+        alarm_year: "2021",
+        alarm_month: "01",
+        alarm_date: "01",
+        alarm_hour: "00",
+        alarm_min: "00",
       },
       schedule_year_list: [
         "2021",
@@ -430,6 +435,14 @@ export default {
       this.todoTitle = "";
     },
   },
+  created() {
+    this.form.schedule_year = this.propsyear;
+    this.form.schedule_month = this.propsmonth;
+    this.form.schedule_date = this.propsday;
+    this.form.alarm_year = this.propsyear;
+    this.form.alarm_month = this.propsmonth;
+    this.form.alarm_date = this.propsday;
+}
   computed: {
     ...mapState({
       today_alarm_todos: (state) => state.todoStore.today_alarm_todos,

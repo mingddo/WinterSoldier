@@ -147,7 +147,11 @@
                 <a href="">{{ weekdaily }}</a>
               </div>
               <template />
-              <div class="tf-dailytodoList" @dblclick="isModalViewed = true">
+              <div
+                class="tf-dailytodoList"
+                @click="daycal(weekdaily)"
+                @dblclick="isModalViewed = true"
+              >
                 <div class="td-dailytodoItem">
                   <TodoList
                     :weekdaily="weekdaily"
@@ -156,6 +160,9 @@
                     :weekCalendar="weekCalendar"
                   />
                   <TodoForm
+                    :propsyear="year"
+                    :propsmonth="p_month"
+                    :propsday="p_day"
                     v-if="isModalViewed"
                     @close-modal="isModalViewed = false"
                   >
@@ -229,6 +236,8 @@ export default {
       calendarToggle: false,
       selectedMonth: 0,
       selectedDay: 0,
+      p_month: "01",
+      p_day: "01",
     };
   },
   created() {
@@ -252,6 +261,13 @@ export default {
   //   },
   // },
   methods: {
+    daycal(day) {
+      if (0 < day < 10) {
+        this.c_day = "0" + String(day);
+      } else {
+        this.c_day = String(day);
+      }
+    },
     calendarChange() {
       this.$store.commit("todoStore/changeCalendar");
       this.calendarToggle = this.$store.state.todoStore.calendartogglestate;
@@ -436,6 +452,15 @@ export default {
     },
     gettogglestate() {
       this.calendarToggle = this.$store.state.todoStore.calendartogglestate;
+    },
+  },
+  watch: {
+    month() {
+      if (0 < this.month < 10) {
+        this.c_month = "0" + String(this.month);
+      } else {
+        this.c_month = String(this.month);
+      }
     },
   },
 };
