@@ -4,9 +4,19 @@ const instance = createInstance();
 
 function getnews(query, success, fail) {
     instance
-        .get(`news/${query}/`)
+        .get(`news/crawler/${query}/`)
         .then(success)
         .catch(fail);
 
 }
-export { getnews }
+
+
+function realtimeList(success, fail) {
+    instance
+        .get(`news/daymost/`)
+        .then(success)
+        .catch(fail);
+
+}
+
+export { getnews, realtimeList }
