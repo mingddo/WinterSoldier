@@ -87,16 +87,16 @@
 </template>
 
 <script>
-import { getstockdata } from "@/api/stock.js";
-import LineChart from "@/components/Stock/LineChart";
-import BarChart from "@/components/Stock/BarChart";
-import "@/assets/stock.css";
-import stockDB from "@/assets/stockDB.json";
-import { VueAutosuggest } from "vue-autosuggest";
+import { getstockdata } from '@/api/stock.js';
+import LineChart from '@/components/Stock/LineChart';
+import BarChart from '@/components/Stock/BarChart';
+// import "@/assets/stock.css";
+import stockDB from '@/assets/stockDB.json';
+import { VueAutosuggest } from 'vue-autosuggest';
 // import DownloadButton from "@/components/Stock/Download";
 
 export default {
-  name: "Stock",
+  name: 'Stock',
   components: {
     LineChart,
     BarChart,
@@ -107,16 +107,16 @@ export default {
       loaded: false,
       loading: false,
       showError: false,
-      errorMessage: "Please enter a stock name",
-      company: "",
-      companycode: "",
+      errorMessage: 'Please enter a stock name',
+      company: '',
+      companycode: '',
       period: 5,
       stockNow: [],
       chartLabels: [],
       stock: null,
       stockvolume: null,
-      query: "",
-      selected: "",
+      query: '',
+      selected: '',
       suggestions: [
         {
           data: [],
@@ -133,8 +133,8 @@ export default {
       event.preventDefault();
       if (
         this.company === null ||
-        this.company === "" ||
-        this.company === "undefined"
+        this.company === '' ||
+        this.company === 'undefined'
       ) {
         this.showError = true;
         this.loading = false;
@@ -216,7 +216,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped src="@/assets/stock.css">
 @-webkit-keyframes flower {
   0% {
     -webkit-transform: rotate(0deg);

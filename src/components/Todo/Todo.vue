@@ -1,22 +1,13 @@
 <template>
   <div>
-    <div @click="isTodoModalViewed = true">
-      <span :class="{ completed: !todo.completed }" @click="updateTodoStatus">{{
-        todo.title
-      }}</span>
-      <Detail
-        :todo="todo"
-        v-if="isTodoModalViewed"
-        @close-modal="isTodoModalViewed = false"
-      >
-      </Detail>
-      <!-- <button @click="deleteTodo"> Delete!</button> -->
+    <div>
+      <span @click="TodoModalViewed">{{ todo.title }}</span>
+      <Detail :todo="todo" v-if="isTodoModalViewed2"> </Detail>
     </div>
   </div>
 </template>
 
 <script>
-// import {getTodo} from "../../api/todo.js"
 import Detail from "./Detail";
 export default {
   name: "Todo",
@@ -27,16 +18,16 @@ export default {
     todo: Object,
   },
   data: function () {
-    return {
-      isTodoModalViewed: false,
-    };
+    return {};
+  },
+  computed: {
+    isTodoModalViewed2() {
+      return this.$store.state.isTodoModalViewed;
+    },
   },
   methods: {
-    deleteTodo: function () {
-      this.$store.dispatch("deleteTodo", this.todo);
-    },
-    updateTodoStatus: function () {
-      this.$store.dispatch("updateTodoStatus", this.todo);
+    TodoModalViewed: function () {
+      this.$store.dispatch("isTodoModaViewed");
     },
   },
 };
@@ -46,14 +37,16 @@ export default {
 .completed {
   text-decoration: line-through;
 }
-.modal,
-.overlay {
-  width: 75%;
-  height: 75%;
-  position: fixed;
-  left: 0;
-  top: 0;
-  color: white;
+.modal {
+  position: relative;
+  max-width: 400px;
+  height: 10px;
+  margin: 30px;
+  margin-top: 30px;
+  padding: 20px;
+  background-color: black;
+  z-index: 10;
+  opacity: 1;
 }
 .overlay {
   opacity: 0.5;

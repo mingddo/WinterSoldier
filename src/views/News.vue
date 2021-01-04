@@ -2,7 +2,6 @@
   <div class="news__wrapper">
     <span class="news__section"> 오늘의 뉴스 </span>
     <form @keypress.enter.prevent="onSubmit">
-      <input
         class="news__search"
         type="text"
         v-model="query"

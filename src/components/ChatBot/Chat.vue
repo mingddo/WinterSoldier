@@ -51,14 +51,15 @@
       <div class="chatbody" id="chatbox">
         <div v-for="(chat, idx) in box" :key="idx">
           <div class="eachchatbox-position">
-            <span>
+            <div class="eachchatbox__userInfo">
               <img
+                class="chat__img"
                 src="https://img.icons8.com/bubbles/50/000000/user-male.png"
               />
-            </span>
-            <span>
-              {{ myinfo.username }}
-            </span>
+              <span>
+                {{ (myinfo && myinfo.username) || 'Anonymous' }}
+              </span>
+            </div>
             <div class="userchatbox-position">
               <span class="userchatbox">
                 {{ chat.userchat }}
@@ -66,11 +67,11 @@
             </div>
           </div>
           <div class="eachBotbox-position">
-            <div class="tmp">
-              <span
-                ><img
-                  src="https://img.icons8.com/bubbles/50/000000/broken-robot.png"
-              /></span>
+            <div class="eachBotbox__userInfo">
+              <img
+                class="chat__img"
+                src="https://img.icons8.com/bubbles/50/000000/broken-robot.png"
+              />
               <span>바봇(BOT)</span>
             </div>
 
@@ -87,19 +88,6 @@
             <span class="botchatbox" v-else>
               {{ chat.botchat }}
             </span>
-          </div>
-        </div>
-        <div>
-          <div v-if="box && box.length > 1">
-            <span @click="scroll" class="pointer"
-              >채팅을 그만두고 싶다면 클릭!</span
-            >
-            <div @click="closeChat" class="pointer chat-bye">
-              <img
-                src="https://img.icons8.com/emoji/100/000000/waving-hand-medium-light-skin-tone.png"
-              />
-              <h1>안녕!!</h1>
-            </div>
           </div>
         </div>
       </div>
@@ -132,7 +120,6 @@
 import { chatanswer, chattrain } from '@/api/chatbot.js';
 import { mapState } from 'vuex';
 import HowToUse from './HowToUse.vue';
-
 export default {
   data() {
     return {
@@ -194,21 +181,21 @@ export default {
     },
     scroll() {
       const obj = document.getElementById('chatbox');
-      // console.log('길이1!', obj.scrollHeight, obj.scrollTop)
       obj.scrollTop = obj.scrollHeight;
-      // console.log(obj.scrollTop)
       console.log('qusgoTek,,');
     },
-    getResponse() {
+    temp () {
       const chatting = {
         userchat: this.chatText,
         botchat: this.botText,
         tag: this.nowtag,
       };
-      console.log(chatting);
       this.box.push(chatting);
+    },
+    async getResponse() {
+      await this.temp();
+      this.scroll;
       this.chatText = '';
-      console.log('뭐해..');
     },
     async sendAsk() {
       if (this.chatText !== '') {
@@ -245,7 +232,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .chatbot-container {
   width: 50%;
 }
@@ -349,12 +336,6 @@ export default {
   color: #008;
   text-align: center;
 }
-.chat-bye {
-  position: relative;
-  margin: 70px 0px 70px 0px;
-  display: flex;
-  justify-content: space-evenly;
-}
 .spinner {
   animation: spin 1000ms infinite linear;
 }
@@ -363,8 +344,20 @@ export default {
     transform: rotate(360deg);
   }
 }
-.tmp {
+.eachBotbox__userInfo {
   display: flex;
   justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 4px;
+}
+.eachchatbox__userInfo {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 4px;
+}
+.chat__img {
+  width: var(--chat-img-size);
+  height: var(--chat-img-size);
 }
 </style>

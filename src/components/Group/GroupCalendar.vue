@@ -1,20 +1,5 @@
 <template>
   <span class="calendar_frame">
-    <div class="toggle_btn_space">
-      <span class="realtimetitle">실시간 검색어 ▶ </span>
-      <span class="realtimelist"><Realtime /></span>
-      <label class="toggle" for="myToggle">
-        <input
-          class="toggle__input"
-          type="checkbox"
-          name=""
-          id="myToggle"
-          v-model="calendarToggle"
-          @change="calendarChange"
-        />
-        <div class="toggle__fill"></div>
-      </label>
-    </div>
     <main class="frame">
       <section
         :class="{ claendarchangecls: calendarToggle }"
@@ -88,99 +73,16 @@
         </table>
       </section>
 
-      <!-- 주간 달력 구간 -->
-
-      <!-- 주간 달력 테이블 -->
-      <div :class="{ claendarchangecls: !calendarToggle }" class="weekFrame">
-        <div class="monthInfo">
-          <button @click="changeWeekly(-1)">◀</button>
-
-          <span>
-            <span
-              :class="{ inputstatus: inputhTitle }"
-              @dblclick="changeYearForm"
-            >
-              {{ year }}년
-            </span>
-            <span
-              :class="{ inputstatus: inputhTitle }"
-              @dblclick="changeMonthForm"
-            >
-              {{ month }}월
-            </span>
-          </span>
-
-          <input
-            :class="{ inputstatus: !inputhTitle }"
-            type="number"
-            min="1"
-            v-model.number="changedYear"
-            @keyup.enter="changeYearForm"
-          />
-          <input
-            :class="{ inputstatus: !inputhTitle }"
-            type="number"
-            value="currentMonth"
-            min="1"
-            max="12"
-            v-model.number="changedMonth"
-            @keyup.enter="changeMonthForm"
-          />
-          <button @click="changeWeekly(1)">▶</button>
-        </div>
-
-        <table>
-          <thead>
-            <th
-              v-for="(weekday, idx) in weekName"
-              :key="idx"
-              :weekday="weekday"
-            >
-              {{ weekday }}
-            </th>
-          </thead>
-          <tbody>
-            <td
-              v-for="(weekdaily, idx2) in weekCalendar"
-              :key="idx2"
-              :weekdaily="weekdaily"
-            >
-              <div class="td-dayInfo">
-                <a href="">{{ weekdaily }}</a>
-              </div>
-              <template />
-              <div
-                class="tf-dailytodoList"
-                @click="daycal(weekdaily)"
-                @dblclick="isModalViewed = true"
-              >
-                <div class="td-dailytodoItem">
-                  <TodoList
-                    :weekdaily="weekdaily"
-                    :year="year"
-                    :month="month"
-                    :weekCalendar="weekCalendar"
-                  />
-                  <TodoForm
-                    :propsyear="year"
-                    :propsmonth="p_month"
-                    :propsday="p_day"
-                    v-if="isModalViewed"
-                    @close-modal="isModalViewed = false"
-                  >
-                  </TodoForm>
-                </div>
-              </div>
-            </td>
-          </tbody>
-        </table>
-        <!-- 주간 달력 페이지 이동 / 양쪽 버튼 이동시 주를 한 주씩 이동 가능, 디폴트는 오늘날짜에 해당 하는 주 -->
-      </div>
       <!-- 오늘 할 일 부분 -->
       <div :class="{ claendarchangecls: calendarToggle }" class="todayTodo">
         <div class="todayInfo">{{ selectedMonth }}월 {{ selectedDay }}일</div>
         <div class="todayTodoList">
           <div class="todayTodoItem">
+            {{ groupinfo.group_todo }}
+            <GroupTodoForm 
+            :day="selectedDay"
+              :year="year"
+              :month="selectedMonth"/>
             <TodayTodoList
               :day="selectedDay"
               :year="year"
@@ -194,19 +96,18 @@
 </template>
 
 <script>
-import TodoList from "../Todo/TodoList";
-import TodoForm from "../Todo/TodoForm";
 import TodayTodoList from "../Todo/TodayTodoList";
 import TodoListMonth from "../Todo/TodoListMonth.vue";
-import Realtime from "@/views/Realtime.vue";
+import GroupTodoForm from './GroupTodoForm.vue';
 export default {
-  name: "Calendar",
+  name: "GroupCalendar",
   components: {
-    TodoList,
-    TodoForm,
     TodoListMonth,
     TodayTodoList,
-    Realtime,
+    GroupTodoForm,
+  },
+  props: {
+    groupinfo: Object,
   },
   data() {
     return {
@@ -240,8 +141,6 @@ export default {
       calendarToggle: false,
       selectedMonth: 0,
       selectedDay: 0,
-      p_month: "01",
-      p_day: "01",
     };
   },
   created() {
@@ -265,13 +164,6 @@ export default {
   //   },
   // },
   methods: {
-    daycal(day) {
-      if (0 < day < 10) {
-        this.c_day = "0" + String(day);
-      } else {
-        this.c_day = String(day);
-      }
-    },
     calendarChange() {
       this.$store.commit("todoStore/changeCalendar");
       this.calendarToggle = this.$store.state.todoStore.calendartogglestate;
@@ -456,15 +348,6 @@ export default {
     },
     gettogglestate() {
       this.calendarToggle = this.$store.state.todoStore.calendartogglestate;
-    },
-  },
-  watch: {
-    month() {
-      if (0 < this.month < 10) {
-        this.c_month = "0" + String(this.month);
-      } else {
-        this.c_month = String(this.month);
-      }
     },
   },
 };

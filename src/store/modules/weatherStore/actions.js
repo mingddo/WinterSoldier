@@ -48,7 +48,7 @@ export const getWeatherData = ({ state, commit }, loc) => {
     nx,
     ny,
     (res) => {
-      console.log(res);
+      // console.log(res);
       commit('getWeatherData', res.data.response.body.items.item);
     },
     (err) => {
