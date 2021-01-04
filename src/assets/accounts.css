@@ -133,7 +133,8 @@
   padding: var(--padding) calc(var(--padding) * 2);
 }
 .profile-content-box {
-  width: 80%;
+  margin: 10px;
+  width:80%;
   height: 20%;
   display: flex;
   justify-content: space-between;
@@ -152,6 +153,7 @@
   width: 100%;
   display: flex;
   justify-content: space-around;
+  margin-top: 30px;
 }
 .profile-content-box > div {
   border: 1px solid;
@@ -217,6 +219,11 @@
 .profile-follow-modal-content > div:last-child {
   border-bottom: 0px;
 }
+.profile-follow-modal-content textarea {
+  margin-top: 10px;
+  width: 100%;
+  height: 300%;
+}
 .profile-follow-modal-each {
   display: flex;
   justify-content: space-between;
@@ -265,9 +272,9 @@ ul.profile-todobox-tab li.current {
 .pointer {
   cursor: pointer;
 }
-.profile-follow-input-box {
+/* .profile-follow-input-box {
   display: flex;
-}
+} */
 .profile-follow-input-follow {
   margin: auto;
 }
@@ -276,8 +283,6 @@ ul.profile-todobox-tab li.current {
   margin: 8px 0;
   border: 1px solid;
   z-index: 2;
-  position: absolute;
-  top: 19%;
   background-color: white;
 }
 .profile-follow-input-autocompleted > div {

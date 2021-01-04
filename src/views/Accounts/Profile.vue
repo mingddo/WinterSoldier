@@ -47,6 +47,12 @@
             <span><h4>INVITE GROUP</h4></span>
           </div>
         </div>
+        <div class="profile-img-invite-btn" v-else>
+          <div>
+            <span><img class="pointer" title="새 그룹 만들기" @click="addgroupDetail" src="https://img.icons8.com/ios/50/000000/add-user-group-man-man--v1.png"/></span>
+            <span><h4> CREATE GROUP </h4></span>
+          </div>
+        </div>
       </div>
 
       <!-- 팔로우 & 팔로잉 -->
@@ -65,7 +71,6 @@
             <div v-else>
               <h2>{{ follower_length }}</h2>
             </div>
-
             <div></div>
             <div
               :class="{ disappear: !watchfollower }"
@@ -140,10 +145,7 @@
                     @click="follow(findFriend)"
                     title="팔로우"
                   >
-                    <img
-                      class="pointer"
-                      src="https://img.icons8.com/material-rounded/24/000000/plus--v2.png"
-                    />
+                    <button>Follow</button>
                   </div>
                   <div
                     class="profile-follow-input-autocompleted"
@@ -211,9 +213,8 @@
               </div>
             </div>
           </div>
-
           <div
-            v-if="userinfo.username == myinfo.username"
+            v-if="userinfo.username == myinfo.username" 
             class="profile-content-eachbox"
           >
             <div>
@@ -244,10 +245,43 @@
 
                 <div class="profile-follow-modal-content">
                   <UserInvite
-                    v-for="invite in userinfo.invited"
-                    :key="invite.id"
-                    :invite="invite"
+                  v-for="invite in userinfo.invited"
+                  :key="invite.id"
+                  :invite="invite"
+                  :myinfo="myinfo"
+                  @getuserprofile="getuserprofile"
                   />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="profile-content-eachbox">
+            <div :class="{disappear : !watchaddgroup}" class="profile-follow-modal">
+              <div>
+                <div class="profile-follow-modal-title">
+                  <div>
+                    <h2> Add Group </h2>
+                  </div>
+                  <div class="profile-follow-modal-close">
+                    <img class="pointer" @click="addgroupDetail" src="https://img.icons8.com/ios/50/000000/close-window.png"/>
+                  </div>
+                </div>
+              </div>
+              <div class="profile-follow-modal-content">
+                <div class="profile-modal-addgroup">
+                  <div>
+                    <label for="groupname">그룹 이름</label>
+                    <input type="text" placeholder="그룹 이름" id="groupname" v-model.trim="form.name">
+                  </div>
+                  <div>
+                    <label for="groupintroduce">그룹 소개</label>
+                    <textarea id="groupintroduce" v-model="form.introduce">환영합니다!</textarea>
+                  </div>
+                  <div>
+                    <img class="pointer" @click="addGroup" src="https://img.icons8.com/material-sharp/50/000000/ok--v1.png">
+                    <img class="pointer" src="https://img.icons8.com/fluent-systems-filled/50/000000/cancel.png">
+                  </div>
                 </div>
               </div>
             </div>
@@ -256,7 +290,6 @@
       </div>
     </div>
 
-    <br />
     <!-- todo 목록 -->
     <div class="profile-content-box">
       <div>
@@ -277,7 +310,9 @@
                 (isFollowing && isFollowed)
             "
           >
-            <UserTodo v-for="(todo, idx) in userTodo" :todo="todo" :key="idx" />
+            <UserTodo v-for="(todo, idx) in userTodo" :todo=
+            
+            todo" :key="idx" />
           </div>
           <div class="profile-todobox-tab-content" v-else>
             <img src="https://img.icons8.com/ios-filled/50/000000/manual.png" />
@@ -290,13 +325,14 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
-import { userprofile } from '@/api/accounts.js';
-import { addfollow } from '@/api/accounts.js';
-import { removefollow } from '@/api/accounts.js';
-import { findUser } from '@/api/accounts.js';
+import { mapState } from "vuex";
+import { userprofile } from "@/api/accounts.js";
+import { addfollow } from "@/api/accounts.js";
+import { removefollow } from "@/api/accounts.js";
+import { findUser } from "@/api/accounts.js";
+import { makegroup } from "@/api/group.js";
 // import '@/assets/accounts.css';
-import UserTodo from '@/components/Profile/UserTodo.vue';
+import UserTodo from '@/components/Profile/UserTodo.vue'
 import UserFollower from '../../components/Profile/UserFollower.vue';
 import UserFollowing from '../../components/Profile/UserFollowing.vue';
 import UserGroup from '../../components/Profile/UserGroup.vue';
@@ -326,13 +362,30 @@ export default {
       watchfollowing: false,
       watchgroup: false,
       watchinvite: false,
+      watchaddgroup: false,
       findFriend: '',
       auto: [],
       disappear: true,
-    };
+      form: {
+        name: '',
+        introduce: '',
+      }
+    }
   },
-  methods: {
-    closecompleted() {
+  methods : {
+    addGroup() {
+      makegroup(
+        this.form,
+        (res) => {
+          this.userinfo.group.push(res)
+        },
+        () => {
+        }
+      )
+      this.getuserprofile();
+      this.addgroupDetail();
+    },
+    closecompleted () {
       this.disappear = true;
     },
     inputkeyword(input) {
@@ -373,6 +426,9 @@ export default {
     },
     inviteDetail() {
       this.watchinvite = !this.watchinvite;
+    },
+    addgroupDetail () {
+      this.watchaddgroup = !this.watchaddgroup
     },
     setuserprofile(res) {
       const saveuserInfo = JSON.stringify(res.data);
@@ -522,4 +578,17 @@ export default {
 };
 </script>
 
-<style scoped src="@/assets/accounts.css"></style>
+<style scoped src="@/assets/accounts.css">
+.profile-modal-addgroup {
+  
+}
+.profile-modal-addgroup > div{
+  margin-top: 20px;
+}
+.profile-modal-addgroup > div:last-child{
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-evenly;
+}
+</style>
+

@@ -90,19 +90,6 @@
             </span>
           </div>
         </div>
-        <div>
-          <div v-if="box && box.length > 1">
-            <span @click="scroll" class="pointer"
-              >채팅을 그만두고 싶다면 클릭!</span
-            >
-            <div @click="closeChat" class="pointer chat-bye">
-              <img
-                src="https://img.icons8.com/emoji/100/000000/waving-hand-medium-light-skin-tone.png"
-              />
-              <h1>안녕!!</h1>
-            </div>
-          </div>
-        </div>
       </div>
       <div class="chatfooter">
         <table width="100%">
@@ -133,7 +120,6 @@
 import { chatanswer, chattrain } from '@/api/chatbot.js';
 import { mapState } from 'vuex';
 import HowToUse from './HowToUse.vue';
-
 export default {
   data() {
     return {
@@ -195,21 +181,21 @@ export default {
     },
     scroll() {
       const obj = document.getElementById('chatbox');
-      // console.log('길이1!', obj.scrollHeight, obj.scrollTop)
       obj.scrollTop = obj.scrollHeight;
-      // console.log(obj.scrollTop)
       console.log('qusgoTek,,');
     },
-    getResponse() {
+    temp () {
       const chatting = {
         userchat: this.chatText,
         botchat: this.botText,
         tag: this.nowtag,
       };
-      console.log(chatting);
       this.box.push(chatting);
+    },
+    async getResponse() {
+      await this.temp();
+      this.scroll;
       this.chatText = '';
-      console.log('뭐해..');
     },
     async sendAsk() {
       if (this.chatText !== '') {
@@ -349,12 +335,6 @@ export default {
   background-color: #fff;
   color: #008;
   text-align: center;
-}
-.chat-bye {
-  position: relative;
-  margin: 70px 0px 70px 0px;
-  display: flex;
-  justify-content: space-evenly;
 }
 .spinner {
   animation: spin 1000ms infinite linear;
