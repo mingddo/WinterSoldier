@@ -112,6 +112,7 @@ import { deletegroup } from "@/api/group.js";
 import { deletemember } from "@/api/group.js";
 import { changemaster } from "@/api/group.js";
 import { findUser } from "@/api/accounts.js";
+import '@/assets/accounts.css';
 import GroupUser from '../components/Group/GroupUser.vue'
 import GroupCalendar from '../components/Group/GroupCalendar.vue';
 export default {
@@ -162,7 +163,6 @@ export default {
       this.$router.push({name: 'Home'})
     },
     invite () {
-      alert(this.groupinfo.id)
       invitegroup(
         this.groupinfo.id,
         this.findFriend,
@@ -233,7 +233,6 @@ export default {
       sessionStorage.setItem('group', savegroupInfo)
       const getgroupInfo = sessionStorage.getItem('group')
       this.groupinfo = JSON.parse(getgroupInfo)
-      // alert(typeof this.groupinfo)
       this.userlist = this.groupinfo.user
     },
     getGroupInfo () {
@@ -253,8 +252,8 @@ export default {
   },
   computed: {
     group_user_length () {
-      if (this.$route.query.user != null && this.$route.query.user != undefined) {
-        return this.$route.query.user.length
+      if (this.userlist != null && this.userlist != undefined) {
+        return this.userlist.length
       } else {
         return 0
       }

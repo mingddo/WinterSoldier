@@ -23,8 +23,7 @@ export default {
       approveinvite(
         this.invite.id,
         this.myinfo.username,
-        (res) => {
-          console.log(res)
+        () => {
           this.$emit('getuserprofile')
           if (confirm(`환영합니다! 그룹페이지로 이동하시겠습니까?`)) {
             this.$router.push({ name: 'Group', query: {groupid: this.invite.id, user: this.invite.user } })
@@ -39,8 +38,7 @@ export default {
       denyinvite(
         this.invite.id,
         this.myinfo.username,
-        (res) => {
-          console.log(res)
+        () => {
           this.$emit('getuserprofile')
         },
         (err) => {
