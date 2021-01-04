@@ -8,6 +8,7 @@
           name=""
           id="myToggle"
           v-model="calendarToggle"
+          @change="calendarChange"
         />
         <div class="toggle__fill"></div>
       </label>
@@ -251,7 +252,14 @@ export default {
     this.calendarData();
     this.pickWeek();
     this.defaultYearMonth();
+    this.gettogglestate();
   },
+  // watch: {
+  //   calendarToggle() {
+  //     console.log("와치들어온다아아아!");
+  //     this.calendarChange();
+  //   },
+  // },
   methods: {
     daycal(day) {
       if (0 < day < 10) {
@@ -261,7 +269,9 @@ export default {
       }
     },
     calendarChange() {
-      this.calendarToggle = !this.calendarToggle;
+      this.$store.commit("todoStore/changeCalendar");
+      this.calendarToggle = this.$store.state.todoStore.calendartogglestate;
+      // this.calendarToggle = !this.calendarToggle;
     },
     defaultYearMonth() {
       this.changedYear = this.year;
@@ -439,6 +449,9 @@ export default {
     },
     gotoTitle() {
       this.inputhTitle = false;
+    },
+    gettogglestate() {
+      this.calendarToggle = this.$store.state.todoStore.calendartogglestate;
     },
   },
   watch: {

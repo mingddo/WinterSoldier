@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div class="modal">
-      <div class="overlay" @click="$emit('close-modal')"></div>
-      <div class="modal-card">
+    <div class="detail-modal">
+      <button @click="TodoModalViewed" class="overlay-button">닫기</button>
+      <div class="modal-card container">
         <h3>할 일 제목 : {{ todo.title }}</h3>
         <table class="todo-table">
           <tr class="todo-tr">
@@ -42,10 +42,19 @@
         <Modify
           :todo="todo"
           v-if="isModifyModalViewed"
-          @close-modal="isModifyModalViewed = false"
+          @modify-close-modal="isModifyModalViewed = false"
         >
         </Modify>
         <button @click="isModifyModalViewed = true">수정하기</button>
+        <br />
+        <img
+          @click="TodoModalViewed"
+          src="../../assets/close.png"
+          alt=""
+          width="50px"
+          height="30px"
+          class="overlay-button"
+        />
       </div>
     </div>
   </div>
@@ -86,6 +95,9 @@ export default {
   },
 
   methods: {
+    ModifyModalViewed: function () {
+      this.isModifyModalViewed = true;
+    },
     deleteTodo() {
       if (confirm("정말로 삭제???")) {
         console.log(this.todono);
@@ -93,7 +105,7 @@ export default {
           this.todono,
           (response) => {
             console.log(response);
-            this.$emit("close-modal");
+            this.$emit("todo-close-modal");
           },
           (error) => {
             console.log(error);
@@ -101,23 +113,24 @@ export default {
         );
       }
     },
+    TodoModalViewed() {
+      this.$store.dispatch("isTodoModaViewed");
+    },
   },
 };
 </script>
 
 <style>
-.modal,
-.overlay {
-  width: 75%;
-  height: 75%;
-  position: fixed;
-  left: 0;
-  top: 0;
-  color: white;
-}
-.overlay {
-  opacity: 0.5;
+.detail-modal {
+  position: relative;
+  max-width: 400px;
+  height: 10px;
+  margin: 30px;
+  margin-top: 30px;
+  padding: 20px;
   background-color: black;
+  z-index: 10;
+  opacity: 1;
 }
 .modal-card {
   position: relative;
@@ -157,5 +170,16 @@ export default {
 
 .todo-tr:nth-child(odd) .todo-td {
   background-color: rgb(245, 245, 245);
+}
+.overlay-button {
+  direction: column;
+  justify-content: flex-end;
+}
+.container {
+  position: fixed;
+  box-shadow: 0px 0px 10px 0.3px var(--light-gray);
+  border: none;
+  top: 20%;
+  left: 40%;
 }
 </style>

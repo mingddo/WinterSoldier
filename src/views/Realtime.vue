@@ -13,25 +13,25 @@
 </template>
 
 <script>
-import { realtimeList } from "@/api/news.js";
+import { realtimeList } from '@/api/news.js';
 
 export default {
-  name: "News",
+  name: 'News',
   data() {
     return {
-      realtimenews: "",
+      realtimenews: '',
       number: 0,
       data: [],
       form: {
         id: 1,
-        message: "Rolling broadcast message",
+        message: 'Rolling broadcast message',
         content(createElement, content) {
           return createElement(
-            "div",
+            'div',
             {
-              class: "broadcast-content",
+              class: 'broadcast-content',
             },
-            [createElement("span", [`${content.message}`])]
+            [createElement('span', [`${content.message}`])]
           );
         },
       },
@@ -41,7 +41,7 @@ export default {
     getrealtimeList() {
       realtimeList(
         (res) => {
-          console.log("실검", res);
+          console.log('실검', res);
           this.realtimenews = res.data;
           this.data[0].message = this.realtimenews[0];
           this.data[1].message = this.realtimenews[1];
@@ -83,7 +83,7 @@ export default {
   background-color: whitesmoke;
   margin: 5px 0;
   border: none;
-  box-shadow: 0px 0px 10px 0.3px var(--light-gray);
+  box-shadow: 0px 0px 10px 0.3px var(--color-gray-light);
   border-radius: 15px;
   padding: 10px;
 }
