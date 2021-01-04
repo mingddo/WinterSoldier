@@ -18,16 +18,12 @@
         onfocus="this.placeholder=''"
         onblur="this.placeholder=''"
       />
-      <font-awesome-icon
-        class="search-icon"
-        icon="search"
-        size="lg"
-      ></font-awesome-icon>
+      <i class="fas fa-search search-icon"></i>
     </div>
 
     <div class="navbar__icons">
       <span v-if="isLogin">
-        <h2>안녕하세요 {{ myinfo.username }} 님</h2>
+        <h2>안녕하세요 {{ (myinfo && myinfo.username) || 'Anonymous' }} 님</h2>
       </span>
 
       <span v-else>
@@ -50,7 +46,11 @@
       </div>
 
       <div v-if="myinfo">
-        <router-link :to="{ name: 'Profile', query: { name: myinfo.username } }"
+        <router-link
+          :to="{
+            name: 'Profile',
+            query: { name: (myinfo && myinfo.username) || 'Anonymous' },
+          }"
           ><i class="fas fa-user"></i
         ></router-link>
       </div>
