@@ -1,6 +1,8 @@
 <template>
   <span class="calendar_frame">
     <div class="toggle_btn_space">
+      <span class="realtimetitle">실시간 검색어 ▶ </span>
+      <span class="realtimelist"><Realtime /></span>
       <label class="toggle" for="myToggle">
         <input
           class="toggle__input"
@@ -195,6 +197,7 @@ import TodoList from "../Todo/TodoList";
 import TodoForm from "../Todo/TodoForm";
 import TodayTodoList from "../Todo/TodayTodoList";
 import TodoListMonth from "../Todo/TodoListMonth.vue";
+import Realtime from "@/views/Realtime.vue";
 export default {
   name: "Calendar",
   components: {
@@ -202,6 +205,7 @@ export default {
     TodoForm,
     TodoListMonth,
     TodayTodoList,
+    Realtime,
   },
   data() {
     return {
