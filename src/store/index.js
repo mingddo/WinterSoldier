@@ -6,11 +6,14 @@ import createPersistedState from 'vuex-persistedstate';
 Vue.use(Vuex);
 Vue.use(AxiosPlugin);
 
+import todoStore from './modules/todoStore';
 import userStore from './modules/userStore';
 import weatherStore from './modules/weatherStore';
 
+
 const store = new Vuex.Store({
   modules: {
+    todoStore,
     userStore,
     weatherStore,
   },
