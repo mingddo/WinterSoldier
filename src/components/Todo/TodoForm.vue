@@ -73,6 +73,7 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 import { writeTodo } from "../../api/todo.js";
 export default {
   name: "TodoForm",
@@ -397,7 +398,7 @@ export default {
         () => {
           console.log(this.form),
             console.log(`jwt ${localStorage.getItem("jwt")}`);
-          // this.$router.push({ name: ""});
+          this.$store.dispatch("addTodoList", this.form);
         },
         (error) => {
           console.log(error);
@@ -414,6 +415,11 @@ export default {
       this.$store.dispatch("create_todo", todoItem);
       this.todoTitle = "";
     },
+  },
+  computed: {
+    ...mapState({
+      today_alarm_todos: (state) => state.todoStore.today_alarm_todos,
+    }),
   },
 };
 </script>
