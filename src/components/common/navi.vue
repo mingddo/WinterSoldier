@@ -14,35 +14,39 @@
       <input
         type="text"
         class="search"
-        placeholder=""
+        placeholder="검색"
         onfocus="this.placeholder=''"
-        onblur="this.placeholder=''"
+        onblur="this.placeholder='검색'"
       />
       <i class="fas fa-search search-icon"></i>
     </div>
 
     <div class="navbar__icons">
-      <span v-if="isLogin">
-        <h2>안녕하세요 {{ (myinfo && myinfo.username) || 'Anonymous' }} 님</h2>
-      </span>
+      <!-- <span v-if="isLogin">
+        안녕하세요 {{ (myinfo && myinfo.username) || 'Anonymous' }} 님
+      </span> -->
 
-      <span v-else>
+      <!-- <span v-else>
         로그인이 필요합니다.
-      </span>
+      </span> -->
 
       <div>
         <div v-if="isLogin">
-          <button @click="onLogout">
+          <button class="log__btn" @click="onLogout">
             로그아웃
           </button>
         </div>
         <div v-else>
-          <button><router-link to="/login">Login</router-link></button>
+          <button class="log__btn">
+            <router-link to="/login">Login</router-link>
+          </button>
         </div>
       </div>
 
       <div v-if="!isLogin">
-        <button><router-link to="/signup">Signup</router-link></button>
+        <button class="log__btn">
+          <router-link to="/signup">Signup</router-link>
+        </button>
       </div>
 
       <div v-if="myinfo">

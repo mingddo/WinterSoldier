@@ -37,233 +37,233 @@
 </template>
 
 <script>
-import { getInfo, getCityInfo } from "@/api/corona.js";
+import { getInfo, getCityInfo } from '@/api/corona.js';
 
 export default {
   data() {
     return {
       corona_info: [],
       coroan_detail_info: [],
-      updatemessage: "",
+      updatemessage: '',
       data: [
         {
           id: 1,
-          message: "Rolling broadcast message",
+          message: 'Rolling broadcast message',
           content(createElement, content) {
             return createElement(
-              "div",
+              'div',
               {
-                class: "broadcast-content",
+                class: 'broadcast-content',
               },
-              [createElement("span", [`${content.message}`])]
+              [createElement('span', [`${content.message}`])]
             );
           },
         },
         {
           id: 2,
-          message: "Rolling broadcast message",
+          message: 'Rolling broadcast message',
           content(createElement, content) {
             return createElement(
-              "div",
+              'div',
               {
-                class: "broadcast-content",
+                class: 'broadcast-content',
               },
-              [createElement("span", [`${content.message}`])]
+              [createElement('span', [`${content.message}`])]
             );
           },
         },
         {
           id: 3,
-          message: "Rolling broadcast message",
+          message: 'Rolling broadcast message',
           content(createElement, content) {
             return createElement(
-              "div",
+              'div',
               {
-                class: "broadcast-content",
+                class: 'broadcast-content',
               },
-              [createElement("span", [`${content.message}`])]
+              [createElement('span', [`${content.message}`])]
             );
           },
         },
         {
           id: 4,
-          message: "Rolling broadcast message",
+          message: 'Rolling broadcast message',
           content(createElement, content) {
             return createElement(
-              "div",
+              'div',
               {
-                class: "broadcast-content",
+                class: 'broadcast-content',
               },
-              [createElement("span", [`${content.message}`])]
+              [createElement('span', [`${content.message}`])]
             );
           },
         },
         {
           id: 5,
-          message: "Rolling broadcast message",
+          message: 'Rolling broadcast message',
           content(createElement, content) {
             return createElement(
-              "div",
+              'div',
               {
-                class: "broadcast-content",
+                class: 'broadcast-content',
               },
-              [createElement("span", [`${content.message}`])]
+              [createElement('span', [`${content.message}`])]
             );
           },
         },
         {
           id: 6,
-          message: "Rolling broadcast message",
+          message: 'Rolling broadcast message',
           content(createElement, content) {
             return createElement(
-              "div",
+              'div',
               {
-                class: "broadcast-content",
+                class: 'broadcast-content',
               },
-              [createElement("span", [`${content.message}`])]
+              [createElement('span', [`${content.message}`])]
             );
           },
         },
         {
           id: 7,
-          message: "Rolling broadcast message",
+          message: 'Rolling broadcast message',
           content(createElement, content) {
             return createElement(
-              "div",
+              'div',
               {
-                class: "broadcast-content",
+                class: 'broadcast-content',
               },
-              [createElement("span", [`${content.message}`])]
+              [createElement('span', [`${content.message}`])]
             );
           },
         },
         {
           id: 8,
-          message: "Rolling broadcast message",
+          message: 'Rolling broadcast message',
           content(createElement, content) {
             return createElement(
-              "div",
+              'div',
               {
-                class: "broadcast-content",
+                class: 'broadcast-content',
               },
-              [createElement("span", [`${content.message}`])]
+              [createElement('span', [`${content.message}`])]
             );
           },
         },
         {
           id: 9,
-          message: "Rolling broadcast message",
+          message: 'Rolling broadcast message',
           content(createElement, content) {
             return createElement(
-              "div",
+              'div',
               {
-                class: "broadcast-content",
+                class: 'broadcast-content',
               },
-              [createElement("span", [`${content.message}`])]
+              [createElement('span', [`${content.message}`])]
             );
           },
         },
         {
           id: 10,
-          message: "Rolling broadcast message",
+          message: 'Rolling broadcast message',
           content(createElement, content) {
             return createElement(
-              "div",
+              'div',
               {
-                class: "broadcast-content",
+                class: 'broadcast-content',
               },
-              [createElement("span", [`${content.message}`])]
+              [createElement('span', [`${content.message}`])]
             );
           },
         },
         {
           id: 11,
-          message: "Rolling broadcast message",
+          message: 'Rolling broadcast message',
           content(createElement, content) {
             return createElement(
-              "div",
+              'div',
               {
-                class: "broadcast-content",
+                class: 'broadcast-content',
               },
-              [createElement("span", [`${content.message}`])]
+              [createElement('span', [`${content.message}`])]
             );
           },
         },
         {
           id: 12,
-          message: "Rolling broadcast message",
+          message: 'Rolling broadcast message',
           content(createElement, content) {
             return createElement(
-              "div",
+              'div',
               {
-                class: "broadcast-content",
+                class: 'broadcast-content',
               },
-              [createElement("span", [`${content.message}`])]
+              [createElement('span', [`${content.message}`])]
             );
           },
         },
         {
           id: 13,
-          message: "Rolling broadcast message",
+          message: 'Rolling broadcast message',
           content(createElement, content) {
             return createElement(
-              "div",
+              'div',
               {
-                class: "broadcast-content",
+                class: 'broadcast-content',
               },
-              [createElement("span", [`${content.message}`])]
+              [createElement('span', [`${content.message}`])]
             );
           },
         },
         {
           id: 14,
-          message: "Rolling broadcast message",
+          message: 'Rolling broadcast message',
           content(createElement, content) {
             return createElement(
-              "div",
+              'div',
               {
-                class: "broadcast-content",
+                class: 'broadcast-content',
               },
-              [createElement("span", [`${content.message}`])]
+              [createElement('span', [`${content.message}`])]
             );
           },
         },
         {
           id: 15,
-          message: "Rolling broadcast message",
+          message: 'Rolling broadcast message',
           content(createElement, content) {
             return createElement(
-              "div",
+              'div',
               {
-                class: "broadcast-content",
+                class: 'broadcast-content',
               },
-              [createElement("span", [`${content.message}`])]
+              [createElement('span', [`${content.message}`])]
             );
           },
         },
         {
           id: 16,
-          message: "Rolling broadcast message",
+          message: 'Rolling broadcast message',
           content(createElement, content) {
             return createElement(
-              "div",
+              'div',
               {
-                class: "broadcast-content",
+                class: 'broadcast-content',
               },
-              [createElement("span", [`${content.message}`])]
+              [createElement('span', [`${content.message}`])]
             );
           },
         },
         {
           id: 17,
-          message: "Rolling broadcast message",
+          message: 'Rolling broadcast message',
           content(createElement, content) {
             return createElement(
-              "div",
+              'div',
               {
-                class: "broadcast-content",
+                class: 'broadcast-content',
               },
-              [createElement("span", [`${content.message}`])]
+              [createElement('span', [`${content.message}`])]
             );
           },
         },
@@ -274,7 +274,7 @@ export default {
     corona() {
       getInfo(
         (res) => {
-          console.log("코로나 결과", res.data);
+          console.log('코로나 결과', res.data);
           this.corona_info = res.data;
         },
         (err) => {
@@ -285,163 +285,163 @@ export default {
     citycorona() {
       getCityInfo(
         (res) => {
-          console.log("코로나 결과", res.data);
+          console.log('코로나 결과', res.data);
           this.data[0].message =
-            "[" +
+            '[' +
             res.data.seoul.countryName +
-            "]" +
-            " 확진자 : " +
+            ']' +
+            ' 확진자 : ' +
             res.data.seoul.totalCase +
-            "(" +
+            '(' +
             res.data.seoul.newCase +
-            ")";
+            ')';
           this.data[1].message =
-            "[" +
+            '[' +
             res.data.gyeonggi.countryName +
-            "]" +
-            " 확진자 : " +
+            ']' +
+            ' 확진자 : ' +
             res.data.gyeonggi.totalCase +
-            "(" +
+            '(' +
             res.data.gyeonggi.newCase +
-            ")";
+            ')';
           this.data[2].message =
-            "[" +
+            '[' +
             res.data.gangwon.countryName +
-            "]" +
-            " 확진자 : " +
+            ']' +
+            ' 확진자 : ' +
             res.data.gangwon.totalCase +
-            "(" +
+            '(' +
             res.data.gangwon.newCase +
-            ")";
+            ')';
           this.data[3].message =
-            "[" +
+            '[' +
             res.data.gwangju.countryName +
-            "]" +
-            " 확진자 : " +
+            ']' +
+            ' 확진자 : ' +
             res.data.gwangju.totalCase +
-            "(" +
+            '(' +
             res.data.gwangju.newCase +
-            ")";
+            ')';
           this.data[4].message =
-            "[" +
+            '[' +
             res.data.gyeongbuk.countryName +
-            "]" +
-            " 확진자 : " +
+            ']' +
+            ' 확진자 : ' +
             res.data.gyeongbuk.totalCase +
-            "(" +
+            '(' +
             res.data.gyeongbuk.newCase +
-            ")";
+            ')';
           this.data[5].message =
-            "[" +
+            '[' +
             res.data.gyeongnam.countryName +
-            "]" +
-            " 확진자 : " +
+            ']' +
+            ' 확진자 : ' +
             res.data.gyeongnam.totalCase +
-            "(" +
+            '(' +
             res.data.gyeongnam.newCase +
-            ")";
+            ')';
 
           this.data[6].message =
-            "[" +
+            '[' +
             res.data.daegu.countryName +
-            "]" +
-            " 확진자 : " +
+            ']' +
+            ' 확진자 : ' +
             res.data.daegu.totalCase +
-            "(" +
+            '(' +
             res.data.daegu.newCase +
-            ")";
+            ')';
           this.data[7].message =
-            "[" +
+            '[' +
             res.data.daejeon.countryName +
-            "]" +
-            " 확진자 : " +
+            ']' +
+            ' 확진자 : ' +
             res.data.daejeon.totalCase +
-            "(" +
+            '(' +
             res.data.daejeon.newCase +
-            ")";
+            ')';
 
           this.data[8].message =
-            "[" +
+            '[' +
             res.data.busan.countryName +
-            "]" +
-            " 확진자 : " +
+            ']' +
+            ' 확진자 : ' +
             res.data.busan.totalCase +
-            "(" +
+            '(' +
             res.data.busan.newCase +
-            ")";
+            ')';
           this.data[9].message =
-            "[" +
+            '[' +
             res.data.sejong.countryName +
-            "]" +
-            " 확진자 : " +
+            ']' +
+            ' 확진자 : ' +
             res.data.sejong.totalCase +
-            "(" +
+            '(' +
             res.data.sejong.newCase +
-            ")";
+            ')';
 
           this.data[10].message =
-            "[" +
+            '[' +
             res.data.ulsan.countryName +
-            "]" +
-            " 확진자 : " +
+            ']' +
+            ' 확진자 : ' +
             res.data.ulsan.totalCase +
-            "(" +
+            '(' +
             res.data.ulsan.newCase +
-            ")";
+            ')';
           this.data[11].message =
-            "[" +
+            '[' +
             res.data.incheon.countryName +
-            "]" +
-            " 확진자 : " +
+            ']' +
+            ' 확진자 : ' +
             res.data.incheon.totalCase +
-            "(" +
+            '(' +
             res.data.incheon.newCase +
-            ")";
+            ')';
           this.data[12].message =
-            "[" +
+            '[' +
             res.data.jeonbuk.countryName +
-            "]" +
-            " 확진자 : " +
+            ']' +
+            ' 확진자 : ' +
             res.data.jeonbuk.totalCase +
-            "(" +
+            '(' +
             res.data.jeonbuk.newCase +
-            ")";
+            ')';
           this.data[13].message =
-            "[" +
+            '[' +
             res.data.jeonnam.countryName +
-            "]" +
-            " 확진자 : " +
+            ']' +
+            ' 확진자 : ' +
             res.data.jeonnam.totalCase +
-            "(" +
+            '(' +
             res.data.jeonnam.newCase +
-            ")";
+            ')';
           this.data[14].message =
-            "[" +
+            '[' +
             res.data.jeju.countryName +
-            "]" +
-            " 확진자 : " +
+            ']' +
+            ' 확진자 : ' +
             res.data.jeju.totalCase +
-            "(" +
+            '(' +
             res.data.jeju.newCase +
-            ")";
+            ')';
           this.data[15].message =
-            "[" +
+            '[' +
             res.data.chungbuk.countryName +
-            "]" +
-            " 확진자 : " +
+            ']' +
+            ' 확진자 : ' +
             res.data.chungbuk.totalCase +
-            "(" +
+            '(' +
             res.data.chungbuk.newCase +
-            ")";
+            ')';
           this.data[16].message =
-            "[" +
+            '[' +
             res.data.chungnam.countryName +
-            "]" +
-            " 확진자 : " +
+            ']' +
+            ' 확진자 : ' +
             res.data.chungnam.totalCase +
-            "(" +
+            '(' +
             res.data.chungnam.newCase +
-            ")";
+            ')';
 
           this.coroan_detail_info = res.data;
         },
@@ -456,12 +456,12 @@ export default {
       setInterval(() => {
         this.corona();
         this.citycorona();
-        console.log("코로나 데이터 가져온당!");
+        console.log('코로나 데이터 가져온당!');
       }, 3600000);
     },
   },
   created() {
-    console.log("==================");
+    console.log('==================');
     // this.getcoronaInfo();
     this.corona();
     this.citycorona();
@@ -480,7 +480,7 @@ export default {
   background-color: whitesmoke;
   margin: 30px 0;
   border: none;
-  box-shadow: 0px 0px 10px 0.3px var(--light-gray);
+  box-shadow: 0px 0px 10px 0.3px var(--color-gray-light);
   border-radius: 15px;
   padding: 10px;
 }
@@ -496,7 +496,6 @@ export default {
   padding: 0.5rem 0.75rem;
   text-align: left;
 }
-
 
 /* .broadcast > .feather {
     margin-right: 0.5rem;
