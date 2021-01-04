@@ -1,20 +1,13 @@
 <template>
   <div>
     <div>
-      <!-- <span :class="{ completed: !todo.completed }" @click="updateTodoStatus">{{
-        todo.title
-      }}</span> -->
       <span @click="TodoModalViewed">{{ todo.title }}</span>
-      {{ isTodoModalViewed2 }}
       <Detail :todo="todo" v-if="isTodoModalViewed2"> </Detail>
-      <!-- <button @click="deleteTodo"> Delete!</button> -->
     </div>
   </div>
 </template>
 
 <script>
-// import { mapState } from "vuex";
-// import {getTodo} from "../../api/todo.js"
 import Detail from "./Detail";
 export default {
   name: "Todo",
@@ -25,9 +18,7 @@ export default {
     todo: Object,
   },
   data: function () {
-    return {
-      // isTodoModalViewed: false,
-    };
+    return {};
   },
   computed: {
     isTodoModalViewed2() {
@@ -37,12 +28,6 @@ export default {
   methods: {
     TodoModalViewed: function () {
       this.$store.dispatch("isTodoModaViewed");
-    },
-    deleteTodo: function () {
-      this.$store.dispatch("deleteTodo", this.todo);
-    },
-    updateTodoStatus: function () {
-      this.$store.dispatch("updateTodoStatus", this.todo);
     },
   },
 };

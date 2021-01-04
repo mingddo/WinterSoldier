@@ -459,7 +459,8 @@ export default {
   justify-content: flex-end;
 }
 .text-white {
-  color: black;
-  background-color: white;
+  color: white;
+  background-color: black;
+  font: bolder;
 }
 </style>

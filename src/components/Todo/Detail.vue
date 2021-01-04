@@ -104,7 +104,7 @@ export default {
           this.todono,
           (response) => {
             console.log(response);
-            this.$emit("todo-close-modal");
+            this.$store.dispatch("isTodoModaViewed");
           },
           (error) => {
             console.log(error);
