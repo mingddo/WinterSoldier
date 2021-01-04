@@ -25,10 +25,10 @@
         <div class="info__detail">
           <div class="detail__icon">
             <i v-if="sky === '흐림'" class="fas fa-cloud"></i>
+            <i v-else-if="sky === '맑음'" class="fas fa-sun"></i>
             <i v-else-if="sky === '비'" class="fas fa-cloud-showers-heavy"></i>
             <i v-else-if="sky === '구름 많음'" class="fas fa-cloud-sun"></i>
             <i v-else-if="sky === '눈'" class="fas fa-snowflake"></i>
-            <i v-else class="fas fa-sun"></i>
           </div>
           <div class="detail__temp">
             <h3>{{ temp }}°C</h3>
@@ -60,6 +60,7 @@ export default {
   data() {
     return {
       location: '서울', // 기본값: 서울
+      active: true,
     };
   },
   computed: {
