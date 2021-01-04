@@ -8,8 +8,9 @@
       </div>
 
       <div class="weather__select">
-        <label for="city-select">도시를 선택하세요: </label>
+        <label class="select__label" for="city-select">현재 위치: </label>
         <select
+          class="select__option"
           name=""
           id="city-select"
           v-model="location"
@@ -23,7 +24,7 @@
 
       <div class="weather__info">
         <h3 class="info__location">{{ location }}</h3>
-        <span>{{ sky }}</span>
+        <span class="info__sky">{{ sky }}</span>
         <div class="info__detail">
           <div class="detail__icon">
             <i v-if="sky === '흐림'" class="fas fa-cloud"></i>
@@ -35,8 +36,8 @@
           <div class="detail__temp">
             <h3>{{ temp }}°C</h3>
           </div>
+          <span class="info__pop">강수확률: {{ pop }}%</span>
         </div>
-        <span class="info__pop">강수확률: {{ pop }}%</span>
       </div>
     </div>
   </div>

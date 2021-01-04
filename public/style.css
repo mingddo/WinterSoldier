@@ -1,14 +1,14 @@
 :root {
   /* color */
   --color-white: #f8f8f8;
-  --color-white-dark: #f0f0f0;
+  --color-white-dark: #f0f0f0e5;
   --color-green: #107516;
   --color-yellow: #fff59d;
   --color-yellow-light: #ffffcf;
   --color-yellow-dark: #faf756;
   --color-yellow-prime: #efd81d;
   --color-purple: #a014a0;
-  --color-gray-dark: #0e0e0a;
+  --color-gray-dark: #33332f;
   --color-gray-light: #bebebe;
   --color-blue: #3d5afe;
   --color-html: #fd7e14;
@@ -33,13 +33,18 @@
   --font-small: 16px;
   --font-micro: 14px;
 
+  /* Font Weight */
+  --weight-bold: 700;
+  --weight-semi-bold: 500;
+  --weight-regular: 400;
+
   /* Font */
-  --Noto-Sans-KR: 'Noto Sans KR', sans-serif;
-  --Roboto: 'Roboto', sans-serif;
+  --Noto-Sans-KR: "Noto Sans KR", sans-serif;
+  --Roboto: "Roboto", sans-serif;
 
   /* Width */
   --max-width: 1200px;
-  --min-width: 768px;
+  --min-width: 760px;
 
   /* Height */
   --calendar-height: 560px;
@@ -135,28 +140,32 @@ li {
 /* Navbar - Search */
 .navbar__search {
   position: relative;
-  width: 500px;
+  width: 20%;
 }
 
 .search {
   width: 100%;
   padding: 8px 12px;
   margin: 0;
-  border: 1px solid var(--color-gray-light);
+  border: 1px solid var(--color-gray-dark);
   border-radius: 4px;
 }
 
 .search:focus {
-  border: 1px solid var(--color-green);
+  border: 1px solid var(--color-gray-light);
+}
+
+.search:focus search-icon {
+  color: var(--color-gray-light);
 }
 
 .search-icon {
-  color: var(--color-gray-light);
+  color: var(--color-gray-dark);
   position: absolute;
   font-size: var(--font-medium);
   top: 50%;
   right: 2%;
-  margin-top: -10px;
+  margin-top: -12px;
 }
 
 .navbar__icons {
@@ -164,9 +173,35 @@ li {
   align-items: center;
 }
 
-/* .log__btn {
+.log__btn {
+  border: 1px solid transparent;
+  border-radius: 4px;
+  padding: 4px 8px;
+  color: var(--color-gray-dark);
+  background-color: var(--color-white-dark);
+  margin-left: 8px;
+  font-size: var(--font-small);
+  font-weight: var(--weight-semi-bold);
+}
 
-} */
+.log__btn:hover,
+.log__btn:focus {
+  outline: none;
+  cursor: pointer;
+  border: 1px solid transparent;
+  background-color: var(--color-vue);
+  color: var(--color-white-dark);
+}
+
+.log__btn a {
+  font-weight: var(--weight-semi-bold);
+  color: var(--color-gray-dark);
+}
+
+.log__btn:hover a {
+  font-weight: var(--weight-semi-bold);
+  color: var(--color-white-dark);
+}
 
 /* mainFrame */
 .calendar_frame {
@@ -254,7 +289,7 @@ li {
 
 .home .right_component .contentsFrame {
   width: 100%;
-  height: 350px;
+  height: auto;
   border-radius: 15px;
   box-shadow: 0px 0px 10px 0.3px var(--color-gray-light);
   border: none;
@@ -301,7 +336,7 @@ li {
 }
 
 .toggle_btn_space .toggle__fill::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -563,5 +598,44 @@ footer .icons {
   font-size: calc(var(--font-large) * 2);
 }
 
-footer .icons i {
+/* Ipad 크기 미디어 쿼리 작성. */
+@media screen and (max-width: 768px) {
+  :root {
+    /* Font Size */
+    --font-large: 24px;
+    --font-medium: 18px;
+    --font-regular: 16px;
+    --font-small: 14px;
+    --font-micro: 12px;
+
+    /* Font Weight */
+    --weight-bold: 700;
+    --weight-semi-bold: 500;
+    --weight-regular: 400;
+
+    --calendar-height: 400px;
+
+    --max-width: 768px;
+    --min-width: 560px;
+
+    /* ChatBot Image */
+    --chat-img-size: 30px;
+  }
+
+  #app {
+    max-width: var(--max-width);
+    min-width: var(--min-width);
+    margin: 0 auto;
+    padding: 18px 40px;
+  }
+
+  .search-icon {
+    top: 50%;
+    right: 5%;
+    margin-top: -8px;
+  }
+
+  .search:focus .search-icon {
+    color: var(--color-gray-light);
+  }
 }

@@ -38,14 +38,14 @@
         </div>
         <div v-else>
           <button class="log__btn">
-            <router-link to="/login">Login</router-link>
+            <router-link to="/login">로그인</router-link>
           </button>
         </div>
       </div>
 
       <div v-if="!isLogin">
         <button class="log__btn">
-          <router-link to="/signup">Signup</router-link>
+          <router-link to="/signup">회원가입</router-link>
         </button>
       </div>
 

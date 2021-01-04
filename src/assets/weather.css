@@ -23,34 +23,46 @@
   padding: 10px;
 }
 
+.weather__date {
+  background-color: var(--color-white-dark);
+  border-radius: 12px;
+  padding: 8px 32px;
+  margin-bottom: 8px;
+}
+
 .weather .weather__date .date {
-  font-family: var(--Roboto);
-  font-size: large;
-  font-weight: 500;
+  font-family: var(--Noto-Sans-KR);
+  font-size: var(--font-regular);
+  font-weight: var(--weight-semi-bold);
 }
 
 .weather .weather__select {
-  display: flex;
-  align-items: center;
-  padding: var(--padding-m);
+  padding: 8px 0;
 }
 
 .weather .weather__info {
   width: 50%;
   text-align: center;
-  padding: var(--padding-l);
+  padding: 8px 0;
   margin: var(--margin-h) 0;
   border-radius: 20px;
-  background-color: var(--white);
+  background-color: var(--color-white-dark);
   color: var(--color-black);
 }
 
 .weather .weather__info .info__location {
-  padding: var(--padding-l);
+  font-weight: var(--weight-semi-bold);
+  font-size: var(--font-medium);
+  margin-bottom: 8px;
+}
+
+.info__sky {
+  font-size: var(--font-micro);
+  font-weight: var(--weight-semi-bold);
 }
 
 .weather .weather__info .info__detail {
-  padding: var(--padding-l);
+  padding: 8px 0;
 }
 
 .weather .weather__info .info__pop {
@@ -58,11 +70,17 @@
 }
 
 .weather .weather__info .detail__icon {
-  padding: var(--padding-l);
+  padding: 8px 0;
 }
 
 .weather .weather__info .detail__icon i {
-  font-size: var(--font-macro);
+  font-size: var(--font-large);
+  transition: all 300ms ease-in-out;
+}
+
+.detail__icon i:hover,
+.detail_icon {
+  transform: scale(1.3);
 }
 
 /* icon 색상 */
@@ -84,4 +102,51 @@
 
 .fa-sun {
   color: var(--color-html);
+}
+
+.select__label {
+  font-size: var(--font-small);
+  font-weight: var(--weight-regular);
+  font-family: var(--Roboto);
+  margin-right: 4px;
+}
+
+select {
+  appearance: none;
+  font-family: "Noto Sansf KR", sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+
+  color: var(--color-gray-dark);
+  background-color: #fff;
+
+  padding: 2px 8px;
+  margin: 0;
+
+  border: 1px solid #aaa;
+  border-radius: 0.5em;
+  box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);
+}
+
+select:hover {
+  border-color: #888;
+}
+
+select:focus {
+  border-color: #aaa;
+  box-shadow: 0 0 1px 3px rgba(59, 153, 252, 0.7);
+  box-shadow: 0 0 0 3px -moz-mac-focusring;
+  color: #222;
+  outline: none;
+}
+
+select:disabled {
+  opacity: 0.5;
+}
+
+@media screen and (max-width: 768px) {
+  .weather__date {
+    padding: 8px 24px;
+  }
 }
