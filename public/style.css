@@ -281,7 +281,7 @@ li {
   margin: auto;
 }
 
-.home .right_component .frame .todayTodo .todayTodoList .todauTodoItem {
+.home .right_component .frame .todayTodo .todayTodoList .todayTodoItem {
   width: 100%;
   border: solid 1px var(--color-gray-light);
   border-radius: 15px;
