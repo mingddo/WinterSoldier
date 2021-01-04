@@ -2,7 +2,9 @@
   <div class="weather__frame">
     <div class="weather">
       <div class="weather__date">
-        <span> {{ today.year }}년 {{ today.month }}월 {{ today.date }}일 </span>
+        <span class="date">
+          {{ today.year }}년 {{ today.month }}월 {{ today.date }}일
+        </span>
       </div>
 
       <div class="weather__select">
@@ -28,7 +30,7 @@
             <i v-else-if="sky === '비'" class="fas fa-cloud-showers-heavy"></i>
             <i v-else-if="sky === '구름 많음'" class="fas fa-cloud-sun"></i>
             <i v-else-if="sky === '눈'" class="fas fa-snowflake"></i>
-            <i v-else class="fas fa-sun"></i>
+            <i v-else-if="sky === '맑음'" class="fas fa-sun"></i>
           </div>
           <div class="detail__temp">
             <h3>{{ temp }}°C</h3>
@@ -36,30 +38,19 @@
         </div>
         <span class="info__pop">강수확률: {{ pop }}%</span>
       </div>
-      <div class="weather__recommend">
-        <!-- <i class="fas fa-mitten"></i> -->
-      </div>
     </div>
   </div>
-  <!-- 
-    <i class="fas fa-tshirt"></i> 반팔
-
-    <i class="fas fa-cloud"></i> 흐림
-    <i class="fas fa-cloud-showers-heavy"></i> 비
-    <i class="fas fa-cloud-sun"></i> 구름 많음
-    <i class="fas fa-snowflake"></i> 눈
-    <i class="fas fa-sun"></i> 맑음 -->
 </template>
 
 <script>
 import { mapState } from 'vuex';
-// import '@/assets/weather.css';
 
 export default {
   name: 'Weather',
   data() {
     return {
       location: '서울', // 기본값: 서울
+      active: true,
     };
   },
   computed: {

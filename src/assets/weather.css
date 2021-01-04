@@ -1,57 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Roboto:wght@300;400;500;700&display=swap');
-
 /* 속성 작성 순서 */
 /* 0. width, heigth 등 */
 /* 1. display, position 등 위치나 보여짐에 관한 것 */
 /* 2. Padding, Margin, Border 등 박스에 관한 것 */
 /* 3. Color에 관한 것 */
-
-:root {
-  /* color */
-  --color-white: #f8f8f8;
-  --color-white-dark: #f0f0f0;
-  --color-green: #107516;
-  --color-yellow: #fff59d;
-  --color-yellow-light: #ffffcf;
-  --color-yellow-dark: #faf756;
-  --color-yellow-prime: #efd81d;
-  --color-purple: #a014a0;
-  --color-gray-dark: #0e0e0a;
-  --color-gray-light: #bebebe;
-  --color-blue: #3d5afe;
-  --color-html: #fd7e14;
-  --color-vue: #41b883;
-  --color-react: #61dafb;
-  --color-css: #29a9df;
-  --color-js: #efd81d;
-
-  /* Size */
-  --padding: 12px;
-  --padding-side: 40px;
-  --padding-updown: 12px;
-  --padding-one: 44px;
-  --margin: 12px;
-  --margin-one: 44px;
-
-  /* Font Size */
-  --font-large: 40px;
-  --font-medium: 24px;
-  --font-regular: 18px;
-  --font-small: 16px;
-  --font-micro: 14px;
-
-  /* Font */
-  --Noto-Sans-KR: 'Noto Sans KR', sans-serif;
-  --Roboto: 'Roboto', sans-serif;
-
-  /* Width */
-  --max-width: 1200px;
-  --min-width: 768px;
-
-  /* Height */
-  --calendar-height: 560px;
-  --info-height: 50px;
-}
 
 .weather__frame {
   display: flex;
@@ -66,14 +17,15 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: var(--yellow-prime);
+  background-color: var(--color-yellow-prime);
   opacity: 0.75;
-  color: var(--black);
+  color: var(--color-black);
+  padding: 10px;
 }
 
-.weather .weather__date {
-  font-family: var(--openSans);
-  font-size: var(--h3);
+.weather .weather__date .date {
+  font-family: var(--Roboto);
+  font-size: large;
   font-weight: 500;
 }
 
@@ -90,7 +42,7 @@
   margin: var(--margin-h) 0;
   border-radius: 20px;
   background-color: var(--white);
-  color: var(--black-dark);
+  color: var(--color-black);
 }
 
 .weather .weather__info .info__location {
@@ -115,21 +67,21 @@
 
 /* icon 색상 */
 .fa-cloud {
-  color: var(--gray-dark);
+  color: var(--color-gray-dark);
 }
 
 .fa-cloud-showers-heavy {
-  color: var(--gray-dark);
+  color: var(--color-gray-dark);
 }
 
 .fa-cloud-sun {
-  color: var(--css);
+  color: var(--color-css);
 }
 
 .fa-snowflake {
-  color: var(--gray-light);
+  color: var(--color-gray-light);
 }
 
 .fa-sun {
-  color: var(--html);
+  color: var(--color-html);
 }

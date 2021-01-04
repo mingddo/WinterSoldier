@@ -32,7 +32,7 @@
 
 <script>
 import { usersignup } from '@/api/accounts.js';
-import '@/assets/accounts.css';
+// import '@/assets/accounts.css';
 
 export default {
   name: 'Signup',
@@ -77,4 +77,4 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped src="@/assets/accounts.css"></style>
