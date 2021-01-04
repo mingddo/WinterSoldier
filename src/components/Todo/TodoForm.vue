@@ -442,7 +442,7 @@ export default {
     this.form.alarm_year = this.propsyear;
     this.form.alarm_month = this.propsmonth;
     this.form.alarm_date = this.propsday;
-}
+  },
   computed: {
     ...mapState({
       today_alarm_todos: (state) => state.todoStore.today_alarm_todos,
