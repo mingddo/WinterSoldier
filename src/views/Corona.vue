@@ -274,7 +274,6 @@ export default {
     corona() {
       getInfo(
         (res) => {
-          console.log("코로나 결과", res.data);
           this.corona_info = res.data;
         },
         (err) => {
@@ -285,7 +284,6 @@ export default {
     citycorona() {
       getCityInfo(
         (res) => {
-          console.log("코로나 결과", res.data);
           this.data[0].message =
             "[" +
             res.data.seoul.countryName +
@@ -456,7 +454,6 @@ export default {
       setInterval(() => {
         this.corona();
         this.citycorona();
-        console.log("코로나 데이터 가져온당!");
       }, 3600000);
     },
   },
@@ -470,10 +467,6 @@ export default {
 </script>
 
 <style scoped>
-.div {
-  text-align: left;
-  width: 100%;
-}
 .coronaframe {
   text-align: left;
   width: 100%;
@@ -496,7 +489,6 @@ export default {
   padding: 0.5rem 0.75rem;
   text-align: left;
 }
-
 
 /* .broadcast > .feather {
     margin-right: 0.5rem;

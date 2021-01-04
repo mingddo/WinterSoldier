@@ -70,7 +70,7 @@ const store = new Vuex.Store({
   },
   plugins: [
     createPersistedState({
-      paths: ['weather', 'userStore'], // 모듈에서 사용할 경우, 해당 모듈을 path에 추가.
+      paths: ['weather', 'userStore', 'todoStore'], // 모듈에서 사용할 경우, 해당 모듈을 path에 추가.
     }),
   ],
 });
