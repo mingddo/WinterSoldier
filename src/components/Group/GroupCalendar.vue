@@ -157,12 +157,6 @@ export default {
     this.defaultYearMonth();
     this.gettogglestate();
   },
-  // watch: {
-  //   calendarToggle() {
-  //     console.log("와치들어온다아아아!");
-  //     this.calendarChange();
-  //   },
-  // },
   methods: {
     calendarChange() {
       this.$store.commit("todoStore/changeCalendar");
@@ -199,7 +193,6 @@ export default {
         this.weekIdx = 0;
       }
 
-      console.log(this.goToBack);
       const [
         monthFirstDay,
         monthLastDate,
@@ -212,13 +205,8 @@ export default {
       );
 
       this.MaximumWeek = this.dates.length;
-      console.log(this.dates);
       if (this.goToBack) {
         this.weekIdx = this.MaximumWeek - 1;
-        console.log(
-          "🚀 ~ file: Calendar.vue ~ line 176 ~ changeWeekly ~ this.MaximumWeek",
-          this.MaximumWeek
-        );
       }
       this.weekCalendar = this.dates[this.weekIdx];
       this.goToBack = false;
@@ -229,17 +217,14 @@ export default {
           if (this.today === daily) {
             this.weekCalendar = this.dates[weekIdx];
             this.weekIdx = weekIdx;
-            console.log("지금주", this.weekIdx);
           }
         }
       }
       this.MaximumWeek = this.dates.length;
-      console.log("몇개까지임?", this.MaximumWeek);
     },
     changeYearForm() {
       this.inputhTitle = !this.inputhTitle;
       this.year = this.changedYear;
-      console.log("몇년도", this.changedYear);
       const [
         monthFirstDay,
         monthLastDate,
@@ -320,8 +305,8 @@ export default {
         if (day === 1) {
           // 1일이 어느 요일인지에 따라 테이블에 그리기 위한 지난 셀의 날짜들을 구해야함
           for (let j = 0; j < monthFirstDay; j += 1) {
-            console.log("prevDay", prevDay);
             weekOfDays.push("");
+            console.log(prevDay)
             // weekOfDays.push(prevDay); , 달력상에 지난 날짜 표현 x
             prevDay += 1;
           }
@@ -334,8 +319,6 @@ export default {
         }
         day += 1;
       }
-      const len = weekOfDays.length;
-      console.log("길이?", len);
       if (weekOfDays.length > 0) dates.push(weekOfDays); // 남은 날짜 추가
       this.nextMonthStart = weekOfDays[0]; // 이번 달 마지막 주에서 제일 작은 날짜
       return dates;

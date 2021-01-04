@@ -312,7 +312,7 @@
           >
             <UserTodo v-for="(todo, idx) in userTodo" :todo=
             
-            todo" :key="idx" />
+            "todo" :key="idx" />
           </div>
           <div class="profile-todobox-tab-content" v-else>
             <img src="https://img.icons8.com/ios-filled/50/000000/manual.png" />
@@ -398,7 +398,6 @@ export default {
         findUser(
           this.findFriend,
           (res) => {
-            console.log('찾았다!', res);
             let data_list = [];
             for (const data of res.data) {
               data_list.push(data.username);
@@ -465,8 +464,7 @@ export default {
     follow(user) {
       addfollow(
         user,
-        (res) => {
-          console.log('추가 성공시', res);
+        () => {
           userprofile(
             this.$route.query.name,
             (res) => {
@@ -488,8 +486,7 @@ export default {
     unfollow() {
       removefollow(
         this.userinfo.username,
-        (res) => {
-          console.log('취소 성공시', res);
+        () => {
           this.isFollowing = false;
           userprofile(
             this.$route.query.name,

@@ -182,7 +182,6 @@ export default {
     scroll() {
       const obj = document.getElementById('chatbox');
       obj.scrollTop = obj.scrollHeight;
-      console.log('qusgoTek,,');
     },
     temp () {
       const chatting = {
@@ -202,7 +201,6 @@ export default {
         chatanswer(
           this.chatText,
           (res) => {
-            console.log('대답은', res.data.anstext);
             this.botText = res.data.anstext;
             this.nowtag = res.data.tag;
             this.getResponse();
@@ -217,11 +215,8 @@ export default {
   watch: {
     box: function() {
       const obj = document.getElementById('chatbox');
-      console.log('길이1!', obj.scrollHeight, obj.scrollTop);
       this.height = obj.scrollHeight;
       obj.scrollTop = this.height + 116;
-      // console.log(obj.scrollTop)
-      console.log('qusgoTek,,');
     },
   },
   computed: {
