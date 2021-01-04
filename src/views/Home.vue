@@ -4,6 +4,7 @@
       <!-- <div class="left_component_weather"> -->
       <Weather class="left_componet_weather" />
       <Corona />
+      <Realtime />
       <!-- </div> -->
       <Leftnavi class="left_component_button" />
     </section>
@@ -23,6 +24,7 @@ import Weather from "./Weather.vue";
 import Leftnavi from "@/components/common/Leftnavi.vue";
 import Corona from "./Corona.vue";
 import News from "./News.vue";
+import Realtime from "./Realtime.vue";
 
 export default {
   name: "Home",
@@ -32,6 +34,7 @@ export default {
     Leftnavi,
     Corona,
     News,
+    Realtime,
   },
 };
 </script>
