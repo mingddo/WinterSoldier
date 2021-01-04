@@ -2,73 +2,87 @@
   <div>
     <!-- <input @keypress.enter="createTodo" v-model="todoTitle" type="text">
       <button @click="createTodo">Add</button> -->
-    <div class="modal">
-      <div class="overlay" @click="$emit('close-modal')"></div>
-      <div class="modal-card">
+    <div class="modify-modal">
+      <div class="modal-card container">
         <h2>{{ todo.id }}번 글입니다.</h2>
 
         <form @submit="OnSubmit">
           <h4>
             제목을 입력하세요 :
-            <input type="text" v-model="temp_todo.title" placeholder="title" />
+            <input
+              type="text"
+              class="text-white"
+              v-model="temp_todo.title"
+              placeholder="title"
+            />
           </h4>
           <h4>
-            계획 시간
+            계획 시간 : <br />
             <select name="schedule_year" v-model="temp_todo.schedule_year">
               <option v-for="(year, id) in schedule_year_list" :key="id">
                 {{ year }}
-              </option>
-            </select>
+              </option></select
+            >년
             <select name="schedule_month" v-model="temp_todo.schedule_month">
               <option v-for="(month, id) in schedule_month_list" :key="id">
                 {{ month }}
-              </option>
-            </select>
+              </option></select
+            >월
             <select name="schedule_date" v-model="temp_todo.schedule_date">
               <option v-for="(date, id) in schedule_date_list" :key="id">
                 {{ date }}
-              </option>
-            </select>
+              </option></select
+            >일
             <select name="schedule_hour" v-model="temp_todo.schedule_hour">
               <option v-for="(hour, id) in schedule_hour_list" :key="id">
                 {{ hour }}
               </option></select
-            ><select name="schedule_min" v-model="temp_todo.schedule_min">
+            >시간
+            <select name="schedule_min" v-model="temp_todo.schedule_min">
               <option v-for="(min, id) in schedule_min_list" :key="id">
                 {{ min }}
-              </option>
-            </select>
+              </option></select
+            >분
           </h4>
           <br />
           <h4>
-            알람 시간
+            알람 시간 : <br />
             <select name="alarm_year" v-model="temp_todo.alarm_year">
               <option v-for="(year, id) in alarm_year_list" :key="id">
                 {{ year }}
-              </option>
-            </select>
+              </option></select
+            >년
             <select name="alarm_month" v-model="temp_todo.alarm_month">
               <option v-for="(month, id) in alarm_month_list" :key="id">
                 {{ month }}
-              </option>
-            </select>
+              </option></select
+            >월
             <select name="alarm_date" v-model="temp_todo.alarm_date">
               <option v-for="(date, id) in alarm_date_list" :key="id">
                 {{ date }}
-              </option>
-            </select>
+              </option></select
+            >일
             <select name="alarm_hour" v-model="temp_todo.alarm_hour">
               <option v-for="(hour, id) in alarm_hour_list" :key="id">
                 {{ hour }}
               </option></select
-            ><select name="alarm_min" v-model="temp_todo.alarm_min">
+            >시간
+            <select name="alarm_min" v-model="temp_todo.alarm_min">
               <option v-for="(min, id) in alarm_min_list" :key="id">
                 {{ min }}
-              </option>
-            </select>
+              </option></select
+            >분
           </h4>
           <button type="submit">제출하기</button>
         </form>
+        <img
+          src="../../assets/close.png"
+          @click="$emit('modify-close-modal')"
+          alt=""
+          width="50px"
+          height="30px"
+          class="overlay-button"
+        />
       </div>
     </div>
   </div>
@@ -405,7 +419,7 @@ export default {
         this.temp_todo,
         () => {
           console.log(this.temp_todo);
-          this.$emit("close-modal");
+          this.$emit("modify-close-modal");
         },
         (error) => {
           console.log(error);
@@ -420,8 +434,7 @@ export default {
 </script>
 
 <style>
-.modal,
-.overlay {
+.modify-modal {
   width: 75%;
   height: 75%;
   position: fixed;
@@ -429,19 +442,24 @@ export default {
   top: 0;
   color: white;
 }
-.overlay {
-  opacity: 0.5;
-  background-color: black;
-}
 .modal-card {
   position: relative;
-  max-width: 80%;
-  margin: auto;
+  max-width: 400px;
+  height: 10px;
+  margin: 30px;
   margin-top: 30px;
   padding: 20px;
-  background-color: rgb(240, 240, 175);
-  min-height: 500px;
+  background-color: black;
   z-index: 10;
   opacity: 1;
+  color: white;
+}
+.overlay-button {
+  direction: column;
+  justify-content: flex-end;
+}
+.text-white {
+  color: black;
+  background-color: white;
 }
 </style>
