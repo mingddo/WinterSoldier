@@ -13,13 +13,13 @@
 </template>
 
 <script>
-import { realtimeList } from "@/api/news.js";
+import { realtimeList } from '@/api/news.js';
 
 export default {
-  name: "News",
+  name: 'News',
   data() {
     return {
-      realtimenews: "",
+      realtimenews: '',
       number: 0,
       data: [
         {
@@ -224,6 +224,16 @@ export default {
 </script>
 
 <style scoped>
+.realtimeframe {
+  text-align: left;
+  width: 100%;
+  background-color: whitesmoke;
+  margin: 5px 0;
+  border: none;
+  box-shadow: 0px 0px 10px 0.3px var(--color-gray-light);
+  border-radius: 15px;
+  padding: 10px;
+}
 .broadcast {
   width: 200px;
   display: flex;
