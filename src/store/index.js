@@ -6,11 +6,14 @@ import createPersistedState from 'vuex-persistedstate';
 Vue.use(Vuex);
 Vue.use(AxiosPlugin);
 
+import todoStore from './modules/todoStore';
 import userStore from './modules/userStore';
 import weatherStore from './modules/weatherStore';
 
+
 const store = new Vuex.Store({
   modules: {
+    todoStore,
     userStore,
     weatherStore,
   },
@@ -23,17 +26,17 @@ const store = new Vuex.Store({
   },
   getters: {},
   mutations: {
-    CREATE_TODO: function(state, todoItem) {
+    CREATE_TODO: function (state, todoItem) {
       // console.log('CREATE_TODO CALLS')
       // console.log(state)
       // console.log(todoItem)
       state.todos.push(todoItem);
     },
-    DELETE_TODO: function(state, todoItem) {
+    DELETE_TODO: function (state, todoItem) {
       const Index = state.todos.indexOf(todoItem);
       state.todos.splice(Index, 1);
     },
-    UPDATE_TODO_STATUS: function(state, todoItem) {
+    UPDATE_TODO_STATUS: function (state, todoItem) {
       state.todos = state.todos.map((todo) => {
         if (todo === todoItem) {
           return {
@@ -46,15 +49,15 @@ const store = new Vuex.Store({
     },
   },
   actions: {
-    create_todo: function(context, todoItem) {
+    create_todo: function (context, todoItem) {
       // console.log(context)
       // console.log(todoItem)
       context.commit('CREATE_TODO', todoItem);
     },
-    deleteTodo: function({ commit }, todoItem) {
+    deleteTodo: function ({ commit }, todoItem) {
       commit('DELETE_TODO', todoItem);
     },
-    updateTodoStatus: function({ commit }, todoItem) {
+    updateTodoStatus: function ({ commit }, todoItem) {
       commit('UPDATE_TODO_STATUS', todoItem);
     },
   },
