@@ -2,7 +2,7 @@
   <div>
     <div class="tf-dailytodoList">
       <div class="td-dailytodoItem">
-        <button @click="isModalViewed = true">일정 작성하기</button>
+        <div @click="isModalViewed = true">+</div>
         <TodoForm
           :propsyear="year"
           :propsmonth="p_month"
@@ -120,13 +120,15 @@ export default {
 <style scoped>
 .monthcalendartodoItem {
   width: 100%;
-  margin: 10px auto;
-  padding: 20px;
+  padding: 10px;
   color: rgb(255, 255, 255);
   border-radius: 5px;
   box-shadow: 0px 0px 10px 0.3px var(--light-gray);
   border: none;
   background-color: rgb(104, 83, 99);
+}
+.monthcalendartodoItem:hover {
+  background-color: rgb(76, 132, 179);
 }
 
 .completed {
