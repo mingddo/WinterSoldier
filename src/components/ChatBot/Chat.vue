@@ -51,14 +51,15 @@
       <div class="chatbody" id="chatbox">
         <div v-for="(chat, idx) in box" :key="idx">
           <div class="eachchatbox-position">
-            <span>
+            <div class="eachchatbox__userInfo">
               <img
+                class="chat__img"
                 src="https://img.icons8.com/bubbles/50/000000/user-male.png"
               />
-            </span>
-            <span>
-              {{ myinfo.username }}
-            </span>
+              <span>
+                {{ (myinfo && myinfo.username) || 'Anonymous' }}
+              </span>
+            </div>
             <div class="userchatbox-position">
               <span class="userchatbox">
                 {{ chat.userchat }}
@@ -66,11 +67,11 @@
             </div>
           </div>
           <div class="eachBotbox-position">
-            <div class="tmp">
-              <span
-                ><img
-                  src="https://img.icons8.com/bubbles/50/000000/broken-robot.png"
-              /></span>
+            <div class="eachBotbox__userInfo">
+              <img
+                class="chat__img"
+                src="https://img.icons8.com/bubbles/50/000000/broken-robot.png"
+              />
               <span>바봇(BOT)</span>
             </div>
 
@@ -245,7 +246,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .chatbot-container {
   width: 50%;
 }
@@ -363,8 +364,20 @@ export default {
     transform: rotate(360deg);
   }
 }
-.tmp {
+.eachBotbox__userInfo {
   display: flex;
   justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 4px;
+}
+.eachchatbox__userInfo {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 4px;
+}
+.chat__img {
+  width: var(--chat-img-size);
+  height: var(--chat-img-size);
 }
 </style>

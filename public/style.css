@@ -44,6 +44,9 @@
   /* Height */
   --calendar-height: 560px;
   --info-height: 50px;
+
+  /* ChatBot Image */
+  --chat-img-size: 30px;
 }
 
 /* 전역변수 설정 */
