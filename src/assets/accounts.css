@@ -1,40 +1,4 @@
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-:root {
-  /* color */
-  --white-color: #f8f8f8;
-  --white-dark: #f0f0f0;
-  --green-color: #107516;
-  --yellow-color: #fff59d;
-  --yellow-light: #ffffcf;
-  --yellow-dark: #faf756;
-  --yellow-prime: #efd81d;
-  align-items: center;
-  --gray-dark: #0e0e0a;
-  --light-gray: #bebebe;
-  /* Size */
-  --padding: 12px;
-  --padding-side: 40px;
-  --padding-updown: 12px;
-  --margin: 12px;
-  /* Font Size */
-  --font-micro: 0.7rem;
-  --font-small: 0.9rem;
-  --font-medium: 1.1rem;
-  --font-large: 1.3rem;
-
-  /* Font */
-  --Nanum-Ghothic: "Nanum Gothic", sans-serif;
-  --Noto-Sans-KR: "Noto Sans KR", sans-serif;
-  --Roboto: "Roboto", sans-serif;
-}
-
 .loginbox {
-  font-style: var(--Nanum-Ghothic);
   width: 40%;
   margin: calc(var(--margin) * 10) auto;
   padding: calc(var(--padding) * 4);
@@ -77,7 +41,7 @@
 }
 
 .loginbox .login-form > div > input {
-  box-shadow: 0px 0px 10px 0.3px var(--light-gray);
+  box-shadow: 0px 0px 10px 0.3px var(--color-gray-light);
   border: none;
 }
 
@@ -92,7 +56,7 @@
 }
 
 .loginbox .login-form > button:hover {
-  box-shadow: 0px 0px 10px 0.3px var(--light-gray);
+  box-shadow: 0px 0px 10px 0.3px var(--color-gray-light);
   cursor: pointer;
 }
 
@@ -141,7 +105,7 @@
 }
 
 .signupbox .signup-form > div > input {
-  box-shadow: 0px 0px 10px 0.3px var(--light-gray);
+  box-shadow: 0px 0px 10px 0.3px var(--color-gray-light);
   border: none;
 }
 
@@ -156,7 +120,7 @@
 }
 
 .signupbox .signup-form > button:hover {
-  box-shadow: 0px 0px 10px 0.3px var(--light-gray);
+  box-shadow: 0px 0px 10px 0.3px var(--color-gray-light);
   cursor: pointer;
 }
 
@@ -179,7 +143,7 @@
   padding: 10px;
 }
 .profile-img-box {
-  width:50%;
+  width: 50%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -195,8 +159,8 @@
   border: 1px solid;
   width: 100%;
 }
-.profile-content-social-box{
-  display:flex;
+.profile-content-social-box {
+  display: flex;
   align-items: center;
 }
 .profile-content-follow-box {
@@ -207,7 +171,7 @@
 .profile-content-eachbox {
   width: 30%;
   margin: 10px;
-  height:100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -216,7 +180,7 @@
   margin: 10px;
 }
 .disappear {
-  display:none;
+  display: none;
 }
 .profile-follow-modal {
   position: fixed;
@@ -231,7 +195,7 @@
 }
 .profile-follow-modal-title {
   width: 100%;
-  position : relative;
+  position: relative;
   top: 0;
   display: flex;
   justify-content: space-between;
@@ -280,17 +244,17 @@ ul.profile-todobox-tab {
 ul.profile-todobox-tab li {
   width: 100%;
   background: none;
-	color: #222;
-	display: inline-block;
-	padding: 10px 15px;
-	cursor: pointer;
+  color: #222;
+  display: inline-block;
+  padding: 10px 15px;
+  cursor: pointer;
 }
-ul.profile-todobox-tab li.current{
-	background: #ededed;
-	color: #222;
+ul.profile-todobox-tab li.current {
+  background: #ededed;
+  color: #222;
 }
 .profile-todobox-content {
-  width:100%;
+  width: 100%;
 }
 .profile-todobox-tab-content {
   background: #ededed;
@@ -316,11 +280,9 @@ ul.profile-todobox-tab li.current{
 }
 .profile-follow-input-autocompleted {
   width: 100%;
-  margin:8px 0;
+  margin: 8px 0;
   border: 1px solid;
   z-index: 2;
-  /* position: absolute; */
-  /* top:19%; */
   background-color: white;
 }
 .profile-follow-input-autocompleted > div {
