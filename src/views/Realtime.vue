@@ -1,11 +1,10 @@
 <template>
   <div class="realtimeframe">
-    <h2>실시간 검색어</h2>
     <div class="broadcast">
       <carousel
         :data="data"
         :controls="false"
-        :indicators="True"
+        :indicators="true"
         :interval="1000"
         direction="up"
       ></carousel>
@@ -77,8 +76,8 @@ export default {
 };
 </script>
 
-<style>
-.realtimeframe {
+<style scoped>
+/* .realtimeframe {
   text-align: left;
   width: 100%;
   background-color: whitesmoke;
@@ -92,20 +91,20 @@ export default {
   width: 200px;
   height: 80px;
   border: none;
-  /* box-shadow: 0px 0px 10px 0.3px var(--light-gray); */
+  box-shadow: 0px 0px 10px 0.3px var(--light-gray);
   border-radius: 0.25rem;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 0.5rem 0.75rem;
   text-align: left;
-}
+} */
 
 /* .broadcast > .feather {
     margin-right: 0.5rem;
   } */
-
+/* 
 .broadcast > .carousel {
   flex: 1;
-}
+} */
 </style>
