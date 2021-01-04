@@ -1,7 +1,6 @@
 <template>
   <div>
     <div class="detail-modal">
-      <button @click="TodoModalViewed" class="overlay-button">닫기</button>
       <div class="modal-card container">
         <h3>할 일 제목 : {{ todo.title }}</h3>
         <table class="todo-table">
@@ -95,7 +94,7 @@ export default {
   },
 
   methods: {
-    ModifyModalViewed: function () {
+    ModifyModalViewed() {
       this.isModifyModalViewed = true;
     },
     deleteTodo() {
@@ -121,17 +120,6 @@ export default {
 </script>
 
 <style>
-.detail-modal {
-  position: relative;
-  max-width: 400px;
-  height: 10px;
-  margin: 30px;
-  margin-top: 30px;
-  padding: 20px;
-  background-color: black;
-  z-index: 10;
-  opacity: 1;
-}
 .modal-card {
   position: relative;
   max-width: 80%;
