@@ -73,7 +73,7 @@ export default {
   },
   methods: {
     getWeatherData(loc) {
-      console.log(this.$store);
+      // console.log(this.$store);
       this.$store.dispatch('getWeatherData', loc);
     },
   },
