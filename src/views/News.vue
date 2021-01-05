@@ -14,6 +14,7 @@
         onblur="this.placeholder='검색'"
       />
     </form>
+
     <!-- <div>
       <div>
         <div class="news__title" v-for="(n, id) in news" :key="id">
@@ -76,6 +77,7 @@
     </div>
     <div id="app">
       <carousel></carousel>
+
     </div>
   </div>
 </template>
@@ -145,7 +147,6 @@ export default {
   height: 100%;
   padding: 12px 24px;
 }
-
 .news__search {
   border: 3px solid var(--color-yellow-prime);
   border-radius: 0px;
@@ -153,15 +154,15 @@ export default {
   padding: 4px 8px;
   font-size: var(--font-small);
 }
-
 .news__search:focus {
   border: 3px solid var(--color-yellow-prime);
 }
-
 .news__title {
   padding: 4px 0;
 }
-
+.news__item__title:hover {
+  font-weight: bold;
+}
 .news__section {
   font-size: var(--font-medium);
 }

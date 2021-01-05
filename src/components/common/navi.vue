@@ -3,14 +3,11 @@
     <!-- 임시로고 클릭시 홈페이지로! -->
     <div class="navbar__logo">
       <router-link :to="{ name: 'Home' }">
-        <img
-          class="logo__img"
-          src="https://img.icons8.com/dusk/64/000000/warface-logo.png"
-        />
+        <img class="logo__img" src="@/assets/logo.png" />
       </router-link>
     </div>
 
-    <div class="navbar__search">
+    <!-- <div class="navbar__search">
       <input
         type="text"
         class="search"
@@ -19,22 +16,18 @@
         onblur="this.placeholder='검색'"
       />
       <i class="fas fa-search search-icon"></i>
-    </div>
+    </div> -->
 
     <div class="navbar__icons">
-      <!-- <span v-if="isLogin">
-        안녕하세요 {{ (myinfo && myinfo.username) || 'Anonymous' }} 님
-      </span> -->
+      <span v-if="isLogin">
+        안녕하세요 {{ (myinfo && myinfo.username) || "Anonymous" }} 님
+      </span>
 
-      <!-- <span v-else>
-        로그인이 필요합니다.
-      </span> -->
+      <span v-else> 로그인이 필요합니다. </span>
 
       <div>
         <div v-if="isLogin">
-          <button class="log__btn" @click="onLogout">
-            로그아웃
-          </button>
+          <button class="log__btn" @click="onLogout">로그아웃</button>
         </div>
         <div v-else>
           <button class="log__btn">
@@ -63,9 +56,9 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState } from "vuex";
 export default {
-  name: 'Navi',
+  name: "Navi",
   computed: {
     ...mapState({
       myinfo: (state) => state.userStore.userInfo,
@@ -74,8 +67,8 @@ export default {
   },
   methods: {
     onLogout() {
-      this.$store.dispatch('userStore/LOGOUT');
-      this.$router.push({ name: 'Home' });
+      this.$store.dispatch("userStore/LOGOUT");
+      this.$router.push({ name: "Home" });
     },
   },
 };

@@ -36,8 +36,7 @@ export default {
     followcancel() {
       removefollow(
         this.follower.username,
-        (res) => {
-          console.log('성공시', res)
+        () => {
           this.$emit('getuserprofile')
           this.isEach = false;
         },
@@ -49,8 +48,7 @@ export default {
     eachfollow () {
       addfollow(
         this.follower.username,
-        (res) => {
-          console.log('성공시', res)
+        () => {
           this.$emit('getuserprofile')
           this.isEach = true;
         },

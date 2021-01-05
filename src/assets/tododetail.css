@@ -1,0 +1,57 @@
+.detail__modal {
+  position: fixed; /* Stay in place */
+  z-index: 5; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  /* opacity: 0.35; */
+  background: rgba(0, 0, 0, 0.4);
+}
+.modal__card {
+  margin: 15% auto;
+  z-index: 10; /* 15% from the top and centered */
+  padding: 20px;
+  width: 40%;
+  color: black;
+  background-color: #ffffff;
+  border: 2px solid #888;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0px 0px 5px 0.3px var(--color-gray-light);
+}
+
+.detail-todo-header{
+  /* display: flex;
+  flex-direction: column; */
+  margin: 10px auto;
+  font-size: var(--font-medium);
+  font-weight: var(--weight-semi-bold);
+  color: blue;
+}
+
+
+.schedule-day {
+
+}
+.schedule-day-button > span {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.detail-todo-content{
+  font-size: var(--font-medium);
+  height: var(--weight-semi-bold);
+}
+
+.detail-todo-footer{
+  font-size: var(--font-medium);
+  font-weight: var(--weight-semi-bold);
+  color:black;
+}
+
+.detail-todo-footer > span > i {
+  margin: auto 10px;
+  font-size: var(--font-medium);
+  color: rgb(189, 189, 23);
+}

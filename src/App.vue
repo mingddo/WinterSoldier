@@ -9,7 +9,7 @@
 <script>
 import ChatHome from "./components/ChatBot/ChatHome.vue";
 import Navi from "./components/common/navi.vue";
-import { todoList, todoCompleted } from "@/api/todo.js";
+import { todoCompleted } from "@/api/todo.js";
 import { mapState } from "vuex";
 
 export default {
@@ -17,14 +17,6 @@ export default {
   components: {
     Navi,
     ChatHome,
-  },
-  data() {
-    return {
-      today_todos: [],
-      today_notAlarm_todos: [], // 시간이 지난 todo
-      today_alarm_todos: [],
-      cnt: 0,
-    };
   },
   methods: {
     checkAlarm() {
@@ -37,12 +29,11 @@ export default {
           for (i = 0; i < this.today_notAlarm_todos.length; i++) {
             today_notAlarm_todos_title +=
               this.today_notAlarm_todos[i].title + ", ";
-            this.today_notAlarm_todos[i].completed = "yes"; // 알람띄운 todo는 completed 변경
             // db의 todo completed여부도 변경
             todoCompleted(
               { ...this.today_notAlarm_todos[i], completed: "yes" },
               () => {
-                console.log("지나간 알림 completed 수정 성공");
+                this.$store.commit("isCompleted", i); // 알람띄운 todo는 completed 변경
               },
               (err) => {
                 console.log(err);
@@ -68,11 +59,6 @@ export default {
         let cur_minute = this.addZeros(day.getMinutes(), 2);
         var i;
         for (i = 0; i < this.today_alarm_todos.length; i++) {
-          console.log(
-            "i랑 today_alarm_todos완료여부",
-            i,
-            this.today_alarm_todos[i].completed
-          );
           if (
             this.today_alarm_todos[i].alarm_hour === cur_hour &&
             this.today_alarm_todos[i].alarm_min === cur_minute &&
@@ -126,57 +112,20 @@ export default {
       }
       return zero + num;
     },
-    getTodo: function () {
-      const day = new Date();
-      let cur_year = day.getFullYear();
-      let cur_month = this.addZeros(day.getMonth() + 1, 2);
-      let cur_day = this.addZeros(day.getDate(), 2);
-      let cur_hour = this.addZeros(day.getHours(), 2);
-      let cur_minute = this.addZeros(day.getMinutes(), 2);
-      let today =
-        cur_year.toString() + cur_month.toString() + cur_day.toString();
-      // let nowTime = cur_hour.toString() + cur_minute.toString()
-      todoList(
-        (res) => {
-          this.today_todos = res.data.todolist[today];
-          console.log("today_todos 리스트아냐?", this.today_todos);
-          var i;
-          for (i = 0; i < this.today_todos.length; i++) {
-            if (
-              this.today_todos[i].completed === "no" &&
-              this.today_todos[i].alarm_hour === cur_hour &&
-              this.today_todos[i].alarm_min < cur_minute
-            ) {
-              this.today_notAlarm_todos.push(this.today_todos[i]);
-            } else if (
-              this.today_todos[i].completed === "no" &&
-              this.today_todos[i].alarm_hour < cur_hour
-            ) {
-              this.today_notAlarm_todos.push(this.today_todos[i]);
-            } else {
-              this.today_alarm_todos.push(this.today_todos[i]);
-            }
-          }
-
-          this.checkAlarm();
-        },
-        (err) => {
-          console.log(err);
-        }
-      );
-    },
   },
   mounted() {
     this.askNotificationPermission();
     if (this.isLogin) {
-      // 로그인 해야 todo가져오기
-      this.getTodo();
+      this.$store.dispatch("todoStore/getTodayTodos");
+      this.checkAlarm();
     }
   },
   computed: {
     ...mapState({
       userInfo: (state) => state.userStore.userInfo,
       isLogin: (state) => state.userStore.isLogin,
+      today_notAlarm_todos: (state) => state.todoStore.today_notAlarm_todos,
+      today_alarm_todos: (state) => state.todoStore.today_alarm_todos,
     }),
   },
 };

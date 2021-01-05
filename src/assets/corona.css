@@ -1,0 +1,165 @@
+/* 속성 작성 순서 */
+/* 0. width, heigth 등 */
+/* 1. display, position 등 위치나 보여짐에 관한 것 */
+/* 2. Padding, Margin, Border 등 박스에 관한 것 */
+/* 3. Color에 관한 것 */
+.coronaframe {
+  text-align: left;
+  width: 100%;
+  height: auto;
+  background-color: whitesmoke;
+  margin: 30px 0;
+  border: none;
+  padding: 10px;
+  font-style: var( --Roboto);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.coronaframe .coronaInfotitle{
+  font-size:  var(--font-medium);
+  font-weight: var(--weight-semi-bold);
+  color: rgb(22, 22, 22);
+}
+
+.coronaframe .coronaInfosubtitle{
+  width: 85%;
+  margin: auto;
+  font-size:  11px;
+  font-weight: var(--weight-regular);
+  color: rgb(22, 22, 22);
+  word-break: keep-all;
+}
+
+.coronaframe .coronatotalInfo{
+  width: 100%;
+  padding: var(--padding);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.coronaframe .coronaboxInfo1{
+  width: 100%;
+  display: flex;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+  font-size: var(--font-regular);
+  
+}
+
+.coronaframe .coronaboxInfo1 .coronaTotalcase{
+  width:48%;
+  height: auto;
+  background-color: var(--color-yellow-prime);
+  border: solid 1px var(--light-gray);
+  padding: var(--padding);
+  font-weight: var(--weight-semi-bold);
+}
+
+.coronaframe .coronaboxInfo1 .coronaTotalcase .Infodetail{
+  font-size: var(--font-micro);
+  font-weight: var(--weight-regular);
+  color: rgb(228, 6, 6);
+}
+
+.coronaframe .coronaboxInfo1 .coronaRecover{
+  width: 48%;
+  height: auto;
+  background-color: var(--color-yellow-prime);
+  padding: var(--padding);
+  
+  /* box-shadow: 0px 0px 10px 0.3px var(--color-gray-light); */
+  /* border-radius: 5px; */
+  border: none;
+  font-size: var(--font-regular);
+  font-weight: var(--weight-semi-bold);
+}
+
+.coronaframe .coronaboxInfo1 .coronaRecover .Infodetail{
+  font-size: var(--font-micro);
+  font-weight: var(--weight-regular);
+  color: rgb(228, 6, 6);
+}
+
+.coronaframe .coronaboxInfo2{
+  width: 100%;
+  display: flex;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+  font-size: var(--font-regular);
+}
+
+.coronaframe .coronaboxInfo2 .coronaRecovering{
+  width: 48%;
+  height: auto;
+  background-color: var(--color-yellow-prime);
+  /* box-shadow: 0px 0px 10px 0.3px var(--color-gray-light); */
+  /* border-radius: 5px; */
+  border: none;
+  padding: var(--padding);
+  font-size: var(--font-regular);
+  font-weight: var(--weight-semi-bold);
+}
+
+.coronaframe .coronaboxInfo2 .coronaRecovering .Infodetail{
+  font-size: var(--font-micro);
+  font-weight: var(--weight-regular);
+  color: rgb(228, 6, 6);
+}
+
+.coronaframe .coronaboxInfo2 .corodaDeath{
+  width: 48%;
+  height: auto;
+  background-color: var(--color-yellow-prime);
+  /* box-shadow: 0px 0px 10px 0.3px var(--color-gray-light); */
+  /* border-radius: 5px; */
+  border: none;
+  padding: var(--padding);
+  font-size: var(--font-regular);
+  font-weight: var(--weight-semi-bold);
+}
+
+.coronaframe .coronaboxInfo2 .corodaDeath .Infodetail{
+  font-size: var(--font-micro);
+  font-weight: var(--weight-regular);
+  color: rgb(228, 6, 6);
+}
+
+.coronaframe .broadcast{
+  width: 200px;
+  height: 80px;
+  border: none;
+  /* box-shadow: 0px 0px 10px 0.3px var(--light-gray); */
+  border-radius: 0.25rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+}
+
+.coronaframe .broadcast > .carousel {
+  flex: 1;
+}
+
+.coronaframe .broadcast .carousel .broadcast-content {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+
+@media screen and (max-width: 768px) {
+  .weather__date {
+    padding: 8px 24px;
+  }
+}

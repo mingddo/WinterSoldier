@@ -1,63 +1,34 @@
 <template>
-  <div>
-    <div class="detail-modal">
-      <div class="modal-card container">
-        <h3>{{ todo.title }}</h3>
-        <hr />
-        <br />
-        <table class="todo-table">
-          <tr class="todo-tr">
-            <td class="todo-td">계획</td>
-            <td class="todo-td">년도</td>
-            <td class="todo-td">월</td>
-            <td class="todo-td">일</td>
-            <td class="todo-td">시간</td>
-            <td class="todo-td">분</td>
-          </tr>
-          <tr class="todo-tr">
-            <td class="todo-td">계획:</td>
-            <td class="todo-td">{{ todo.schedule_year }}년</td>
-            <td class="todo-td">{{ todo.schedule_month }}월</td>
-            <td class="todo-td">{{ todo.schedule_date }}일</td>
-            <td class="todo-td">{{ todo.schedule_hour }}시</td>
-            <td class="todo-td">{{ todo.schedule_min }}분</td>
-          </tr>
-          <tr class="todo-tr">
-            <td class="todo-td">알람</td>
-            <td class="todo-td">년도</td>
-            <td class="todo-td">월</td>
-            <td class="todo-td">일</td>
-            <td class="todo-td">시간</td>
-            <td class="todo-td">분</td>
-          </tr>
-          <tr class="todo-tr">
-            <td class="todo-td">알람:</td>
-            <td class="todo-td">{{ todo.alarm_year }}년</td>
-            <td class="todo-td">{{ todo.alarm_month }}월</td>
-            <td class="todo-td">{{ todo.alarm_date }}일</td>
-            <td class="todo-td">{{ todo.alarm_hour }}시</td>
-            <td class="todo-td">{{ todo.alarm_min }}분</td>
-          </tr>
-        </table>
-        <div class="far fa-trash-alt overlay-button" @click="deleteTodo"></div>
-        <Modify
-          :todo="todo"
-          v-if="isModifyModalViewed"
-          @modify-close-modal="isModifyModalViewed = false"
-        >
-        </Modify>
-        <div
-          class="fas fa-wrench overlay-button"
-          @click="isModifyModalViewed = true"
-        ></div>
-        <br />
-        <img
-          @click="TodoModalViewed"
-          src="../../assets/close.png"
-          alt=""
-          class="overlay-button"
-        />
+
+  <div class="detail__modal" @click.self="TodoModalViewed">
+    <div class="modal__card">
+      <div class="detail-todo-header">
+        <div class="schedule-day">
+          {{ todo.schedule_month }}월 {{ todo.schedule_date }}일
+        </div>
+        <div class="schedule-day-button">
+          <span @click="deleteTodo"><i class="fas fa-trash-alt"></i></span>
+          <span @click="isModifyModalViewed = true"
+            ><i class="fas fa-edit"></i
+          ></span>
+        </div>
+
       </div>
+      <hr />
+      <div class="detail-todo-content">{{ todo.title }}</div>
+      <div class="detail-todo-footer">
+        <span><i class="fas fa-bell"></i></span>
+        <span>
+          {{ todo.alarm_year }}년 {{ todo.alarm_month }}월
+          {{ todo.alarm_date }}일 {{ todo.alarm_hour }}시 {{ todo.alarm_min }}분
+        </span>
+      </div>
+      <Modify
+        :todo="todo"
+        v-if="isModifyModalViewed"
+        @modify-close-modal="isModifyModalViewed = false"
+      >
+      </Modify>
     </div>
   </div>
 </template>
@@ -79,20 +50,6 @@ export default {
     return {
       isModifyModalViewed: false,
       todono: this.todo.id,
-      // todo: {
-      //     title : '',
-      //     schedule_year : 0,
-      //     schedule_month : 0,
-      //     schedule_date : 0,
-      //     schedule_hour : 0,
-      //     schedule_min : 0,
-      //     alarm_year : 0,
-      //     alarm_month : 0,
-      //     alarm_date : 0,
-      //     alarm_hour : 0,
-      //     alarm_min : 0
-
-      // }
     };
   },
 
@@ -122,62 +79,6 @@ export default {
 };
 </script>
 
-<style>
-.modal-card {
-  position: relative;
-  max-width: 100%;
-  margin: auto;
-  margin-top: 30px;
-  padding: 20px;
-  background-color: rgb(240, 240, 175);
-  min-height: 500px;
-  z-index: 10;
-  opacity: 1;
-}
-.todo-table {
-  border-collapse: collapse;
-  border: 2px solid rgb(200, 200, 200);
-  letter-spacing: 1px;
-  font-size: 1.3rem;
-  color: white;
-  background-color: black;
-}
-.todo-td,
-.todo-th {
-  border: 1px solid black(190, 190, 190);
-  height: 50px;
-  padding: 1px;
-}
 
-.todo-th {
-  background-color: rgb(235, 235, 235);
-  color: black;
-}
-
-.todo-td {
-  text-align: center;
-  color: white;
-}
-
-.todo-tr:nth-child(even) .todo-td {
-  background-color: black;
-}
-
-.todo-tr:nth-child(odd) .todo-td {
-  background-color: grey;
-}
-.overlay-button {
-  direction: column;
-  justify-content: flex-end;
-  width: 50px;
-  height: 30px;
-  border: grey;
-}
-.container {
-  position: fixed;
-  box-shadow: 0px 0px 10px 0.3px var(--light-gray);
-  border: none;
-  top: 20%;
-  left: 40%;
-}
+<style scoped src="@\assets\tododetail.css">
 </style>

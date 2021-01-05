@@ -2,11 +2,11 @@
   <div>
     <div class="tf-dailytodoList">
       <div class="td-dailytodoItem">
-        <button @click="isModalViewed = true">+</button>
+        <div @click="isModalViewed = true">+</div>
         <TodoForm
           :propsyear="year"
-          :propsmonth="p_month"
-          :propsday="p_day"
+          :propsmonth="c_month"
+          :propsday="c_day"
           v-if="isModalViewed"
           @close-modal="isModalViewed = false"
         />
@@ -54,8 +54,6 @@ export default {
       temp: false,
       c_month: null,
       c_day: null,
-      p_month: null,
-      p_day: null,
     };
   },
   methods: {
@@ -63,12 +61,12 @@ export default {
       this.$store.dispatch("isTodoModaViewed");
     },
     createDateInfo() {
-      if (0 < this.month < 10) {
+      if (String(this.month).length === 1) {
         this.c_month = "0" + String(this.month);
       } else {
         this.c_month = String(this.month);
       }
-      if (0 < this.day < 10) {
+      if (String(this.day).length === 1) {
         this.c_day = "0" + String(this.day);
       } else {
         this.c_day = String(this.day);
@@ -95,22 +93,18 @@ export default {
   },
   watch: {
     day() {
-      if (0 < this.month < 10) {
-        this.p_month = "0" + String(this.month);
+      if (String(this.month).length === 1) {
+        this.c_month = "0" + String(this.month);
       } else {
-        this.p_month = String(this.month);
+        this.c_month = String(this.month);
       }
-      if (0 < this.day < 10) {
-        if (String(this.day).length === 1) {
-          this.p_day = "0" + String(this.day);
-        } else {
-          this.p_day = String(this.day);
-        }
+      if (String(this.day).length === 1) {
+        this.c_day = "0" + String(this.day);
       } else {
-        this.p_day = String(this.day);
+        this.c_day = String(this.day);
       }
       this.dateInfo =
-        String(this.year) + String(this.p_month) + String(this.p_day);
+        String(this.year) + String(this.c_month) + String(this.c_day);
       this.getTodoList();
     },
   },
@@ -133,7 +127,6 @@ export default {
 
 .monthcalendartodoItem {
   width: 100%;
-
   padding: 10px;
   color: rgb(255, 255, 255);
   border-radius: 5px;
@@ -141,32 +134,11 @@ export default {
   border: none;
   background-color: rgb(165, 16, 130);
 }
+.monthcalendartodoItem:hover {
+  background-color: rgb(76, 132, 179);
+}
 
 .completed {
   text-decoration: line-through;
-}
-.modal,
-.overlay {
-  width: 75%;
-  height: 75%;
-  position: fixed;
-  left: 0;
-  top: 0;
-  color: white;
-}
-.overlay {
-  opacity: 0.5;
-  background-color: black;
-}
-.modal-card {
-  position: relative;
-  max-width: 80%;
-  margin: auto;
-  margin-top: 30px;
-  padding: 20px;
-  background-color: rgb(240, 240, 175);
-  min-height: 500px;
-  z-index: 10;
-  opacity: 1;
 }
 </style>

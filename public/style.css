@@ -133,8 +133,8 @@ li {
 }
 
 .logo__img {
-  width: 50px;
-  height: 50px;
+  width: 90%;
+  /* height: 300px; */
 }
 
 /* Navbar - Search */
@@ -169,6 +169,7 @@ li {
 }
 
 .navbar__icons {
+  color: var(--color-black);
   display: flex;
   align-items: center;
 }
@@ -179,7 +180,7 @@ li {
   padding: 4px 8px;
   color: var(--color-gray-dark);
   background-color: var(--color-white-dark);
-  margin-left: 8px;
+  margin: auto 16px;
   font-size: var(--font-small);
   font-weight: var(--weight-semi-bold);
 }
@@ -235,6 +236,14 @@ li {
   align-items: flex-start;
 }
 .home .left_component .left_componet_weather {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 0px 0px 10px 0.3px var(--color-gray-light);
+  border: none;
+}
+
+.home .left_component .left_componet_corona {
   width: 100%;
   height: auto;
   border-radius: 20px;
