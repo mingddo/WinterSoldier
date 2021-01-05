@@ -193,12 +193,12 @@ export default {
     },
     async getResponse() {
       await this.temp();
-      this.scroll;
+      this.scroll();
       this.chatText = '';
     },
     async sendAsk() {
       if (this.chatText !== '') {
-        chatanswer(
+        await chatanswer(
           this.chatText,
           (res) => {
             this.botText = res.data.anstext;
@@ -309,12 +309,7 @@ export default {
   /* position: fixed; */
   margin-top: 10px;
 }
-.chatbody > div:last-child {
-  /* position: fixed; */
-  position: relative;
-  bottom: 0;
-  height: 250px;
-}
+
 .chatbody > div:last-child div:first-child > div {
   /* position: fixed; */
 }
