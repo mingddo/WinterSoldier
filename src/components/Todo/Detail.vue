@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="detail-modal">
-      <div class="modal-card container">
+    <div class="detail__modal" @click.self="TodoModalViewed">
+      <div class="modal__card">
         <h3>할 일 제목 : {{ todo.title }}</h3>
         <table class="todo-table">
           <tr class="todo-tr">
@@ -76,20 +76,6 @@ export default {
     return {
       isModifyModalViewed: false,
       todono: this.todo.id,
-      // todo: {
-      //     title : '',
-      //     schedule_year : 0,
-      //     schedule_month : 0,
-      //     schedule_date : 0,
-      //     schedule_hour : 0,
-      //     schedule_min : 0,
-      //     alarm_year : 0,
-      //     alarm_month : 0,
-      //     alarm_date : 0,
-      //     alarm_hour : 0,
-      //     alarm_min : 0
-
-      // }
     };
   },
 
@@ -119,55 +105,5 @@ export default {
 };
 </script>
 
-<style>
-.modal-card {
-  position: relative;
-  max-width: 80%;
-  margin: auto;
-  margin-top: 30px;
-  padding: 20px;
-  background-color: rgb(240, 240, 175);
-  min-height: 500px;
-  z-index: 10;
-  /* opacity: 1; */
-}
-.todo-table {
-  border-collapse: collapse;
-  border: 2px solid rgb(200, 200, 200);
-  letter-spacing: 1px;
-  font-size: 0.8rem;
-  color: black;
-}
-.todo-td,
-.todo-th {
-  border: 1px solid rgb(190, 190, 190);
-  padding: 10px 20px;
-}
-
-.todo-th {
-  background-color: rgb(235, 235, 235);
-}
-
-.todo-td {
-  text-align: center;
-}
-
-.todo-tr:nth-child(even) .todo-td {
-  background-color: rgb(250, 250, 250);
-}
-
-.todo-tr:nth-child(odd) .todo-td {
-  background-color: rgb(245, 245, 245);
-}
-.overlay-button {
-  direction: column;
-  justify-content: flex-end;
-}
-.container {
-  position: fixed;
-  box-shadow: 0px 0px 10px 0.3px var(--light-gray);
-  border: none;
-  top: 20%;
-  left: 40%;
-}
+<style scoped src="@\assets\tododetail.css">
 </style>

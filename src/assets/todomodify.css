@@ -1,16 +1,16 @@
-.modal {
+.modify__modal {
   position: fixed; /* Stay in place */
-  z-index: 5; /* Sit on top */
+  z-index: 15; /* Sit on top */
   left: 0;
   top: 0;
   width: 100%; /* Full width */
   height: 100%; /* Full height */
   /* opacity: 0.35; */
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.2);
 }
 .modal__card {
   margin: 15% auto;
-  z-index: 10; /* 15% from the top and centered */
+  z-index: 20; /* 15% from the top and centered */
   padding: 20px;
   width: 50%;
   display: flex;
@@ -23,7 +23,6 @@
   overflow: hidden;
   box-shadow: 0px 0px 5px 0.3px var(--color-gray-light);
 }
-
 /* 모달 내용물들 */
 .modal__todo__form {
   height: 100%;
@@ -105,7 +104,6 @@ input:disabled {
 .todo-submit:disabled {
   opacity: 0.5;
 }
-/* 선택자 css */
 .select__label {
   font-size: var(--font-small);
   font-weight: var(--weight-regular);

@@ -2,87 +2,90 @@
   <div>
     <!-- <input @keypress.enter="createTodo" v-model="todoTitle" type="text">
       <button @click="createTodo">Add</button> -->
-    <div class="modify-modal">
-      <div class="modal-card container">
+    <div class="modify__modal" @click.self="closemodal">
+      <div class="modal__card">
         <h2>{{ todo.id }}번 글입니다.</h2>
 
-        <form @submit="OnSubmit">
-          <h4>
-            제목을 입력하세요 :
+        <form @submit="OnSubmit" class="modal__todo__form">
+          <div class="todo-title">
+            알정 내용
             <input
               type="text"
-              class="text-white"
-              v-model="temp_todo.title"
+              class="todo-input-title"
+              v-model="form.title"
               placeholder="title"
             />
-          </h4>
-          <h4>
-            계획 시간 : <br />
-            <select name="schedule_year" v-model="temp_todo.schedule_year">
+          </div>
+          <div class="todo-scedule">
+            <div class="todo-scedule-title">계획 시간</div>
+
+            <select name="schedule_year" v-model="form.schedule_year">
               <option v-for="(year, id) in schedule_year_list" :key="id">
                 {{ year }}
-              </option></select
-            >년
-            <select name="schedule_month" v-model="temp_todo.schedule_month">
+              </option>
+            </select>
+            <label class="select__label" for="year-select"> 년</label>
+            <select name="schedule_month" v-model="form.schedule_month">
               <option v-for="(month, id) in schedule_month_list" :key="id">
                 {{ month }}
               </option></select
-            >월
-            <select name="schedule_date" v-model="temp_todo.schedule_date">
+            ><label class="select__label" for="month-select"> 월</label>
+            <select name="schedule_date" v-model="form.schedule_date">
               <option v-for="(date, id) in schedule_date_list" :key="id">
                 {{ date }}
               </option></select
-            >일
-            <select name="schedule_hour" v-model="temp_todo.schedule_hour">
+            ><label class="select__label" for="date-select"> 일</label>
+            <select name="schedule_hour" v-model="form.schedule_hour">
               <option v-for="(hour, id) in schedule_hour_list" :key="id">
                 {{ hour }}
               </option></select
-            >시간
-            <select name="schedule_min" v-model="temp_todo.schedule_min">
+            ><label class="select__label" for="hour-select"> 시</label
+            ><select name="schedule_min" v-model="form.schedule_min">
               <option v-for="(min, id) in schedule_min_list" :key="id">
                 {{ min }}
               </option></select
-            >분
-          </h4>
-          <br />
-          <h4>
-            알람 시간 : <br />
-            <select name="alarm_year" v-model="temp_todo.alarm_year">
+            ><label class="select__label" for="minute-select"> 분</label>
+          </div>
+          <div class="todo-alarm">
+            <div class="todo-alarm-title">알람 시간</div>
+            <select name="alarm_year" v-model="form.alarm_year">
               <option v-for="(year, id) in alarm_year_list" :key="id">
                 {{ year }}
               </option></select
-            >년
-            <select name="alarm_month" v-model="temp_todo.alarm_month">
+            ><label class="select__label" for="ayear-select"> 년</label>
+            <select name="alarm_month" v-model="form.alarm_month">
               <option v-for="(month, id) in alarm_month_list" :key="id">
                 {{ month }}
               </option></select
-            >월
-            <select name="alarm_date" v-model="temp_todo.alarm_date">
+            ><label class="select__label" for="amonth-select"> 월</label>
+            <select name="alarm_date" v-model="form.alarm_date">
               <option v-for="(date, id) in alarm_date_list" :key="id">
                 {{ date }}
               </option></select
-            >일
-            <select name="alarm_hour" v-model="temp_todo.alarm_hour">
+            ><label class="select__label" for="adate-select"> 일</label>
+            <select name="alarm_hour" v-model="form.alarm_hour">
               <option v-for="(hour, id) in alarm_hour_list" :key="id">
                 {{ hour }}
               </option></select
-            >시간
-            <select name="alarm_min" v-model="temp_todo.alarm_min">
+            ><label class="select__label" for="ahour-select"> 시</label>
+            <select name="alarm_min" v-model="form.alarm_min">
               <option v-for="(min, id) in alarm_min_list" :key="id">
                 {{ min }}
               </option></select
-            >분
-          </h4>
-          <button type="submit">제출하기</button>
+            ><label class="select__label" for="aminute-select"> 분</label>
+          </div>
+          <div class="todo-submit" @click="OnSubmit" type="submit">
+            제출하기
+          </div>
         </form>
-        <img
+        <!-- <img
           src="../../assets/close.png"
           @click="$emit('modify-close-modal')"
           alt=""
           width="50px"
           height="30px"
           class="overlay-button"
-        />
+        /> -->
       </div>
     </div>
   </div>
@@ -419,12 +422,15 @@ export default {
         this.temp_todo,
         () => {
           console.log(this.temp_todo);
-          this.$emit("modify-close-modal");
+          this.closemodal();
         },
         (error) => {
           console.log(error);
         }
       );
+    },
+    closemodal() {
+      this.$emit("modify-close-modal");
     },
   },
   created() {
@@ -433,34 +439,5 @@ export default {
 };
 </script>
 
-<style>
-.modify-modal {
-  width: 75%;
-  height: 75%;
-  position: fixed;
-  left: 0;
-  top: 0;
-  color: white;
-}
-.modal-card {
-  position: relative;
-  max-width: 400px;
-  height: 10px;
-  margin: 30px;
-  margin-top: 30px;
-  padding: 20px;
-  background-color: black;
-  z-index: 10;
-  opacity: 1;
-  color: white;
-}
-.overlay-button {
-  direction: column;
-  justify-content: flex-end;
-}
-.text-white {
-  color: white;
-  background-color: black;
-  font: bolder;
-}
+<style scoped src="@\assets\todomodify.css">
 </style>
