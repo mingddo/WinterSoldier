@@ -5,8 +5,8 @@
         :data="data"
         :controls="false"
         :indicators="false"
-        :interval="1000"
-        direction="right"
+        :interval="1500"
+        direction="up"
       ></carousel>
     </div>
   </div>
@@ -31,9 +31,10 @@ export default {
               {
                 attrs: {
                   href: `https://search.naver.com/search.naver?where=nexearch&query=${content.message}`,
+                  onMouseOver: "this.style.color='#0F0'",
+                  onMouseOut: "this.style.color='black'",
                 },
-
-                class: "broadcast-content",
+                style: "color:black",
               },
               [createElement("span", [`${content.id}위: ${content.message}`])]
             );
@@ -48,9 +49,10 @@ export default {
               {
                 attrs: {
                   href: `https://search.naver.com/search.naver?where=nexearch&query=${content.message}`,
+                  onMouseOver: "this.style.color='#0F0'",
+                  onMouseOut: "this.style.color='black'",
                 },
-
-                class: "broadcast-content",
+                style: "color:black",
               },
               [createElement("span", [`${content.id}위: ${content.message}`])]
             );
@@ -65,9 +67,10 @@ export default {
               {
                 attrs: {
                   href: `https://search.naver.com/search.naver?where=nexearch&query=${content.message}`,
+                  onMouseOver: "this.style.color='#0F0'",
+                  onMouseOut: "this.style.color='black'",
                 },
-
-                class: "broadcast-content",
+                style: "color:black",
               },
               [createElement("span", [`${content.id}위: ${content.message}`])]
             );
@@ -82,9 +85,10 @@ export default {
               {
                 attrs: {
                   href: `https://search.naver.com/search.naver?where=nexearch&query=${content.message}`,
+                  onMouseOver: "this.style.color='#0F0'",
+                  onMouseOut: "this.style.color='black'",
                 },
-
-                class: "broadcast-content",
+                style: "color:black",
               },
               [createElement("span", [`${content.id}위: ${content.message}`])]
             );
@@ -99,9 +103,10 @@ export default {
               {
                 attrs: {
                   href: `https://search.naver.com/search.naver?where=nexearch&query=${content.message}`,
+                  onMouseOver: "this.style.color='#0F0'",
+                  onMouseOut: "this.style.color='black'",
                 },
-
-                class: "broadcast-content",
+                style: "color:black",
               },
               [createElement("span", [`${content.id}위: ${content.message}`])]
             );
@@ -116,9 +121,10 @@ export default {
               {
                 attrs: {
                   href: `https://search.naver.com/search.naver?where=nexearch&query=${content.message}`,
+                  onMouseOver: "this.style.color='#0F0'",
+                  onMouseOut: "this.style.color='black'",
                 },
-
-                class: "broadcast-content",
+                style: "color:black",
               },
               [createElement("span", [`${content.id}위: ${content.message}`])]
             );
@@ -133,9 +139,10 @@ export default {
               {
                 attrs: {
                   href: `https://search.naver.com/search.naver?where=nexearch&query=${content.message}`,
+                  onMouseOver: "this.style.color='#0F0'",
+                  onMouseOut: "this.style.color='black'",
                 },
-
-                class: "broadcast-content",
+                style: "color:black",
               },
               [createElement("span", [`${content.id}위: ${content.message}`])]
             );
@@ -150,9 +157,10 @@ export default {
               {
                 attrs: {
                   href: `https://search.naver.com/search.naver?where=nexearch&query=${content.message}`,
+                  onMouseOver: "this.style.color='#0F0'",
+                  onMouseOut: "this.style.color='black'",
                 },
-
-                class: "broadcast-content",
+                style: "color:black",
               },
               [createElement("span", [`${content.id}위: ${content.message}`])]
             );
@@ -167,9 +175,10 @@ export default {
               {
                 attrs: {
                   href: `https://search.naver.com/search.naver?where=nexearch&query=${content.message}`,
+                  onMouseOver: "this.style.color='#0F0'",
+                  onMouseOut: "this.style.color='black'",
                 },
-
-                class: "broadcast-content",
+                style: "color:black",
               },
               [createElement("span", [`${content.id}위: ${content.message}`])]
             );
@@ -184,9 +193,10 @@ export default {
               {
                 attrs: {
                   href: `https://search.naver.com/search.naver?where=nexearch&query=${content.message}`,
+                  onMouseOver: "this.style.color='#0F0'",
+                  onMouseOut: "this.style.color='black'",
                 },
-
-                class: "broadcast-content",
+                style: "color:black",
               },
               [createElement("span", [`${content.id}위: ${content.message}`])]
             );
@@ -224,16 +234,6 @@ export default {
 </script>
 
 <style scoped>
-/* .realtimeframe {
-  text-align: left;
-  width: 100%;
-  background-color: whitesmoke;
-  margin: 5px 0px;
-  border: none;
-  box-shadow: 0px 0px 10px 0.3px var(--color-gray-light);
-  border-radius: 15px;
-  padding: 5px;
-} */
 .broadcast {
   width: 200px;
   display: flex;
@@ -246,8 +246,6 @@ export default {
 }
 
 .broadcast-content {
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
+  color: red;
 }
 </style>
