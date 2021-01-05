@@ -75,7 +75,7 @@
             ><label class="select__label" for="aminute-select"> 분</label>
           </div>
           <div class="todo-submit" @click="OnSubmit" type="submit">
-            제출하기
+            수정하기
           </div>
         </form>
         <!-- <img
@@ -99,11 +99,11 @@ export default {
     todo: Object,
   },
   data() {
-    const todono = Number(this.todo.id);
-    console.log(todono + "번 글입니다.");
+    // const todono = Number(this.todo.id);
+    // console.log(todono + "번 글입니다.");
     return {
       todono: this.todo.id,
-      temp_todo: null,
+      temp_todo: this.todo,
       form: {
         title: this.todo.title,
         schedule_year: this.todo.schedule_year,
@@ -111,6 +111,9 @@ export default {
         schedule_date: this.todo.schedule_date,
         schedule_hour: this.todo.schedule_hour,
         schedule_min: this.todo.schedule_min,
+        completed: this.todo.completed,
+        id: this.todo.id,
+        user_id: this.todo.user_id,
         alarm_year: this.todo.alarm_year,
         alarm_month: this.todo.alarm_month,
         alarm_date: this.todo.alarm_date,
@@ -415,13 +418,12 @@ export default {
   },
   methods: {
     OnSubmit(event) {
-      console.log(1);
       event.preventDefault();
+      this.temp_todo = this.form;
       ModifyTodo(
         this.todono,
         this.temp_todo,
         () => {
-          console.log(this.temp_todo);
           this.closemodal();
         },
         (error) => {
@@ -431,6 +433,9 @@ export default {
     },
     closemodal() {
       this.$emit("modify-close-modal");
+    },
+    dataemit() {
+      this.$emit("modify-data-emit", this.temp_todo);
     },
   },
   created() {

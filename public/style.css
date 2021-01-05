@@ -133,7 +133,7 @@ li {
 }
 
 .logo__img {
-  width: 100%;
+  width: 90%;
   /* height: 300px; */
 }
 
@@ -169,6 +169,7 @@ li {
 }
 
 .navbar__icons {
+  color: var(--color-black);
   display: flex;
   align-items: center;
 }
@@ -179,7 +180,7 @@ li {
   padding: 4px 8px;
   color: var(--color-gray-dark);
   background-color: var(--color-white-dark);
-  margin-left: 8px;
+  margin: auto 16px;
   font-size: var(--font-small);
   font-weight: var(--weight-semi-bold);
 }
