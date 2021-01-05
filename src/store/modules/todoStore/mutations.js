@@ -11,7 +11,7 @@ export const addTodoList = (state, newTodo) => {
 //   state.today_alarm_todos = today_alarm_todos
 // };
 export const isCompleted = (state, idx) => {
-  state.today_notAlarm_todos[idx].completed = "yes"
+  state.today_notAlarm_todos[idx - 1].completed = "yes"
 };
 
 export const changeCalendar = (state) => {

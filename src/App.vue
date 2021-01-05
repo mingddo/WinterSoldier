@@ -139,7 +139,6 @@ export default {
       todoList(
         (res) => {
           this.today_todos = res.data.todolist[today];
-          console.log("today_todos 리스트아냐?", this.today_todos);
           var i;
           for (i = 0; i < this.today_todos.length; i++) {
             if (
