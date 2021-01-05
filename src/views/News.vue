@@ -15,28 +15,6 @@
       />
     </form>
 
-    <!-- <div>
-      <div>
-        <div class="news__title" v-for="(n, id) in news" :key="id">
-          <figure
-            class="text-center"
-            style="
-              background-color: black;
-              border-style: solid;
-              border-color: white;
-            "
-          >
-            <blockquote class="news__title">
-              <img :src="n.img_source" alt="" /><a :href="n.link">{{
-                n.title
-              }}</a>
-            </blockquote>
-            <figcaption>{{ n.date }} {{ n.source }}</figcaption>
-          </figure>
-        </div>
-      </div>
-    </div> -->
-
     <div id="v-carousel" type="x/template">
       <div class="card-carousel-wrapper">
         <div
@@ -77,7 +55,6 @@
     </div>
     <div id="app">
       <carousel></carousel>
-
     </div>
   </div>
 </template>
@@ -89,9 +66,9 @@ export default {
   data() {
     return {
       currentOffset: 0,
-      windowSize: 3,
+      windowSize: 0,
       paginationFactor: 220,
-      query: "ssafy",
+      query: "오늘",
       day: "",
       month: "",
       news: null,
@@ -132,10 +109,6 @@ export default {
     },
   },
   created() {
-    this.query =
-      new Date().getMonth() + 1 + "월 " + new Date().getDate() + "일";
-  },
-  mounted() {
     this.onSubmit();
   },
 };
@@ -170,7 +143,7 @@ export default {
   position: relative;
   margin-left: 45%;
   margin-top: 5%;
-  margin-bottom: 10%;
+  margin-bottom: 5%;
 }
 .content h2 {
   position: absolute;
