@@ -22,7 +22,7 @@
   --padding: 12px;
   --padding-side: 40px;
   --padding-updown: 12px;
-  --padding-one: 44px;
+  --padding-one: 58px;
   --margin: 12px;
   --margin-one: 44px;
 
@@ -309,12 +309,11 @@ li {
   align-items: center;
 }
 
-.toggle_btn_space .realtimelist{
+.toggle_btn_space .realtimelist {
   /* margin-right: calc(var(--margin)); */
 }
 
-.toggle_btn_space .realtimetitle{
-
+.toggle_btn_space .realtimetitle {
 }
 
 .toggle_btn_space .toggle {

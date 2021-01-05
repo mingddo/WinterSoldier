@@ -224,11 +224,14 @@ export default {
 </script>
 
 <style scoped>
+ol > li {
+  display: none;
+}
+
 .realtimeframe {
   text-align: left;
   width: 100%;
   background-color: whitesmoke;
-  margin: 5px 0;
   border: none;
   box-shadow: 0px 0px 10px 0.3px var(--color-gray-light);
   border-radius: 15px;
