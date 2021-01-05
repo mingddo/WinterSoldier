@@ -2,18 +2,20 @@
   <div>
     <div class="detail-modal">
       <div class="modal-card container">
-        <h3>할 일 제목 : {{ todo.title }}</h3>
+        <h3>{{ todo.title }}</h3>
+        <hr />
+        <br />
         <table class="todo-table">
           <tr class="todo-tr">
             <td class="todo-td">계획</td>
-            <td class="todo-td">계획 년도</td>
-            <td class="todo-td">계획 월</td>
-            <td class="todo-td">계획 일</td>
-            <td class="todo-td">계획 시간</td>
-            <td class="todo-td">계획 분</td>
+            <td class="todo-td">년도</td>
+            <td class="todo-td">월</td>
+            <td class="todo-td">일</td>
+            <td class="todo-td">시간</td>
+            <td class="todo-td">분</td>
           </tr>
           <tr class="todo-tr">
-            <td class="todo-td">계획</td>
+            <td class="todo-td">계획:</td>
             <td class="todo-td">{{ todo.schedule_year }}년</td>
             <td class="todo-td">{{ todo.schedule_month }}월</td>
             <td class="todo-td">{{ todo.schedule_date }}일</td>
@@ -22,14 +24,14 @@
           </tr>
           <tr class="todo-tr">
             <td class="todo-td">알람</td>
-            <td class="todo-td">알람 년도</td>
-            <td class="todo-td">알람 월</td>
-            <td class="todo-td">알람 일</td>
-            <td class="todo-td">알람 시간</td>
-            <td class="todo-td">알람 분</td>
+            <td class="todo-td">년도</td>
+            <td class="todo-td">월</td>
+            <td class="todo-td">일</td>
+            <td class="todo-td">시간</td>
+            <td class="todo-td">분</td>
           </tr>
           <tr class="todo-tr">
-            <td class="todo-td">알람</td>
+            <td class="todo-td">알람:</td>
             <td class="todo-td">{{ todo.alarm_year }}년</td>
             <td class="todo-td">{{ todo.alarm_month }}월</td>
             <td class="todo-td">{{ todo.alarm_date }}일</td>
@@ -37,21 +39,22 @@
             <td class="todo-td">{{ todo.alarm_min }}분</td>
           </tr>
         </table>
-        <button @click="deleteTodo">Delete</button>
+        <div class="far fa-trash-alt overlay-button" @click="deleteTodo"></div>
         <Modify
           :todo="todo"
           v-if="isModifyModalViewed"
           @modify-close-modal="isModifyModalViewed = false"
         >
         </Modify>
-        <button @click="isModifyModalViewed = true">수정하기</button>
+        <div
+          class="fas fa-wrench overlay-button"
+          @click="isModifyModalViewed = true"
+        ></div>
         <br />
         <img
           @click="TodoModalViewed"
           src="../../assets/close.png"
           alt=""
-          width="50px"
-          height="30px"
           class="overlay-button"
         />
       </div>
@@ -122,7 +125,7 @@ export default {
 <style>
 .modal-card {
   position: relative;
-  max-width: 80%;
+  max-width: 100%;
   margin: auto;
   margin-top: 30px;
   padding: 20px;
@@ -135,33 +138,40 @@ export default {
   border-collapse: collapse;
   border: 2px solid rgb(200, 200, 200);
   letter-spacing: 1px;
-  font-size: 0.8rem;
-  color: black;
+  font-size: 1.3rem;
+  color: white;
+  background-color: black;
 }
 .todo-td,
 .todo-th {
-  border: 1px solid rgb(190, 190, 190);
-  padding: 10px 20px;
+  border: 1px solid black(190, 190, 190);
+  height: 50px;
+  padding: 1px;
 }
 
 .todo-th {
   background-color: rgb(235, 235, 235);
+  color: black;
 }
 
 .todo-td {
   text-align: center;
+  color: white;
 }
 
 .todo-tr:nth-child(even) .todo-td {
-  background-color: rgb(250, 250, 250);
+  background-color: black;
 }
 
 .todo-tr:nth-child(odd) .todo-td {
-  background-color: rgb(245, 245, 245);
+  background-color: grey;
 }
 .overlay-button {
   direction: column;
   justify-content: flex-end;
+  width: 50px;
+  height: 30px;
+  border: grey;
 }
 .container {
   position: fixed;

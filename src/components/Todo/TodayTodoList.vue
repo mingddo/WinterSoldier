@@ -48,6 +48,7 @@ export default {
   },
   data: function () {
     return {
+      isModalViewed: false,
       todos: null,
       dateInfo: null,
       temp: false,
