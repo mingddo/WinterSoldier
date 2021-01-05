@@ -27,12 +27,12 @@ export default {
   },
   methods: {
     createDateInfo() {
-      if (0 < this.month < 10) {
+      if (String(this.month).length === 1) {
         this.c_month = "0" + String(this.month);
       } else {
         this.c_month = String(this.month);
       }
-      if (0 < this.day < 10) {
+      if (String(this.day).length === 1) {
         this.c_day = "0" + String(this.day);
       } else {
         this.c_day = String(this.day);
@@ -60,12 +60,12 @@ export default {
 
   watch: {
     dates() {
-      if (0 < this.month < 10) {
+      if (String(this.month).length === 1) {
         this.c_month = "0" + String(this.month);
       } else {
         this.c_month = String(this.month);
       }
-      if (0 < this.day < 10) {
+      if (String(this.day).length === 1) {
         this.c_day = "0" + String(this.day);
       } else {
         this.c_day = String(this.day);

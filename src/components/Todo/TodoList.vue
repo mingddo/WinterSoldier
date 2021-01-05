@@ -29,11 +29,15 @@ export default {
   },
   methods: {
     createDateInfo() {
-      if (0 < this.month < 10) {
-        this.month = "0" + String(this.month);
+      if (String(this.month).length === 1) {
+        this.t_month = "0" + String(this.month);
+      } else {
+        this.t_month = this.month;
       }
-      if (0 < this.weekdaily < 10) {
-        this.weekdaily = "0" + String(this.weekdaily);
+      if (String(this.weekdaily).length === 1) {
+        this.t_weekdaily = "0" + String(this.weekdaily);
+      } else {
+        this.t_weekdaily = this.weekdaily;
       }
       this.dateInfo =
         String(this.year) + String(this.month) + String(this.weekdaily);
@@ -61,7 +65,16 @@ export default {
 
   watch: {
     weekCalendar() {
-      console.log("watch!!!!!!!!!!!");
+      if (String(this.month).length === 1) {
+        this.t_month = "0" + String(this.month);
+      } else {
+        this.t_month = this.month;
+      }
+      if (String(this.weekdaily).length === 1) {
+        this.t_weekdaily = "0" + String(this.weekdaily);
+      } else {
+        this.t_weekdaily = this.weekdaily;
+      }
       this.dateInfo =
         String(this.year) + String(this.month) + String(this.weekdaily);
       this.getTodoList();
