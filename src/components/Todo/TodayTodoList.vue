@@ -54,8 +54,6 @@ export default {
       temp: false,
       c_month: null,
       c_day: null,
-      p_month: null,
-      p_day: null,
     };
   },
   methods: {
@@ -98,15 +96,15 @@ export default {
       if (String(this.month).length === 1) {
         this.c_month = "0" + String(this.month);
       } else {
-        this.p_month = String(this.month);
+        this.c_month = String(this.month);
       }
       if (String(this.day).length === 1) {
         this.c_day = "0" + String(this.day);
       } else {
-        this.p_day = String(this.day);
+        this.c_day = String(this.day);
       }
       this.dateInfo =
-        String(this.year) + String(this.p_month) + String(this.p_day);
+        String(this.year) + String(this.c_month) + String(this.c_day);
       this.getTodoList();
     },
   },
