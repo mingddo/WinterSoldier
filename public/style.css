@@ -203,6 +203,11 @@ li {
   color: var(--color-white-dark);
 }
 
+.profile {
+  font-size: var(--font-large);
+  color: var(--color-black);
+}
+
 /* mainFrame */
 .calendar_frame {
   width: 100%;
@@ -253,7 +258,7 @@ li {
   background-color: var(--color-white);
 }
 
-.home .right_component {
+.right_component {
   flex: 8 8 80%;
   display: flex;
   flex-direction: column;
@@ -300,20 +305,18 @@ li {
   display: none !important;
 }
 
+.realtime__wrapper {
+  display: flex;
+  justify-content: flex-start;
+}
+
 .toggle_btn_space {
   width: 100%;
   height: auto;
   display: flex;
   padding: var(--padding);
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
-}
-
-.toggle_btn_space .realtimelist {
-  /* margin-right: calc(var(--margin)); */
-}
-
-.toggle_btn_space .realtimetitle {
 }
 
 .toggle_btn_space .toggle {
@@ -637,6 +640,12 @@ footer .icons {
     padding: 18px 40px;
   }
 
+  /* 1. Navbar */
+
+  .navbar__search {
+    width: 40%;
+  }
+
   .search-icon {
     top: 50%;
     right: 5%;
@@ -645,5 +654,25 @@ footer .icons {
 
   .search:focus .search-icon {
     color: var(--color-gray-light);
+  }
+
+  /* 2. Home */
+  .home {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-around;
+    align-items: flex-start;
+    margin: auto;
+  }
+
+  .right_component {
+    padding: 0;
+  }
+
+  .toggle_btn_space {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 8px 0;
   }
 }
