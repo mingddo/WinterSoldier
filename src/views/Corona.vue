@@ -469,7 +469,7 @@ export default {
 <style scoped>
 .coronaframe {
   text-align: left;
-  width: 100%;
+  /* width: 100%; */
   background-color: whitesmoke;
   margin: 30px 0;
   border: none;

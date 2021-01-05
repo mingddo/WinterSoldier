@@ -231,7 +231,6 @@ li {
   margin: auto;
 }
 .home .left_component {
-  /* width: 20%; */
   flex: 2 2 20%;
   height: 100%;
   display: flex;
@@ -240,7 +239,7 @@ li {
   align-items: flex-start;
 }
 .home .left_component .left_componet_weather {
-  width: 100%;
+  /* width: 100%; */
   height: auto;
   border-radius: 20px;
   box-shadow: 0px 0px 10px 0.3px var(--color-gray-light);
@@ -637,7 +636,7 @@ footer .icons {
     max-width: var(--max-width);
     min-width: var(--min-width);
     margin: 0 auto;
-    padding: 18px 40px;
+    padding: 12px 20px;
   }
 
   /* 1. Navbar */
@@ -674,5 +673,24 @@ footer .icons {
     justify-content: space-between;
     align-items: center;
     margin: 8px 0;
+  }
+
+  /* 3. Left_component */
+  .home .left_component {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+  }
+
+  .left_componet_weather {
+    width: 40%;
+    margin: 30px 0;
+  }
+
+  .left_componet_corona {
+    width: 45%;
+    padding: 12px;
   }
 }
