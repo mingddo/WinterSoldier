@@ -246,6 +246,14 @@ li {
   border: none;
 }
 
+.home .left_component .left_componet_corona {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 0px 0px 10px 0.3px var(--color-gray-light);
+  border: none;
+}
+
 .home .left_component .left_component_button {
   width: 100%;
   height: auto;

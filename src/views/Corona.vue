@@ -1,25 +1,31 @@
 <template>
   <div class="coronaframe">
-    <h2>코로나-19</h2>
-    <div>{{ corona_info.updateTime }}</div>
-    <div>
-      확진환자
-      <div>(누적) {{ corona_info.TotalCase }}</div>
-    </div>
+    <div class="coronaInfotitle">코로나-19</div>
+    <div class="coronaInfosubtitle">{{ corona_info.updateTime }}</div>
+    <div class="coronatotalInfo">
+      <div class="coronaboxInfo1">
+        <div class="coronaTotalcase"> 
+          확진환자
+          <div class="Infodetail">(누적) {{ corona_info.TotalCase }}</div>
+        </div>
 
-    <div>
-      격리해제
-      <div>(누적) {{ corona_info.TotalRecovered }}</div>
-    </div>
+        <div class="coronaRecover">
+          격리해제
+          <div class="Infodetail">(누적) {{ corona_info.TotalRecovered }}</div>
+        </div>
+      </div>
 
-    <div>
-      치료중
-      <div>(누적) {{ corona_info.NowCase }}</div>
-    </div>
+      <div class="coronaboxInfo2">
+        <div class="coronaRecovering">
+          치료중
+          <div class="Infodetail">(누적) {{ corona_info.NowCase }}</div>
+        </div>
 
-    <div>
-      사망
-      <div>(누적) {{ corona_info.TotalDeath }}</div>
+        <div class="corodaDeath">
+          사망
+          <div class="Infodetail">(누적) {{ corona_info.TotalDeath }}</div>
+        </div>
+      </div>
     </div>
 
     <div class="broadcast">
@@ -466,6 +472,7 @@ export default {
 };
 </script>
 
+<<<<<<< HEAD
 <style scoped>
 .coronaframe {
   text-align: left;
@@ -497,10 +504,8 @@ export default {
 .broadcast > .carousel {
   flex: 1;
 }
+=======
+<style scoped src="@/assets/corona.css">
+>>>>>>> master
 
-.broadcast-content {
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-}
 </style>
