@@ -44,31 +44,10 @@ export const getTodayTodos = ({ commit }) => {
   );
 };
 
-// export const getTodayAlarmTodos = ({ commit }) => {
-//   todoList(
-//     (res) => {
-//       today_alarm_todos = res.data.todolist[today];
-//       var i;
-//       for (i = 0; i < today_todos.length; i++) {
-//         if (
-//           today_todos[i].completed === "no"
-//         ) {
-//           today_alarm_todos.push(today_todos)
-//         }
-//       }
-//       commit('getTodayAlarmTodos', today_alarm_todos)
-//     },
-//     (err) => {
-//       console.log(err);
-//     }
-//   )
-// }
-
 export const addTodoList = ({ commit }, newTodo) => {
   let time_info = newTodo.alarm_year + newTodo.alarm_month + newTodo.alarm_date
   if (today === time_info) {
     commit('addTodoList', newTodo)
-    alert('addTodoList는 했다')
   }
 }
 
