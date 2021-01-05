@@ -3,7 +3,7 @@
     <section class="left_component">
       <!-- <div class="left_component_weather"> -->
       <Weather class="left_componet_weather" />
-      <Corona />
+      <Corona class="left_componet_corona" />
       <!-- </div> -->
       <Leftnavi class="left_component_button" />
     </section>

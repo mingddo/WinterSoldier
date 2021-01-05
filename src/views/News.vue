@@ -22,7 +22,6 @@
 
 <script>
 import { getnews } from "@/api/news.js";
-
 export default {
   name: "News",
   data() {
@@ -64,7 +63,6 @@ export default {
   height: 100%;
   padding: 12px 24px;
 }
-
 .news__search {
   border: 3px solid var(--color-yellow-prime);
   border-radius: 0px;
@@ -72,19 +70,15 @@ export default {
   padding: 4px 8px;
   font-size: var(--font-small);
 }
-
 .news__search:focus {
   border: 3px solid var(--color-yellow-prime);
 }
-
 .news__title {
   padding: 4px 0;
 }
-
 .news__item__title:hover {
   font-weight: bold;
 }
-
 .news__section {
   font-size: var(--font-medium);
 }
