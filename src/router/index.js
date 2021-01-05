@@ -7,6 +7,7 @@ import Login from '../views/Accounts/Login.vue';
 import Profile from '../views/Accounts/Profile.vue';
 import Weather from '../views/Weather.vue';
 import Stock from '../views/Stock.vue';
+import Group from '../views/Group.vue';
 
 Vue.use(VueRouter);
 
@@ -39,6 +40,11 @@ const routes = [
     path: '/profile',
     name: 'Profile',
     component: Profile,
+  },
+  {
+    path: '/group',
+    name: 'Group',
+    component: Group,
   },
   {
     path: '/weather',

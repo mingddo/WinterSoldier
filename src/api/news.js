@@ -2,20 +2,21 @@ import { createInstance } from './index.js'
 
 const instance = createInstance();
 
-function getInfo(success, fail) {
+function getnews(query, success, fail) {
     instance
-        .get('corona/')
+        .get(`news/crawler/${query}/`)
         .then(success)
         .catch(fail);
 
 }
 
-function getCityInfo(success, fail) {
+
+function realtimeList(success, fail) {
     instance
-        .get('corona/city/')
+        .get(`news/daymost/`)
         .then(success)
         .catch(fail);
 
 }
 
-export { getInfo, getCityInfo }
+export { getnews, realtimeList }

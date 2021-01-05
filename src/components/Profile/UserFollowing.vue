@@ -36,8 +36,7 @@ export default {
     followcancel() {
       removefollow(
         this.following.username,
-        (res) => {
-          console.log('성공시', res)
+        () => {
           this.$emit('getuserprofile')
           this.isEach = false;
         },

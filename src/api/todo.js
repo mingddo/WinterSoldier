@@ -1,6 +1,6 @@
-import {AuthorizationInstance} from './index.js'
+import {createInstance} from './index.js'
 
-const instance = AuthorizationInstance();
+const instance = createInstance();
 
 function writeTodo(todo, success, fail) {
     instance
@@ -14,20 +14,26 @@ function writeTodo(todo, success, fail) {
 
 function todoList(success, fail) {
     instance
-    .get('todos/')
+    .get('todos/', {headers : {
+        Authorization : `jwt ${localStorage.getItem('jwt')}`
+      } })
     .then(success)
     .catch(fail);
 }
 
 function getTodo(todono, success, fail) {
     instance
-    .get(`todos/${todono}`)
+    .get(`todos/${todono}`, {headers : {
+        Authorization : `jwt ${localStorage.getItem('jwt')}`
+      } })
     .then(success)
     .catch(fail);
 }
 function deleteTodo(todono, success, fail) {
     instance
-    .delete(`todos/${todono}`)
+    .delete(`todos/${todono}`, {headers : {
+        Authorization : `jwt ${localStorage.getItem('jwt')}`
+      } })
     .then(success)
     .catch(fail);
 }
@@ -44,7 +50,9 @@ function ModifyTodo(todono, todoitem, success, fail) {
 
 function todoCompleted(todo, success, fail) {
     instance
-    .put(`todos/${todo.id}/`, todo)
+    .put(`todos/${todo.id}/`, todo, {headers : {
+        Authorization : `jwt ${localStorage.getItem('jwt')}`
+      } })
     .then(success)
     .catch(fail);
 }

@@ -16,8 +16,8 @@ export default {
   },
   props: {
     weekdaily: [Number, String],
-    year: Number,
-    month: Number,
+    year: [Number, String],
+    month: [Number, String],
     weekCalendar: Array,
   },
   data: function () {
@@ -25,6 +25,8 @@ export default {
       todos: null,
       dateInfo: null,
       temp: true,
+      t_month: null,
+      t_weekdaily: null,
     };
   },
   methods: {
@@ -40,20 +42,17 @@ export default {
         this.t_weekdaily = this.weekdaily;
       }
       this.dateInfo =
-        String(this.year) + String(this.month) + String(this.weekdaily);
+        String(this.year) + String(this.t_month) + String(this.t_weekdaily);
     },
     getTodoList() {
       todoList(
         (response) => {
-          console.log("todolist!!", response.data.todolist[this.dateInfo]);
-          console.log("============", this.dateInfo);
           if (this.dateInfo in response.data.todolist) {
             this.todos = response.data.todolist[this.dateInfo];
             this.temp = true;
           } else {
             this.todos = [];
             this.temp = false;
-            console.log("안들어오는 것", this.todos);
           }
         },
         (error) => {
@@ -76,13 +75,12 @@ export default {
         this.t_weekdaily = this.weekdaily;
       }
       this.dateInfo =
-        String(this.year) + String(this.month) + String(this.weekdaily);
+        String(this.year) + String(this.t_month) + String(this.t_weekdaily);
       this.getTodoList();
     },
   },
 
   created() {
-    console.log("created!!!!!!");
     this.createDateInfo();
     this.getTodoList();
   },

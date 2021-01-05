@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Roboto:wght@300;400;500;700&display=swap');
+
+/* 속성 작성 순서 */
+/* 0. width, heigth 등 */
+/* 1. display, position 등 위치나 보여짐에 관한 것 */
+/* 2. Padding, Margin, Border 등 박스에 관한 것 */
+/* 3. Color에 관한 것 */
+
+:root {
+  /* Color */
+  /* 테마 색깔은 무엇으로 할까 */
+  --brown-dark: #5f4339;
+  --brown-light: #be9c91;
+  --brown-lighter: #bcaaa4;
+  --brown: #8d6e63;
+  --white: #fafafa;
+  --black: #212121;
+  --black-dark: #000000;
+  --black-light: #484848;
+  --gray-light: #e0e0e0;
+  --gray-dark: #aeaeae;
+  --red: #f50057;
+  --blue: #3d5afe;
+  --html: #fd7e14;
+  --vue: #41b883;
+  --react: #61dafb;
+  --css: #29a9df;
+  --js: #efd81d;
+
+  /* Padding, Margin */
+  --padding-l: 8px;
+  --padding-m: 12px;
+  --padding-h: 24px;
+  --margin-l: 8px;
+  --margin-m: 12px;
+  --margin-h: 24px;
+
+  /* Text Size */
+  --font-macro: 24px;
+  --font-large: 20px;
+  --font-medium: 16px;
+  --font-small: 12px;
+  --font-micro: 8px;
+  --h1: 30px;
+  --h2: 24px;
+  --h3: 18px;
+
+  /* Image Size */
+  --project-img: 50px;
+  --profile-img: 200px;
+
+  /* Font Family */
+  --roboto: 'Roboto', sans-serif;
+  --openSans: 'Open Sans', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--roboto);
+}
+
+.weather__frame {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--padding-one);
+}
+
+.weather {
+  width: 100%;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--yellow-prime);
+  opacity: 0.75;
+  color: var(--black);
+}
+
+.weather .weather__date {
+  font-family: var(--openSans);
+  font-size: var(--h3);
+  font-weight: 500;
+}
+
+.weather .weather__select {
+  display: flex;
+  align-items: center;
+  padding: var(--padding-m);
+}
+
+.weather .weather__info {
+  width: 50%;
+  text-align: center;
+  padding: var(--padding-l);
+  margin: var(--margin-h) 0;
+  border-radius: 20px;
+  background-color: var(--white);
+  color: var(--black-dark);
+}
+
+.weather .weather__info .info__location {
+  padding: var(--padding-l);
+}
+
+.weather .weather__info .info__detail {
+  padding: var(--padding-l);
+}
+
+.weather .weather__info .info__pop {
+  font-size: var(--font-micro);
+}
+
+.weather .weather__info .detail__icon {
+  padding: var(--padding-l);
+}
+
+.weather .weather__info .detail__icon i {
+  font-size: var(--font-macro);
+}
+
+/* icon 색상 */
+.fa-cloud {
+  color: var(--gray-dark);
+}
+
+.fa-cloud-showers-heavy {
+  color: var(--gray-dark);
+}
+
+.fa-cloud-sun {
+  color: var(--css);
+}
+
+.fa-snowflake {
+  color: var(--gray-light);
+}
+
+.fa-sun {
+  color: var(--html);
+}

@@ -1,7 +1,7 @@
 <template>
   <div>
     <span v-show="temp">
-      <div class="monthcalendartodoItem">일정 있음</div>
+      <div class="monthcalendartodoItem"><i class="fas fa-bell"></i></div>
     </span>
   </div>
 </template>

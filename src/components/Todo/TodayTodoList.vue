@@ -1,16 +1,25 @@
 <template>
   <div>
+    <div class="tf-dailytodoList">
+      <div class="td-dailytodoItem">
+        <div @click="isModalViewed = true">+</div>
+        <TodoForm
+          :propsyear="year"
+          :propsmonth="p_month"
+          :propsday="p_day"
+          v-if="isModalViewed"
+          @close-modal="isModalViewed = false"
+        />
+      </div>
+    </div>
     <span v-show="temp">
       <div v-for="todo in todos" :key="todo.id" class="monthcalendartodoItem">
-        <div @click="isTodoModalViewed = true">
-          <div>{{ todo.title }}</div>
-          <div>{{ todo.alarm_hour }}시 {{ todo.alarm_min }}분</div>
-          <Detail
-            :todo="todo"
-            v-if="isTodoModalViewed"
-            @close-modal="isTodoModalViewed = false"
-          >
-          </Detail>
+        <div>
+          <div @click="TodoModalViewed">{{ todo.title }}</div>
+          <div @click="TodoModalViewed">
+            {{ todo.alarm_hour }}시 {{ todo.alarm_min }}분
+          </div>
+          <Detail :todo="todo" v-if="isTodoModalViewed2"> </Detail>
         </div>
       </div>
     </span>
@@ -20,15 +29,22 @@
 <script>
 import { todoList } from "../../api/todo.js";
 import Detail from "./Detail";
+import TodoForm from "../Todo/TodoForm";
 export default {
   name: "TodayTodoList",
   components: {
     Detail,
+    TodoForm,
   },
   props: {
-    day: [Number, String],
-    year: [Number, String],
-    month: [Number, String],
+    day: Number,
+    year: Number,
+    month: Number,
+  },
+  computed: {
+    isTodoModalViewed2() {
+      return this.$store.state.isTodoModalViewed;
+    },
   },
   data: function () {
     return {
@@ -38,9 +54,14 @@ export default {
       temp: false,
       c_month: null,
       c_day: null,
+      p_month: null,
+      p_day: null,
     };
   },
   methods: {
+    TodoModalViewed() {
+      this.$store.dispatch("isTodoModaViewed");
+    },
     createDateInfo() {
       if (String(this.month).length === 1) {
         this.c_month = "0" + String(this.month);
@@ -77,20 +98,19 @@ export default {
       if (String(this.month).length === 1) {
         this.c_month = "0" + String(this.month);
       } else {
-        this.c_month = String(this.month);
+        this.p_month = String(this.month);
       }
       if (String(this.day).length === 1) {
         this.c_day = "0" + String(this.day);
       } else {
-        this.c_day = String(this.day);
+        this.p_day = String(this.day);
       }
       this.dateInfo =
-        String(this.year) + String(this.c_month) + String(this.c_day);
+        String(this.year) + String(this.p_month) + String(this.p_day);
       this.getTodoList();
     },
   },
   created() {
-    console.log("TodayTodoList created hook", this.day, this.month, this.year);
     this.createDateInfo();
     this.getTodoList();
   },
@@ -98,15 +118,26 @@ export default {
 </script>
 
 <style scoped>
-.monthcalendartodoItem {
+.todaytodoItemeach {
   width: 100%;
   margin: 10px auto;
-  padding: 20px;
+}
+
+.todositemspan {
+  width: 100%;
+}
+
+.monthcalendartodoItem {
+  width: 100%;
+  padding: 10px;
   color: rgb(255, 255, 255);
   border-radius: 5px;
-  box-shadow: 0px 0px 10px 0.3px var(--light-gray);
+  box-shadow: 0px 0px 10px 0.3px #bebebe;
   border: none;
-  background-color: rgb(104, 83, 99);
+  background-color: rgb(165, 16, 130);
+}
+.monthcalendartodoItem:hover {
+  background-color: rgb(76, 132, 179);
 }
 
 .completed {
