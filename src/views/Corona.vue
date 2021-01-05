@@ -1,25 +1,31 @@
 <template>
   <div class="coronaframe">
-    <h2>코로나-19</h2>
-    <div>{{ corona_info.updateTime }}</div>
-    <div>
-      확진환자
-      <div>(누적) {{ corona_info.TotalCase }}</div>
-    </div>
+    <div class="coronaInfotitle">코로나-19</div>
+    <div class="coronaInfosubtitle">{{ corona_info.updateTime }}</div>
+    <div class="coronatotalInfo">
+      <div class="coronaboxInfo1">
+        <div class="coronaTotalcase"> 
+          확진환자
+          <div class="Infodetail">(누적) {{ corona_info.TotalCase }}</div>
+        </div>
 
-    <div>
-      격리해제
-      <div>(누적) {{ corona_info.TotalRecovered }}</div>
-    </div>
+        <div class="coronaRecover">
+          격리해제
+          <div class="Infodetail">(누적) {{ corona_info.TotalRecovered }}</div>
+        </div>
+      </div>
 
-    <div>
-      치료중
-      <div>(누적) {{ corona_info.NowCase }}</div>
-    </div>
+      <div class="coronaboxInfo2">
+        <div class="coronaRecovering">
+          치료중
+          <div class="Infodetail">(누적) {{ corona_info.NowCase }}</div>
+        </div>
 
-    <div>
-      사망
-      <div>(누적) {{ corona_info.TotalDeath }}</div>
+        <div class="corodaDeath">
+          사망
+          <div class="Infodetail">(누적) {{ corona_info.TotalDeath }}</div>
+        </div>
+      </div>
     </div>
 
     <div class="broadcast">
@@ -466,41 +472,6 @@ export default {
 };
 </script>
 
-<style scoped>
-.coronaframe {
-  text-align: left;
-  width: 100%;
-  background-color: whitesmoke;
-  margin: 30px 0;
-  border: none;
-  box-shadow: 0px 0px 10px 0.3px var(--color-gray-light);
-  border-radius: 15px;
-  padding: 10px;
-}
-.broadcast {
-  width: 200px;
-  height: 80px;
-  border: none;
-  /* box-shadow: 0px 0px 10px 0.3px var(--light-gray); */
-  border-radius: 0.25rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0.5rem 0.75rem;
-  text-align: left;
-}
+<style scoped src="@/assets/corona.css">
 
-/* .broadcast > .feather {
-    margin-right: 0.5rem;
-  } */
-
-.broadcast > .carousel {
-  flex: 1;
-}
-
-.broadcast-content {
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-}
 </style>
