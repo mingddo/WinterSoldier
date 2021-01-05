@@ -129,7 +129,7 @@ export default {
   background-color: rgb(240, 240, 175);
   min-height: 500px;
   z-index: 10;
-  opacity: 1;
+  /* opacity: 1; */
 }
 .todo-table {
   border-collapse: collapse;
