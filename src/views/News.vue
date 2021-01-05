@@ -12,7 +12,7 @@
       />
     </form>
     <div class="news__title" v-for="(n, id) in news" :key="id">
-      <a :href="n.link">
+      <a :href="n.link" target="_blank">
         <span class="news__item__title">{{ n.title }}</span></a
       >
       {{ n.date }} {{ n.source }}

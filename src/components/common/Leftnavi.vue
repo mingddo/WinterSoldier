@@ -1,9 +1,9 @@
 <template>
   <nav>
     <ul class="navbarCategory navbarCategory-list">
-      <li>
+      <!-- <li>
         <router-link to="/">Home</router-link>
-      </li>
+      </li> -->
       <li>
         <router-link to="/stock">stock</router-link>
       </li>
