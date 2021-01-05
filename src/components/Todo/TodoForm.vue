@@ -1,87 +1,82 @@
 <template>
-  <div>
-    <!-- <input @keypress.enter="createTodo" v-model="todoTitle" type="text">
-      <button @click="createTodo">Add</button> -->
-    <div class="modal">
-      <div class="modal-card container pd">
-        <form @submit="OnSubmit" class="todo-form pd">
-          <h4>
-            제목을 입력하세요 : <br />
-            <input
-              type="text"
-              class="todo-input-title pd"
-              v-model="form.title"
-              placeholder="title"
-            />
-          </h4>
-          <h4 class="pd">
-            계획 시간 : <br />
-            <select name="schedule_year" v-model="form.schedule_year">
-              <option v-for="(year, id) in schedule_year_list" :key="id">
-                {{ year }}
-              </option></select
-            >년
-            <select name="schedule_month" v-model="form.schedule_month">
-              <option v-for="(month, id) in schedule_month_list" :key="id">
-                {{ month }}
-              </option></select
-            >월
-            <select name="schedule_date" v-model="form.schedule_date">
-              <option v-for="(date, id) in schedule_date_list" :key="id">
-                {{ date }}
-              </option></select
-            >일
-            <select name="schedule_hour" v-model="form.schedule_hour">
-              <option v-for="(hour, id) in schedule_hour_list" :key="id">
-                {{ hour }}
-              </option></select
-            >시간<select name="schedule_min" v-model="form.schedule_min">
-              <option v-for="(min, id) in schedule_min_list" :key="id">
-                {{ min }}
-              </option></select
-            >분
-          </h4>
-          <br />
-          <h4 class="pd">
-            알람 시간 : <br />
-            <select name="alarm_year" v-model="form.alarm_year">
-              <option v-for="(year, id) in alarm_year_list" :key="id">
-                {{ year }}
-              </option></select
-            >년
-            <select name="alarm_month" v-model="form.alarm_month">
-              <option v-for="(month, id) in alarm_month_list" :key="id">
-                {{ month }}
-              </option></select
-            >월
-            <select name="alarm_date" v-model="form.alarm_date">
-              <option v-for="(date, id) in alarm_date_list" :key="id">
-                {{ date }}
-              </option></select
-            >일
-            <select name="alarm_hour" v-model="form.alarm_hour">
-              <option v-for="(hour, id) in alarm_hour_list" :key="id">
-                {{ hour }}
-              </option></select
-            >시간
-            <select name="alarm_min" v-model="form.alarm_min">
-              <option v-for="(min, id) in alarm_min_list" :key="id">
-                {{ min }}
-              </option></select
-            >분
-          </h4>
-          <button type="submit">제출하기</button>
-        </form>
-        <div @click="$emit('close-modal')">
-          <img
-            class="overlay-button"
-            src="../../assets/close.png"
-            width="50px"
-            height="30px"
-            alt=""
+  <div class="modal" @click.self="$emit('close-modal')">
+    <div class="modal__card">
+      <!-- <div @click="$emit('close-modal')">
+        <img
+          class="modal__close__button"
+          src="../../assets/close.png"
+        />
+      </div> -->
+      <form @submit="OnSubmit" class="modal__todo__form">
+        <div class="todo-title">
+          알정 내용
+          <input
+            type="text"
+            class="todo-input-title"
+            v-model="form.title"
+            placeholder="title"
           />
         </div>
-      </div>
+        <div class="todo-scedule">
+          <div class="todo-scedule-title">계획 시간</div>
+
+          <select name="schedule_year" v-model="form.schedule_year">
+            <option v-for="(year, id) in schedule_year_list" :key="id">
+              {{ year }}
+            </option>
+          </select>
+          <label class="select__label" for="year-select"> 년</label>
+          <select name="schedule_month" v-model="form.schedule_month">
+            <option v-for="(month, id) in schedule_month_list" :key="id">
+              {{ month }}
+            </option></select
+          ><label class="select__label" for="month-select"> 월</label>
+          <select name="schedule_date" v-model="form.schedule_date">
+            <option v-for="(date, id) in schedule_date_list" :key="id">
+              {{ date }}
+            </option></select
+          ><label class="select__label" for="date-select"> 일</label>
+          <select name="schedule_hour" v-model="form.schedule_hour">
+            <option v-for="(hour, id) in schedule_hour_list" :key="id">
+              {{ hour }}
+            </option></select
+          ><label class="select__label" for="hour-select"> 시</label
+          ><select name="schedule_min" v-model="form.schedule_min">
+            <option v-for="(min, id) in schedule_min_list" :key="id">
+              {{ min }}
+            </option></select
+          ><label class="select__label" for="minute-select"> 분</label>
+        </div>
+        <div class="todo-alarm">
+          <div class="todo-alarm-title">알람 시간</div>
+          <select name="alarm_year" v-model="form.alarm_year">
+            <option v-for="(year, id) in alarm_year_list" :key="id">
+              {{ year }}
+            </option></select
+          ><label class="select__label" for="ayear-select"> 년</label>
+          <select name="alarm_month" v-model="form.alarm_month">
+            <option v-for="(month, id) in alarm_month_list" :key="id">
+              {{ month }}
+            </option></select
+          ><label class="select__label" for="amonth-select"> 월</label>
+          <select name="alarm_date" v-model="form.alarm_date">
+            <option v-for="(date, id) in alarm_date_list" :key="id">
+              {{ date }}
+            </option></select
+          ><label class="select__label" for="adate-select"> 일</label>
+          <select name="alarm_hour" v-model="form.alarm_hour">
+            <option v-for="(hour, id) in alarm_hour_list" :key="id">
+              {{ hour }}
+            </option></select
+          ><label class="select__label" for="ahour-select"> 시</label>
+          <select name="alarm_min" v-model="form.alarm_min">
+            <option v-for="(min, id) in alarm_min_list" :key="id">
+              {{ min }}
+            </option></select
+          ><label class="select__label" for="aminute-select"> 분</label>
+        </div>
+        <div class="todo-submit" @click="OnSubmit" type="submit">제출하기</div>
+      </form>
     </div>
   </div>
 </template>
@@ -99,7 +94,7 @@ export default {
   data: function () {
     return {
       form: {
-        title: "일정을 넣으세요",
+        title: "",
         schedule_year: "2021",
         schedule_month: "01",
         schedule_date: "01",
@@ -410,19 +405,28 @@ export default {
   methods: {
     OnSubmit: function () {
       event.preventDefault();
-      writeTodo(
-        this.form,
-        console.log("확인"),
-        this.$emit("close-modal"),
-        () => {
-          console.log(this.form),
-            console.log(`jwt ${localStorage.getItem("jwt")}`);
-          this.$store.dispatch("addTodoList", this.form);
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
+      if (
+        this.form.title === null ||
+        this.form.title === "" ||
+        this.form.title === "undefined"
+      ) {
+        alert("일정을 입력하세요");
+        return;
+      } else {
+        writeTodo(
+          this.form,
+          console.log("확인"),
+          this.$emit("close-modal"),
+          () => {
+            console.log(this.form),
+              console.log(`jwt ${localStorage.getItem("jwt")}`);
+            this.$store.dispatch("addTodoList", this.form);
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+      }
     },
     createTodo: function () {
       // console.log('create')
@@ -451,71 +455,5 @@ export default {
 };
 </script>
 
-<style>
-.modal {
-  width: 30%;
-  position: fixed;
-  height: 100px;
-  left: 0;
-  top: 0;
-  color: white;
-}
-.modal-card {
-  position: relative;
-  max-width: 400px;
-  height: 10px;
-  margin: 30px;
-  margin-top: 30px;
-  padding: 20px;
-  background-color: black;
-  z-index: 10;
-  opacity: 1;
-}
-.overlay-button {
-  direction: column;
-  justify-content: flex-end;
-}
-
-.todo-input {
-  width: 20px;
-  margin: 3px;
-  padding: 3px;
-  height: 20px;
-  border: 1px solid black;
-  background-color: black;
-  color: white;
-}
-.todo-input-year {
-  width: 50px;
-  height: 20px;
-  padding: 0px;
-  border: 1px solid white;
-  background-color: black;
-  color: white;
-}
-.todo-input-title {
-  width: 200px;
-  margin: 3px;
-  padding: 0px;
-  height: 20px;
-  border: 1px solid white;
-  background-color: black;
-  color: white;
-}
-.container {
-  position: fixed;
-  box-shadow: 0px 0px 10px 0.3px var(--light-gray);
-  border: none;
-  top: 20%;
-  left: 40%;
-}
-.todo-form {
-  margin-top: 20%;
-  height: 300px;
-  direction: column;
-  text-align: center;
-}
-.pd {
-  padding: 10px;
-}
+<style scoped src="@\assets\todoform.css">
 </style>

@@ -5,8 +5,8 @@
         <div @click="isModalViewed = true">+</div>
         <TodoForm
           :propsyear="year"
-          :propsmonth="p_month"
-          :propsday="p_day"
+          :propsmonth="c_month"
+          :propsday="c_day"
           v-if="isModalViewed"
           @close-modal="isModalViewed = false"
         />
@@ -140,29 +140,5 @@ export default {
 
 .completed {
   text-decoration: line-through;
-}
-.modal,
-.overlay {
-  width: 75%;
-  height: 75%;
-  position: fixed;
-  left: 0;
-  top: 0;
-  color: white;
-}
-.overlay {
-  opacity: 0.5;
-  background-color: black;
-}
-.modal-card {
-  position: relative;
-  max-width: 80%;
-  margin: auto;
-  margin-top: 30px;
-  padding: 20px;
-  background-color: rgb(240, 240, 175);
-  min-height: 500px;
-  z-index: 10;
-  opacity: 1;
 }
 </style>
