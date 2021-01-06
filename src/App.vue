@@ -9,6 +9,7 @@
 import ChatHome from "./components/ChatBot/ChatHome.vue";
 // import Navi from "./components/common/navi.vue";
 import { todoCompleted } from "@/api/todo.js";
+import { todoList } from "@/api/todo.js";
 import { mapState } from "vuex";
 
 export default {
