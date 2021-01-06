@@ -55,20 +55,20 @@ export default {
       createGroupTodo(
         this.$route.query.groupid,
         this.form,
-        (res) => {
-          console.log('성공', res)
+        () => {
         },
         (err) => {
           console.log('실패', err)
         }
       )
       this.$emit('NewTodo', this.form)
+      this.$store.commit('groupTodoStore/changeAddTodoStatus', true)
+      this.$store.commit('groupTodoStore/changeAddTodo', this.form)
     },
     closeform() {
       this.$emit('closeTodoform')
     },
   },
-  
 }
 </script>
 
