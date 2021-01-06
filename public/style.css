@@ -451,13 +451,17 @@ li {
   justify-content: center;
   align-items: flex-start; */
 }
-.frame .monthFrame .calendar > tbody > tr > td > div {
+.frame .monthFrame .calendar > tbody > tr > td .calendarDay {
   padding-top: 15px;
   padding-left: 15px;
   text-align: left;
   width: 100%;
   height: 100%;
   /* align-self: baseline; */
+}
+
+.frame .monthFrame .calendar > tbody > tr > td .calendarDay .todaytodoframewidth{
+  width: 100%;
 }
 
 .frame .monthFrame .calendar > tbody > tr > td > div:hover {

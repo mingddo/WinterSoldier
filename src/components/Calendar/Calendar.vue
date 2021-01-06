@@ -73,7 +73,7 @@
               <td v-for="(day, idx2) in date" :key="idx2">
                 <div class="calendarDay" @click="todaySchedule(day)">
                   {{ day }}
-                  <div>
+                  <div class="todaytodoframewidth">
                     <TodoListMonth
                       :year="year"
                       :month="month"
