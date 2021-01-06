@@ -64,16 +64,12 @@ export default {
     return {
       detail: false,
       ismodified: false,
-      group: {},
     }
   },
   methods: {
     deleteTodo() {
-      const getgroupInfo = sessionStorage.getItem('group')
-      this.group = JSON.parse(getgroupInfo)
-      console.log('그룹정보', this.group)
       deleteGroupTodo(
-        this.group.id,
+        this.$route.query.groupid,
         this.todo.id,
         this.todo,
         (res) => {
@@ -87,11 +83,8 @@ export default {
       this.$emit('deleteTodoList', this.todo.id)
     },
     modifyTodo () {
-      const getgroupInfo = sessionStorage.getItem('group')
-      this.group = JSON.parse(getgroupInfo)
-      console.log('그룹정보', this.group)
       updateGroupTodo(
-        this.group.id,
+        this.$route.query.groupid,
         this.todo.id,
         this.todo,
         (res) => {
