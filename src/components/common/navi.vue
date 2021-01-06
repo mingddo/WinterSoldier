@@ -42,7 +42,15 @@
         </button>
       </div>
 
-
+      <div v-if="myinfo">
+        <router-link
+          :to="{
+            name: 'Profile',
+            query: { name: (myinfo && myinfo.username) || 'Anonymous' },
+          }"
+          ><i class="fas fa-user"></i
+        ></router-link>
+      </div>
     </div>
   </header>
 </template>
