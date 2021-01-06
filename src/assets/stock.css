@@ -16,9 +16,9 @@
 }
 
 .stockframe .stockinput .loading {
-  width: 60%;
+  width: 70%;
   font-size: large;
-  margin: calc(var(--margin) * 1) auto;
+  margin: calc(var(--margin) * 10) auto;
 }
 
 
@@ -27,9 +27,16 @@
 }
 
 .stockframe .Chart__container {
-  border-radius: 15px;
+  /* border-radius: 15px;
   box-shadow: 0px 0px 10px 0.3px var(--light-gray);
-  border: 2px solid black;
+  border: none; */
+}
+
+.stockframe .Chart__container .Chart__content {
+  margin: 40px 0;
+  box-shadow: 0px 0px 10px 0.1px var(--color-gray-light);
+  border: none;
+  border-radius: 15px;
 }
 
 @-webkit-keyframes flower {
@@ -41,22 +48,8 @@
   }
 }
 
-ul {
-  width: 100%;
-  color: rgba(30, 39, 46, 1);
-  list-style: none;
-  margin: 0;
-  padding: 0.5rem 0 0.5rem 0;
-}
-li {
-  margin: 0 0 0 0;
-  border-radius: 5px;
-  padding: 0.75rem 0 0.75rem 0.75rem;
-  display: flex;
-  align-items: center;
-}
-li:hover {
-  cursor: pointer;
+.autocomplete-result-list {
+  font-family: var(--Noto-Sans-KR);
 }
 
 #autosuggest {
@@ -73,6 +66,9 @@ li:hover {
   background-color: rgba(51, 217, 178, 0.2);
 }
 
+#stockselect__wrapper {
+  margin: 20px;
+}
 
 .stock__select__box {
   margin: auto 10px;
