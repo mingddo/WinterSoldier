@@ -46,6 +46,7 @@
   /* Width */
   --max-width: 1200px;
   --min-width: 760px;
+  --left-component-min-width: 235px;
 
   /* Height */
   --calendar-height: 560px;
@@ -228,8 +229,8 @@ li {
   margin: auto;
 }
 .home .left_component {
-  /* width: 20%; */
   flex: 2 2 20%;
+  min-width: var(--left-component-min-width);
   height: 100%;
   display: flex;
   flex-direction: column;
