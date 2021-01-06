@@ -22,7 +22,7 @@
   --padding: 12px;
   --padding-side: 40px;
   --padding-updown: 12px;
-  --padding-one: 44px;
+  --padding-one: 58px;
   --margin: 12px;
   --margin-semi: 24px;
   --margin-one: 44px;
@@ -46,6 +46,7 @@
   /* Width */
   --max-width: 1200px;
   --min-width: 760px;
+  --left-component-min-width: 235px;
 
   /* Height */
   --calendar-height: 560px;
@@ -205,6 +206,11 @@ li {
   color: var(--color-white-dark);
 }
 
+.profile {
+  font-size: var(--font-large);
+  color: var(--color-black);
+}
+
 /* mainFrame */
 .calendar_frame {
   width: 100%;
@@ -228,8 +234,8 @@ li {
   margin: auto;
 }
 .home .left_component {
-  /* width: 20%; */
   flex: 2 2 20%;
+  min-width: var(--left-component-min-width);
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -237,7 +243,6 @@ li {
   align-items: flex-start;
 }
 .home .left_component .left_componet_weather {
-  width: 100%;
   height: auto;
   border-radius: 20px;
   box-shadow: 0px 0px 10px 0.3px var(--color-gray-light);
@@ -263,7 +268,7 @@ li {
   background-color: var(--color-white);
 }
 
-.home .right_component {
+.right_component {
   flex: 8 8 80%;
   display: flex;
   flex-direction: column;
@@ -310,6 +315,11 @@ li {
   display: none !important;
 }
 
+.realtime__wrapper {
+  display: flex;
+  justify-content: flex-start;
+}
+
 .toggle_btn_space {
   width: 100%;
   height: auto;
@@ -317,20 +327,6 @@ li {
   padding: var(--padding);
   /* justify-content: space-between; */
   align-items: center;
-}
-
-.toggle_btn_space .realtimesection{
-  display: flex;
-  width: 100%;
-
-}
-
-.toggle_btn_space .realtimesection .realtimelist{
-  /* margin-right: calc(var(--margin)); */
-}
-
-.toggle_btn_space .realtimesection .realtimetitle{
-  font-weight: var(--weight-semi-bold);
 }
 
 .toggle_btn_space .toggle {
@@ -645,13 +641,23 @@ footer .icons {
 
     /* ChatBot Image */
     --chat-img-size: 30px;
+
+    /* Height */
+    --calendar-height: 560px;
+    --info-height: 50px;
   }
 
   #app {
     max-width: var(--max-width);
     min-width: var(--min-width);
     margin: 0 auto;
-    padding: 18px 40px;
+    padding: 12px 20px;
+  }
+
+  /* 1. Navbar */
+
+  .navbar__search {
+    width: 40%;
   }
 
   .search-icon {
@@ -662,5 +668,50 @@ footer .icons {
 
   .search:focus .search-icon {
     color: var(--color-gray-light);
+  }
+
+  /* 2. Home */
+  .home {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-around;
+    align-items: flex-start;
+    margin: auto;
+  }
+
+  .right_component {
+    width: 100%;
+    padding: 0;
+  }
+
+  .toggle_btn_space {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 8px 0;
+  }
+
+  /* 3. Left_component */
+  .home .left_component {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+  }
+
+  .left_componet_weather {
+    width: 40%;
+    margin: 30px 0;
+  }
+
+  .home .left_component .left_componet_corona {
+    width: 45%;
+    padding: 12px;
+  }
+
+  /* ChatBot 관련 */
+  .chatbot-container {
+    z-index: 1;
   }
 }

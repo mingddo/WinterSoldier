@@ -1,9 +1,15 @@
 <template>
   <span class="calendar_frame">
     <div class="toggle_btn_space">
+<<<<<<< HEAD
+      <div class="realtime__wrapper">
+        <span class="realtimetitle">실시간 검색어 ▶ </span>
+        <span class="realtimelist"><Realtime /></span>
+=======
       <div class="realtimesection">
         <span class="realtimetitle">실시간 검색어</span>
         <Realtime />
+>>>>>>> master
       </div>
       <label class="toggle" for="myToggle">
         <input

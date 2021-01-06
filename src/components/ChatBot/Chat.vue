@@ -230,6 +230,7 @@ export default {
 <style scoped>
 .chatbot-container {
   width: 50%;
+  z-index: 1;
 }
 .chatbot-container > div:first-child {
   background-color: #ddd;

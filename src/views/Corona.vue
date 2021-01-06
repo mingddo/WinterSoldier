@@ -472,5 +472,39 @@ export default {
 };
 </script>
 
+<<<<<<< HEAD
+<style scoped>
+.coronaframe {
+  text-align: left;
+  /* width: 100%; */
+  background-color: whitesmoke;
+  margin: 30px 0;
+  border: none;
+  box-shadow: 0px 0px 10px 0.3px var(--color-gray-light);
+  border-radius: 15px;
+  padding: 10px;
+}
+.broadcast {
+  width: 100%;
+  border: none;
+  /* box-shadow: 0px 0px 10px 0.3px var(--light-gray); */
+  border-radius: 0.25rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+}
+
+/* .broadcast > .feather {
+    margin-right: 0.5rem;
+  } */
+
+.broadcast > .carousel {
+  flex: 1;
+}
+
+=======
 <style scoped src="@/assets/corona.css">
+>>>>>>> master
 </style>
