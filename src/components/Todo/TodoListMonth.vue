@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <span v-show="temp">
-      <div class="monthcalendartodoItem"><i class="fas fa-bell"></i></div>
+  <div class="todomonthshow">
+    <span class="todomonthshowtemp" v-show="temp">
+      <div class="monthcalendartodoItem"></div>
     </span>
   </div>
 </template>
@@ -104,11 +104,24 @@ export default {
 </script>
 
 <style scoped>
+.todomonthshow{
+  width: 100%;
+}
+
+.todomonthshowtemp{
+  width: 100%;
+}
+
 .monthcalendartodoItem {
   width: 100%;
-  border-radius: 10px;
+  height: 10px;
+  border-radius: 5px;
   box-shadow: 0px 0px 10px 0.3px var(--light-gray);
   border: none;
-  background-color: rgb(189, 8, 150);
+  background-color: rgb(255, 145, 0);
+  font-size: 2px;
+  text-align: left;
+  padding-left: var(--padding);
+  color: wheat;
 }
 </style>
