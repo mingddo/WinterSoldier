@@ -1,22 +1,5 @@
 <template>
   <span class="calendar_frame">
-    <div class="toggle_btn_space">
-      <div class="realtime__wrapper">
-        <span class="realtimetitle">실시간 검색어</span>
-        <Realtime />
-      </div>
-      <label class="toggle" for="myToggle">
-        <input
-          class="toggle__input"
-          type="checkbox"
-          name=""
-          id="myToggle"
-          v-model="calendarToggle"
-          @change="calendarChange"
-        />
-        <div class="toggle__fill"></div>
-      </label>
-    </div>
     <main class="frame">
       <section
         :class="{ claendarchangecls: calendarToggle }"
@@ -192,6 +175,21 @@
         </div>
       </div>
     </main>
+    <div class="toggle_btn_space">
+      <span v-if="calendarToggle">주간 달력</span>
+      <span v-else>월간 달력</span>
+      <label class="toggle" for="myToggle">
+        <input
+          class="toggle__input"
+          type="checkbox"
+          name=""
+          id="myToggle"
+          v-model="calendarToggle"
+          @change="calendarChange"
+        />
+        <div class="toggle__fill"></div>
+      </label>
+    </div>
   </span>
 </template>
 
@@ -200,7 +198,7 @@ import TodoList from "../Todo/TodoList";
 import TodoForm from "../Todo/TodoForm";
 import TodayTodoList from "../Todo/TodayTodoList";
 import TodoListMonth from "../Todo/TodoListMonth.vue";
-import Realtime from "@/views/Realtime.vue";
+// import Realtime from "@/views/Realtime.vue";
 export default {
   name: "Calendar",
   components: {
@@ -208,7 +206,7 @@ export default {
     TodoForm,
     TodoListMonth,
     TodayTodoList,
-    Realtime,
+    // Realtime,
   },
   data() {
     return {

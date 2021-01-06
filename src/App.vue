@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <Navi />
     <ChatHome />
     <router-view :key="$route.fullPath" />
   </div>
@@ -8,14 +7,14 @@
 
 <script>
 import ChatHome from "./components/ChatBot/ChatHome.vue";
-import Navi from "./components/common/navi.vue";
-import { todoList, todoCompleted } from "@/api/todo.js";
+// import Navi from "./components/common/navi.vue";
+import { todoCompleted } from "@/api/todo.js";
 import { mapState } from "vuex";
 
 export default {
   name: "App",
   components: {
-    Navi,
+    // Navi,
     ChatHome,
   },
   data: function () {

@@ -244,10 +244,10 @@ export default {
 </script>
 
 <style scoped>
-.broadcast {
+/* .broadcast {
   padding-left: 12px;
   width: 400px;
-}
+} */
 
 .carousel {
   box-shadow: 0px 0px 10px 0.3px var(--color-gray-light);

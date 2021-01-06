@@ -1,13 +1,13 @@
 <template>
   <div class="signupbox">
-    <h1>Signup</h1>
+    <div class="login__title">회원가입</div>
     <div class="signup-form">
       <div>
-        <label for="username">username </label>
+        <label for="username">아이디 </label>
         <input type="text" name="username" id="username" v-model="username" />
       </div>
       <div>
-        <label for="password">password</label>
+        <label for="password">비밀번호</label>
         <input
           type="password"
           name="password"
@@ -16,7 +16,7 @@
         />
       </div>
       <div>
-        <label for="passwordConfirmation">passwordConfirmation</label>
+        <label for="passwordConfirmation">비밀번호 확인</label>
         <input
           @keyup.enter="onSignup"
           type="password"
