@@ -1,7 +1,7 @@
 <template>
   <span class="calendar_frame">
     <div class="toggle_btn_space">
-      <div class="realtimesection">
+      <div class="realtime__wrapper">
         <span class="realtimetitle">실시간 검색어</span>
         <Realtime />
       </div>
