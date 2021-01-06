@@ -141,7 +141,6 @@ export default {
 }
 .content {
   position: relative;
-  margin-left: 45%;
   margin-top: 5%;
   margin-bottom: 5%;
 }
@@ -150,6 +149,8 @@ export default {
   color: #ffffff;
   transform: translate(-50%, -50%);
   font-size: 4em;
+  left: calc(50%);
+  width: 100%;
 }
 .content h2:nth-child(1) {
   color: transparent;
