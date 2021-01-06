@@ -5,7 +5,7 @@
 }
 
 .stockframe .stockinput {
-  width: 50%;
+  width: 80%;
   /* background-color: var(--white-color); */
   margin: calc(var(--margin) * 1) auto;
 }
@@ -62,6 +62,26 @@ li:hover {
 #autosuggest {
   width: 100%;
 }
+
+#autosuggest__input {
+  box-shadow: 0px 0px 10px 0.1px var(--color-gray-light);
+  border: none;
+  border-radius: 5px;
+}
+
 .autosuggest__results-item--highlighted {
   background-color: rgba(51, 217, 178, 0.2);
+}
+
+
+.stock__select__box {
+  margin: auto 10px;
+  padding: 5px;
+  box-shadow: 0px 0px 10px 0.1px var(--color-gray-light);
+  border: none;
+  border-radius: 5px;
+}
+
+.autosuggest-container {
+  z-index: 20;
 }

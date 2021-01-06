@@ -247,16 +247,9 @@ export default {
 .broadcast {
   padding-left: 12px;
   width: 400px;
-  /* display: flex;
-  justify-content: flex-start;
-  align-items: center; */
 }
 
-/* .broadcast > .carousel {
-  flex: 1;
-} */
-
-.carousel{
+.carousel {
   box-shadow: 0px 0px 10px 0.3px var(--color-gray-light);
   border: none;
   border-radius: 5px;
@@ -265,5 +258,4 @@ export default {
 .broadcast-content {
   color: red;
 }
-
 </style>
