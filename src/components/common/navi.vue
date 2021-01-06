@@ -23,23 +23,7 @@
         안녕하세요 {{ (myinfo && myinfo.username) || "Anonymous" }} 님
       </span>
 
-<<<<<<< HEAD
-      <!-- <span v-else>
-        로그인이 필요합니다.
-      </span> -->
-      <!-- <div v-if="myinfo" class="profile"> -->
-      <div>
-        <router-link
-          :to="{
-            name: 'Profile',
-            query: { name: (myinfo && myinfo.username) || 'Anonymous' },
-          }"
-          ><i class="fas fa-user profile"></i
-        ></router-link>
-      </div>
-=======
       <span v-else> 로그인이 필요합니다. </span>
->>>>>>> master
 
       <div>
         <div v-if="isLogin">
