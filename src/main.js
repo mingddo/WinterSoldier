@@ -8,12 +8,14 @@ import store from './store/index.js';
 // import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 // import { dom } from '@fortawesome/fontawesome-svg-core';
 
-import VueAutosuggest from 'vue-autosuggest';
+// import VueAutosuggest from 'vue-autosuggest';
+import Autocomplete from '@trevoreyre/autocomplete-vue'
+import '@trevoreyre/autocomplete-vue/dist/style.css'
 import VueCarousel from '@chenfengyuan/vue-carousel';
 
 Vue.use(VueCarousel);
-
-Vue.use(VueAutosuggest);
+Vue.use(Autocomplete)
+// Vue.use(VueAutosuggest);
 // dom.watch();
 // library.add(fas);
 // Vue.component('font-awesome-icon', FontAwesomeIcon);

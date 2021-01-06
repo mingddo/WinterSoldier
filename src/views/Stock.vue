@@ -1,31 +1,24 @@
 <template>
   <div class="stockframe">
     <div class="stockinput">
-      <di>
+      <div>
         <div v-if="selected" style="padding-top: 0px; width: 100%">
           검색하신
           <span>{{ selected || query }}의 결과입니다.</span>
         </div>
         <div class="autosuggest-container">
-          <vue-autosuggest
-            v-model="query"
-            :suggestions="filteredOptions"
-            @focus="focusMe"
-            @input="onInputChange"
-            @selected="onSelected"
-            :get-suggestion-value="getSuggestionValue"
-            :input-props="{
-              id: 'autosuggest__input',
-              placeholder: '종목명을 입력하세요',
-            }"
-          >
-            <div slot-scope="{ suggestion }">
-              <div>{{ suggestion.item.name }}</div>
-            </div>
-          </vue-autosuggest>
+          <autocomplete
+            :search="search"
+            @submit="handleSubmit"
+            placeholder="Search for stock"
+            aria-label="Search for stock"
+            :get-result-value="getResultValue"
+            default-value="삼성전자"
+            auto-select
+          ></autocomplete>
         </div>
-      </di>
-      <div>
+      </div>
+      <div id="stockselect__wrapper">
         <span class="stock__select__box" @click="selectday(2)">10일</span>
         <span class="stock__select__box" @click="selectday(4)">30일</span>
         <span class="stock__select__box" @click="selectday(8)">70일</span>
@@ -36,9 +29,8 @@
         {{ errorMessage }}
       </div>
       <div v-if="loading" class="loading">
-        🔧 차트 불러오는 중입니다 🔧
         <div class="flower">
-          <img src="@/assets/aa.png" width="100px" height="100px" />
+          <img src="@/assets/aa.png" width="170px" height="170px" />
         </div>
       </div>
     </div>
@@ -50,7 +42,6 @@
           v-if="loaded"
           :chart-data="stockNow"
           :chart-labels="chartLabels"
-          @generate="setDailyPng"
         />
       </div>
       <div class="Chart__content">
@@ -59,7 +50,6 @@
           v-if="loaded"
           :chart-data="stockvolume"
           :chart-labels="chartLabels"
-          @generate="setDailyPng"
         />
       </div>
     </div>
@@ -72,7 +62,8 @@ import LineChart from "@/components/Stock/LineChart";
 import BarChart from "@/components/Stock/BarChart";
 // import "@/assets/stock.css";
 import stockDB from "@/assets/stockDB.json";
-import { VueAutosuggest } from "vue-autosuggest";
+import stockDB2 from "@/assets/stockDB2.json";
+// import { VueAutosuggest } from "vue-autosuggest";
 // import DownloadButton from "@/components/Stock/Download";
 
 export default {
@@ -80,7 +71,7 @@ export default {
   components: {
     LineChart,
     BarChart,
-    VueAutosuggest,
+    // VueAutosuggest,
   },
   data() {
     return {
@@ -97,11 +88,6 @@ export default {
       stockvolume: null,
       query: "삼성전자",
       selected: "",
-      suggestions: [
-        {
-          data: [],
-        },
-      ],
     };
   },
   methods: {
@@ -109,8 +95,16 @@ export default {
       this.loaded = false;
       this.showError = false;
     },
+    search(input) {
+      if (input.length < 1) {
+        return [];
+      }
+      return stockDB2.data.filter((name) => {
+        return name.toLowerCase().startsWith(input.toLowerCase());
+      });
+    },
     getKrStockData() {
-      event.preventDefault();
+      // event.preventDefault();
       if (
         this.company === null ||
         this.company === "" ||
@@ -131,7 +125,6 @@ export default {
         this.companycode,
         this.period,
         (res) => {
-          console.log(res);
           this.stock = res.data;
           this.stockvolume = res.data.volume;
           this.stockNow = res.data.price;
@@ -150,50 +143,17 @@ export default {
       this.period = num;
       this.getKrStockData();
     },
-    setDailyPng(payload) {
-      this.dailyPng = payload;
-    },
-    // clickHandler() {
-    //   // event fired when clicking on the input
-    // },
-    onSelected(item) {
-      console.log("", item.item);
-      this.selected = item.item.name;
-      this.company = item.item.name;
+    handleSubmit(result) {
+      this.company = result;
       this.getKrStockData();
     },
-    onInputChange(text) {
-      // event fired when the input changes
-      console.log(text);
-    },
-    /**
-     * This is what the <input/> value is set to when you are selecting a suggestion.
-     */
-    getSuggestionValue(suggestion) {
-      return suggestion.item.name;
-    },
-    focusMe(e) {
-      console.log(e); // FocusEvent
-    },
-  },
-  computed: {
-    filteredOptions() {
-      return [
-        {
-          data: this.suggestions[0].data.filter((option) => {
-            return (
-              option.name.toLowerCase().indexOf(this.query.toLowerCase()) > -1
-            );
-          }),
-        },
-      ];
+    getResultValue(result) {
+      return result;
     },
   },
   created() {
-    this.suggestions[0].data = stockDB.data;
     this.company = this.query;
     this.getKrStockData();
-    // console.log(this.suggestions[0].data);
   },
 };
 </script>
