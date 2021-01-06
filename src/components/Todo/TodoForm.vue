@@ -1,5 +1,5 @@
 <template>
-  <div class="modal" @click.self="$emit('close-modal')">
+  <div class="c__modal" @click.self="$emit('close-modal')">
     <div class="modal__card">
       <!-- <div @click="$emit('close-modal')">
         <img
@@ -19,7 +19,6 @@
         </div>
         <div class="todo-scedule">
           <div class="todo-scedule-title">계획 시간</div>
-
           <select name="schedule_year" v-model="form.schedule_year">
             <option v-for="(year, id) in schedule_year_list" :key="id">
               {{ year }}
@@ -415,12 +414,9 @@ export default {
       } else {
         writeTodo(
           this.form,
-          console.log("확인"),
-          this.$emit("close-modal"),
           () => {
-            console.log(this.form),
-              console.log(`jwt ${localStorage.getItem("jwt")}`);
-            this.$store.dispatch("addTodoList", this.form);
+            this.$emit("close-modal"),
+              this.$store.commit("todoStore/addNewTodo", this.form);
           },
           (error) => {
             console.log(error);
@@ -450,6 +446,7 @@ export default {
   computed: {
     ...mapState({
       today_alarm_todos: (state) => state.todoStore.today_alarm_todos,
+      newTodo: (state) => state.todoStore.newTodo,
     }),
   },
 };

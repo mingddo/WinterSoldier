@@ -10,6 +10,10 @@ export const addTodoList = (state, newTodo) => {
 export const isCompleted = (state, idx) => {
   state.today_notAlarm_todos[idx - 1].completed = "yes"
 };
+export const addNewTodo = (state, newTodo) => {
+  state.newTodo = newTodo
+  state.changeTodo = !state.changeTodo
+};
 
 export const changeCalendar = (state) => {
   state.calendartogglestate = !state.calendartogglestate

@@ -9,6 +9,7 @@
 <script>
 import Todo from "./Todo";
 import { todoList } from "../../api/todo.js";
+import { mapState } from "vuex";
 export default {
   name: "TodoList",
   components: {
@@ -78,11 +79,31 @@ export default {
         String(this.year) + String(this.t_month) + String(this.t_weekdaily);
       this.getTodoList();
     },
+    changeTodo() {
+      let newDateInfo =
+        this.newTodo["alarm_year"] +
+        this.newTodo["alarm_month"] +
+        this.newTodo["alarm_date"];
+      if (newDateInfo === this.dateInfo) {
+        if (this.todos.length > 0) {
+          this.todos.push(this.newTodo);
+        } else {
+          // this.todos = [this.newTodo];이거해도 동기화반영이 안된다.
+          this.getTodoList();
+        }
+      }
+    },
   },
 
   created() {
     this.createDateInfo();
     this.getTodoList();
+  },
+  computed: {
+    ...mapState({
+      changeTodo: (state) => state.todoStore.changeTodo,
+      newTodo: (state) => state.todoStore.newTodo,
+    }),
   },
 };
 </script>

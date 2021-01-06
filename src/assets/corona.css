@@ -57,7 +57,7 @@
 .coronaframe .coronaboxInfo1 .coronaTotalcase{
   width:48%;
   height: auto;
-  background-color: var(--color-yellow-prime);
+  background-color: var(--color-yellow-light);
   border: solid 1px var(--light-gray);
   padding: var(--padding);
   font-weight: var(--weight-semi-bold);
@@ -72,7 +72,7 @@
 .coronaframe .coronaboxInfo1 .coronaRecover{
   width: 48%;
   height: auto;
-  background-color: var(--color-yellow-prime);
+  background-color: var(--color-yellow-light);
   padding: var(--padding);
   
   /* box-shadow: 0px 0px 10px 0.3px var(--color-gray-light); */
@@ -100,7 +100,7 @@
 .coronaframe .coronaboxInfo2 .coronaRecovering{
   width: 48%;
   height: auto;
-  background-color: var(--color-yellow-prime);
+  background-color: var(--color-yellow-light);
   /* box-shadow: 0px 0px 10px 0.3px var(--color-gray-light); */
   /* border-radius: 5px; */
   border: none;
@@ -118,7 +118,7 @@
 .coronaframe .coronaboxInfo2 .corodaDeath{
   width: 48%;
   height: auto;
-  background-color: var(--color-yellow-prime);
+  background-color: var(--color-yellow-light);
   /* box-shadow: 0px 0px 10px 0.3px var(--color-gray-light); */
   /* border-radius: 5px; */
   border: none;
@@ -150,10 +150,15 @@
   flex: 1;
 }
 
-.coronaframe .broadcast .carousel .broadcast-content {
+.broadcast-content {
   align-items: center;
   display: flex;
   justify-content: space-between;
+}
+
+.broadcast-content > span {
+  font-size: var(--font-regular);
+  font-weight: var(--weight-semi-bold);
 }
 
 

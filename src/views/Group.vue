@@ -95,8 +95,8 @@
         <div class="profile-todobox-title">
           <h1> Schedule </h1>
         </div>
-      <GroupCalendar 
-      :groupinfo="groupinfo"/>
+        <GroupCalendar 
+        :groupinfo="groupinfo"/>
       </div>
       
     </div>
@@ -246,6 +246,7 @@ export default {
         }
       )
     },
+    
   },
   created () {
     this.getGroupInfo();
