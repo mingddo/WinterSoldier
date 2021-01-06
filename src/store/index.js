@@ -8,6 +8,7 @@ Vue.use(AxiosPlugin);
 
 import todoStore from './modules/todoStore';
 import userStore from './modules/userStore';
+import groupTodoStore from './modules/groupTodoStore';
 import weatherStore from './modules/weatherStore';
 
 
@@ -16,6 +17,7 @@ const store = new Vuex.Store({
     todoStore,
     userStore,
     weatherStore,
+    groupTodoStore
   },
   state: {
     isTodoModalViewed: false,

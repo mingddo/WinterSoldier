@@ -7,17 +7,6 @@
       </router-link>
     </div>
 
-    <!-- <div class="navbar__search">
-      <input
-        type="text"
-        class="search"
-        placeholder="검색"
-        onfocus="this.placeholder=''"
-        onblur="this.placeholder='검색'"
-      />
-      <i class="fas fa-search search-icon"></i>
-    </div> -->
-
     <div class="navbar__icons">
       <span v-if="isLogin">
         안녕하세요 {{ (myinfo && myinfo.username) || "Anonymous" }} 님
@@ -25,19 +14,16 @@
 
       <span v-else> 로그인이 필요합니다. </span>
 
-      <div>
-        <div v-if="isLogin">
-          <button class="log__btn" @click="onLogout">로그아웃</button>
-        </div>
-        <div v-else>
-          <button class="log__btn">
-            <router-link to="/login">로그인</router-link>
-          </button>
-        </div>
+      <div v-if="isLogin">
+        <button class="log__btn" @click="onLogout">로그아웃</button>
       </div>
 
-      <div v-if="!isLogin">
-        <button class="log__btn">
+      <div class="signup__wrapper">
+        <button v-if="!isLogin" class="log__btn">
+          <router-link to="/login">로그인</router-link>
+        </button>
+
+        <button v-if="!isLogin" class="log__btn">
           <router-link to="/signup">회원가입</router-link>
         </button>
       </div>

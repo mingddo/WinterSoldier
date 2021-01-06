@@ -143,12 +143,14 @@ export default {
       this.period = num;
       this.getKrStockData();
     },
+
     handleSubmit(result) {
       this.company = result;
       this.getKrStockData();
     },
     getResultValue(result) {
       return result;
+
     },
   },
   created() {

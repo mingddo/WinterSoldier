@@ -8,6 +8,8 @@
 
 <script>
 import { readGroupTodo, } from "../../api/group.js";
+import { mapState } from "vuex";
+
 export default {
   name: "GroupCalendarTodo",
   props: {
@@ -15,14 +17,15 @@ export default {
     year: [Number, String],
     month: [Number, String],
     dates: Array,
+    changing: Boolean,
   },
   data: function () {
     return {
       todos: null,
       dateInfo: null,
       temp: false,
-      groupinfo: {},
       groupTodo: [],
+      newDateInfo: null,
     };
   },
   methods: {
@@ -56,10 +59,17 @@ export default {
       )
     },
   },
-
   watch: {
     dates() {
       this.createDateInfo();
+      this.getGroupTodoList();
+    },
+    addTodo() {
+      if (this.newTodo["schedule_year"] == this.year && this.newTodo["schedule_month"] == this.month && this.newTodo["schedule_date"] == this.day) {
+        if (this.groupTodo.length == 0) {
+          this.temp = true;
+        }
+      }
       this.getGroupTodoList();
     },
   },
@@ -67,6 +77,13 @@ export default {
   created() {
     this.createDateInfo();
     this.getGroupTodoList();
+    console.log(this.day)
+  },
+  computed: {
+    ...mapState({
+      addTodo: (state) => state.groupTodoStore.addTodo,
+      newTodo: (state) => state.groupTodoStore.newTodo,
+    }),
   },
 };
 </script>

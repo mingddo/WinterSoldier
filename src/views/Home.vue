@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <section class="left_component">
+      <Navi class="left_child" />
       <Weather class="left__child left_componet_weather" />
       <Corona class="left__child left_componet_corona" />
     </section>
@@ -14,6 +15,8 @@
 </template>
 
 <script>
+import Navi from "@/components/common/navi.vue";
+
 // @ is an alias to /src
 import Calendar from "@/components/Calendar/Calendar.vue";
 import Weather from "./Weather.vue";
@@ -29,6 +32,7 @@ export default {
     // Leftnavi,
     Corona,
     Bottomcontent,
+    Navi,
   },
   data() {
     return {

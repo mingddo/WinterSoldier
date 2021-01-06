@@ -67,6 +67,8 @@ export default {
         obj.id == id
       })
       this.todayinfo.splice(idx, 1)
+      this.$store.commit('groupTodoStore/changeDelTodoStatus', true)
+      this.$store.commit('groupTodoStore/changeDelTodo', this.form)
     },
     closeTodoform () {
       this.newtodo = false;
@@ -93,14 +95,11 @@ export default {
       this.newtodo = true;
     },
     getTodayList () {
-      console.log(this.groupTodo)
       if (Object.keys(this.groupTodo).includes(this.dateInfo)) {
-        console.log('있어!!')
         this.todayinfo = this.groupTodo[this.dateInfo]
       } else {
         this.todayinfo = [];
       }
-      console.log('오늘의 할일', this.dateInfo, this.todayinfo)
     },
     getGroupTodoList () {
       const getgroupInfo = sessionStorage.getItem('group')
@@ -119,7 +118,6 @@ export default {
     createDateInfo() {
       let thismonth = this.month
       let thisday = this.day
-      console.log(thismonth, thisday, '월일')
       if (String(this.month).length === 1) {
         thismonth = "0" + String(this.month);
       }
@@ -128,12 +126,10 @@ export default {
       }
       this.dateInfo =
         String(this.year) + String(thismonth) + String(thisday);
-        console.log('오늘의 날짜', this.dateInfo)
     },
   },
   watch: {
     day() {
-      console.log('날짜 바뀜')
       this.createDateInfo();
       this.getGroupTodoList();
     },
