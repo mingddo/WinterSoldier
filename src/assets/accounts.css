@@ -121,7 +121,7 @@
   width: 80%;
   height: 2.5rem;
   border-radius: 4px;
-  font-size: var(--font-medium);
+  font-size: var(--font-micro);
   border: none;
   background-color: rgb(238, 238, 133);
   cursor: pointer;

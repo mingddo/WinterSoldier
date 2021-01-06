@@ -1,16 +1,16 @@
 <template>
   <div class="loginbox">
-    <div class="login__title">Login</div>
+    <div class="login__title">로그인</div>
     <div class="login-form">
       <div>
-        <label for="username">username </label>
+        <label for="username">아이디</label>
         <input type="text" name="username" id="username" v-model="user.username">
       </div>
       <div>
-        <label for="password">password</label>
+        <label for="password">비밀번호</label>
         <input @keyup.enter="onLogin" type="password" name="password" id="password" v-model="user.password">
       </div>
-      <button @click="onLogin">Login</button>
+      <button @click="onLogin">로그인</button>
     </div>
   </div>
 </template>
