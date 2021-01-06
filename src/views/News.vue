@@ -62,7 +62,7 @@
 
 <script>
 import Realtime from "@/views/Realtime.vue";
-
+import _ from "lodash";
 import { getnews } from "@/api/news.js";
 export default {
   name: "News",
@@ -107,7 +107,7 @@ export default {
     atEndOfList() {
       return (
         this.currentOffset <=
-        this.paginationFactor * -1 * (this.news.length - this.windowSize)
+        this.paginationFactor * -1 * (_.size(this.news) - this.windowSize)
       );
     },
     atHeadOfList() {
@@ -121,6 +121,7 @@ export default {
 </script>
 
 <style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Luckiest+Guy&display=swap");
 .news__wrapper {
   width: 100%;
   height: 100%;
@@ -167,10 +168,12 @@ export default {
 .content h2:nth-child(1) {
   color: transparent;
   -webkit-text-stroke: 2px blue;
+  font-family: "Luckiest Guy", cursive;
 }
 .content h2:nth-child(2) {
   color: blue;
-  animation: animate 15s ease-in-out infinite;
+  animation: animate 5s ease-in-out infinite;
+  font-family: "Luckiest Guy", cursive;
 }
 
 @keyframes animate {
