@@ -464,8 +464,6 @@ export default {
     },
   },
   created() {
-    console.log("==================");
-    // this.getcoronaInfo();
     this.corona();
     this.citycorona();
   },

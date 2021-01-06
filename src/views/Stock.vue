@@ -131,7 +131,6 @@ export default {
         this.companycode,
         this.period,
         (res) => {
-          console.log(res);
           this.stock = res.data;
           this.stockvolume = res.data.volume;
           this.stockNow = res.data.price;
@@ -157,7 +156,6 @@ export default {
     //   // event fired when clicking on the input
     // },
     onSelected(item) {
-      console.log("", item.item);
       this.selected = item.item.name;
       this.company = item.item.name;
       this.getKrStockData();
@@ -172,8 +170,7 @@ export default {
     getSuggestionValue(suggestion) {
       return suggestion.item.name;
     },
-    focusMe(e) {
-      console.log(e); // FocusEvent
+    focusMe() {
     },
   },
   computed: {
@@ -193,7 +190,6 @@ export default {
     this.suggestions[0].data = stockDB.data;
     this.company = this.query;
     this.getKrStockData();
-    // console.log(this.suggestions[0].data);
   },
 };
 </script>
