@@ -1,8 +1,6 @@
 <template>
   <div class="loginbox">
-    <h1>
-      로그인!
-    </h1>
+    <div class="login__title">Login</div>
     <div class="login-form">
       <div>
         <label for="username">username </label>

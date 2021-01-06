@@ -22,7 +22,7 @@
   --padding: 12px;
   --padding-side: 40px;
   --padding-updown: 12px;
-  --padding-one: 58px;
+  --padding-one: 30px;
   --margin: 12px;
   --margin-semi: 24px;
   --margin-one: 44px;
@@ -76,7 +76,7 @@ a {
   max-width: var(--max-width);
   min-width: var(--min-width);
   margin: 0 auto;
-  padding: 18px 0;
+  padding: 30px 0;
 }
 
 * {
@@ -124,11 +124,10 @@ li {
 /* Header.navbar */
 .navbar {
   display: flex;
+  flex-direction: column;
   box-shadow: 0px 0px 10px 0.3px var(--color-gray-light);
   border-radius: 15px;
   border: none;
-  justify-content: space-between;
-  align-items: center;
   background-color: var(--color-yellow-prime);
   color: var(--color-white);
   padding: 8px 24px;
@@ -173,7 +172,14 @@ li {
 .navbar__icons {
   color: var(--color-black);
   display: flex;
+  flex-direction: column;
   align-items: center;
+}
+
+.signup__wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .log__btn {
@@ -182,7 +188,8 @@ li {
   padding: 4px 8px;
   color: var(--color-gray-dark);
   background-color: var(--color-white-dark);
-  margin: auto 16px;
+  margin: 8px 0;
+  margin-left: 8px;
   font-size: var(--font-small);
   font-weight: var(--weight-semi-bold);
 }
@@ -241,6 +248,7 @@ li {
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
+  /* margin-top: 44px; */
 }
 .home .left_component .left_componet_weather {
   width: 100%;
@@ -326,7 +334,7 @@ li {
   height: auto;
   display: flex;
   padding: var(--padding);
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
 }
 
@@ -710,9 +718,6 @@ footer .icons {
     flex-direction: row;
     justify-content: space-evenly;
     flex-wrap: wrap;
-  }
-
-  .left_componet_weather {
   }
 
   .home .left_component .left_componet_weather {
