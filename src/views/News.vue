@@ -4,6 +4,7 @@
       <h2 class="news__section">Today's NEWS</h2>
       <h2 class="news__section">Today's NEWS</h2>
     </div>
+    <Realtime class="news__realtime" />
     <form @keypress.enter.prevent="onSubmit">
       <input
         class="news__search"
@@ -60,9 +61,14 @@
 </template>
 
 <script>
+import Realtime from "@/views/Realtime.vue";
+
 import { getnews } from "@/api/news.js";
 export default {
   name: "News",
+  components: {
+    Realtime,
+  },
   data() {
     return {
       currentOffset: 0,
@@ -119,11 +125,17 @@ export default {
   width: 100%;
   height: 100%;
   padding: 12px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.news__realtime {
+  width: 200px;
 }
 .news__search {
   border: 3px solid var(--color-yellow-prime);
   border-radius: 0px;
-  width: 50%;
+  width: 300px;
   padding: 4px 8px;
   font-size: var(--font-small);
 }
