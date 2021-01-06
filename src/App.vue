@@ -17,6 +17,13 @@ export default {
     // Navi,
     ChatHome,
   },
+  data: function () {
+    return {
+      today_alarm_todos: [],
+      today_notAlarm_todos: [],
+      curTime_info: null,
+    };
+  },
   methods: {
     checkAlarm() {
       if (this.today_notAlarm_todos.length > 0) {
@@ -28,11 +35,11 @@ export default {
           for (i = 0; i < this.today_notAlarm_todos.length; i++) {
             today_notAlarm_todos_title +=
               this.today_notAlarm_todos[i].title + ", ";
-            // db의 todo completed여부도 변경
+            // db의 todo completed여부도 변경, id값없어서 db의 completed가 안변하는 에러
             todoCompleted(
               { ...this.today_notAlarm_todos[i], completed: "yes" },
               () => {
-                this.$store.commit("isCompleted", i); // 알람띄운 todo는 completed 변경
+                this.$store.commit("todoStore/isCompleted", i); // 알람띄운 todo는 completed 변경
               },
               (err) => {
                 console.log(err);
@@ -56,11 +63,15 @@ export default {
         const day = new Date();
         let cur_hour = this.addZeros(day.getHours(), 2);
         let cur_minute = this.addZeros(day.getMinutes(), 2);
+        let today_alarm_todos_length = this.today_alarm_todos.length;
+        this.curTime_info = cur_hour + cur_minute;
         var i;
-        for (i = 0; i < this.today_alarm_todos.length; i++) {
+        for (i = 0; i < today_alarm_todos_length; i++) {
+          let alarmTime_info =
+            this.today_alarm_todos[i].alarm_hour +
+            this.today_alarm_todos[i].alarm_min;
           if (
-            this.today_alarm_todos[i].alarm_hour === cur_hour &&
-            this.today_alarm_todos[i].alarm_min === cur_minute &&
+            this.curTime_info === alarmTime_info &&
             this.today_alarm_todos[i].completed === "no"
           ) {
             // 지원 여부 확인 및 알람 띄우기
@@ -88,7 +99,41 @@ export default {
         }
       }, 1000);
     },
-
+    getTodo: function () {
+      const day = new Date();
+      let cur_year = day.getFullYear();
+      let cur_month = this.addZeros(day.getMonth() + 1, 2);
+      let cur_day = this.addZeros(day.getDate(), 2);
+      let cur_hour = this.addZeros(day.getHours(), 2);
+      let cur_minute = this.addZeros(day.getMinutes(), 2);
+      let today_info = cur_year.toString() + cur_month + cur_day;
+      let time_info = cur_hour + cur_minute;
+      todoList(
+        (res) => {
+          if (res.data.todolist[today_info]) {
+            let today_todos = res.data.todolist[today_info];
+            let today_todos_length = today_todos.length;
+            var i;
+            for (i = 0; i < today_todos_length; i++) {
+              let todo_time_info =
+                today_todos[i]["alarm_hour"] + today_todos[i]["alarm_min"];
+              if (
+                today_todos[i]["completed"] === "no" &&
+                todo_time_info < time_info
+              ) {
+                this.today_notAlarm_todos.push(today_todos[i]);
+              } else {
+                this.today_alarm_todos.push(today_todos[i]);
+              }
+            }
+            this.checkAlarm();
+          }
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+    },
     // 권한 획득 (알람 허용 여부 물어보기)
     // prtmiddion은 denied, granted, default 세 종류 있고 처음엔 default
     // default 값이면 requestPermission()을 사용하여 권한 요청
@@ -115,17 +160,28 @@ export default {
   mounted() {
     this.askNotificationPermission();
     if (this.isLogin) {
-      this.$store.dispatch("todoStore/getTodayTodos");
-      this.checkAlarm();
+      this.getTodo();
     }
   },
   computed: {
     ...mapState({
       userInfo: (state) => state.userStore.userInfo,
       isLogin: (state) => state.userStore.isLogin,
-      today_notAlarm_todos: (state) => state.todoStore.today_notAlarm_todos,
-      today_alarm_todos: (state) => state.todoStore.today_alarm_todos,
+      changeAlarm: (state) => state.todoStore.changeAlarm,
+      newAlarm: (state) => state.todoStore.newAlarm,
     }),
+  },
+  watch: {
+    changeAlarm() {
+      let alarmTime_info =
+        this.newAlarm["alarm_hour"] + this.newAlarm["alarm_min"];
+      if (alarmTime_info < this.curTime_info) {
+        this.today_notAlarm_todos.push(this.newAlarm);
+      } else {
+        this.today_alarm_todos.push(this.newAlarm);
+      }
+      this.checkAlarm();
+    },
   },
 };
 </script>

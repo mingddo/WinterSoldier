@@ -1,8 +1,8 @@
 const state = {
   changeTodo: false,
+  changeAlarm: false,
   newTodo: {},
-  today_notAlarm_todos: [],
-  today_alarm_todos: [],
+  newAlarm: {},
   calendartogglestate: false,
 };
 
