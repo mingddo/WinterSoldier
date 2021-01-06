@@ -315,16 +315,22 @@ li {
   height: auto;
   display: flex;
   padding: var(--padding);
-  justify-content: flex-end;
+  /* justify-content: space-between; */
   align-items: center;
 }
 
-.toggle_btn_space .realtimelist{
+.toggle_btn_space .realtimesection{
+  display: flex;
+  width: 100%;
+
+}
+
+.toggle_btn_space .realtimesection .realtimelist{
   /* margin-right: calc(var(--margin)); */
 }
 
-.toggle_btn_space .realtimetitle{
-
+.toggle_btn_space .realtimesection .realtimetitle{
+  font-weight: var(--weight-semi-bold);
 }
 
 .toggle_btn_space .toggle {
