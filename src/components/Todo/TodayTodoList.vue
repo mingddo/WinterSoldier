@@ -27,6 +27,7 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 import { todoList } from "../../api/todo.js";
 import Detail from "./Detail";
 import TodoForm from "../Todo/TodoForm";
@@ -45,6 +46,10 @@ export default {
     isTodoModalViewed2() {
       return this.$store.state.isTodoModalViewed;
     },
+    ...mapState({
+      changeTodo: (state) => state.todoStore.changeTodo,
+      newTodo: (state) => state.todoStore.newTodo,
+    }),
   },
   data: function () {
     return {
@@ -106,6 +111,20 @@ export default {
       this.dateInfo =
         String(this.year) + String(this.c_month) + String(this.c_day);
       this.getTodoList();
+    },
+    changeTodo() {
+      let newDateInfo =
+        this.newTodo["alarm_year"] +
+        this.newTodo["alarm_month"] +
+        this.newTodo["alarm_date"];
+      if (newDateInfo === this.dateInfo) {
+        if (this.todos.length > 0) {
+          this.todos.push(this.newTodo);
+        } else {
+          // this.todos = [this.newTodo];이거해도 동기화반영이 안된다.
+          this.getTodoList();
+        }
+      }
     },
   },
   created() {
