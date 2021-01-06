@@ -17,7 +17,6 @@
       :day="day"
       :month="month"
       :year="year"
-      :groupinfo="groupinfo"
       @NewTodo="NewTodo"
       @closeTodoform="closeTodoform"
       />
@@ -73,11 +72,18 @@ export default {
       this.newtodo = false;
     },
     NewTodo (form) {
-      console.log('지금', typeof this.todayinfo, this.todayinfo)
       if (form.schedule_year == this.year && form.schedule_month == this.month && form.schedule_date == this.day) {
         if (this.todayinfo != []) {
-          console.log('폼', form)
-          this.todayinfo.push(form)
+        readGroupTodo(
+          this.$route.query.groupid,
+          (res) => {
+            this.groupTodo = res.data.todolist
+            this.getTodayList();
+          },
+          (err) => {
+            console.log(err)
+          }
+        )
         }
       }
       this.newtodo = false;
@@ -87,15 +93,14 @@ export default {
       this.newtodo = true;
     },
     getTodayList () {
-      for (let keydate in this.groupTodo) {
-        if (this.dateInfo == keydate) {
-          this.todayinfo = this.groupTodo[keydate]
-          this.todoexist = true;
-          break;
-        } else {
-          this.todayinfo = [];
-        }
+      console.log(this.groupTodo)
+      if (Object.keys(this.groupTodo).includes(this.dateInfo)) {
+        console.log('있어!!')
+        this.todayinfo = this.groupTodo[this.dateInfo]
+      } else {
+        this.todayinfo = [];
       }
+      console.log('오늘의 할일', this.dateInfo, this.todayinfo)
     },
     getGroupTodoList () {
       const getgroupInfo = sessionStorage.getItem('group')
@@ -114,6 +119,7 @@ export default {
     createDateInfo() {
       let thismonth = this.month
       let thisday = this.day
+      console.log(thismonth, thisday, '월일')
       if (String(this.month).length === 1) {
         thismonth = "0" + String(this.month);
       }
@@ -122,10 +128,12 @@ export default {
       }
       this.dateInfo =
         String(this.year) + String(thismonth) + String(thisday);
+        console.log('오늘의 날짜', this.dateInfo)
     },
   },
   watch: {
     day() {
+      console.log('날짜 바뀜')
       this.createDateInfo();
       this.getGroupTodoList();
     },

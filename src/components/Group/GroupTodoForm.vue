@@ -53,7 +53,7 @@ export default {
   methods: {
     createTodo () {
       createGroupTodo(
-        this.groupinfo.id,
+        this.$route.query.groupid,
         this.form,
         (res) => {
           console.log('성공', res)
