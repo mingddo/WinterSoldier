@@ -415,8 +415,9 @@ export default {
         writeTodo(
           this.form,
           () => {
-            this.$emit("close-modal"),
-              this.$store.commit("todoStore/addNewTodo", this.form);
+            this.$emit("close-modal");
+            this.$store.commit("todoStore/addNewTodo", this.form);
+            this.$store.dispatch("todoStore/addAlarm", this.form);
           },
           (error) => {
             console.log(error);
