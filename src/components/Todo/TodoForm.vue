@@ -1,5 +1,5 @@
 <template>
-  <div class="modal" @click.self="$emit('close-modal')">
+  <div class="c__modal" @click.self="$emit('close-modal')">
     <div class="modal__card">
       <!-- <div @click="$emit('close-modal')">
         <img
@@ -19,7 +19,6 @@
         </div>
         <div class="todo-scedule">
           <div class="todo-scedule-title">계획 시간</div>
-
           <select name="schedule_year" v-model="form.schedule_year">
             <option v-for="(year, id) in schedule_year_list" :key="id">
               {{ year }}

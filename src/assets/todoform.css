@@ -1,4 +1,4 @@
-.modal {
+.c__modal {
   position: fixed; /* Stay in place */
   z-index: 5; /* Sit on top */
   left: 0;
@@ -8,6 +8,7 @@
   /* opacity: 0.35; */
   background: rgba(0, 0, 0, 0.2);
 }
+
 .modal__card {
   margin: 15% auto;
   z-index: 10; /* 15% from the top and centered */
@@ -16,7 +17,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center; /* Could be more or less, depending on screen size */
+  align-items: center;
   background-color: #ffffff;
   border: 2px solid #888;
   border-radius: 15px;
