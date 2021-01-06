@@ -472,7 +472,6 @@ export default {
 };
 </script>
 
-<<<<<<< HEAD
 <style scoped>
 .coronaframe {
   text-align: left;
@@ -485,8 +484,7 @@ export default {
   padding: 10px;
 }
 .broadcast {
-  width: 200px;
-  height: 80px;
+  width: 100%;
   border: none;
   /* box-shadow: 0px 0px 10px 0.3px var(--light-gray); */
   border-radius: 0.25rem;
@@ -504,8 +502,5 @@ export default {
 .broadcast > .carousel {
   flex: 1;
 }
-=======
-<style scoped src="@/assets/corona.css">
->>>>>>> master
 
 </style>
