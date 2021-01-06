@@ -31,6 +31,7 @@ export default {
               {
                 attrs: {
                   href: `https://search.naver.com/search.naver?where=nexearch&query=${content.message}`,
+                  target: "_blank",
                   onMouseOver: "this.style.color='#0F0'",
                   onMouseOut: "this.style.color='black'",
                 },
@@ -49,6 +50,7 @@ export default {
               {
                 attrs: {
                   href: `https://search.naver.com/search.naver?where=nexearch&query=${content.message}`,
+                  target: "_blank",
                   onMouseOver: "this.style.color='#0F0'",
                   onMouseOut: "this.style.color='black'",
                 },
@@ -67,6 +69,7 @@ export default {
               {
                 attrs: {
                   href: `https://search.naver.com/search.naver?where=nexearch&query=${content.message}`,
+                  target: "_blank",
                   onMouseOver: "this.style.color='#0F0'",
                   onMouseOut: "this.style.color='black'",
                 },
@@ -85,6 +88,7 @@ export default {
               {
                 attrs: {
                   href: `https://search.naver.com/search.naver?where=nexearch&query=${content.message}`,
+                  target: "_blank",
                   onMouseOver: "this.style.color='#0F0'",
                   onMouseOut: "this.style.color='black'",
                 },
@@ -103,6 +107,7 @@ export default {
               {
                 attrs: {
                   href: `https://search.naver.com/search.naver?where=nexearch&query=${content.message}`,
+                  target: "_blank",
                   onMouseOver: "this.style.color='#0F0'",
                   onMouseOut: "this.style.color='black'",
                 },
@@ -121,6 +126,7 @@ export default {
               {
                 attrs: {
                   href: `https://search.naver.com/search.naver?where=nexearch&query=${content.message}`,
+                  target: "_blank",
                   onMouseOver: "this.style.color='#0F0'",
                   onMouseOut: "this.style.color='black'",
                 },
@@ -139,6 +145,7 @@ export default {
               {
                 attrs: {
                   href: `https://search.naver.com/search.naver?where=nexearch&query=${content.message}`,
+                  target: "_blank",
                   onMouseOver: "this.style.color='#0F0'",
                   onMouseOut: "this.style.color='black'",
                 },
@@ -157,6 +164,7 @@ export default {
               {
                 attrs: {
                   href: `https://search.naver.com/search.naver?where=nexearch&query=${content.message}`,
+                  target: "_blank",
                   onMouseOver: "this.style.color='#0F0'",
                   onMouseOut: "this.style.color='black'",
                 },
@@ -175,6 +183,7 @@ export default {
               {
                 attrs: {
                   href: `https://search.naver.com/search.naver?where=nexearch&query=${content.message}`,
+                  target: "_blank",
                   onMouseOver: "this.style.color='#0F0'",
                   onMouseOut: "this.style.color='black'",
                 },
@@ -193,6 +202,7 @@ export default {
               {
                 attrs: {
                   href: `https://search.naver.com/search.naver?where=nexearch&query=${content.message}`,
+                  target: "_blank",
                   onMouseOver: "this.style.color='#0F0'",
                   onMouseOut: "this.style.color='black'",
                 },
@@ -235,17 +245,25 @@ export default {
 
 <style scoped>
 .broadcast {
-  width: 200px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  padding-left: 12px;
+  width: 400px;
+  /* display: flex;
+  justify-content: flex-start;
+  align-items: center; */
 }
 
-.broadcast > .carousel {
+/* .broadcast > .carousel {
   flex: 1;
+} */
+
+.carousel{
+  box-shadow: 0px 0px 10px 0.3px var(--color-gray-light);
+  border: none;
+  border-radius: 5px;
 }
 
 .broadcast-content {
   color: red;
 }
+
 </style>

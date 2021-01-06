@@ -59,11 +59,6 @@ export default {
         let cur_minute = this.addZeros(day.getMinutes(), 2);
         var i;
         for (i = 0; i < this.today_alarm_todos.length; i++) {
-          console.log(
-            "i랑 today_alarm_todos완료여부",
-            i,
-            this.today_alarm_todos[i].completed
-          );
           if (
             this.today_alarm_todos[i].alarm_hour === cur_hour &&
             this.today_alarm_todos[i].alarm_min === cur_minute &&

@@ -2,7 +2,6 @@
   <span class="calendar_frame">
     <main class="frame">
       <section
-        :class="{ claendarchangecls: calendarToggle }"
         class="monthFrame"
       >
         <!--월간달력 구간-->
@@ -57,7 +56,7 @@
                 <div class="calendarDay" @click="todaySchedule(day)">
                   {{ day }}
                   <div>
-                    <TodoListMonth
+                    <GroupCalendarTodo
                       :year="year"
                       :month="month"
                       :day="day"
@@ -74,37 +73,26 @@
       </section>
 
       <!-- 오늘 할 일 부분 -->
-      <div :class="{ claendarchangecls: calendarToggle }" class="todayTodo">
-        <div class="todayInfo">{{ selectedMonth }}월 {{ selectedDay }}일</div>
-        <div class="todayTodoList">
-          <div class="todayTodoItem">
-            {{ groupinfo.group_todo }}
-            <GroupTodoForm 
+      <article class="todayGroupTodo">
+        <div class="todayGroupInfo">{{ selectedMonth }}월 {{ selectedDay }}일</div>
+          <GroupTodayTodolist
             :day="selectedDay"
-              :year="year"
-              :month="selectedMonth"/>
-            <TodayTodoList
-              :day="selectedDay"
-              :year="year"
-              :month="selectedMonth"
-            />
-          </div>
-        </div>
-      </div>
+            :year="year"
+            :month="selectedMonth"
+          />
+      </article>
     </main>
   </span>
 </template>
 
 <script>
-import TodayTodoList from "../Todo/TodayTodoList";
-import TodoListMonth from "../Todo/TodoListMonth.vue";
-import GroupTodoForm from './GroupTodoForm.vue';
+import GroupTodayTodolist from "./GroupTodayTodolist";
+import GroupCalendarTodo from "./GroupCalendarTodo.vue";
 export default {
   name: "GroupCalendar",
   components: {
-    TodoListMonth,
-    TodayTodoList,
-    GroupTodoForm,
+    GroupTodayTodolist,
+    GroupCalendarTodo,
   },
   props: {
     groupinfo: Object,
@@ -336,4 +324,18 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.todayGroupTodo {
+  width: 25%;
+  height: 100%;
+  overflow: auto;
+  box-shadow: 0px 0px 10px 0.3px var(--color-gray-light);
+  border: none;
+  border-radius: 15px;
+  background-color: var(--color-white);
+}
+.todayGroupInfo{
+  margin: 10px;
+  border-bottom: 1px solid;
+}
+</style>

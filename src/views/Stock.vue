@@ -1,15 +1,6 @@
 <template>
   <div class="stockframe">
     <div class="stockinput">
-      <!-- <div class="inputtitle">종목명을 입력하세요</div> -->
-      <!-- <form @keypress.enter="getKrStockData" class="inputform">
-        <input
-          type="text"
-          v-model="company"
-          placeholder="stock name"
-          class="stockinput"
-        />
-      </form> -->
       <div>
         <div v-if="selected" style="padding-top: 10px; width: 100%">
           검색하신
@@ -28,13 +19,8 @@
               placeholder: '종목명을 입력하세요',
             }"
           >
-            <div
-              slot-scope="{ suggestion }"
-              style="display: flex; align-items: center"
-            >
-              <div style="{t display: 'flex', color: 'navyblue'}">
-                {{ suggestion.item.name }}
-              </div>
+            <div slot-scope="{ suggestion }">
+              <div>{{ suggestion.item.code }} {{ suggestion.item.name }}</div>
             </div>
           </vue-autosuggest>
         </div>
@@ -57,13 +43,6 @@
     </div>
 
     <div class="Chart__container" v-if="loaded">
-      <!-- <div class="Chart__title">
-        <h2>
-          Downloads per Day <span>{{ formattedPeriod }}</span>
-        </h2>
-        <DownloadButton :name="packageName + '-daily'" :link="dailyPng" />
-      </div>
-      <hr /> -->
       <div class="Chart__content">
         <line-chart
           chart-id="line-daily"
@@ -87,16 +66,16 @@
 </template>
 
 <script>
-import { getstockdata } from '@/api/stock.js';
-import LineChart from '@/components/Stock/LineChart';
-import BarChart from '@/components/Stock/BarChart';
+import { getstockdata } from "@/api/stock.js";
+import LineChart from "@/components/Stock/LineChart";
+import BarChart from "@/components/Stock/BarChart";
 // import "@/assets/stock.css";
-import stockDB from '@/assets/stockDB.json';
-import { VueAutosuggest } from 'vue-autosuggest';
+import stockDB from "@/assets/stockDB.json";
+import { VueAutosuggest } from "vue-autosuggest";
 // import DownloadButton from "@/components/Stock/Download";
 
 export default {
-  name: 'Stock',
+  name: "Stock",
   components: {
     LineChart,
     BarChart,
@@ -107,16 +86,16 @@ export default {
       loaded: false,
       loading: false,
       showError: false,
-      errorMessage: 'Please enter a stock name',
-      company: '',
-      companycode: '',
-      period: 5,
+      errorMessage: "Please enter a stock name",
+      company: "",
+      companycode: "",
+      period: 10,
       stockNow: [],
       chartLabels: [],
       stock: null,
       stockvolume: null,
-      query: '',
-      selected: '',
+      query: "삼성전자",
+      selected: "",
       suggestions: [
         {
           data: [],
@@ -133,8 +112,8 @@ export default {
       event.preventDefault();
       if (
         this.company === null ||
-        this.company === '' ||
-        this.company === 'undefined'
+        this.company === "" ||
+        this.company === "undefined"
       ) {
         this.showError = true;
         this.loading = false;
@@ -177,7 +156,7 @@ export default {
     //   // event fired when clicking on the input
     // },
     onSelected(item) {
-      console.log(item.item);
+      console.log("", item.item);
       this.selected = item.item.name;
       this.company = item.item.name;
       this.getKrStockData();
@@ -211,44 +190,12 @@ export default {
   },
   created() {
     this.suggestions[0].data = stockDB.data;
+    this.company = this.query;
+    this.getKrStockData();
     // console.log(this.suggestions[0].data);
   },
 };
 </script>
 
 <style scoped src="@/assets/stock.css">
-@-webkit-keyframes flower {
-  0% {
-    -webkit-transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-  }
-}
-
-ul {
-  width: 100%;
-  color: rgba(30, 39, 46, 1);
-  list-style: none;
-  margin: 0;
-  padding: 0.5rem 0 0.5rem 0;
-}
-li {
-  margin: 0 0 0 0;
-  border-radius: 5px;
-  padding: 0.75rem 0 0.75rem 0.75rem;
-  display: flex;
-  align-items: center;
-}
-li:hover {
-  cursor: pointer;
-}
-
-#autosuggest {
-  width: 100%;
-  display: block;
-}
-.autosuggest__results-item--highlighted {
-  background-color: rgba(51, 217, 178, 0.2);
-}
 </style>
