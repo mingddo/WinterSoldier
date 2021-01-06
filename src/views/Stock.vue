@@ -1,10 +1,10 @@
 <template>
   <div class="stockframe">
     <div class="stockinput">
-      <div>
-        <div v-if="selected" style="padding-top: 10px; width: 100%">
+      <di>
+        <div v-if="selected" style="padding-top: 0px; width: 100%">
           검색하신
-          <span>{{ selected }}의 결과입니다.</span>
+          <span>{{ selected || query }}의 결과입니다.</span>
         </div>
         <div class="autosuggest-container">
           <vue-autosuggest
@@ -20,17 +20,18 @@
             }"
           >
             <div slot-scope="{ suggestion }">
-              <div>{{ suggestion.item.code }} {{ suggestion.item.name }}</div>
+              <div>{{ suggestion.item.name }}</div>
             </div>
           </vue-autosuggest>
         </div>
+      </di>
+      <div>
+        <span class="stock__select__box" @click="selectday(2)">10일</span>
+        <span class="stock__select__box" @click="selectday(4)">30일</span>
+        <span class="stock__select__box" @click="selectday(8)">70일</span>
+        <span class="stock__select__box" @click="selectday(11)">100일</span>
+        <span class="stock__select__box" @click="selectday(30)">300일</span>
       </div>
-
-      <button @click="selectday(2)">10일</button>
-      <button @click="selectday(4)">30일</button>
-      <button @click="selectday(8)">70일</button>
-      <button @click="selectday(11)">100일</button>
-      <button @click="selectday(30)">300일</button>
       <div class="error-message" v-if="showError">
         {{ errorMessage }}
       </div>
