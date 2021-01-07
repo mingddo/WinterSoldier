@@ -18,17 +18,20 @@
         <News />
       </div>
       <div v-if="activetab === 2" class="tabcontent">
-        <Stock />
+        <!-- <Stock /> -->
       </div>
     </div>
   </div>
 </template>
 <script>
 import News from "./News";
-import Stock from "./Stock";
+// import Stock from "./Stock";
 
 export default {
-  components: { News, Stock },
+  components: { 
+    News, 
+    // Stock
+    },
   data() {
     return { activetab: 1 };
   },
