@@ -3,7 +3,7 @@
     <section class="left_component">
       <Navi class="left_child" />
       <Weather class="left__child left_componet_weather" />
-      <Corona class="left__child left_componet_corona" />
+      <!-- <Corona class="left__child left_componet_corona" /> -->
     </section>
     <section class="right_component">
       <!-- <Calendar /> -->
@@ -21,7 +21,7 @@ import Navi from "@/components/common/navi.vue";
 // import Calendar from "@/components/Calendar/Calendar.vue";
 import Weather from "./Weather.vue";
 // import Leftnavi from "@/components/common/Leftnavi.vue";
-import Corona from "./Corona.vue";
+// import Corona from "./Corona.vue";
 import Bottomcontent from "./Bottomcontent.vue";
 
 export default {
@@ -30,7 +30,7 @@ export default {
     // Calendar,
     Weather,
     // Leftnavi,
-    Corona,
+    // Corona,
     Bottomcontent,
     Navi,
   },
