@@ -125,10 +125,11 @@ export default {
         this.companycode,
         this.period,
         (res) => {
+          console.log(res.data);
           this.stock = res.data;
-          this.stockvolume = res.data.volume;
-          this.stockNow = res.data.price;
-          this.chartLabels = res.data.date;
+          this.stockvolume = res.data.volume.reverse();
+          this.stockNow = res.data.price.reverse();
+          this.chartLabels = res.data.date.reverse();
           this.loaded = true;
           this.loading = false;
         },
@@ -150,7 +151,6 @@ export default {
     },
     getResultValue(result) {
       return result;
-
     },
   },
   created() {
