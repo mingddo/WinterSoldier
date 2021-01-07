@@ -27,79 +27,79 @@ export default {
   },
   methods: {
     checkAlarm() {
-      if (this.today_notAlarm_todos.length > 0) {
-        if (Notification.permission === "granted") {
-          let img =
-            "https://i.annihil.us/u/prod/marvel/i/mg/6/00/5c802b62bc572/clean.jpg";
-          var i;
-          let today_notAlarm_todos_title = "";
-          for (i = 0; i < this.today_notAlarm_todos.length; i++) {
-            today_notAlarm_todos_title +=
-              this.today_notAlarm_todos[i].title + ", ";
-            // db의 todo completed여부도 변경, id값없어서 db의 completed가 안변하는 에러
-            todoCompleted(
-              { ...this.today_notAlarm_todos[i], completed: "yes" },
-              () => {
-                this.$store.commit("todoStore/isCompleted", i); // 알람띄운 todo는 completed 변경
-              },
-              (err) => {
-                console.log(err);
-              }
-            );
-          }
-          let text = today_notAlarm_todos_title;
-          new Notification(
-            this.today_notAlarm_todos.length + "개의 시간 지난 할 일",
-            { body: text, icon: img }
-          );
-        } else {
-          alert(
-            "알림시간이 지난 할 일이" +
-              this.today_notAlarm_todos.length +
-              "개 있어요!"
-          );
-        }
-      }
-      setInterval(() => {
-        const day = new Date();
-        let cur_hour = this.addZeros(day.getHours(), 2);
-        let cur_minute = this.addZeros(day.getMinutes(), 2);
-        let today_alarm_todos_length = this.today_alarm_todos.length;
-        this.curTime_info = cur_hour + cur_minute;
-        var i;
-        for (i = 0; i < today_alarm_todos_length; i++) {
-          let alarmTime_info =
-            this.today_alarm_todos[i].alarm_hour +
-            this.today_alarm_todos[i].alarm_min;
-          if (
-            this.curTime_info === alarmTime_info &&
-            this.today_alarm_todos[i].completed === "no"
-          ) {
-            // 지원 여부 확인 및 알람 띄우기
-            if (!("Notification" in window)) {
-              alert("Notification을 지원하지 않는 브라우저입니다.");
-            } else if (Notification.permission === "granted") {
-              let img =
-                "https://i.annihil.us/u/prod/marvel/i/mg/6/00/5c802b62bc572/clean.jpg";
-              let text = this.today_alarm_todos[i].title + " 할 시간.";
-              new Notification("할 일", { body: text, icon: img }); // 알람
+    //   if (this.today_notAlarm_todos.length > 0) {
+    //     if (Notification.permission === "granted") {
+    //       let img =
+    //         "https://i.annihil.us/u/prod/marvel/i/mg/6/00/5c802b62bc572/clean.jpg";
+    //       var i;
+    //       let today_notAlarm_todos_title = "";
+    //       for (i = 0; i < this.today_notAlarm_todos.length; i++) {
+    //         today_notAlarm_todos_title +=
+    //           this.today_notAlarm_todos[i].title + ", ";
+    //         // db의 todo completed여부도 변경, id값없어서 db의 completed가 안변하는 에러
+    //         todoCompleted(
+    //           { ...this.today_notAlarm_todos[i], completed: "yes" },
+    //           () => {
+    //             this.$store.commit("todoStore/isCompleted", i); // 알람띄운 todo는 completed 변경
+    //           },
+    //           (err) => {
+    //             console.log(err);
+    //           }
+    //         );
+    //       }
+    //       let text = today_notAlarm_todos_title;
+    //       new Notification(
+    //         this.today_notAlarm_todos.length + "개의 시간 지난 할 일",
+    //         { body: text, icon: img }
+    //       );
+    //     } else {
+    //       alert(
+    //         "알림시간이 지난 할 일이" +
+    //           this.today_notAlarm_todos.length +
+    //           "개 있어요!"
+    //       );
+    //     }
+    //   }
+    //   setInterval(() => {
+    //     const day = new Date();
+    //     let cur_hour = this.addZeros(day.getHours(), 2);
+    //     let cur_minute = this.addZeros(day.getMinutes(), 2);
+    //     let today_alarm_todos_length = this.today_alarm_todos.length;
+    //     this.curTime_info = cur_hour + cur_minute;
+    //     var i;
+    //     for (i = 0; i < today_alarm_todos_length; i++) {
+    //       let alarmTime_info =
+    //         this.today_alarm_todos[i].alarm_hour +
+    //         this.today_alarm_todos[i].alarm_min;
+    //       if (
+    //         this.curTime_info === alarmTime_info &&
+    //         this.today_alarm_todos[i].completed === "no"
+    //       ) {
+    //         // 지원 여부 확인 및 알람 띄우기
+    //         if (!("Notification" in window)) {
+    //           alert("Notification을 지원하지 않는 브라우저입니다.");
+    //         } else if (Notification.permission === "granted") {
+    //           let img =
+    //             "https://i.annihil.us/u/prod/marvel/i/mg/6/00/5c802b62bc572/clean.jpg";
+    //           let text = this.today_alarm_todos[i].title + " 할 시간.";
+    //           new Notification("할 일", { body: text, icon: img }); // 알람
 
-              this.today_alarm_todos[i].completed = "yes"; // 알람띄운 todo는 completed 변경
-              // db의 todo completed여부도 변경
-              todoCompleted(
-                { ...this.today_alarm_todos[i], completed: "yes" },
-                () => {
-                  console.log("completed 수정 성공");
-                },
-                (err) => {
-                  console.log(err);
-                }
-              );
-            }
-          }
-        }
-      }, 1000);
-    },
+    //           this.today_alarm_todos[i].completed = "yes"; // 알람띄운 todo는 completed 변경
+    //           // db의 todo completed여부도 변경
+    //           todoCompleted(
+    //             { ...this.today_alarm_todos[i], completed: "yes" },
+    //             () => {
+    //               console.log("completed 수정 성공");
+    //             },
+    //             (err) => {
+    //               console.log(err);
+    //             }
+    //           );
+    //         }
+    //       }
+    //     }
+    //   }, 1000);
+    // },
     getTodo: function () {
       const day = new Date();
       let cur_year = day.getFullYear();
