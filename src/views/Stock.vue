@@ -125,7 +125,6 @@ export default {
         this.companycode,
         this.period,
         (res) => {
-          console.log(res.data);
           this.stock = res.data;
           this.stockvolume = res.data.volume.reverse();
           this.stockNow = res.data.price.reverse();

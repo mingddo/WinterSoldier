@@ -62,6 +62,7 @@
                       :month="month"
                       :day="day"
                       :dates="dates"
+                      :propstodos="todos"
                     />
                   </div>
                 </div>
@@ -145,6 +146,7 @@
                     :year="year"
                     :month="month"
                     :weekCalendar="weekCalendar"
+                    :propstodos="todos"
                   />
                   <TodoForm
                     :propsyear="year"
@@ -170,6 +172,7 @@
               :day="selectedDay"
               :year="year"
               :month="selectedMonth"
+              :propstodos="todos"
             />
           </div>
         </div>
@@ -195,6 +198,7 @@
 
 <script>
 import TodoList from "../Todo/TodoList";
+import { todoList } from "@/api/todo.js";
 import TodoForm from "../Todo/TodoForm";
 import TodayTodoList from "../Todo/TodayTodoList";
 import TodoListMonth from "../Todo/TodoListMonth.vue";
@@ -242,6 +246,10 @@ export default {
       selectedDay: 0,
       p_month: "01",
       p_day: "01",
+      todos: null,
+      dateInfo: null,
+      c_month: null,
+      c_day: null,
     };
   },
   created() {
@@ -258,12 +266,9 @@ export default {
     this.defaultYearMonth();
     this.gettogglestate();
   },
-  // watch: {
-  //   calendarToggle() {
-  //     console.log("와치들어온다아아아!");
-  //     this.calendarChange();
-  //   },
-  // },
+  mounted() {
+    this.getTodoList();
+  },
   methods: {
     daycal(day) {
       if (0 < day < 10) {
@@ -456,6 +461,34 @@ export default {
     },
     gettogglestate() {
       this.calendarToggle = this.$store.state.todoStore.calendartogglestate;
+    },
+    getTodoList() {
+      if (localStorage.getItem("jwt")) {
+        todoList(
+          (response) => {
+            this.todos = response.data.todolist;
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+      } else {
+        this.todos = {};
+      }
+    },
+    createDateInfo() {
+      if (String(this.month).length === 1) {
+        this.c_month = "0" + String(this.month);
+      } else {
+        this.c_month = String(this.month);
+      }
+      if (String(this.day).length === 1) {
+        this.c_day = "0" + String(this.day);
+      } else {
+        this.c_day = String(this.day);
+      }
+      this.dateInfo =
+        String(this.year) + String(this.c_month) + String(this.c_day);
     },
   },
   watch: {
