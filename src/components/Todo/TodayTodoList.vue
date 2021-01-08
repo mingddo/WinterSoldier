@@ -80,20 +80,25 @@ export default {
         String(this.year) + String(this.c_month) + String(this.c_day);
     },
     getTodoList() {
-      todoList(
-        (response) => {
-          if (this.dateInfo in response.data.todolist) {
-            this.todos = response.data.todolist[this.dateInfo];
-            this.temp = true;
-          } else {
-            this.todos = [];
-            this.temp = false;
+      if (localStorage.getItem("jwt")) {
+        todoList(
+          (response) => {
+            if (this.dateInfo in response.data.todolist) {
+              this.todos = response.data.todolist[this.dateInfo];
+              this.temp = true;
+            } else {
+              this.todos = [];
+              this.temp = false;
+            }
+          },
+          (error) => {
+            console.log(error);
           }
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
+        );
+      } else {
+        this.todos = [];
+        this.temp = false;
+      }
     },
   },
   watch: {

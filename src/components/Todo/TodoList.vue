@@ -8,7 +8,7 @@
 
 <script>
 import Todo from "./Todo";
-import { todoList } from "../../api/todo.js";
+// import { todoList } from "../../api/todo.js";
 import { mapState } from "vuex";
 export default {
   name: "TodoList",
@@ -20,6 +20,7 @@ export default {
     year: [Number, String],
     month: [Number, String],
     weekCalendar: Array,
+    propstodos: Object,
   },
   data: function () {
     return {
@@ -28,6 +29,7 @@ export default {
       temp: true,
       t_month: null,
       t_weekdaily: null,
+      p_todos: null,
     };
   },
   methods: {
@@ -46,20 +48,13 @@ export default {
         String(this.year) + String(this.t_month) + String(this.t_weekdaily);
     },
     getTodoList() {
-      todoList(
-        (response) => {
-          if (this.dateInfo in response.data.todolist) {
-            this.todos = response.data.todolist[this.dateInfo];
-            this.temp = true;
-          } else {
-            this.todos = [];
-            this.temp = false;
-          }
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
+      if (this.dateInfo in this.p_todos) {
+        this.todos = this.p_todos[this.dateInfo];
+        this.temp = true;
+      } else {
+        this.todos = [];
+        this.temp = false;
+      }
     },
   },
 
@@ -93,11 +88,13 @@ export default {
         }
       }
     },
+    propstodos() {
+      this.p_todos = this.propstodos;
+      this.getTodoList();
+    },
   },
-
   created() {
     this.createDateInfo();
-    this.getTodoList();
   },
   computed: {
     ...mapState({

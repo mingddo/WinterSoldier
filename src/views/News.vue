@@ -93,7 +93,6 @@ export default {
       getnews(
         this.query,
         (res) => {
-          console.log("뉴스 결과", res.data);
           this.news = res.data;
           this.query = "";
         },

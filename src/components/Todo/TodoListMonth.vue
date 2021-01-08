@@ -1,13 +1,13 @@
 <template>
   <div class="todomonthshow">
-    <span class="todomonthshowtemp" v-show="temp">
+    <span class="todomonthshowtemp" v-if="temp">
       <div class="monthcalendartodoItem"></div>
     </span>
   </div>
 </template>
 
 <script>
-import { todoList } from "../../api/todo.js";
+// import { todoList } from "../../api/todo.js";
 import { mapState } from "vuex";
 export default {
   name: "TodoList",
@@ -16,6 +16,7 @@ export default {
     year: [Number, String],
     month: [Number, String],
     dates: Array,
+    propstodos: Object,
   },
   data: function () {
     return {
@@ -24,6 +25,7 @@ export default {
       temp: false,
       c_month: null,
       c_day: null,
+      p_todos: this.propstodos,
     };
   },
   methods: {
@@ -42,20 +44,13 @@ export default {
         String(this.year) + String(this.c_month) + String(this.c_day);
     },
     getTodoList() {
-      todoList(
-        (response) => {
-          if (this.dateInfo in response.data.todolist) {
-            this.todos = response.data.todolist[this.dateInfo];
-            this.temp = true;
-          } else {
-            this.todos = [];
-            this.temp = false;
-          }
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
+      if (this.dateInfo in this.p_todos) {
+        this.todos = this.p_todos[this.dateInfo];
+        this.temp = true;
+      } else {
+        this.todos = [];
+        this.temp = false;
+      }
     },
   },
 
@@ -89,6 +84,10 @@ export default {
         }
       }
     },
+    propstodos() {
+      this.p_todos = this.propstodos;
+      this.getTodoList();
+    },
   },
   computed: {
     ...mapState({
@@ -98,17 +97,16 @@ export default {
   },
   created() {
     this.createDateInfo();
-    this.getTodoList();
   },
 };
 </script>
 
 <style scoped>
-.todomonthshow{
+.todomonthshow {
   width: 100%;
 }
 
-.todomonthshowtemp{
+.todomonthshowtemp {
   width: 100%;
 }
 
