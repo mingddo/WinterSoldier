@@ -5,10 +5,11 @@ let cur_day = addZeros(day.getDate(), 2);
 let today =
   cur_year + cur_month + cur_day;
 
-export const addAlarm = ({ commit }, newAlarm) => {
+export const addAlarm = ({ commit }, { newAlarm, id }) => {
   let date_info = newAlarm.alarm_year + newAlarm.alarm_month + newAlarm.alarm_date
   if (today === date_info) {
     newAlarm["completed"] = "no"
+    newAlarm["id"] = id
     commit('addAlarm', newAlarm)
   }
 }
