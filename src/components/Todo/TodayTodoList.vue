@@ -28,7 +28,7 @@
 
 <script>
 import { mapState } from "vuex";
-import { todoList } from "../../api/todo.js";
+// import { todoList } from "../../api/todo.js";
 import Detail from "./Detail";
 import TodoForm from "../Todo/TodoForm";
 export default {
@@ -41,6 +41,7 @@ export default {
     day: Number,
     year: Number,
     month: Number,
+    propstodos: Object,
   },
   computed: {
     isTodoModalViewed2() {
@@ -59,6 +60,7 @@ export default {
       temp: false,
       c_month: null,
       c_day: null,
+      p_todos: null,
     };
   },
   methods: {
@@ -81,20 +83,13 @@ export default {
     },
     getTodoList() {
       if (localStorage.getItem("jwt")) {
-        todoList(
-          (response) => {
-            if (this.dateInfo in response.data.todolist) {
-              this.todos = response.data.todolist[this.dateInfo];
-              this.temp = true;
-            } else {
-              this.todos = [];
-              this.temp = false;
-            }
-          },
-          (error) => {
-            console.log(error);
-          }
-        );
+        if (this.dateInfo in this.p_todos) {
+          this.todos = this.p_todos[this.dateInfo];
+          this.temp = true;
+        } else {
+          this.todos = [];
+          this.temp = false;
+        }
       } else {
         this.todos = [];
         this.temp = false;
@@ -131,10 +126,13 @@ export default {
         }
       }
     },
+    propstodos() {
+      this.p_todos = this.propstodos;
+      this.getTodoList();
+    },
   },
   created() {
     this.createDateInfo();
-    this.getTodoList();
   },
 };
 </script>
