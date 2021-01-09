@@ -135,8 +135,12 @@
                 <a href="">{{ weekdaily }}</a>
               </div>
               <!-- <template /> -->
-              <div class="tf-dailytodoList" @click="daycal(weekdaily)">
-                <div class="td-dailytodoItem" @dblclick="isModalViewed = true">
+              <div
+                class="tf-dailytodoList"
+                @click="daycal(weekdaily)"
+                @dblclick="isModalViewed = true"
+              >
+                <div class="td-dailytodoItem">
                   <TodoList
                     :weekdaily="weekdaily"
                     :year="year"
@@ -147,7 +151,7 @@
                   <TodoForm
                     :propsyear="year"
                     :propsmonth="month"
-                    :propsday="weekdaily"
+                    :propsday="c_day"
                     v-if="isModalViewed"
                     @close-modal="isModalViewed = false"
                     @createtodo_addtodo="createtodo_addtodo"
@@ -268,17 +272,17 @@ export default {
     this.getTodoList();
   },
   methods: {
-    createtodo_addtodo(c_todo){
-      const date_key = String(c_todo.alarm_year) + c_todo.alarm_month + c_todo.alarm_date
-      if(date_key in this.todos){
-        this.todos[date_key].push(c_todo)
-      }else{
-        this.todos[date_key] = c_todo
+    createtodo_addtodo(c_todo) {
+      const date_key =
+        String(c_todo.alarm_year) + c_todo.alarm_month + c_todo.alarm_date;
+      if (date_key in this.todos) {
+        this.todos[date_key].push(c_todo);
+      } else {
+        this.todos[date_key] = c_todo;
       }
     },
-
     daycal(day) {
-      if (0 < day < 10) {
+      if (String(day).length === 1) {
         this.c_day = "0" + String(day);
       } else {
         this.c_day = String(day);
