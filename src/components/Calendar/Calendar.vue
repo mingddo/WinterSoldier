@@ -154,6 +154,7 @@
                     :propsday="p_day"
                     v-if="isModalViewed"
                     @close-modal="isModalViewed = false"
+                    @createtodo_addtodo="createtodo_addtodo"
                   >
                   </TodoForm>
                 </div>
@@ -270,6 +271,15 @@ export default {
     this.getTodoList();
   },
   methods: {
+    createtodo_addtodo(c_todo){
+      const date_key = String(c_todo.alarm_year) + c_todo.alarm_month + c_todo.alarm_date
+      if(date_key in this.todos){
+        this.todos[date_key].push(c_todo)
+      }else{
+        this.todos[date_key] = c_todo
+      }
+    },
+
     daycal(day) {
       if (0 < day < 10) {
         this.c_day = "0" + String(day);

@@ -7,8 +7,7 @@
 </template>
 
 <script>
-// import { todoList } from "../../api/todo.js";
-import { mapState } from "vuex";
+
 export default {
   name: "TodoList",
   props: {
@@ -88,12 +87,6 @@ export default {
       this.p_todos = this.propstodos;
       this.getTodoList();
     },
-  },
-  computed: {
-    ...mapState({
-      changeTodo: (state) => state.todoStore.changeTodo,
-      newTodo: (state) => state.todoStore.newTodo,
-    }),
   },
   created() {
     this.createDateInfo();

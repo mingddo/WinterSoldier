@@ -27,7 +27,6 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
 // import { todoList } from "../../api/todo.js";
 import Detail from "./Detail";
 import TodoForm from "../Todo/TodoForm";
@@ -47,10 +46,7 @@ export default {
     isTodoModalViewed2() {
       return this.$store.state.isTodoModalViewed;
     },
-    ...mapState({
-      changeTodo: (state) => state.todoStore.changeTodo,
-      newTodo: (state) => state.todoStore.newTodo,
-    }),
+
   },
   data: function () {
     return {
