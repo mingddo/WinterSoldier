@@ -414,17 +414,13 @@ export default {
       } else {
         writeTodo(
           this.form,
-          (res) => {
+          () => {
             this.$emit("close-modal");
             this.$store.commit("todoStore/addNewTodo", this.form);
-            this.$store.dispatch("todoStore/addAlarm", {
-              newAlarm: this.form,
-              id: res.data.id,
-            });
-            this.$emit("createtodo_addtodo", this.form);
+            this.$store.dispatch("todoStore/addAlarm", this.form);
           },
           (error) => {
-            console.log(error);
+            console.error(error);
           }
         );
       }
@@ -441,9 +437,21 @@ export default {
     },
   },
   created() {
-    console.log("크리에디티드");
-    this.form.schedule_year = this.propsyear;
-    this.form.alarm_year = this.propsyear;
+    this.form.schedule_year = String(this.propsyear);
+    this.form.alarm_year = String(this.propsyear);
+    console.log(!isNaN(this.propsday));
+    if (!isNaN(this.propsmonth)) {
+      if (String(this.propsmonth).length === 1) {
+        this.form.schedule_month = "0" + String(this.propsmonth);
+        this.form.alarm_month = "0" + String(this.propsmonth);
+      } else {
+        this.form.schedule_month = String(this.propsmonth);
+        this.form.alarm_month = String(this.propsmonth);
+      }
+    } else {
+      this.form.schedule_month = this.propsmonth;
+      this.form.alarm_month = this.propsmonth;
+    }
 
     if (!isNaN(this.propsday)) {
       if (String(this.propsday).length === 1) {
@@ -463,29 +471,6 @@ export default {
       today_alarm_todos: (state) => state.todoStore.today_alarm_todos,
       newTodo: (state) => state.todoStore.newTodo,
     }),
-  },
-  mounted() {
-    console.log("마운티드");
-  },
-  updated() {
-    console.log("업데이티드");
-  },
-  watch: {
-    propsmonth() {
-      console.log("왓치드");
-      if (!isNaN(this.propsmonth)) {
-        if (String(this.propsmonth).length === 1) {
-          this.form.schedule_month = "0" + String(this.propsmonth);
-          this.form.alarm_month = "0" + String(this.propsmonth);
-        } else {
-          this.form.schedule_month = String(this.propsmonth);
-          this.form.alarm_month = String(this.propsmonth);
-        }
-      } else {
-        this.form.schedule_month = this.propsmonth;
-        this.form.alarm_month = this.propsmonth;
-      }
-    },
   },
 };
 </script>
