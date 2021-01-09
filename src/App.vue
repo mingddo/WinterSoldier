@@ -75,10 +75,8 @@ export default {
             this.curTime_info === alarmTime_info &&
             this.today_alarm_todos[i].completed === "no"
           ) {
-            // 지원 여부 확인 및 알람 띄우기
-            if (!("Notification" in window)) {
-              alert("Notification을 지원하지 않는 브라우저입니다.");
-            } else if (Notification.permission === "granted") {
+            // 알람 띄우기
+            if (Notification.permission === "granted") {
               let img =
                 "https://i.annihil.us/u/prod/marvel/i/mg/6/00/5c802b62bc572/clean.jpg";
               let text = this.today_alarm_todos[i].title + " 할 시간.";
@@ -95,6 +93,8 @@ export default {
                   console.log(err);
                 }
               );
+            } else {
+              alert(this.today_alarm_todos[i].title);
             }
           }
         }
@@ -139,10 +139,16 @@ export default {
     // prtmiddion은 denied, granted, default 세 종류 있고 처음엔 default
     // default 값이면 requestPermission()을 사용하여 권한 요청
     askNotificationPermission: function () {
-      if (Notification.permission === "default") {
-        Notification.requestPermission().then(console.log("알림허용성공")); // 원래 여기서 permission이 denied인지 granted인지 비교해야하지만, 사용자가 무조건 허용한다는 전제로 넘어감.
+      if (!("Notification" in window)) {
+        alert("알림 기능을 지원하지 않는 브라우저입니다.");
       } else {
-        console.log("이미 알림허용돼있다");
+        if (Notification.permission === "default") {
+          Notification.requestPermission()
+            .then(console.log("알림허용성공"))
+            .catch(alert("알림허용실패"));
+        } else if (Notification.permission === "denied") {
+          alert("알림을 허용하지 않으면, 알림 기능을 사용할 수 없습니다.");
+        }
       }
     },
     addZeros: function (num, digit) {
