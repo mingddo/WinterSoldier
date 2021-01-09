@@ -1,9 +1,9 @@
 <template>
   <div>
-    <div>
-      <span @click="TodoModalViewed">{{ todo.title }}</span>
-      <Detail :todo="todo" v-if="isTodoModalViewed2"> </Detail>
+    <div @click="TodoModalViewed">
+      <span>{{ todo.title }}</span>
     </div>
+    <Detail :todo="todo" v-if="isTodoModalViewed2"> </Detail>
   </div>
 </template>
 

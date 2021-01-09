@@ -1,5 +1,4 @@
 <template>
-
   <div class="detail__modal" @click.self="TodoModalViewed">
     <div class="modal__card">
       <div class="detail-todo-header">
@@ -12,7 +11,6 @@
             ><i class="fas fa-edit"></i
           ></span>
         </div>
-
       </div>
       <hr />
       <div class="detail-todo-content">{{ todo.title }}</div>

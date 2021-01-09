@@ -6,7 +6,7 @@
   width: 100%; /* Full width */
   height: 100%; /* Full height */
   /* opacity: 0.35; */
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.3);
 }
 .modal__card {
   margin: 15% auto;
@@ -22,24 +22,32 @@
 }
 
 .detail-todo-header{
-  /* display: flex;
-  flex-direction: column; */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   margin: 10px auto;
   font-size: var(--font-medium);
   font-weight: var(--weight-semi-bold);
+  color: black;
+}
+
+.detail-todo-header .schedule-day{
+  padding: 4px;
+}
+
+.detail-todo-header .schedule-day-button{
+  padding: 4px;
   color: blue;
 }
 
 
-.schedule-day {
-
-}
 .schedule-day-button > span {
   padding: 10px;
   cursor: pointer;
 }
 
 .detail-todo-content{
+  margin: 10px auto;
   font-size: var(--font-medium);
   height: var(--weight-semi-bold);
 }

@@ -1,6 +1,6 @@
 <template>
   <div class="todomonthshow">
-    <span class="todomonthshowtemp" v-if="temp">
+    <span class="todomonthshowtemp" v-show="temp">
       <div class="monthcalendartodoItem"></div>
     </span>
   </div>

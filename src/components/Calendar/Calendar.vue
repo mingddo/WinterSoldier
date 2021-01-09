@@ -134,13 +134,9 @@
               <div class="td-dayInfo">
                 <a href="">{{ weekdaily }}</a>
               </div>
-              <template />
-              <div
-                class="tf-dailytodoList"
-                @click="daycal(weekdaily)"
-                @dblclick="isModalViewed = true"
-              >
-                <div class="td-dailytodoItem">
+              <!-- <template /> -->
+              <div class="tf-dailytodoList" @click="daycal(weekdaily)">
+                <div class="td-dailytodoItem" @dblclick="isModalViewed = true">
                   <TodoList
                     :weekdaily="weekdaily"
                     :year="year"
@@ -150,8 +146,8 @@
                   />
                   <TodoForm
                     :propsyear="year"
-                    :propsmonth="p_month"
-                    :propsday="p_day"
+                    :propsmonth="month"
+                    :propsday="weekdaily"
                     v-if="isModalViewed"
                     @close-modal="isModalViewed = false"
                   >
@@ -327,10 +323,6 @@ export default {
       this.MaximumWeek = this.dates.length;
       if (this.goToBack) {
         this.weekIdx = this.MaximumWeek - 1;
-        // console.log(
-        //   "🚀 ~ file: Calendar.vue ~ line 176 ~ changeWeekly ~ this.MaximumWeek",
-        //   this.MaximumWeek
-        // );
       }
       this.weekCalendar = this.dates[this.weekIdx];
       this.goToBack = false;
