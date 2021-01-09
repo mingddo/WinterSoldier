@@ -325,13 +325,12 @@ export default {
       );
 
       this.MaximumWeek = this.dates.length;
-      console.log(this.dates);
       if (this.goToBack) {
         this.weekIdx = this.MaximumWeek - 1;
-        console.log(
-          "🚀 ~ file: Calendar.vue ~ line 176 ~ changeWeekly ~ this.MaximumWeek",
-          this.MaximumWeek
-        );
+        // console.log(
+        //   "🚀 ~ file: Calendar.vue ~ line 176 ~ changeWeekly ~ this.MaximumWeek",
+        //   this.MaximumWeek
+        // );
       }
       this.weekCalendar = this.dates[this.weekIdx];
       this.goToBack = false;
@@ -342,17 +341,17 @@ export default {
           if (this.today === daily) {
             this.weekCalendar = this.dates[weekIdx];
             this.weekIdx = weekIdx;
-            console.log("지금주", this.weekIdx);
+            // console.log("지금주", this.weekIdx);
           }
         }
       }
       this.MaximumWeek = this.dates.length;
-      console.log("몇개까지임?", this.MaximumWeek);
+      // console.log("몇개까지임?", this.MaximumWeek);
     },
     changeYearForm() {
       this.inputhTitle = !this.inputhTitle;
       this.year = this.changedYear;
-      console.log("몇년도", this.changedYear);
+      // console.log("몇년도", this.changedYear);
       const [
         monthFirstDay,
         monthLastDate,
@@ -447,8 +446,8 @@ export default {
         }
         day += 1;
       }
-      const len = weekOfDays.length;
-      console.log("길이?", len);
+      // const len = weekOfDays.length;
+      // console.log("길이?", len);
       if (weekOfDays.length > 0) dates.push(weekOfDays); // 남은 날짜 추가
       this.nextMonthStart = weekOfDays[0]; // 이번 달 마지막 주에서 제일 작은 날짜
       return dates;
