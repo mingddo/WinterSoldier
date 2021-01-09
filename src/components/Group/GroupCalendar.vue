@@ -61,6 +61,7 @@
                       :month="month"
                       :day="day"
                       :dates="dates"
+                      :propstodos="groupTodos"
                     />
                   </div>
                 </div>
@@ -86,6 +87,7 @@
 </template>
 
 <script>
+import { readGroupTodo, } from "../../api/group.js";
 import GroupTodayTodolist from "./GroupTodayTodolist";
 import GroupCalendarTodo from "./GroupCalendarTodo.vue";
 export default {
@@ -129,6 +131,10 @@ export default {
       calendarToggle: false,
       selectedMonth: 0,
       selectedDay: 0,
+      groupTodos: {},
+      dateInfo: null,
+      c_month: null,
+      c_day: null,
     };
   },
   created() {
@@ -145,7 +151,35 @@ export default {
     this.defaultYearMonth();
     this.gettogglestate();
   },
+  mounted () {
+    this.getGroupTodoList();
+  },
   methods: {
+    createDateInfo() {
+      if (String(this.month).length === 1) {
+        this.c_month = "0" + String(this.month);
+      } else {
+        this.c_month = String(this.month);
+      }
+      if (String(this.day).length === 1) {
+        this.c_day = "0" + String(this.day);
+      } else {
+        this.c_day = String(this.day);
+      }
+      this.dateInfo =
+        String(this.year) + String(this.c_month) + String(this.c_day);
+    },
+    getGroupTodoList () {
+      readGroupTodo(
+        this.$route.query.groupid,
+        (res) => {
+          this.groupTodos = res.data.todolist;
+        },
+        (err) => {
+          console.log(err)
+        }
+      )
+    },
     calendarChange() {
       this.$store.commit("todoStore/changeCalendar");
       this.calendarToggle = this.$store.state.todoStore.calendartogglestate;
@@ -319,6 +353,15 @@ export default {
     },
     gettogglestate() {
       this.calendarToggle = this.$store.state.todoStore.calendartogglestate;
+    },
+  },
+  watch: {
+    month() {
+      if (0 < this.month < 10) {
+        this.c_month = "0" + String(this.month);
+      } else {
+        this.c_month = String(this.month);
+      }
     },
   },
 };

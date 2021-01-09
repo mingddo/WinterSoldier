@@ -1,13 +1,13 @@
 <template>
   <div>
-    <span v-show="temp">
+    <span v-if="temp">
       <div class="monthcalendartodoItem"><i class="fas fa-bell"></i></div>
     </span>
   </div>
 </template>
 
 <script>
-import { readGroupTodo, } from "../../api/group.js";
+// import { readGroupTodo, } from "../../api/group.js";
 import { mapState } from "vuex";
 
 export default {
@@ -17,7 +17,7 @@ export default {
     year: [Number, String],
     month: [Number, String],
     dates: Array,
-    changing: Boolean,
+    propstodos: Object,
   },
   data: function () {
     return {
@@ -26,6 +26,7 @@ export default {
       temp: false,
       groupTodo: [],
       newDateInfo: null,
+      p_todos: this.propstodos,
     };
   },
   methods: {
@@ -42,42 +43,38 @@ export default {
         String(this.year) + String(thismonth) + String(thisday);
     },
     getGroupTodoList () {
-      readGroupTodo(
-        this.$route.query.groupid,
-        (res) => {
-          if (this.dateInfo in res.data.todolist) {
-            this.groupTodo = res.data.todolist[this.dateInfo]
-            this.temp = true;
-          } else {
-            this.groupTodo = [];
-            this.temp = false;
-          }
-        },
-        (err) => {
-          console.log(err)
-        }
-      )
+      if (this.dateInfo in this.p_todos) {
+        this.todos = this.p_todos[this.dateInfo];
+        this.temp = true;
+      } else {
+        this.todos = [];
+        this.temp = false;
+      }
     },
   },
   watch: {
-    dates() {
+    dates () {
       this.createDateInfo();
       this.getGroupTodoList();
     },
     addTodo() {
+      // console.log(this.newTodo, typeof this.todos)
       if (this.newTodo["schedule_year"] == this.year && this.newTodo["schedule_month"] == this.month && this.newTodo["schedule_date"] == this.day) {
-        if (this.groupTodo.length == 0) {
+        if (this.todos && this.todos.length == 0) {
+          // console.log('새로생성')
           this.temp = true;
         }
       }
+      this.getGroupTodoList();
+    },
+    propstodos() {
+      this.p_todos = this.propstodos;
       this.getGroupTodoList();
     },
   },
 
   created() {
     this.createDateInfo();
-    this.getGroupTodoList();
-    console.log(this.day)
   },
   computed: {
     ...mapState({
