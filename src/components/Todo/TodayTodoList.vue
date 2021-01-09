@@ -9,6 +9,7 @@
           :propsday="c_day"
           v-if="isModalViewed"
           @close-modal="isModalViewed = false"
+          @createtodo_addtodo="createtodo_addtodo"
         />
       </div>
     </div>
@@ -60,6 +61,9 @@ export default {
     };
   },
   methods: {
+    createtodo_addtodo(c_todo){
+      this.$emit("createtodo_addtodo", c_todo)
+    },
     TodoModalViewed() {
       this.$store.dispatch("isTodoModaViewed");
     },
