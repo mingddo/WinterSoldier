@@ -1,6 +1,6 @@
 <template>
   <div class="todomonthshow">
-    <span class="todomonthshowtemp" v-if="temp">
+    <span class="todomonthshowtemp" v-show="temp">
       <div class="monthcalendartodoItem"></div>
     </span>
   </div>
@@ -24,7 +24,7 @@ export default {
       temp: false,
       c_month: null,
       c_day: null,
-      p_todos: this.propstodos,
+      p_todos: {},
     };
   },
   methods: {
@@ -68,20 +68,6 @@ export default {
       this.dateInfo =
         String(this.year) + String(this.c_month) + String(this.c_day);
       this.getTodoList();
-    },
-    changeTodo() {
-      let newDateInfo =
-        this.newTodo["alarm_year"] +
-        this.newTodo["alarm_month"] +
-        this.newTodo["alarm_date"];
-      if (newDateInfo === this.dateInfo) {
-        if (this.todos.length > 0) {
-          this.todos.push(this.newTodo);
-        } else {
-          // this.todos = [this.newTodo];이거해도 동기화반영이 안된다.
-          this.getTodoList();
-        }
-      }
     },
     propstodos() {
       this.p_todos = this.propstodos;

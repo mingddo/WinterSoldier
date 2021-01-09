@@ -174,6 +174,7 @@
               :year="year"
               :month="selectedMonth"
               :propstodos="todos"
+              @createtodo_addtodo="createtodo_addtodo"
             />
           </div>
         </div>
