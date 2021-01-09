@@ -441,18 +441,51 @@ export default {
     },
   },
   created() {
+    console.log("크리에디티드");
     this.form.schedule_year = this.propsyear;
-    this.form.schedule_month = this.propsmonth;
-    this.form.schedule_date = this.propsday;
     this.form.alarm_year = this.propsyear;
-    this.form.alarm_month = this.propsmonth;
-    this.form.alarm_date = this.propsday;
+
+    if (!isNaN(this.propsday)) {
+      if (String(this.propsday).length === 1) {
+        this.form.schedule_date = "0" + String(this.propsday);
+        this.form.alarm_date = "0" + String(this.propsday);
+      } else {
+        this.form.schedule_date = String(this.propsday);
+        this.form.alarm_date = String(this.propsday);
+      }
+    } else {
+      this.form.schedule_date = this.propsday;
+      this.form.alarm_date = this.propsday;
+    }
   },
   computed: {
     ...mapState({
       today_alarm_todos: (state) => state.todoStore.today_alarm_todos,
       newTodo: (state) => state.todoStore.newTodo,
     }),
+  },
+  mounted() {
+    console.log("마운티드");
+  },
+  updated() {
+    console.log("업데이티드");
+  },
+  watch: {
+    propsmonth() {
+      console.log("왓치드");
+      if (!isNaN(this.propsmonth)) {
+        if (String(this.propsmonth).length === 1) {
+          this.form.schedule_month = "0" + String(this.propsmonth);
+          this.form.alarm_month = "0" + String(this.propsmonth);
+        } else {
+          this.form.schedule_month = String(this.propsmonth);
+          this.form.alarm_month = String(this.propsmonth);
+        }
+      } else {
+        this.form.schedule_month = this.propsmonth;
+        this.form.alarm_month = this.propsmonth;
+      }
+    },
   },
 };
 </script>
