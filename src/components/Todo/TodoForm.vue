@@ -414,11 +414,14 @@ export default {
       } else {
         writeTodo(
           this.form,
-          () => {
+          (res) => {
             this.$emit("close-modal");
             this.$store.commit("todoStore/addNewTodo", this.form);
-            this.$store.dispatch("todoStore/addAlarm", this.form);
-            this.$emit("createtodo_addtodo", this.form)
+            this.$store.dispatch("todoStore/addAlarm", {
+              newAlarm: this.form,
+              id: res.data.id,
+            });
+            this.$emit("createtodo_addtodo", this.form);
           },
           (error) => {
             console.log(error);
