@@ -1,6 +1,6 @@
 <template>
   <div>
-    <span v-if="temp">
+    <span v-if="temp == true">
       <div class="monthcalendartodoItem"><i class="fas fa-bell"></i></div>
     </span>
   </div>
@@ -63,6 +63,7 @@ export default {
         if (this.todos && this.todos.length == 0) {
           // console.log('새로생성')
           this.temp = true;
+          console.log(this.temp)
         }
       }
       this.getGroupTodoList();

@@ -94,6 +94,7 @@
       <div>
         <div class="profile-todobox-title">
           <h1> Schedule </h1>
+          <i class="pointer fas fa-redo-alt" @click="reload"></i>
         </div>
         <GroupCalendar 
         :groupinfo="groupinfo"/>
@@ -131,6 +132,9 @@ export default {
     }
   },
   methods: {
+    reload () {
+      location.reload();
+    },
     Memberdelete() {
       if (confirm('정말로 그룹을 탈퇴하시겠습니까?')) {
         deletemember(
