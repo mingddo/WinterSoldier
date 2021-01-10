@@ -1,8 +1,8 @@
 <template>
-  <div class="detail__modal" @click.self="TodoModalViewed">
+  <div class="detail__modal" @dblclick="Temp_Test_Function">
     <div class="modal__card">
       <div class="detail-todo-header">
-        <div class="schedule-day">
+        <div class="schedule-day" @click="Temp_Test_Function">
           {{ todo.schedule_month }}월 {{ todo.schedule_date }}일
         </div>
         <div class="schedule-day-button">
@@ -53,8 +53,8 @@ export default {
   },
 
   methods: {
-    modify_data_emit(modifytodo){
-      this.$emit("modify_data_emit", modifytodo)
+    Temp_Test_Function() {
+      this.$emit("temp_close");
     },
     ModifyModalViewed() {
       this.isModifyModalViewed = true;
