@@ -332,9 +332,8 @@ export default {
           // 1일이 어느 요일인지에 따라 테이블에 그리기 위한 지난 셀의 날짜들을 구해야함
           for (let j = 0; j < monthFirstDay; j += 1) {
             weekOfDays.push("");
-            console.log(prevDay)
             // weekOfDays.push(prevDay); , 달력상에 지난 날짜 표현 x
-            prevDay += 1;
+            prevDay = prevDay + 1;
           }
         }
         weekOfDays.push(day);

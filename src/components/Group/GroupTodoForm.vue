@@ -74,17 +74,30 @@ export default {
 
 <style>
 .group-todo-detail-modal {
-  position: fixed;
+  /* position: fixed;
   z-index: 1;
-  /* margin: auto; */
-  /* padding: 20px; */
   left: 37.5%;
   top: 30%;
   width: 30%;
   height: 50%;
   overflow: auto;
   background-color: white;
-  border: 1px solid;
+  border: 1px solid; */
+
+  position: fixed; /* Stay in place */
+  margin: 15% auto;
+  z-index: 10; /* 15% from the top and centered */
+  padding: 20px;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  border: 2px solid #888;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0px 0px 5px 0.3px var(--color-gray-light);
 }
 .group-todo-detail-modal > div:first-child{
   background-color: pink;
