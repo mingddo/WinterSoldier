@@ -6,19 +6,19 @@
 </template>
 
 <script>
-import ChatHome from "./components/ChatBot/ChatHome.vue";
-// import Navi from "./components/common/navi.vue";
-import { todoCompleted } from "@/api/todo.js";
-import { todoList } from "@/api/todo.js";
-import { mapState } from "vuex";
+import ChatHome from './components/ChatBot/ChatHome.vue';
+// import Navi from './components/common/navi.vue';
+import { todoCompleted } from '@/api/todo.js';
+import { todoList } from '@/api/todo.js';
+import { mapState } from 'vuex';
 
 export default {
-  name: "App",
+  name: 'App',
   components: {
     // Navi,
     ChatHome,
   },
-  data: function () {
+  data: function() {
     return {
       today_alarm_todos: [],
       today_notAlarm_todos: [],
@@ -28,19 +28,19 @@ export default {
   methods: {
     checkAlarm() {
       if (this.today_notAlarm_todos.length > 0) {
-        if (Notification.permission === "granted") {
+        if (Notification.permission === 'granted') {
           let img =
-            "https://i.annihil.us/u/prod/marvel/i/mg/6/00/5c802b62bc572/clean.jpg";
+            'https://i.annihil.us/u/prod/marvel/i/mg/6/00/5c802b62bc572/clean.jpg';
           var i;
-          let today_notAlarm_todos_title = "";
+          let today_notAlarm_todos_title = '';
           for (i = 0; i < this.today_notAlarm_todos.length; i++) {
             today_notAlarm_todos_title +=
-              this.today_notAlarm_todos[i].title + ", ";
+              this.today_notAlarm_todos[i].title + ', ';
             // db의 todo completed여부도 변경, id값없어서 db의 completed가 안변하는 에러
             todoCompleted(
-              { ...this.today_notAlarm_todos[i], completed: "yes" },
+              { ...this.today_notAlarm_todos[i], completed: 'yes' },
               () => {
-                this.$store.commit("todoStore/isCompleted", i); // 알람띄운 todo는 completed 변경
+                this.$store.commit('todoStore/isCompleted', i); // 알람띄운 todo는 completed 변경
               },
               (err) => {
                 console.log(err);
@@ -49,14 +49,14 @@ export default {
           }
           let text = today_notAlarm_todos_title;
           new Notification(
-            this.today_notAlarm_todos.length + "개의 시간 지난 할 일",
+            this.today_notAlarm_todos.length + '개의 시간 지난 할 일',
             { body: text, icon: img }
           );
         } else {
           alert(
-            "알림시간이 지난 할 일이" +
+            '알림시간이 지난 할 일이' +
               this.today_notAlarm_todos.length +
-              "개 있어요!"
+              '개 있어요!'
           );
         }
       }
@@ -73,21 +73,21 @@ export default {
             this.today_alarm_todos[i].alarm_min;
           if (
             this.curTime_info === alarmTime_info &&
-            this.today_alarm_todos[i].completed === "no"
+            this.today_alarm_todos[i].completed === 'no'
           ) {
             // 알람 띄우기
-            if (Notification.permission === "granted") {
+            if (Notification.permission === 'granted') {
               let img =
-                "https://i.annihil.us/u/prod/marvel/i/mg/6/00/5c802b62bc572/clean.jpg";
-              let text = this.today_alarm_todos[i].title + " 할 시간.";
-              new Notification("할 일", { body: text, icon: img }); // 알람
+                'https://i.annihil.us/u/prod/marvel/i/mg/6/00/5c802b62bc572/clean.jpg';
+              let text = this.today_alarm_todos[i].title + ' 할 시간.';
+              new Notification('할 일', { body: text, icon: img }); // 알람
 
-              this.today_alarm_todos[i].completed = "yes"; // 알람띄운 todo는 completed 변경
+              this.today_alarm_todos[i].completed = 'yes'; // 알람띄운 todo는 completed 변경
               // db의 todo completed여부도 변경
               todoCompleted(
-                { ...this.today_alarm_todos[i], completed: "yes" },
+                { ...this.today_alarm_todos[i], completed: 'yes' },
                 () => {
-                  console.log("completed 수정 성공");
+                  console.log('completed 수정 성공');
                 },
                 (err) => {
                   console.log(err);
@@ -100,7 +100,7 @@ export default {
         }
       }, 1000);
     },
-    getTodo: function () {
+    getTodo: function() {
       const day = new Date();
       let cur_year = day.getFullYear();
       let cur_month = this.addZeros(day.getMonth() + 1, 2);
@@ -117,9 +117,9 @@ export default {
             var i;
             for (i = 0; i < today_todos_length; i++) {
               let todo_time_info =
-                today_todos[i]["alarm_hour"] + today_todos[i]["alarm_min"];
+                today_todos[i]['alarm_hour'] + today_todos[i]['alarm_min'];
               if (
-                today_todos[i]["completed"] === "no" &&
+                today_todos[i]['completed'] === 'no' &&
                 todo_time_info < time_info
               ) {
                 this.today_notAlarm_todos.push(today_todos[i]);
@@ -138,27 +138,27 @@ export default {
     // 권한 획득 (알람 허용 여부 물어보기)
     // prtmiddion은 denied, granted, default 세 종류 있고 처음엔 default
     // default 값이면 requestPermission()을 사용하여 권한 요청
-    askNotificationPermission: function () {
-      if (!("Notification" in window)) {
-        alert("알림 기능을 지원하지 않는 브라우저입니다.");
+    askNotificationPermission: function() {
+      if (!('Notification' in window)) {
+        alert('알림 기능을 지원하지 않는 브라우저입니다.');
       } else {
-        if (Notification.permission === "default") {
+        if (Notification.permission === 'default') {
           Notification.requestPermission()
-            .then(console.log("알림허용성공"))
-            .catch(alert("알림허용실패"));
-        } else if (Notification.permission === "denied") {
-          alert("알림을 허용하지 않으면, 알림 기능을 사용할 수 없습니다.");
+            .then(console.log('알림허용성공'))
+            .catch(alert('알림허용실패'));
+        } else if (Notification.permission === 'denied') {
+          alert('알림을 허용하지 않으면, 알림 기능을 사용할 수 없습니다.');
         }
       }
     },
-    addZeros: function (num, digit) {
+    addZeros: function(num, digit) {
       // 자릿수 맞춰주기
-      var zero = "";
+      var zero = '';
       num = num.toString();
       if (num.length < digit) {
         var i;
         for (i = 0; i < digit - num.length; i++) {
-          zero += "0";
+          zero += '0';
         }
       }
       return zero + num;
@@ -181,7 +181,7 @@ export default {
   watch: {
     changeAlarm() {
       let alarmTime_info =
-        this.newAlarm["alarm_hour"] + this.newAlarm["alarm_min"];
+        this.newAlarm['alarm_hour'] + this.newAlarm['alarm_min'];
       if (alarmTime_info < this.curTime_info) {
         this.today_notAlarm_todos.push(this.newAlarm);
       } else {
