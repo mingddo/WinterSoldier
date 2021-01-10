@@ -21,6 +21,8 @@
           {{ todo.alarm_date }}일 {{ todo.alarm_hour }}시 {{ todo.alarm_min }}분
         </span>
       </div>
+    </div>
+    <div>
       <Modify
         :todo="todo"
         v-if="isModifyModalViewed"

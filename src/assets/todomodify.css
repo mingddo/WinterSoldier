@@ -1,14 +1,7 @@
-.modify__modal {
-  position: fixed; /* Stay in place */
-  z-index: 15; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  /* opacity: 0.35; */
-  background: rgba(0, 0, 0, 0.2);
-}
 .modal__card {
+  position: absolute;
+  top: -5%;
+  left: 30%;
   margin: 15% auto;
   z-index: 20; /* 15% from the top and centered */
   padding: 20px;
