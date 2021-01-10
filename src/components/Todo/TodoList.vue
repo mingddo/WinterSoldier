@@ -1,18 +1,21 @@
 <template>
   <div>
     <span v-show="temp">
-      <Todo v-for="(todo, idx) in todos" :key="idx" :todo="todo" />
+      <!-- <Todo v-for="(todo, idx) in todos" :key="idx" :todo="todo" /> -->
+      <div v-for="todo in todos" :key="todo.id" class="monthcalendartodoItem">
+        <Temp :todo="todo"> </Temp>
+      </div>
     </span>
   </div>
 </template>
 
 <script>
-import Todo from "./Todo";
+import Temp from "./Temp";
 // import { todoList } from "../../api/todo.js";
 export default {
   name: "TodoList",
   components: {
-    Todo,
+    Temp,
   },
   props: {
     weekdaily: [Number, String],
@@ -74,10 +77,10 @@ export default {
       this.getTodoList();
     },
     propstodos() {
-      console.log('propstodo')
+      console.log("propstodo");
       this.p_todos = this.propstodos;
       this.getTodoList();
-      console.log("p_todos",this.p_todos)
+      console.log("p_todos", this.p_todos);
     },
   },
   created() {
