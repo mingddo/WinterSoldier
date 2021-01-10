@@ -42,7 +42,7 @@ export default {
       this.dateInfo =
         String(this.year) + String(thismonth) + String(thisday);
     },
-    getGroupTodoList () {
+    checkgroupTodo () {
       if (this.dateInfo in this.p_todos) {
         this.todos = this.p_todos[this.dateInfo];
         this.temp = true;
@@ -51,11 +51,22 @@ export default {
         this.temp = false;
       }
     },
+    // getGroupTodoList () {
+    //   readGroupTodo(
+    //     this.$route.query.groupid,
+    //     (res) => {
+    //       this.groupTodos = res.data.todolist;
+    //     },
+    //     (err) => {
+    //       console.log(err)
+    //     }
+    //   )
+    // },
   },
   watch: {
     dates () {
       this.createDateInfo();
-      this.getGroupTodoList();
+      this.checkgroupTodo();
     },
     addTodo() {
       // console.log(this.newTodo, typeof this.todos)
@@ -63,14 +74,29 @@ export default {
         if (this.todos && this.todos.length == 0) {
           // console.log('새로생성')
           this.temp = true;
+          this.$emit('changeTemp')
           console.log(this.temp)
         }
       }
-      this.getGroupTodoList();
+      
     },
-    propstodos() {
-      this.p_todos = this.propstodos;
-      this.getGroupTodoList();
+    delTodo () {
+      console.log('삭제됨', this.backTodo)
+      if (this.backTodo["schedule_year"] == this.year && this.backTodo["schedule_month"] == this.month && this.backTodo["schedule_date"] == this.day) {
+        if (this.todos && this.todos.length == 1) {
+          // console.log('새로생성')
+          this.temp = false;
+          this.$emit('changeTemp')
+          // console.log(this.temp)
+        }
+      }
+    },
+    propstodos: {
+      deep: true,
+      handler() {
+        this.p_todos = this.propstodos;
+        this.checkgroupTodo();
+      }
     },
   },
 
@@ -81,6 +107,8 @@ export default {
     ...mapState({
       addTodo: (state) => state.groupTodoStore.addTodo,
       newTodo: (state) => state.groupTodoStore.newTodo,
+      delTodo: (state) => state.groupTodoStore.delTodo,
+      backTodo: (state) => state.groupTodoStore.backTodo,
     }),
   },
 };
