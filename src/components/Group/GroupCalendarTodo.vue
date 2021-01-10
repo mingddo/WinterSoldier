@@ -51,17 +51,6 @@ export default {
         this.temp = false;
       }
     },
-    // getGroupTodoList () {
-    //   readGroupTodo(
-    //     this.$route.query.groupid,
-    //     (res) => {
-    //       this.groupTodos = res.data.todolist;
-    //     },
-    //     (err) => {
-    //       console.log(err)
-    //     }
-    //   )
-    // },
   },
   watch: {
     dates () {
@@ -69,25 +58,19 @@ export default {
       this.checkgroupTodo();
     },
     addTodo() {
-      // console.log(this.newTodo, typeof this.todos)
       if (this.newTodo["schedule_year"] == this.year && this.newTodo["schedule_month"] == this.month && this.newTodo["schedule_date"] == this.day) {
         if (this.todos && this.todos.length == 0) {
-          // console.log('새로생성')
           this.temp = true;
           this.$emit('changeTemp')
-          console.log(this.temp)
         }
       }
       
     },
     delTodo () {
-      console.log('삭제됨', this.backTodo)
       if (this.backTodo["schedule_year"] == this.year && this.backTodo["schedule_month"] == this.month && this.backTodo["schedule_date"] == this.day) {
         if (this.todos && this.todos.length == 1) {
-          // console.log('새로생성')
           this.temp = false;
           this.$emit('changeTemp')
-          // console.log(this.temp)
         }
       }
     },
