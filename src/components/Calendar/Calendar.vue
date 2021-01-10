@@ -278,7 +278,9 @@ export default {
       if (date_key in this.todos) {
         this.todos[date_key].push(c_todo);
       } else {
-        this.todos[date_key] = c_todo;
+        this.todos[date_key] = Array();
+        this.todos[date_key].push(c_todo);
+        this.getTodoList()
       }
     },
     daycal(day) {
@@ -469,6 +471,7 @@ export default {
       this.calendarToggle = this.$store.state.todoStore.calendartogglestate;
     },
     getTodoList() {
+      console.log("todo 가지고 오는 함수 실행")
       if (localStorage.getItem("jwt")) {
         todoList(
           (response) => {
@@ -504,8 +507,15 @@ export default {
       } else {
         this.c_month = String(this.month);
       }
-    },
+    }, 
+    todos:{
+      deep: true,
+      handler(newtodo){
+        console.log('캘린더 와치',newtodo)
+      }
+    }  
   },
+
 };
 </script>
 
