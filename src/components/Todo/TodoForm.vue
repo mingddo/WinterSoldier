@@ -81,7 +81,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+// import { mapState } from "vuex";
 import { writeTodo } from "../../api/todo.js";
 export default {
   name: "TodoForm",
@@ -416,8 +416,9 @@ export default {
           this.form,
           () => {
             this.$emit("close-modal");
-            this.$store.commit("todoStore/addNewTodo", this.form);
-            this.$store.dispatch("todoStore/addAlarm", this.form);
+            this.$emit("createtodo_addtodo", this.form)
+            // this.$store.commit("todoStore/addNewTodo", this.form);
+            // this.$store.dispatch("todoStore/addAlarm", this.form);
           },
           (error) => {
             console.error(error);
@@ -466,12 +467,12 @@ export default {
       this.form.alarm_date = this.propsday;
     }
   },
-  computed: {
-    ...mapState({
-      today_alarm_todos: (state) => state.todoStore.today_alarm_todos,
-      newTodo: (state) => state.todoStore.newTodo,
-    }),
-  },
+  // computed: {
+  //   ...mapState({
+  //     today_alarm_todos: (state) => state.todoStore.today_alarm_todos,
+  //     newTodo: (state) => state.todoStore.newTodo,
+  //   }),
+  // },
 };
 </script>
 

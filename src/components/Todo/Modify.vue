@@ -435,7 +435,7 @@ export default {
       this.$emit("modify-close-modal");
     },
     dataemit() {
-      this.$emit("modify-data-emit", this.temp_todo);
+      this.$emit("modify_data_emit", this.form);
     },
   },
   created() {

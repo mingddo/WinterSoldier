@@ -25,6 +25,7 @@
         :todo="todo"
         v-if="isModifyModalViewed"
         @modify-close-modal="isModifyModalViewed = false"
+        @modify_data_emit="modify_data_emit"
       >
       </Modify>
     </div>
@@ -52,6 +53,9 @@ export default {
   },
 
   methods: {
+    modify_data_emit(modifytodo){
+      this.$emit("modify_data_emit", modifytodo)
+    },
     ModifyModalViewed() {
       this.isModifyModalViewed = true;
     },
