@@ -1,8 +1,6 @@
 <template>
   <div>
-    <!-- <input @keypress.enter="createTodo" v-model="todoTitle" type="text">
-      <button @click="createTodo">Add</button> -->
-    <div class="modify__modal" @click.self="closemodal">
+    <div @click.self="closemodal">
       <div class="modal__card">
         <h2>{{ todo.id }}번 글입니다.</h2>
 

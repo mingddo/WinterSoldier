@@ -21,6 +21,8 @@
           {{ todo.alarm_date }}일 {{ todo.alarm_hour }}시 {{ todo.alarm_min }}분
         </span>
       </div>
+    </div>
+    <div>
       <Modify
         :todo="todo"
         v-if="isModifyModalViewed"
@@ -53,8 +55,8 @@ export default {
   },
 
   methods: {
-    modify_data_emit(modifytodo){
-      this.$emit("modify_data_emit", modifytodo)
+    modify_data_emit(modifytodo) {
+      this.$emit("modify_data_emit", modifytodo);
     },
     ModifyModalViewed() {
       this.isModifyModalViewed = true;
