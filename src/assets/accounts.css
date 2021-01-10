@@ -1,5 +1,6 @@
 .loginbox {
   width: 40%;
+  min-width: 500px;
   margin: calc(var(--margin) * 10) auto;
   padding: calc(var(--padding) * 4);
   height: 400px;
@@ -57,7 +58,8 @@
   width: 80%;
   height: 2.5rem;
   border-radius: 4px;
-  font-size: var(--font-medium);
+  font-size: var(--font-small);
+  font-weight: var(--weight-bold);
   border: none;
   background-color: rgb(238, 238, 133);
   cursor: pointer;
@@ -72,6 +74,7 @@
 .signupbox {
   font-style: var(--Nanum-Ghothic);
   width: 40%;
+  min-width: 500px;
   margin: calc(var(--margin) * 10) auto;
   padding: calc(var(--padding) * 4);
   height: 500px;
@@ -121,7 +124,8 @@
   width: 80%;
   height: 2.5rem;
   border-radius: 4px;
-  font-size: var(--font-micro);
+  font-size: var(--font-small);
+  font-weight: var(--weight-bold);
   border: none;
   background-color: rgb(238, 238, 133);
   cursor: pointer;
@@ -132,6 +136,7 @@
   cursor: pointer;
 }
 
+/* 프로필 */
 .profilebox {
   flex: 8 8 80%;
   display: flex;

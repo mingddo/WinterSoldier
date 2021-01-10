@@ -1,5 +1,5 @@
 <template>
-  <header class="navbar">
+  <header class="">
     <!-- 임시로고 클릭시 홈페이지로! -->
     <div class="navbar__logo">
       <router-link :to="{ name: 'Home' }">
@@ -8,15 +8,15 @@
     </div>
 
     <div class="navbar__icons">
-      <span v-if="isLogin">
-        안녕하세요 {{ (myinfo && myinfo.username) || "Anonymous" }} 님
+      <span class="navbar__span" v-if="isLogin">
+        안녕하세요 {{ (myinfo && myinfo.username) || 'Anonymous' }} 님
       </span>
 
-      <span v-else> 로그인이 필요합니다. </span>
+      <span class="navbar__span" v-else> 로그인이 필요합니다. </span>
 
-      <div v-if="isLogin">
-        <button class="log__btn" @click="onLogout">로그아웃</button>
-      </div>
+      <button v-if="isLogin" class="log__btn" @click="onLogout">
+        로그아웃
+      </button>
 
       <div class="signup__wrapper">
         <button v-if="!isLogin" class="log__btn">
@@ -42,9 +42,9 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState } from 'vuex';
 export default {
-  name: "Navi",
+  name: 'Navi',
   computed: {
     ...mapState({
       myinfo: (state) => state.userStore.userInfo,
@@ -53,7 +53,7 @@ export default {
   },
   methods: {
     onLogout() {
-      this.$store.dispatch("userStore/LOGOUT");
+      this.$store.dispatch('userStore/LOGOUT');
       this.$router.go(this.$router.currentRoute);
     },
   },
