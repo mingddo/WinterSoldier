@@ -76,12 +76,15 @@ export default {
         String(this.year) + String(this.t_month) + String(this.t_weekdaily);
       this.getTodoList();
     },
-    propstodos() {
-      console.log("propstodo");
+    propstodos:{
+      deep :true,
+      handler(newtodo){
+      console.log('바뀐다',newtodo)
       this.p_todos = this.propstodos;
       this.getTodoList();
-      console.log("p_todos", this.p_todos);
+      }
     },
+
   },
   created() {
     this.createDateInfo();

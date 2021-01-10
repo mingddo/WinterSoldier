@@ -25,6 +25,7 @@
         :todo="todo"
         v-if="isModifyModalViewed"
         @modify-close-modal="isModifyModalViewed = false"
+        @modify_data_emit="modify_data_emit"
       >
       </Modify>
     </div>
