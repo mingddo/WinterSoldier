@@ -62,6 +62,7 @@
                       :day="day"
                       :dates="dates"
                       :propstodos="groupTodos"
+                      @changeTemp="changeTemp"
                     />
                   </div>
                 </div>
@@ -155,6 +156,9 @@ export default {
     this.getGroupTodoList();
   },
   methods: {
+    changeTemp () {
+      this.getGroupTodoList();
+    },
     createDateInfo() {
       if (String(this.month).length === 1) {
         this.c_month = "0" + String(this.month);

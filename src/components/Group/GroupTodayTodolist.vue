@@ -6,7 +6,6 @@
       :key="todo.id"
       :todo="todo"
       class="group-todo-item"
-      @deleteTodoList="deleteTodoList"
       />
     </div>
     <div>
@@ -62,14 +61,14 @@ export default {
     };
   },
   methods: {
-    deleteTodoList (id) {
-      let idx = this.todayinfo.findIndex(obj => {
-        obj.id == id
-      })
-      this.todayinfo.splice(idx, 1)
-      this.$store.commit('groupTodoStore/changeDelTodoStatus', true)
-      this.$store.commit('groupTodoStore/changeDelTodo', this.form)
-    },
+    // deleteTodoList (id) {
+    //   let idx = this.todayinfo.findIndex(obj => {
+    //     obj.id == id
+    //   })
+    //   this.todayinfo.splice(idx, 1)
+    //   this.$store.commit('groupTodoStore/changeDelTodoStatus', true)
+    //   this.$store.commit('groupTodoStore/changeDelTodo', this.form)
+    // },
     closeTodoform () {
       this.newtodo = false;
     },
