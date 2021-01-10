@@ -25,7 +25,7 @@
           v-model="passwordConfirmation"
         />
       </div>
-      <button @click="onSignup">Signup</button>
+      <button @click="onSignup">회원가입</button>
     </div>
   </div>
 </template>
