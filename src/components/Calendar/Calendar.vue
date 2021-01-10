@@ -130,16 +130,13 @@
               v-for="(weekdaily, idx2) in weekCalendar"
               :key="idx2"
               :weekdaily="weekdaily"
+              @dblclick="isModalViewed = true"
             >
               <div class="td-dayInfo">
                 <a href="">{{ weekdaily }}</a>
               </div>
               <!-- <template /> -->
-              <div
-                class="tf-dailytodoList"
-                @click="daycal(weekdaily)"
-                @dblclick="isModalViewed = true"
-              >
+              <div class="tf-dailytodoList" @click="daycal(weekdaily)">
                 <div class="td-dailytodoItem">
                   <TodoList
                     :weekdaily="weekdaily"

@@ -47,6 +47,7 @@
 .schedule-day-button > span {
   padding: 10px;
   cursor: pointer;
+  z-index: 15; 
 }
 
 .detail-todo-content{

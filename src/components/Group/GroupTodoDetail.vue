@@ -71,16 +71,19 @@ export default {
       deleteGroupTodo(
         this.$route.query.groupid,
         this.todo.id,
-        this.todo,
         (res) => {
           console.log(res)
+          console.log(this.todo)
+          this.$store.commit('groupTodoStore/changeDelTodo', this.todo)
+          this.$store.commit('groupTodoStore/changeDelTodoStatus')
         },
         (err) => {
           console.log(err)
         }
       )
       this.detail = !this.detail;
-      this.$emit('deleteTodoList', this.todo.id)
+      
+      // this.$emit('deleteTodoList', this.todo.id)
     },
     modifyTodo () {
       updateGroupTodo(

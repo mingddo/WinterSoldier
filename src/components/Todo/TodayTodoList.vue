@@ -15,13 +15,7 @@
     </div>
     <span v-show="temp">
       <div v-for="todo in todos" :key="todo.id" class="monthcalendartodoItem">
-        <div>
-          <div @click="TodoModalViewed">{{ todo.title }}</div>
-          <div @click="TodoModalViewed">
-            {{ todo.alarm_hour }}시 {{ todo.alarm_min }}분
-          </div>
-          <Detail :todo="todo" v-if="isTodoModalViewed2"> </Detail>
-        </div>
+        <Temp :todo="todo"> </Temp>
       </div>
     </span>
   </div>
@@ -29,25 +23,19 @@
 
 <script>
 // import { todoList } from "../../api/todo.js";
-import Detail from "./Detail";
 import TodoForm from "../Todo/TodoForm";
+import Temp from "./Temp.vue";
 export default {
   name: "TodayTodoList",
   components: {
-    Detail,
     TodoForm,
+    Temp,
   },
   props: {
     day: Number,
     year: Number,
     month: Number,
     propstodos: Object,
-  },
-  computed: {
-    isTodoModalViewed2() {
-      return this.$store.state.isTodoModalViewed;
-    },
-
   },
   data: function () {
     return {
@@ -61,8 +49,8 @@ export default {
     };
   },
   methods: {
-    createtodo_addtodo(c_todo){
-      this.$emit("createtodo_addtodo", c_todo)
+    createtodo_addtodo(c_todo) {
+      this.$emit("createtodo_addtodo", c_todo);
     },
     TodoModalViewed() {
       this.$store.dispatch("isTodoModaViewed");
