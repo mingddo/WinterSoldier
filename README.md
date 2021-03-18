@@ -1,149 +1,164 @@
-# 순서
+# WinterSoldier
 
-1. `python -m venv venv`
-
-2. `source venv/Scripts/activate`
-
-3. `pip install django`
-
-4. `django-admin startproject Myproject`
-
-5. `python manage.py startapp Myapp`
-
-6. settings.py에 app 추가
-
-7. `pip install djangorestframework`
-
-8. settings.py에 `rest_framework` app 등록
-
-9. `pip install djangorestframework djangorestframework-jwt`
-
-10. settings.py에 하단
-
-    ```python
-    REST_FRAMEWORK = {
-        'DEFAULT_PERMISSION_CLASSES': (
-            'rest_framework.permissions.IsAuthenticated',
-        ),
-        'DEFAULT_AUTHENTICATION_CLASSES': (
-            'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
-            'rest_framework.authentication.SessionAuthentication',
-            'rest_framework.authentication.BasicAuthentication',
-        ),
-    }
-    ```
-
-    
-
-11. `pip install django-cors-headers`
-
-12. settings.py에 `'corsheaders'` app 등록
-
-13. `MIDDLEWARE`에 `'corsheaders.middleware.CorsMiddleware',` 추가
-
-14. `pip freeze > requirements.txt`
-
-# 의문
-
-## 왜 rest_framework를 사용하는가?
-
-- front에서 요청을 보냈을 때, 
-
-  서버에 있는 DB에서 원하는 데이터를 JSON 형식으로 보내는 것을 편리하게 하기 위해 사용
+> 종합알림시스템
+>
+> 부제: 일상의 모든 소소한 알림(알림)을 하나로 관리하자!!
 
 
 
-## REST, API <a href="https://gmlwjd9405.github.io/2018/09/21/rest-and-restful.html" target="_blank">(참고)</a>
-
-- `REST(Repersentational State Transfer)`
-  - 각 요청이 어떠한 동작&정보를 위한 것인지 <b><u>요청 형식 자체(주소)로 파악이 가능</u></b>한 것
-  - 자원의 표현에 의한 상태 전달
-  - HTTP URI를 통해 자원을 명시하고, HTTP Method를 통해 해당 자원에 대한 CRUD Operation을 적용하는 것
-- `API(Application Programming Interface)`
-  - 데이터와 기능의 집합을 제공하여 컴퓨터 프로그램간 상호작용을 촉진하며, 서로 정보를 교환 가능하도록 하는 것
-- `REST API`
-  - REST 기반으로 서비스 API를 구현한 것
-  - 최근 Open API, 마이크로 서비스 등을 제공하는 업체 대부분은 REST API를 제공한다.
+https://optimistic-swirles-b97b6b.netlify.app/
 
 
 
+## :tipping_hand_man:팀원정보
+
+| 이름   | 역할               | 주요 개발 기능                                               |
+| ------ | ------------------ | ------------------------------------------------------------ |
+| 장수민 | 프론트엔드(백엔드) | (FE) 달력, js 코드 리팩토링, 유저, 그룹페이지/ (BE) 유저 팔로우, 그룹/ (기능) 챗봇 |
+| 김문정 | 백엔드             | 계정관리,  (기능)알림                                        |
+| 명도균 | PM, 프론트엔드     | 기획 문서 작성, 전체 화면 레이아웃 구성 / 반응형, (기능)코로나 현황 |
+| 유진우 | PM, 프론트엔드     | 기획 문서 작성, 전체 화면 레이아웃 구성 / 반응형, css 코드 리팩토링, (기능)날씨 |
+| 전의수 | 백엔드             | Todo, (기능)주식                                             |
+| 신민호 | 프론트엔드         | Todolist CRUD, (기능) 오늘의 뉴스                            |
 
 
-## JWT(JSON Web Token) <a href="https://jwt.io/" target="_blank">(공식홈페이지)</a>
 
-#### (1) JWT 구조 - `xxxx.yyyy.zzzz`
+## :traffic_light: 기획
 
-- `xxxx` : 헤더(header), `yyyy` : 내용(payload), `zzzz` : 서명(signature)
-- Header : token의 type과 사용된 알고리즘, 여기서 정의한 알고리즘은 시그니처에서 다시 사용된다.
-- Payload : 토큰에 담길 정보가 들어있는 곳(claim - key:value)
-- Signature : 헤더와 payload를 기반으로 이 둘을 조합해서 만든 비밀키로 hashing
+- 초기 컨셉
+  - 약 먹을 시간 알림, 버스까지 최적 타이밍, 영화 예매 타이밍, 주식 지표, 날씨 알림(비오면 무조건 알려줘!) 등 일상의 모든 소소한 알림을 하나로!
+- TODOLIST에서 확장되어, 유저가 필요할 만한 혹은 내가 구현해보고 싶은 기능 추가하기
 
----
 
-:heavy_check_mark: <b>정보(Payload)</b>
 
-- registered claim (등록된 클레임)
-  - 토큰에 대한 정보들을 담기 위해 이름이 이미 정해진 클레임들.
-  - 클레임의 사용은 모두 선택적이다.
+## :funeral_urn: 목표 주요 기능
 
-- public claim
-  - 공개 클레임은 충돌이 되지 않는 이름을 가지고 있어야 함.
-  - 보통 충돌을 방지하기 위해 key 값을 URI 형태로 만든다.
-  - ex) `apple` (X), `'https://test.co.kr/jwt_token': true` (O)
+- **기본 TODO** : CRUD
+- **달력** : 달력 구현하여 달력의 날짜별 일정 확인 및 일정 관리 기능
 
-- private claim
-  - 등록된 클레임도 아니고 공개 클레임도 아님.
-  - 클라이언트와 서버간에 협의하에 사용되는 클레임들.
-  - key 값이 중복되서 충돌이 될 수 있으니 유의해서 사용.
-  - ex) `{"username": "admin"}` (Django에서 사용되는 field 값들과 같은 경우)
+- **알림 서비스** : 일정에 맞춰 유저에게 <u>알림 서비스 제공</u>.
 
----
+- **정보 제공** : <u>각 컨셉마다 유저가 원하는 데이터를 시각화</u> 또는 다른 해서 제공
 
-:heavy_check_mark: <b>서명(signature)</b>
+  - 수민 : 챗봇
+  - 도균 : 코로나
+  - 문정 : 알림
+  - 의수 : 주식
+  - 진우 : 날씨
+  - 민호 : 뉴스
 
-- HEADER의 인코딩 값과, PAYLOAD의 인코딩 값을 합친 후 주어진 비밀키로 해시(hash)를 생성한 값
+  
 
----
+## :deciduous_tree: 개발 환경
 
-<br>
+- 언어
 
-#### (2) JWT의 특징
+  - Python 3.7+
+  - Django 3.X
+  - Node 14.15.X
+  - Vue.js 2.6
+- 도구
+  - vsCode
+  - Chrome Browser & Mobile (반응형 웹, 앱 서비스)
+- 아키텍쳐
 
-- 정보를 안전하게 JSON 객체로 전송하기 위한 간결하고 독립적인 방법
-- 서로 다른 웹 프레임워크 간 데이터를 주고 받을 때 검증을 위해 사용
-- JWT 용도 : `Authorization`(회원 인증), `Information Exchanges`(정보 교환)
+  - Django REST API 서버 & Vue.js
+- 배포
+  - ngrok
+  - netlify
 
-- 세션/쿠키와 함께 모바일과 웹의 인증을 책임지는 대표 기술 중 하나.
-- 세션/쿠키의 정보 전달 방식과 유사하게 사용자는 Access Token (JWT Token) 을 HTTP header 에 실어서 서버로 요청을 보냄.
-- 세션/쿠키 방식과 가장 큰 차이점은 세션/쿠키는 세션 저장소에 유저의 정보를 넣지만, JWT 는 토큰 안에 유저의 정보를 넣는다.
 
-- <b>Client 의 입장에서는 HTTP header에 세션ID와 토큰을 실어서 보낸다는 점은 동일하지만, Server 입장에서는 인증을 위해 암호화(JWT 방식) 를 하냐 혹은 별도의 저장소(세션/쿠키 방식)를 이용하느냐의 차이</b>
 
-<br>
+## :warning: 제약 사항
 
-#### (3) JWT 사용 상황
+1. Bootstrap / vuetify 등 사용 금지
+2. 에러 or 경고 메세지는 Modal 활용
+3. 프론트 단에서 데이터 관리는 반드시 **Vuex** 활용
+4. **클린 코드**
+5. git commit message 컨벤션 지키기 : 다음 사이트를 기준으로 작성. [Git Commit Convention](https://webruden.tistory.com/486)
 
-- 회원 인증(Authorization)
-  - 서버가 유저 정보에 기반한 토큰(JWT)을 발급해 유저에게 전달하고, 유저는 서버에 요청을 보낼 때마다 JWT를 포함하여 전달.
-  - 서버는 세션을 유지할 필요 없이 유저의 요청정보 안에 있는 JWT 만 확인하면 된다. (서버 자원 아낄 수 있음)
-- 정보 교환(Information Exchanges)
-  - 정보가 서명되어 있기 때문에 정보를 보낸 사람의 정보 혹은 정보가 조작여부 확인 등이 가능
 
-<br>
 
----
+## :ice_cream: 서비스 개요
 
-:spiral_notepad: <b>요약</b>
+- **데이터 베이스**: 각 컨셉마다 데이터 베이스 구축, RESTFul한 url 구축
+- **수집 방법** : 자유롭게 API 활용
+- **반응협 웹 구축** : 모바일 + 웹
 
-- 두 개체에서 JSON 객체를 사용하여 가볍고 자가 수용적인(self-contained; 필요한 모든 정보를 자체적으로 지님) 방식으로 정보를안정성 있게 전달.
-- 세션 상태를 저장하는 것이 아니라 필요한 정보를 JWT에 저장해서 사용자가 가지고 있게 하고, 해당 JWT를 증명서처럼 사용하는 방식.(즉, 매번 주민등록증을 내는 것과 같다고 생각하면 된다.)
-- JWT 장점
-  - 세션/쿠키처럼 별도의 저장소 관리가 필요 없고 발급한 이후에 검증만 하면 된다.
-  - 토큰을 기반으로 한 다른 인증시스템에 접근이 용이하기 때문에 확장성이 뛰어나다.
-  - 모바일 환경에 적합 (쿠키와 같은 데이터로 인증할 필요가 없기 때문) (세션/쿠키 방식은 모바일 환경에서 부적합)
-  - Python, JS, Ruby, Go 등 주류 프로그래밍 언어에서 대부분 지원된다.
-- JWT 단점
-  - 이미 발급된 JWT는 유효기간이 완료될 때까지 계속 사용하기 때문에 악용될 가능성이 있다.(한 번 발급된 토큰은 값을 수정하거나 폐기할 수 없으므로 계속 같은것을 사용하는 것이다.)
-    - 그래서 이 문제는 Access Token의 유효기간(expire time) 을 짧게하고 Refresh Token 등을 이용해서 중간중간 새로운 토큰을 재발행 해줌으로써 해결할 수 있다.
-  - 세션/쿠키 방식에 비해 claim 데이터(payload)가 많아진다면 JWT 토큰의 길이가 길어지기 때문에 인증 요청이 많아 질수록 네트워크의 대역폭이 낭비될 수 있다.(= 요청량이 너무 많아 네트워크에 과부하가 걸릴 수 있다는 의미)
-    - API 호출 시 매 호출마다 헤더에 붙여서 전달하기 때문이다.
+
+
+## :page_facing_up: 산출물
+
+- 기능정의서
+
+![image-20210319001616736](C:\Users\multicampus\AppData\Roaming\Typora\typora-user-images\image-20210319001616736.png)
+
+
+
+- 와이어프레임
+
+![image-20210319001812808](C:\Users\multicampus\AppData\Roaming\Typora\typora-user-images\image-20210319001812808.png)
+
+
+
+- 스토리보드
+
+![image-20210319001713529](C:\Users\multicampus\AppData\Roaming\Typora\typora-user-images\image-20210319001713529.png)
+
+
+
+- 테스트
+
+![image-20210319001854639](C:\Users\multicampus\AppData\Roaming\Typora\typora-user-images\image-20210319001854639.png)
+
+
+
+### :computer: ​화면
+
+- 메인화면
+
+![](C:\Users\multicampus\Desktop\Jang\projects\이미지정리\2. Winter Soldier\웹 메인.png)
+
+![image-20210319004305026](C:\Users\multicampus\AppData\Roaming\Typora\typora-user-images\image-20210319004305026.png)
+
+
+
+- 회원가입 / 로그인
+
+![](C:\Users\multicampus\Desktop\Jang\projects\이미지정리\2. Winter Soldier\회원가입.png)
+
+![](C:\Users\multicampus\Desktop\Jang\projects\이미지정리\2. Winter Soldier\로그인.png)
+
+
+
+- 일정관리
+
+![](C:\Users\multicampus\Desktop\Jang\projects\이미지정리\2. Winter Soldier\월간 달력.png)
+
+![](C:\Users\multicampus\Desktop\Jang\projects\이미지정리\2. Winter Soldier\주간 달력.png)
+
+![](C:\Users\multicampus\Desktop\Jang\projects\이미지정리\2. Winter Soldier\일정 추가.png)
+
+
+
+- 오늘의 뉴스
+
+![](C:\Users\multicampus\Desktop\Jang\projects\이미지정리\2. Winter Soldier\오늘의 뉴스.png)
+
+
+
+- 주식
+
+![](C:\Users\multicampus\Desktop\Jang\projects\이미지정리\2. Winter Soldier\주식.png)
+
+
+
+- 코로나, 날씨
+
+![](C:\Users\multicampus\Desktop\Jang\projects\이미지정리\2. Winter Soldier\코로나, 날씨.png)
+
+
+
+- 챗봇
+
+![image-20210319004556830](C:\Users\multicampus\AppData\Roaming\Typora\typora-user-images\image-20210319004556830.png)
